@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO
 {
-    public partial class Form1 : Form
+    public partial class MainPage : UserControl
     {
-        public Form1()
+        public MainPage()
         {
             InitializeComponent();
-        }
-
-        private void bttNew_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mainPage1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
