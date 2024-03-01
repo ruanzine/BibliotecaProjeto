@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,39 +47,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="classes\RegistoLivro.cs" />
+    <Compile Include="controls\UC_combobox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\UC_combobox.Designer.cs">
+      <DependentUpon>UC_combobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\MainPage.cs">
+    <Compile Include="controls\panels\MainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\MainPage.Designer.cs">
+    <Compile Include="controls\panels\MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\pnlAddLivros.cs">
+    <Compile Include="controls\panels\pnlAddLivros.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\pnlAddLivros.Designer.cs">
+    <Compile Include="controls\panels\pnlAddLivros.Designer.cs">
       <DependentUpon>pnlAddLivros.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UC_textbox.cs">
+    <Compile Include="controls\UC_textbox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_textbox.Designer.cs">
+    <Compile Include="controls\UC_textbox.Designer.cs">
       <DependentUpon>UC_textbox.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="controls\UC_combobox.resx">
+      <DependentUpon>UC_combobox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\MainPage.resx">
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\panels\MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\pnlAddLivros.resx">
+    <EmbeddedResource Include="controls\panels\pnlAddLivros.resx">
       <DependentUpon>pnlAddLivros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -90,7 +101,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UC_textbox.resx">
+    <EmbeddedResource Include="controls\UC_textbox.resx">
       <DependentUpon>UC_textbox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

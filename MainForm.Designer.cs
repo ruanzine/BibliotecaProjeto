@@ -1,6 +1,6 @@
 ﻿namespace BIBLIOTECA_PROJETO
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -178,13 +178,13 @@
             this.pnlAddLivros1.Size = new System.Drawing.Size(1167, 669);
             this.pnlAddLivros1.TabIndex = 3;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 669);
             this.Controls.Add(this.pnlMainFrame);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.pnlMainFrame.ResumeLayout(false);
             this.pnlMenu.ResumeLayout(false);

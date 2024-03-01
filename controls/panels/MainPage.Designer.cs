@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.uC_textbox1 = new BIBLIOTECA_PROJETO.UC_textbox();
+            this.uC_ComboBox1 = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -59,11 +60,28 @@
             this.uC_textbox1.Texts = "";
             this.uC_textbox1.UnderlinedStyle = true;
             // 
+            // uC_ComboBox1
+            // 
+            this.uC_ComboBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.uC_ComboBox1.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.uC_ComboBox1.BorderSize = 1;
+            this.uC_ComboBox1.ForeColor = System.Drawing.Color.DimGray;
+            this.uC_ComboBox1.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.uC_ComboBox1.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.uC_ComboBox1.ListTextColor = System.Drawing.Color.DimGray;
+            this.uC_ComboBox1.Location = new System.Drawing.Point(224, 160);
+            this.uC_ComboBox1.MinimumSize = new System.Drawing.Size(200, 30);
+            this.uC_ComboBox1.Name = "uC_ComboBox1";
+            this.uC_ComboBox1.Padding = new System.Windows.Forms.Padding(1);
+            this.uC_ComboBox1.Size = new System.Drawing.Size(200, 30);
+            this.uC_ComboBox1.TabIndex = 2;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.uC_ComboBox1);
             this.Controls.Add(this.uC_textbox1);
             this.Controls.Add(this.label1);
             this.Name = "MainPage";
@@ -77,5 +95,6 @@
 
         private System.Windows.Forms.Label label1;
         private UC_textbox uC_textbox1;
+        private controls.UC_ComboBox uC_ComboBox1;
     }
 }
