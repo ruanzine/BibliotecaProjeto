@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.uC_textbox1 = new BIBLIOTECA_PROJETO.UC_textbox();
+            this.uC_textbox1 = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.uC_ComboBox1 = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.SuspendLayout();
             // 
@@ -94,7 +94,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private UC_textbox uC_textbox1;
+        private controls.UC_textbox uC_textbox1;
         private controls.UC_ComboBox uC_ComboBox1;
     }
 }

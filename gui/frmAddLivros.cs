@@ -1,27 +1,26 @@
-﻿using System;
+﻿using BIBLIOTECA_PROJETO.classes;
+using BIBLIOTECA_PROJETO.controls;
+using System;
 using System.Globalization;
 using System.Windows.Forms;
-using BIBLIOTECA_PROJETO.classes;
-using BIBLIOTECA_PROJETO.controls;
 
-
-namespace BIBLIOTECA_PROJETO
+namespace BIBLIOTECA_PROJETO.gui
 {
-    public partial class pnlAddLivros : UserControl
+    public partial class frmAddLivros : Form
     {
-        public pnlAddLivros()
+        MainForm mainForm = new MainForm();
+        private string id;
+
+        public frmAddLivros()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            mainForm.AddControlBounds(pnlAddLivros, this);
         }
 
         private void bttSave_Click(object sender, EventArgs e)
         {
-
             SaveData();
         }
-
-        private string id;
-
 
         private void GetNRegisto()
         {
@@ -71,7 +70,7 @@ namespace BIBLIOTECA_PROJETO
             save.GetNextRegistrationNumber();
             try
             {
-                save.SaveData(nRegisto, dataEntrega, titulo, autor, cota, 
+                save.SaveData(nRegisto, dataEntrega, titulo, autor, cota,
                     nVolume, aquisicao, editora, observacoes, estado);
                 MessageBox.Show("Exemplar adicionado com êxito", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.None);
                 txtNRegisto.Texts = (nRegisto + 1).ToString();
@@ -107,9 +106,7 @@ namespace BIBLIOTECA_PROJETO
 
         private void txtNRegisto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Aceitar apenas números e teclas de controle (Backspace, Delete, etc.)
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
+
         }
 
         private void txtDataEntrega_KeyPress(object sender, KeyPressEventArgs e)
@@ -119,14 +116,34 @@ namespace BIBLIOTECA_PROJETO
                 e.Handled = true;
         }
 
-        private void txtNRegisto_Click(object sender, EventArgs e)
+        private void pnlAddLivros_Resize(object sender, EventArgs e) => mainForm.ResizeControls(pnlAddLivros);
+
+        private void frmAddLivros_Load(object sender, EventArgs e)
         {
+            GetNRegisto();
 
         }
 
-        private void pnlAddLivros_Load(object sender, EventArgs e)
+        private void txtNRegisto_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            GetNRegisto();
+            // Aceitar apenas números e teclas de controle (Backspace, Delete, etc.)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+
+            MainForm form = new MainForm();
+
+            this.KeyPress += form.MainForm_KeyPress;
+        }
+
+        private void txtNRegisto__TextChanged(object sender, EventArgs e)
+        {
+            //FAZER APARECER UM SINALZINHO VERDE AO LADO PARA DIZER QUE ESSE NÚMERO ESTÁ DISPONÍVEL
         }
     }
 }
+
+
+
+
+
+

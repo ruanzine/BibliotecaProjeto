@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BIBLIOTECA_PROJETO
+namespace BIBLIOTECA_PROJETO.controls
 {
+    [DefaultEvent("TextChanged")]
     public partial class UC_textbox : UserControl
     {
         public UC_textbox()
@@ -17,11 +13,15 @@ namespace BIBLIOTECA_PROJETO
             InitializeComponent();
         }
 
-        //[DefaultEvent ("_TextChanged")]
+        public event EventHandler _TextChanged;
+
         //Fields 
         private Color borderColor = Color.MediumSlateBlue;
         private int borderSize = 2;
+        private Color borderFocusColor = Color.FromArgb(255, 128, 0);
         private bool underlinedStyle = false;
+        private bool isFocused = false;
+
 
         //Constructor 
         [Category("TextBox Coding")]
@@ -104,7 +104,18 @@ namespace BIBLIOTECA_PROJETO
 
         }
 
-
+        [Category("TextBox Coding")]
+        public Color BorderFocusColor
+        {
+            get
+            {
+                return borderFocusColor;
+            }
+            set
+            {
+                borderFocusColor = value;
+            }
+        }
 
         //Overriden methods
         protected override void OnPaint(PaintEventArgs e)
@@ -116,10 +127,23 @@ namespace BIBLIOTECA_PROJETO
             using (Pen penBorder = new Pen(borderColor, borderSize))
             {
                 penBorder.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-                if (underlinedStyle)
-                    graph.DrawLine(penBorder, 0, this.Height - 1, this.Width, this.Height - 1);
+
+                if (!isFocused)
+                {
+                    if (underlinedStyle)
+                        graph.DrawLine(penBorder, 0, this.Height - 1, this.Width, this.Height - 1);
+                    else
+                        graph.DrawRectangle(penBorder, 0, 0, this.Width - 0.5F, this.Height - 0.5F);
+                }
                 else
-                    graph.DrawRectangle(penBorder, 0, 0, this.Width - 0.5F, this.Height - 0.5F);
+                {
+                    penBorder.Color = borderFocusColor;
+
+                    if (underlinedStyle)
+                        graph.DrawLine(penBorder, 0, this.Height - 1, this.Width, this.Height - 1);
+                    else
+                        graph.DrawRectangle(penBorder, 0, 0, this.Width - 0.5F, this.Height - 0.5F);
+                }
 
             }
         }
@@ -155,5 +179,40 @@ namespace BIBLIOTECA_PROJETO
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e) => this.OnKeyPress(e);
 
+        private void textBox1_TextChanged(object sender, EventArgs e) => _TextChanged?.Invoke(sender, e);
+
+        
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            isFocused = true;
+            this.Invalidate();
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            isFocused = false;
+            this.Invalidate();
+        }
+
+        private void textBox1_MouseEnter(object sender, EventArgs e)
+        {
+            this.OnMouseEnter(e);
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
+
+        private void textBox1_MouseLeave(object sender, EventArgs e)
+        {
+            this.OnMouseLeave(e);
+        }
+
+        private void textBox1_TextAlignChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

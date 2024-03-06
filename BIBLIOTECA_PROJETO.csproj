@@ -48,11 +48,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\RegistoLivro.cs" />
+    <Compile Include="classes\ResizerClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="controls\UC_combobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="controls\UC_combobox.Designer.cs">
       <DependentUpon>UC_combobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\frmAddLivros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\frmAddLivros.Designer.cs">
+      <DependentUpon>frmAddLivros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\frmBookViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\frmBookViewer.Designer.cs">
+      <DependentUpon>frmBookViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\frmEditLivros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\frmEditLivros.Designer.cs">
+      <DependentUpon>frmEditLivros.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -82,6 +103,15 @@
     </Compile>
     <EmbeddedResource Include="controls\UC_combobox.resx">
       <DependentUpon>UC_combobox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\frmAddLivros.resx">
+      <DependentUpon>frmAddLivros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\frmBookViewer.resx">
+      <DependentUpon>frmBookViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\frmEditLivros.resx">
+      <DependentUpon>frmEditLivros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
