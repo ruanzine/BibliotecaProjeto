@@ -30,31 +30,31 @@
         {
             this.pnlAddLivros = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cbxEstado = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.lblEstadoAdd = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtCota = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblCotaAdd = new System.Windows.Forms.Label();
             this.lblNVolAdd = new System.Windows.Forms.Label();
-            this.txtNVolume = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblObservAdd = new System.Windows.Forms.Label();
-            this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cbxAquisicao = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.lblAquisicao = new System.Windows.Forms.Label();
             this.lblEditoraAdd = new System.Windows.Forms.Label();
-            this.txtEditora = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtAutor = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.txtTitulo = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblAutor = new System.Windows.Forms.Label();
             this.lblTituloAdd = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nRegistoAdd = new System.Windows.Forms.Label();
-            this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblDataEntrada = new System.Windows.Forms.Label();
             this.bttSave = new System.Windows.Forms.Button();
+            this.cbxEstado = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
+            this.txtCota = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.txtNVolume = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.cbxAquisicao = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
+            this.txtEditora = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.txtAutor = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.txtTitulo = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.pnlAddLivros.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,7 +65,7 @@
             // 
             // pnlAddLivros
             // 
-            this.pnlAddLivros.BackColor = System.Drawing.Color.White;
+            this.pnlAddLivros.BackColor = System.Drawing.SystemColors.Control;
             this.pnlAddLivros.Controls.Add(this.groupBox5);
             this.pnlAddLivros.Controls.Add(this.groupBox3);
             this.pnlAddLivros.Controls.Add(this.groupBox4);
@@ -88,32 +88,6 @@
             this.groupBox5.Size = new System.Drawing.Size(544, 78);
             this.groupBox5.TabIndex = 58;
             this.groupBox5.TabStop = false;
-            // 
-            // cbxEstado
-            // 
-            this.cbxEstado.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxEstado.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxEstado.BorderSize = 1;
-            this.cbxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxEstado.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxEstado.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxEstado.Items.AddRange(new object[] {
-            "Disponível",
-            "Indisponível",
-            "Abatido",
-            "Perdido",
-            "Consulta local",
-            "Exposição",
-            "Depósito"});
-            this.cbxEstado.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxEstado.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxEstado.Location = new System.Drawing.Point(160, 24);
-            this.cbxEstado.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxEstado.Name = "cbxEstado";
-            this.cbxEstado.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxEstado.Size = new System.Drawing.Size(200, 30);
-            this.cbxEstado.TabIndex = 47;
-            this.cbxEstado.Texts = "<selecione o estado>";
             // 
             // lblEstadoAdd
             // 
@@ -140,25 +114,6 @@
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
             // 
-            // txtCota
-            // 
-            this.txtCota.BackColor = System.Drawing.SystemColors.Window;
-            this.txtCota.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtCota.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtCota.BorderSize = 2;
-            this.txtCota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCota.ForeColor = System.Drawing.Color.DimGray;
-            this.txtCota.Location = new System.Drawing.Point(160, 32);
-            this.txtCota.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCota.Multiline = false;
-            this.txtCota.Name = "txtCota";
-            this.txtCota.Padding = new System.Windows.Forms.Padding(7);
-            this.txtCota.PasswordChar = false;
-            this.txtCota.Size = new System.Drawing.Size(128, 31);
-            this.txtCota.TabIndex = 41;
-            this.txtCota.Texts = "sim 123";
-            this.txtCota.UnderlinedStyle = true;
-            // 
             // lblCotaAdd
             // 
             this.lblCotaAdd.AutoSize = true;
@@ -181,25 +136,6 @@
             this.lblNVolAdd.TabIndex = 39;
             this.lblNVolAdd.Text = "Nº Volume";
             // 
-            // txtNVolume
-            // 
-            this.txtNVolume.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNVolume.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtNVolume.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtNVolume.BorderSize = 2;
-            this.txtNVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNVolume.ForeColor = System.Drawing.Color.DimGray;
-            this.txtNVolume.Location = new System.Drawing.Point(400, 32);
-            this.txtNVolume.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNVolume.Multiline = false;
-            this.txtNVolume.Name = "txtNVolume";
-            this.txtNVolume.Padding = new System.Windows.Forms.Padding(7);
-            this.txtNVolume.PasswordChar = false;
-            this.txtNVolume.Size = new System.Drawing.Size(80, 31);
-            this.txtNVolume.TabIndex = 40;
-            this.txtNVolume.Texts = "1";
-            this.txtNVolume.UnderlinedStyle = true;
-            // 
             // lblObservAdd
             // 
             this.lblObservAdd.AutoSize = true;
@@ -210,25 +146,6 @@
             this.lblObservAdd.Size = new System.Drawing.Size(92, 17);
             this.lblObservAdd.TabIndex = 42;
             this.lblObservAdd.Text = "Observações";
-            // 
-            // txtObservacoes
-            // 
-            this.txtObservacoes.BackColor = System.Drawing.SystemColors.Window;
-            this.txtObservacoes.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtObservacoes.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtObservacoes.BorderSize = 2;
-            this.txtObservacoes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservacoes.ForeColor = System.Drawing.Color.DimGray;
-            this.txtObservacoes.Location = new System.Drawing.Point(160, 88);
-            this.txtObservacoes.Margin = new System.Windows.Forms.Padding(4);
-            this.txtObservacoes.Multiline = true;
-            this.txtObservacoes.Name = "txtObservacoes";
-            this.txtObservacoes.Padding = new System.Windows.Forms.Padding(7);
-            this.txtObservacoes.PasswordChar = false;
-            this.txtObservacoes.Size = new System.Drawing.Size(320, 48);
-            this.txtObservacoes.TabIndex = 44;
-            this.txtObservacoes.Texts = "";
-            this.txtObservacoes.UnderlinedStyle = true;
             // 
             // groupBox4
             // 
@@ -241,27 +158,6 @@
             this.groupBox4.Size = new System.Drawing.Size(544, 128);
             this.groupBox4.TabIndex = 56;
             this.groupBox4.TabStop = false;
-            // 
-            // cbxAquisicao
-            // 
-            this.cbxAquisicao.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxAquisicao.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxAquisicao.BorderSize = 1;
-            this.cbxAquisicao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxAquisicao.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxAquisicao.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxAquisicao.Items.AddRange(new object[] {
-            "Compra",
-            "Oferta"});
-            this.cbxAquisicao.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxAquisicao.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxAquisicao.Location = new System.Drawing.Point(168, 24);
-            this.cbxAquisicao.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxAquisicao.Name = "cbxAquisicao";
-            this.cbxAquisicao.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxAquisicao.Size = new System.Drawing.Size(200, 30);
-            this.cbxAquisicao.TabIndex = 46;
-            this.cbxAquisicao.Texts = "<selecione o método>";
             // 
             // lblAquisicao
             // 
@@ -285,25 +181,6 @@
             this.lblEditoraAdd.TabIndex = 36;
             this.lblEditoraAdd.Text = "Editora";
             // 
-            // txtEditora
-            // 
-            this.txtEditora.BackColor = System.Drawing.SystemColors.Window;
-            this.txtEditora.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtEditora.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtEditora.BorderSize = 2;
-            this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEditora.ForeColor = System.Drawing.Color.DimGray;
-            this.txtEditora.Location = new System.Drawing.Point(169, 80);
-            this.txtEditora.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEditora.Multiline = false;
-            this.txtEditora.Name = "txtEditora";
-            this.txtEditora.Padding = new System.Windows.Forms.Padding(7);
-            this.txtEditora.PasswordChar = false;
-            this.txtEditora.Size = new System.Drawing.Size(320, 31);
-            this.txtEditora.TabIndex = 37;
-            this.txtEditora.Texts = "Jorge";
-            this.txtEditora.UnderlinedStyle = true;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtAutor);
@@ -315,44 +192,6 @@
             this.groupBox2.Size = new System.Drawing.Size(544, 128);
             this.groupBox2.TabIndex = 55;
             this.groupBox2.TabStop = false;
-            // 
-            // txtAutor
-            // 
-            this.txtAutor.BackColor = System.Drawing.SystemColors.Window;
-            this.txtAutor.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtAutor.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtAutor.BorderSize = 2;
-            this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAutor.ForeColor = System.Drawing.Color.DimGray;
-            this.txtAutor.Location = new System.Drawing.Point(168, 80);
-            this.txtAutor.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAutor.Multiline = false;
-            this.txtAutor.Name = "txtAutor";
-            this.txtAutor.Padding = new System.Windows.Forms.Padding(7);
-            this.txtAutor.PasswordChar = false;
-            this.txtAutor.Size = new System.Drawing.Size(328, 31);
-            this.txtAutor.TabIndex = 34;
-            this.txtAutor.Texts = "Amado";
-            this.txtAutor.UnderlinedStyle = true;
-            // 
-            // txtTitulo
-            // 
-            this.txtTitulo.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTitulo.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtTitulo.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtTitulo.BorderSize = 2;
-            this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitulo.ForeColor = System.Drawing.Color.DimGray;
-            this.txtTitulo.Location = new System.Drawing.Point(168, 24);
-            this.txtTitulo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTitulo.Multiline = false;
-            this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Padding = new System.Windows.Forms.Padding(7);
-            this.txtTitulo.PasswordChar = false;
-            this.txtTitulo.Size = new System.Drawing.Size(328, 31);
-            this.txtTitulo.TabIndex = 29;
-            this.txtTitulo.Texts = "Jorge";
-            this.txtTitulo.UnderlinedStyle = true;
             // 
             // lblAutor
             // 
@@ -399,6 +238,194 @@
             this.nRegistoAdd.TabIndex = 30;
             this.nRegistoAdd.Text = "Nº de Registo";
             // 
+            // lblDataEntrada
+            // 
+            this.lblDataEntrada.AutoSize = true;
+            this.lblDataEntrada.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataEntrada.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDataEntrada.Location = new System.Drawing.Point(304, 40);
+            this.lblDataEntrada.Name = "lblDataEntrada";
+            this.lblDataEntrada.Size = new System.Drawing.Size(117, 17);
+            this.lblDataEntrada.TabIndex = 31;
+            this.lblDataEntrada.Text = "Data de Entrada";
+            // 
+            // bttSave
+            // 
+            this.bttSave.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.bttSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bttSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttSave.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bttSave.Location = new System.Drawing.Point(333, 624);
+            this.bttSave.Margin = new System.Windows.Forms.Padding(0);
+            this.bttSave.Name = "bttSave";
+            this.bttSave.Size = new System.Drawing.Size(328, 32);
+            this.bttSave.TabIndex = 53;
+            this.bttSave.Text = "Adicionar exemplar";
+            this.bttSave.UseVisualStyleBackColor = false;
+            this.bttSave.Click += new System.EventHandler(this.bttSave_Click);
+            // 
+            // cbxEstado
+            // 
+            this.cbxEstado.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxEstado.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.cbxEstado.BorderSize = 1;
+            this.cbxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cbxEstado.ForeColor = System.Drawing.Color.DimGray;
+            this.cbxEstado.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.cbxEstado.Items.AddRange(new object[] {
+            "Disponível",
+            "Indisponível",
+            "Abatido",
+            "Perdido",
+            "Consulta local",
+            "Exposição",
+            "Depósito"});
+            this.cbxEstado.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cbxEstado.ListTextColor = System.Drawing.Color.DimGray;
+            this.cbxEstado.Location = new System.Drawing.Point(160, 24);
+            this.cbxEstado.MinimumSize = new System.Drawing.Size(200, 30);
+            this.cbxEstado.Name = "cbxEstado";
+            this.cbxEstado.Padding = new System.Windows.Forms.Padding(1);
+            this.cbxEstado.Size = new System.Drawing.Size(200, 30);
+            this.cbxEstado.TabIndex = 47;
+            this.cbxEstado.Texts = "<selecione o estado>";
+            // 
+            // txtCota
+            // 
+            this.txtCota.BackColor = System.Drawing.SystemColors.Window;
+            this.txtCota.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtCota.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtCota.BorderSize = 2;
+            this.txtCota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCota.ForeColor = System.Drawing.Color.DimGray;
+            this.txtCota.Location = new System.Drawing.Point(160, 32);
+            this.txtCota.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCota.Multiline = false;
+            this.txtCota.Name = "txtCota";
+            this.txtCota.Padding = new System.Windows.Forms.Padding(7);
+            this.txtCota.PasswordChar = false;
+            this.txtCota.Size = new System.Drawing.Size(128, 31);
+            this.txtCota.TabIndex = 41;
+            this.txtCota.Texts = "sim 123";
+            this.txtCota.UnderlinedStyle = true;
+            // 
+            // txtNVolume
+            // 
+            this.txtNVolume.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNVolume.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtNVolume.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtNVolume.BorderSize = 2;
+            this.txtNVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNVolume.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNVolume.Location = new System.Drawing.Point(400, 32);
+            this.txtNVolume.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNVolume.Multiline = false;
+            this.txtNVolume.Name = "txtNVolume";
+            this.txtNVolume.Padding = new System.Windows.Forms.Padding(7);
+            this.txtNVolume.PasswordChar = false;
+            this.txtNVolume.Size = new System.Drawing.Size(80, 31);
+            this.txtNVolume.TabIndex = 40;
+            this.txtNVolume.Texts = "1";
+            this.txtNVolume.UnderlinedStyle = true;
+            // 
+            // txtObservacoes
+            // 
+            this.txtObservacoes.BackColor = System.Drawing.SystemColors.Window;
+            this.txtObservacoes.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtObservacoes.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtObservacoes.BorderSize = 2;
+            this.txtObservacoes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservacoes.ForeColor = System.Drawing.Color.DimGray;
+            this.txtObservacoes.Location = new System.Drawing.Point(160, 88);
+            this.txtObservacoes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtObservacoes.Multiline = true;
+            this.txtObservacoes.Name = "txtObservacoes";
+            this.txtObservacoes.Padding = new System.Windows.Forms.Padding(7);
+            this.txtObservacoes.PasswordChar = false;
+            this.txtObservacoes.Size = new System.Drawing.Size(320, 48);
+            this.txtObservacoes.TabIndex = 44;
+            this.txtObservacoes.Texts = "";
+            this.txtObservacoes.UnderlinedStyle = true;
+            // 
+            // cbxAquisicao
+            // 
+            this.cbxAquisicao.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxAquisicao.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.cbxAquisicao.BorderSize = 1;
+            this.cbxAquisicao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cbxAquisicao.ForeColor = System.Drawing.Color.DimGray;
+            this.cbxAquisicao.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.cbxAquisicao.Items.AddRange(new object[] {
+            "Compra",
+            "Oferta"});
+            this.cbxAquisicao.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cbxAquisicao.ListTextColor = System.Drawing.Color.DimGray;
+            this.cbxAquisicao.Location = new System.Drawing.Point(168, 24);
+            this.cbxAquisicao.MinimumSize = new System.Drawing.Size(200, 30);
+            this.cbxAquisicao.Name = "cbxAquisicao";
+            this.cbxAquisicao.Padding = new System.Windows.Forms.Padding(1);
+            this.cbxAquisicao.Size = new System.Drawing.Size(200, 30);
+            this.cbxAquisicao.TabIndex = 46;
+            this.cbxAquisicao.Texts = "<selecione o método>";
+            // 
+            // txtEditora
+            // 
+            this.txtEditora.BackColor = System.Drawing.SystemColors.Window;
+            this.txtEditora.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtEditora.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtEditora.BorderSize = 2;
+            this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEditora.ForeColor = System.Drawing.Color.DimGray;
+            this.txtEditora.Location = new System.Drawing.Point(169, 80);
+            this.txtEditora.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEditora.Multiline = false;
+            this.txtEditora.Name = "txtEditora";
+            this.txtEditora.Padding = new System.Windows.Forms.Padding(7);
+            this.txtEditora.PasswordChar = false;
+            this.txtEditora.Size = new System.Drawing.Size(320, 31);
+            this.txtEditora.TabIndex = 37;
+            this.txtEditora.Texts = "Jorge";
+            this.txtEditora.UnderlinedStyle = true;
+            // 
+            // txtAutor
+            // 
+            this.txtAutor.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAutor.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtAutor.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtAutor.BorderSize = 2;
+            this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAutor.ForeColor = System.Drawing.Color.DimGray;
+            this.txtAutor.Location = new System.Drawing.Point(168, 80);
+            this.txtAutor.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAutor.Multiline = false;
+            this.txtAutor.Name = "txtAutor";
+            this.txtAutor.Padding = new System.Windows.Forms.Padding(7);
+            this.txtAutor.PasswordChar = false;
+            this.txtAutor.Size = new System.Drawing.Size(328, 31);
+            this.txtAutor.TabIndex = 34;
+            this.txtAutor.Texts = "Amado";
+            this.txtAutor.UnderlinedStyle = true;
+            // 
+            // txtTitulo
+            // 
+            this.txtTitulo.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTitulo.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtTitulo.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtTitulo.BorderSize = 2;
+            this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitulo.ForeColor = System.Drawing.Color.DimGray;
+            this.txtTitulo.Location = new System.Drawing.Point(168, 24);
+            this.txtTitulo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTitulo.Multiline = false;
+            this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.Padding = new System.Windows.Forms.Padding(7);
+            this.txtTitulo.PasswordChar = false;
+            this.txtTitulo.Size = new System.Drawing.Size(328, 31);
+            this.txtTitulo.TabIndex = 29;
+            this.txtTitulo.Texts = "Jorge";
+            this.txtTitulo.UnderlinedStyle = true;
+            // 
             // txtNRegisto
             // 
             this.txtNRegisto.BackColor = System.Drawing.SystemColors.Window;
@@ -438,34 +465,8 @@
             this.txtDataEntrega.TabIndex = 28;
             this.txtDataEntrega.Texts = "05/01/2003";
             this.txtDataEntrega.UnderlinedStyle = true;
+            this.txtDataEntrega.TextChanged += new System.EventHandler(this.txtDataEntrega_TextChanged);
             this.txtDataEntrega.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDataEntrega_KeyPress);
-            // 
-            // lblDataEntrada
-            // 
-            this.lblDataEntrada.AutoSize = true;
-            this.lblDataEntrada.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataEntrada.ForeColor = System.Drawing.Color.DimGray;
-            this.lblDataEntrada.Location = new System.Drawing.Point(304, 40);
-            this.lblDataEntrada.Name = "lblDataEntrada";
-            this.lblDataEntrada.Size = new System.Drawing.Size(117, 17);
-            this.lblDataEntrada.TabIndex = 31;
-            this.lblDataEntrada.Text = "Data de Entrada";
-            // 
-            // bttSave
-            // 
-            this.bttSave.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.bttSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bttSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttSave.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttSave.Location = new System.Drawing.Point(333, 624);
-            this.bttSave.Margin = new System.Windows.Forms.Padding(0);
-            this.bttSave.Name = "bttSave";
-            this.bttSave.Size = new System.Drawing.Size(328, 32);
-            this.bttSave.TabIndex = 53;
-            this.bttSave.Text = "Adicionar exemplar";
-            this.bttSave.UseVisualStyleBackColor = false;
-            this.bttSave.Click += new System.EventHandler(this.bttSave_Click);
             // 
             // frmAddLivros
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -148,7 +149,7 @@ namespace BIBLIOTECA_PROJETO.classes
                     string query = @"SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], 
                      T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, 
                      L.Aquisicao AS [Aquisição], L.Editora AS [Editora], 
-                     L.NumVolume AS [Nº de Volume], L.Observacoes AS [Observações], L.Estado
+                     L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]
                      FROM Livros L
                      INNER JOIN Autores A ON L.AutorID = A.ID
                      INNER JOIN Cotas C ON L.CotaID = C.ID
@@ -476,7 +477,7 @@ namespace BIBLIOTECA_PROJETO.classes
                     string query = @"SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], 
                      T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, 
                      L.Aquisicao AS [Aquisição], L.Editora AS [Editora], 
-                     L.NumVolume AS [Nº de Volume], L.Observacoes AS [Observações], L.Estado
+                     L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]
                      FROM Livros L
                      INNER JOIN Autores A ON L.AutorID = A.ID
                      INNER JOIN Cotas C ON L.CotaID = C.ID
@@ -519,7 +520,7 @@ namespace BIBLIOTECA_PROJETO.classes
                     string query = @"SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], 
                      T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, 
                      L.Aquisicao AS [Aquisição], L.Editora AS [Editora], 
-                     L.NumVolume AS [Nº de Volume], L.Observacoes AS [Observações], L.Estado
+                     L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]
                      FROM Livros L
                      INNER JOIN Autores A ON L.AutorID = A.ID
                      INNER JOIN Cotas C ON L.CotaID = C.ID
@@ -561,7 +562,7 @@ namespace BIBLIOTECA_PROJETO.classes
                     string query = @"SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], 
                      T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, 
                      L.Aquisicao AS [Aquisição], L.Editora AS [Editora], 
-                     L.NumVolume AS [Nº de Volume], L.Observacoes AS [Observações], L.Estado
+                     L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]
                      FROM Livros L
                      INNER JOIN Autores A ON L.AutorID = A.ID
                      INNER JOIN Cotas C ON L.CotaID = C.ID
@@ -617,7 +618,7 @@ namespace BIBLIOTECA_PROJETO.classes
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         int offset = (page - 1) * itemsPerPage;
-                        cmd.Parameters.AddWithValue("@cota", "%" + cota + "%");
+                        cmd.Parameters.AddWithValue("@cota", cota + "%");
                         cmd.Parameters.AddWithValue("@Offset", offset);
                         cmd.Parameters.AddWithValue("@ItemsPerPage", itemsPerPage);
 
@@ -957,19 +958,67 @@ namespace BIBLIOTECA_PROJETO.classes
                 return dataTable;
             }
         }
-        public DataTable GetBooksByDate_Listing(DateTime dataDe, DateTime dataAte)
+        public DataTable GetBooksByDate_Listing(DateTime dataDe, DateTime dataAte, int page, int itemsPerPage)
         {
+            int offset = (page - 1) * itemsPerPage;
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT L.ID AS [Nº de Registo], T.TituloNome AS [Título], C.Cota, L.Estado, " +
-                                                    "A.Nome AS [Autor], L.DataDeEntrega AS [Data de Entrada], L.Aquisicao, " +
-                                                    "L.Editora, L.NumVolume AS [Nº de Volume], L.Observacoes AS [Observações]" +
+                SqlCommand command = new SqlCommand("SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], " +
+                                                    "       T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, " +
+                                                    "       L.Aquisicao AS [Aquisição], L.Editora AS [Editora], " +
+                                                    "       L.NumVolume AS [Nº de Volume], L.Observacoes AS [Observações], L.Estado " +
                                                     "FROM Livros L " +
                                                     "INNER JOIN Titulos T ON T.ID = L.TituloID " +
                                                     "INNER JOIN Cotas C ON C.ID = L.CotaID " +
                                                     "INNER JOIN Autores A ON A.ID = L.AutorID " +
-                                                    "WHERE L.DataDeEntrega BETWEEN @DataDe AND @DataAte", conn);
+                                                    "WHERE L.DataDeEntrega BETWEEN @DataDe AND @DataAte " +
+                                                    "ORDER BY L.DataDeEntrega " +
+                                                    "OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY", conn);
+                command.Parameters.AddWithValue("@DataDe", dataDe);
+                command.Parameters.AddWithValue("@DataAte", dataAte);
+                command.Parameters.AddWithValue("@Offset", offset);
+                command.Parameters.AddWithValue("@ItemsPerPage", itemsPerPage);
+                SqlDataReader reader = command.ExecuteReader();
+
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+
+                conn.Close();
+
+                return dataTable;
+            }
+        }
+
+        public int GetBooksCountByDate(DateTime dataDe, DateTime dataAte)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Livros WHERE DataDeEntrega BETWEEN @DataDe AND @DataAte", conn);
+                command.Parameters.AddWithValue("@DataDe", dataDe);
+                command.Parameters.AddWithValue("@DataAte", dataAte);
+                int totalCount = (int)command.ExecuteScalar();
+                conn.Close();
+                return totalCount;
+            }
+        }
+
+        public DataTable GetAllBooksByDate(DateTime dataDe, DateTime dataAte)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], " +
+                                                     "       T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, " +
+                                                     "       L.Aquisicao AS [Aquisição], L.Editora AS [Editora], " +
+                                                     "       L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]" +
+                                                     "FROM Livros L " +
+                                                     "INNER JOIN Titulos T ON T.ID = L.TituloID " +
+                                                     "INNER JOIN Cotas C ON C.ID = L.CotaID " +
+                                                     "INNER JOIN Autores A ON A.ID = L.AutorID " +
+                                                     "WHERE L.DataDeEntrega BETWEEN @DataDe AND @DataAte " +
+                                                     "ORDER BY L.DataDeEntrega", conn);
                 command.Parameters.AddWithValue("@DataDe", dataDe);
                 command.Parameters.AddWithValue("@DataAte", dataAte);
                 SqlDataReader reader = command.ExecuteReader();
@@ -982,6 +1031,36 @@ namespace BIBLIOTECA_PROJETO.classes
                 return dataTable;
             }
         }
+
+
+
+        public int GetTotalBooksCount(string searchText)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"SELECT COUNT(*) FROM
+                        (SELECT L.ID
+                         FROM Livros L
+                         INNER JOIN Autores A ON L.AutorID = A.ID
+                         INNER JOIN Cotas C ON L.CotaID = C.ID
+                         INNER JOIN Titulos T ON L.TituloID = T.ID
+                         WHERE T.TituloNome LIKE @titulo) AS CountResult";
+
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@titulo", $"%{searchText}%");
+
+                int totalCount = (int)command.ExecuteScalar();
+                conn.Close();
+
+                return totalCount;
+            }
+        }
+
+
+
+
+
         public DataTable GetBooksByTitle_Listing(string titulo)
         {
             try

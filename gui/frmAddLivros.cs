@@ -139,6 +139,11 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             //FAZER APARECER UM SINALZINHO VERDE AO LADO PARA DIZER QUE ESSE NÚMERO ESTÁ DISPONÍVEL
         }
+
+        private void txtDataEntrega_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

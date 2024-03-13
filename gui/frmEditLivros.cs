@@ -11,6 +11,8 @@ namespace BIBLIOTECA_PROJETO.gui
     public partial class frmEditLivros : Form
     {
         MainForm mainForm = new MainForm();
+        public string _titulo, _autor, _cota, _editora, _obsrvacoes, _estado;
+        public int _nregisto, _nvolume;
 
         public frmEditLivros()
         {
@@ -155,6 +157,16 @@ namespace BIBLIOTECA_PROJETO.gui
             this.gpbEstado_Edit.Enabled = false;
             this.gpbAqi_Edit.Enabled = false;
             this.bttClear_Edit.Enabled = false;
+        }
+
+        private void pnlEditLivros_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtTitulo_Edit_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)

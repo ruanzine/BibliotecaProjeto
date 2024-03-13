@@ -79,9 +79,14 @@ namespace BIBLIOTECA_PROJETO
             LoadViewLivros();
         }
 
+        private void bttListing_Click(object sender, EventArgs e)
+        {
+            LoadDateLivros();
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         public void LoadAddLivros() => LoadForms(new gui.frmAddLivros());
@@ -89,6 +94,8 @@ namespace BIBLIOTECA_PROJETO
         public void LoadEditLivros() => LoadForms(new gui.frmEditLivros());
 
         public void LoadViewLivros() => LoadForms(new gui.frmBookViewer());
+
+        public void LoadDateLivros() => LoadForms(new gui.frmDateFromUntil());
 
 
         public void MainForm_KeyPress(object sender, KeyPressEventArgs e)
