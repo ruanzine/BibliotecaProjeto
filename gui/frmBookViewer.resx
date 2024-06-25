@@ -117,47 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icon_bttprint" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttprint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>56</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bttPrint_DGV.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAT1JREFUSEvdlDFKA1EURQcXEMgaUqZQUHtTZQvGBVi4AgULsXIHugYLXYApLXUJ
+        ogimEWwFRcdzZl5Qcb7zx0py4ZB579/7MjPJ/8XiqCzLLTiHiwSuTcKeJwIjUA44TTAFNYpYuzDvw0OU
+        SeGZ6Y2yWRh6cAL38Axv8NSCHr1mjqEX4z5F03f2CN7tdkfMmD2LcbVo9OEdNqPVWWQnMaMfrao5BLUe
+        rc4yW48oh9FalMFcr8EhHCVwbTXseYP5XIFXuIOrBK69wHJksgbvgX+fpcrQINfCsxt14+BB3SvHUR/A
+        bbX4i/TojesxqEG1qCj89mtwF92Auyp3sF4zZn1F35+Shlt6B/xhLiF3sF4zZn9u6a/C4BadRZmUHr1R
+        tgvz/Nj0aGw6MmV+bG5ELE8E3PttB/2fz5b/pqL4ADyxqMr8c765AAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="icon_bttpreviouspage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttpreviouspage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bttPreviousPage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAANhJREFUSEvtlCELwkAYhhc0GdQgBpPRbBOxGfQv2P0nIviDBJvRYLIZBwZBMAgi
+        Fs/nO79DGAgnt4OFPfCEvbd7ObZvS0qKhzGmigscaJQPFNZwjcJK43Aoa+Me7/jIrZyiLh7xikM8YXg5
+        JX08Y4o9zaR8g3MPp7YoCwtjvOEBOxpLvkNfXtjQrR8IZvjEbXaR6wo2PZSTCy3dajfLuMmLu2Bd479h
+        rxxQ+JYLBHFO7iCM88wdLIROy8QW/YIb4sy5g7I4X6iDwjj/FgelMqZLHGlUUliS5A0NlPZXf73IHgAA
+        AABJRU5ErkJggg==
+</value>
   </data>
-  <data name="icon_bttedit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttedit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_bttsaveedit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttsaveedit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_newbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_newbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_statistics" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_statistics.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_bttdel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttdel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="eb2.3logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\eb2.3logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_editbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_editbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_searchbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_searchbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_bttclear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttclear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_bttnextpage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttnextpage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_bttsearchdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icon_bttsearchdate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bttNextPage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAOJJREFUSEvtlDEKwkAUBRNMI1hoqYV4F7EVwdJGC60tvYXgAQRBC1s7D2HnSaxU
+        1Dgrb9GAsIlJCiEDQ5L/d98mYROv4D8Iw7COvi6zg9AyXnCDJZWzgcAqWrYYqJUewmz4Hu8Y7wkY1MWJ
+        wykahjhC9wI0GxgXE9jRPPcCNFpoGGDNYUXTXnBtF1irFIWGDe+pFBvmmB10xJM5V/kNxZ/unPMAd3jG
+        tspRaCR+5+jjCm/YV9R3GJB0t8zxgWNFpIMgu88POs7USg9hn1/oQuVsINDsjCsuMZefVzOX4IKUeN4T
+        7RHXnuHxGk4AAAAASUVORK5CYII=
+</value>
   </data>
 </root>
