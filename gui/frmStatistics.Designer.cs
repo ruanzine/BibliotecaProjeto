@@ -247,9 +247,9 @@
             this.lblTotalBooks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblTotalBooks.Location = new System.Drawing.Point(16, 24);
             this.lblTotalBooks.Name = "lblTotalBooks";
-            this.lblTotalBooks.Size = new System.Drawing.Size(123, 19);
+            this.lblTotalBooks.Size = new System.Drawing.Size(172, 19);
             this.lblTotalBooks.TabIndex = 0;
-            this.lblTotalBooks.Text = "Total de Livros: ";
+            this.lblTotalBooks.Text = "Total de Exemplares: ";
             // 
             // lblTotalTitles
             // 
