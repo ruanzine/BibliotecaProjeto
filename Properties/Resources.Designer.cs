@@ -17,7 +17,7 @@ namespace BIBLIOTECA_PROJETO.Properties {
     /// </summary>
     // Essa classe foi gerada automaticamente pela classe StronglyTypedResourceBuilder
     // através de uma ferramenta como ResGen ou Visual Studio.
-    // Para adicionar ou remover um associado, edite o arquivo .ResX e execute ResGen novamente
+    // Para adicionar ou remover um associado, edite o Ficheiro .ResX e execute ResGen novamente
     // com a opção /str, ou recrie o projeto do VS.
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -66,6 +66,86 @@ namespace BIBLIOTECA_PROJETO.Properties {
         internal static System.Drawing.Bitmap eb2_3logo {
             get {
                 object obj = ResourceManager.GetObject("eb2.3logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttclear {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttclear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttdel {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttdel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttedit {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttedit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttnextpage {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttnextpage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttpreviouspage {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttpreviouspage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttprint {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttprint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttsaveedit {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttsaveedit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bttsearchdate {
+            get {
+                object obj = ResourceManager.GetObject("icon_bttsearchdate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
