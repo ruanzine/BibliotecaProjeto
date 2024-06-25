@@ -110,7 +110,7 @@
             // 
             this.txtUntil.BackColor = System.Drawing.SystemColors.Window;
             this.txtUntil.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtUntil.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtUntil.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtUntil.BorderSize = 2;
             this.txtUntil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUntil.ForeColor = System.Drawing.Color.DimGray;
@@ -148,7 +148,7 @@
             // 
             this.txtFrom.BackColor = System.Drawing.SystemColors.Window;
             this.txtFrom.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtFrom.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtFrom.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtFrom.BorderSize = 2;
             this.txtFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFrom.ForeColor = System.Drawing.Color.DimGray;

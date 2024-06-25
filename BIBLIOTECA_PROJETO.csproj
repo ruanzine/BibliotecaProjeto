@@ -142,6 +142,7 @@
     <Compile Include="classes\services\BookDateListingService.cs" />
     <Compile Include="classes\services\BookGeneralListingService.cs" />
     <Compile Include="classes\services\BookSearchService.cs" />
+    <Compile Include="classes\services\BookStatisticsService.cs" />
     <Compile Include="classes\services\LivroService.cs" />
     <Compile Include="controls\UC_combobox.cs">
       <SubType>UserControl</SubType>
@@ -179,11 +180,11 @@
     <Compile Include="gui\frmFilteredListing.Designer.cs">
       <DependentUpon>frmFilteredListing.cs</DependentUpon>
     </Compile>
-    <Compile Include="gui\LoadingForm.cs">
+    <Compile Include="gui\frmStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="gui\LoadingForm.Designer.cs">
-      <DependentUpon>LoadingForm.cs</DependentUpon>
+    <Compile Include="gui\frmStatistics.Designer.cs">
+      <DependentUpon>frmStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -196,12 +197,6 @@
     </Compile>
     <Compile Include="controls\panels\MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="controls\panels\pnlAddLivros.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="controls\panels\pnlAddLivros.Designer.cs">
-      <DependentUpon>pnlAddLivros.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -229,17 +224,14 @@
     <EmbeddedResource Include="gui\frmFilteredListing.resx">
       <DependentUpon>frmFilteredListing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gui\LoadingForm.resx">
-      <DependentUpon>LoadingForm.cs</DependentUpon>
+    <EmbeddedResource Include="gui\frmStatistics.resx">
+      <DependentUpon>frmStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\panels\MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="controls\panels\pnlAddLivros.resx">
-      <DependentUpon>pnlAddLivros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

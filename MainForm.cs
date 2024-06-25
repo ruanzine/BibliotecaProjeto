@@ -107,7 +107,8 @@ namespace BIBLIOTECA_PROJETO
         }
         private void bttStatistics_Click(object sender, EventArgs e)
         {
-             SetSelectedButton(bttStatistics);
+            SetSelectedButton(bttStatistics);
+            LoadStatistics();
             
         }
         private void MainForm_Load(object sender, EventArgs e)
@@ -125,6 +126,8 @@ namespace BIBLIOTECA_PROJETO
         public void LoadDateLivros() => LoadForms(new gui.frmDateFromUntil());
 
         public void LoadListing() => LoadForms(new gui.frmFilteredListing());
+
+        public void LoadStatistics() => LoadForms(new gui.frmStatistics());
 
         public void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
