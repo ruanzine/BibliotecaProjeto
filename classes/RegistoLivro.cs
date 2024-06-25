@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.classes
 {
-
     public class RegistoLivro : MainForm
     {
         public string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
 
-        
+
         public DataTable GetBooksByDate_Listing(DateTime dataDe, DateTime dataAte, int page, int itemsPerPage)
         {
             int offset = (page - 1) * itemsPerPage;
