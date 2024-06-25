@@ -25,7 +25,7 @@ namespace BIBLIOTECA_PROJETO.classes
             //}
         }
 
-        private void ResizeControls(Control container)
+        private new void ResizeControls(Control container)
         {
             float fontSizeRatio = (float)this.Width / 125;
             if (fontSizeRatio < 8) fontSizeRatio = 8;
