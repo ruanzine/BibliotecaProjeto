@@ -1,28 +1,26 @@
-﻿using BIBLIOTECA_PROJETO.classes;
+﻿using BIBLIOTECA_PROJETO.services;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using ClosedXML.Excel;
 
-
 namespace BIBLIOTECA_PROJETO.gui
 {
     public partial class frmBookViewer : Form
     {
-        private RegistoLivro Registo_Livro;
+        private BookSearchService bookService;
         MainForm mainForm = new MainForm();
 
         private int currentPage = 1;
-        private int itemsPerPage = 11;
+        private const int itemsPerPage = 11;
         private int totalPages = 0;
-
+        private DataTable allData;
 
         public frmBookViewer()
         {
             InitializeComponent();
-            this.Registo_Livro = new RegistoLivro();
-
+            this.bookService = new BookSearchService();
         }
 
         private void bttPrint_Search_Click(object sender, EventArgs e)
@@ -31,87 +29,96 @@ namespace BIBLIOTECA_PROJETO.gui
             {
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    saveFileDialog.Filter = "Arquivo Excel|*.xlsx";
-                    saveFileDialog.Title = "Salvar arquivo Excel";
-                    saveFileDialog.FileName = "nome_do_arquivo";
+                    saveFileDialog.Filter = "Ficheiro Excel|*.xlsx";
+                    saveFileDialog.Title = "Salvar Ficheiro Excel";
+                    saveFileDialog.FileName = "nome_do_ficheiro";
 
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    DataTable dt = null;
+                    string filter = cbxFilter_DGV.Texts;
+                    string searchText = txtSearch_DGV.Texts;
+
+                    switch (filter)
                     {
-                        using (var workbook = new XLWorkbook())
+                        case "Número de Registo":
+                            MessageBox.Show("Opção de filtro não suportada para impressão.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        case "Autor":
+                            dt = this.bookService.GetBooksByAutor_Printing(searchText);
+                            break;
+                        case "Título":
+                            dt = this.bookService.GetBooksByTitulo_Printing(searchText);
+                            break;
+                        case "Cota":
+                            dt = this.bookService.GetBooksByCota_Printing(searchText);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
-                            var worksheet = workbook.Worksheets.Add("Planilha1");
-
-                            // Adicionar o nome das colunas
-                            for (int j = 0; j < dgvBook.Columns.Count; j++)
+                            using (var workbook = new XLWorkbook())
                             {
-                                worksheet.Cell(1, j + 1).Value = dgvBook.Columns[j].HeaderText;
-                            }
+                                var worksheet = workbook.Worksheets.Add("Planilha1");
 
-                            // Preencher a planilha com os dados da DataGridView
-                            for (int i = 0; i < dgvBook.Rows.Count; i++)
-                            {
-                                for (int j = 0; j < dgvBook.Columns.Count; j++)
+                                for (int j = 0; j < dt.Columns.Count; j++)
                                 {
-                                    worksheet.Cell(i + 2, j + 1).Value = dgvBook.Rows[i].Cells[j].Value.ToString();
+                                    worksheet.Cell(1, j + 1).Value = dt.Columns[j].ColumnName;
                                 }
-                            }
 
-                            // Salvar o arquivo do Excel
-                            workbook.SaveAs(saveFileDialog.FileName);
-                            MessageBox.Show("Arquivo exportado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    for (int j = 0; j < dt.Columns.Count; j++)
+                                    {
+                                        worksheet.Cell(i + 2, j + 1).Value = dt.Rows[i][j].ToString();
+                                    }
+                                }
+
+                                workbook.SaveAs(saveFileDialog.FileName);
+                                MessageBox.Show("Ficheiro exportado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nenhum registro encontrado para imprimir.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao exportar o arquivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro ao exportar o Ficheiro: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void FillDGV(int page, int itemsPerPage)
+        public void FillDGV()
         {
+            if (cbxFilter_DGV.Texts == "Número de Registo")
+            {
+                if (!int.TryParse(this.txtSearch_DGV.Texts, out _))
+                {
+                    this.dgvBook.DataSource = null;
+                    return;
+                }
+            }
+
             try
             {
-                string selectedOption = this.cbxFilter_DGV.Texts;
-                string searchText = this.txtSearch_DGV.Texts;
+                DataTable dt = allData.Clone();
 
-                DataTable dt;
+                int startIndex = (currentPage - 1) * itemsPerPage;
+                int endIndex = Math.Min(startIndex + itemsPerPage, allData.Rows.Count);
 
-                switch (selectedOption)
+                for (int i = startIndex; i < endIndex; i++)
                 {
-                    case "Todos":
-                        //MEXER NA LOGICA DISSO? 
-                        // POR COMO PADRÃO O GETBOOKS BY TITULO
-                        dt = this.Registo_Livro.GetBooksByTitulo(searchText, page, itemsPerPage);
-                        break;
-                    case "Número de Registo":
-                        int numeroRegistro = int.TryParse(searchText, out int numReg) ? numReg : -1;
-                        dt = this.Registo_Livro.GetBooksByNumeroRegistro(numeroRegistro, page, itemsPerPage);
-                        break;
-                    case "Autor":
-                        dt = this.Registo_Livro.GetBooksByAutor(searchText, page, itemsPerPage);
-                        break;
-                    case "Título":
-                        dt = this.Registo_Livro.GetBooksByTitulo(searchText, page, itemsPerPage);
-                        break;
-                    case "Cota":
-                        dt = this.Registo_Livro.GetBooksByCota(searchText, page, itemsPerPage);
-                        break;
-                    case "Estado":
-                        dt = this.Registo_Livro.GetBooksByEstado(searchText, page, itemsPerPage);
-                        break;
-                    default:
-                        dt = this.Registo_Livro.GetBooksByTitulo(searchText, page, itemsPerPage);
-                        break;
+                    dt.ImportRow(allData.Rows[i]);
                 }
 
                 this.dgvBook.DataSource = dt;
                 ResizeData();
 
-                // Obter o número total de registros para calcular o número total de páginas
-                int totalCount = this.Registo_Livro.GetTotalBooksCount(searchText); // Alteração aqui
-                totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
                 UpdatePaginationLabel();
             }
             catch (Exception ex)
@@ -120,10 +127,46 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        private void LoadAllData()
+        {
+            try
+            {
+                string selectedOption = this.cbxFilter_DGV.Texts;
+                string searchText = this.txtSearch_DGV.Texts;
+
+                switch (selectedOption)
+                {
+                    case "Número de Registo":
+                        allData = this.bookService.GetBooksByNumeroRegistro(int.Parse(searchText));
+                        break;
+                    case "Autor":
+                        allData = this.bookService.GetBooksByAutor(searchText);
+                        break;
+                    case "Cota":
+                        allData = this.bookService.GetBooksByCota(searchText);
+                        break;
+                    case "Título":
+                        allData = this.bookService.GetBooksByTitulo(searchText);
+                        break;
+                    default:
+                        allData = this.bookService.GetBooksByTitulo(searchText);
+                        break;
+                }
+
+                int totalCount = allData.Rows.Count;
+                totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
+                UpdatePaginationLabel();
+                FillDGV();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao carregar todos os dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public void ResizeData()
         {
-            //Header name resize
-            dgvBook.Columns["Nº"].Width = 50; // Define a largura da coluna
+            dgvBook.Columns["Nº"].Width = 50;
             dgvBook.Columns["Data de Entrada"].Width = 90;
             dgvBook.Columns["Título"].Width = 270;
             dgvBook.Columns["Autor"].Width = 150;
@@ -134,25 +177,16 @@ namespace BIBLIOTECA_PROJETO.gui
             dgvBook.Columns["Editora"].Width = 175;
             dgvBook.Columns["Estado"].Width = 123;
 
-            //Font
-            dgvBook.DefaultCellStyle.Font = new Font("Century Gothic", 11);
-            dgvBook.DefaultCellStyle.ForeColor = Color.FromArgb(30, 30, 32);
+            dgvBook.DefaultCellStyle.Font = new System.Drawing.Font("Century Gothic", 11);
+            dgvBook.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(30, 30, 32);
 
-            //Row alignment and Height
-            dgvBook.Columns["Nº"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Centraliza o conteúdo da coluna
+            dgvBook.Columns["Nº"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Data de Entrada"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Nº de Volume"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Cota"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Aquisição"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             SetRowHeight(dgvBook, 40);
-
-
-        }
-       
-        private void UpdatePaginationLabel()
-        {
-            lblPagination.Text = $"Página {currentPage} de {totalPages}";
         }
 
         private void SetRowHeight(DataGridView dataGridView, int rowHeight)
@@ -162,35 +196,59 @@ namespace BIBLIOTECA_PROJETO.gui
                 row.Height = rowHeight;
             }
         }
+
+        private void UpdatePaginationLabel()
+        {
+            if (totalPages > 0)
+                lblPagination.Text = $"Página {currentPage} de {totalPages}";
+            else
+                lblPagination.Text = "Não há registos";
+        }
+
         private void bttPreviousPage_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
             {
                 currentPage--;
-                FillDGV(currentPage, itemsPerPage);
-                UpdatePaginationLabel(); // Atualiza a label de paginação
+                FillDGV();
             }
         }
 
         private void bttNextPage_Click(object sender, EventArgs e)
         {
-            // Verifica se há mais itens para mostrar na próxima página
-            if (dgvBook.Rows.Count >= itemsPerPage)
+            if (currentPage < totalPages)
             {
                 currentPage++;
-                FillDGV(currentPage, itemsPerPage);
-                UpdatePaginationLabel(); // Atualiza a label de paginação
+                FillDGV();
             }
         }
 
         private void txtSearch_DGV__TextChanged(object sender, EventArgs e)
         {
-            // Reinicia a página atual para a primeira página sempre que o texto da pesquisa for alterado
             currentPage = 1;
-            this.FillDGV(currentPage, itemsPerPage);
-            UpdatePaginationLabel(); // Atualiza a label de paginação
+            LoadAllData();
         }
 
+        private void txtSearch_DGV_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbxFilter_DGV.Texts == "Número de Registo")
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
 
+        private void cbxFilter_DGV_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtSearch_DGV.Texts = "";
+            this.txtSearch_DGV.Focus();
+        }
+
+        private void txtSearch_DGV_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
