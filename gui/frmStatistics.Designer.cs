@@ -30,7 +30,7 @@
         {
             this.pnlFormHeader = new RoundedPanel();
             this.lblListagem = new System.Windows.Forms.Label();
-            this.pnlFormBody = new RoundedPanelBottom();
+            this.pnlFormBody = new System.Windows.Forms.Panel();
             this.roundedGroupBox1 = new RoundedGroupBox();
             this.lblPerdido = new System.Windows.Forms.Label();
             this.lblDeposito = new System.Windows.Forms.Label();
@@ -45,6 +45,9 @@
             this.lblTotalAuthors = new System.Windows.Forms.Label();
             this.lblTotalBooks = new System.Windows.Forms.Label();
             this.lblTotalTitles = new System.Windows.Forms.Label();
+            this.pnlFormFooter = new RoundedPanelBottom();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
             this.roundedGroupBox1.SuspendLayout();
@@ -53,7 +56,7 @@
             // 
             // pnlFormHeader
             // 
-            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormHeader.Controls.Add(this.lblListagem);
             this.pnlFormHeader.CornerRadius = 10;
             this.pnlFormHeader.Location = new System.Drawing.Point(128, 136);
@@ -74,10 +77,10 @@
             // 
             // pnlFormBody
             // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
             this.pnlFormBody.Controls.Add(this.roundedGroupBox1);
             this.pnlFormBody.Controls.Add(this.groupBox1);
-            this.pnlFormBody.CornerRadius = 10;
             this.pnlFormBody.Location = new System.Drawing.Point(128, 184);
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(904, 296);
@@ -85,7 +88,7 @@
             // 
             // roundedGroupBox1
             // 
-            this.roundedGroupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.roundedGroupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.roundedGroupBox1.BorderRadius = 5;
             this.roundedGroupBox1.Controls.Add(this.lblPerdido);
             this.roundedGroupBox1.Controls.Add(this.lblDeposito);
@@ -96,16 +99,16 @@
             this.roundedGroupBox1.Controls.Add(this.lblDisponivel);
             this.roundedGroupBox1.Controls.Add(this.label1);
             this.roundedGroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.roundedGroupBox1.Location = new System.Drawing.Point(416, 16);
+            this.roundedGroupBox1.Location = new System.Drawing.Point(384, 16);
             this.roundedGroupBox1.Name = "roundedGroupBox1";
-            this.roundedGroupBox1.Size = new System.Drawing.Size(472, 256);
+            this.roundedGroupBox1.Size = new System.Drawing.Size(504, 256);
             this.roundedGroupBox1.TabIndex = 56;
             this.roundedGroupBox1.TabStop = false;
             // 
             // lblPerdido
             // 
             this.lblPerdido.AutoSize = true;
-            this.lblPerdido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblPerdido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblPerdido.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblPerdido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblPerdido.Location = new System.Drawing.Point(248, 56);
@@ -117,7 +120,7 @@
             // lblDeposito
             // 
             this.lblDeposito.AutoSize = true;
-            this.lblDeposito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblDeposito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblDeposito.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblDeposito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblDeposito.Location = new System.Drawing.Point(248, 152);
@@ -129,7 +132,7 @@
             // lblExposicao
             // 
             this.lblExposicao.AutoSize = true;
-            this.lblExposicao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblExposicao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblExposicao.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblExposicao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblExposicao.Location = new System.Drawing.Point(248, 104);
@@ -141,7 +144,7 @@
             // lblConsultaLocal
             // 
             this.lblConsultaLocal.AutoSize = true;
-            this.lblConsultaLocal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblConsultaLocal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblConsultaLocal.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblConsultaLocal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblConsultaLocal.Location = new System.Drawing.Point(40, 200);
@@ -154,7 +157,7 @@
             // lblAbatido
             // 
             this.lblAbatido.AutoSize = true;
-            this.lblAbatido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblAbatido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblAbatido.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblAbatido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblAbatido.Location = new System.Drawing.Point(40, 152);
@@ -167,7 +170,7 @@
             // lblIndisponivel
             // 
             this.lblIndisponivel.AutoSize = true;
-            this.lblIndisponivel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblIndisponivel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblIndisponivel.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblIndisponivel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblIndisponivel.Location = new System.Drawing.Point(40, 104);
@@ -179,7 +182,7 @@
             // lblDisponivel
             // 
             this.lblDisponivel.AutoSize = true;
-            this.lblDisponivel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblDisponivel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblDisponivel.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblDisponivel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblDisponivel.Location = new System.Drawing.Point(40, 56);
@@ -191,7 +194,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.label1.Location = new System.Drawing.Point(16, 16);
@@ -202,7 +205,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.groupBox1.BorderRadius = 5;
             this.groupBox1.Controls.Add(this.lblTotalCotas);
             this.groupBox1.Controls.Add(this.lblTotalAuthors);
@@ -211,14 +214,14 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.groupBox1.Location = new System.Drawing.Point(16, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(368, 256);
+            this.groupBox1.Size = new System.Drawing.Size(344, 256);
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
             // 
             // lblTotalCotas
             // 
             this.lblTotalCotas.AutoSize = true;
-            this.lblTotalCotas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblTotalCotas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblTotalCotas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTotalCotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblTotalCotas.Location = new System.Drawing.Point(16, 216);
@@ -230,7 +233,7 @@
             // lblTotalAuthors
             // 
             this.lblTotalAuthors.AutoSize = true;
-            this.lblTotalAuthors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblTotalAuthors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblTotalAuthors.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTotalAuthors.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblTotalAuthors.Location = new System.Drawing.Point(16, 152);
@@ -242,7 +245,7 @@
             // lblTotalBooks
             // 
             this.lblTotalBooks.AutoSize = true;
-            this.lblTotalBooks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblTotalBooks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblTotalBooks.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTotalBooks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblTotalBooks.Location = new System.Drawing.Point(16, 24);
@@ -254,7 +257,7 @@
             // lblTotalTitles
             // 
             this.lblTotalTitles.AutoSize = true;
-            this.lblTotalTitles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lblTotalTitles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.lblTotalTitles.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTotalTitles.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblTotalTitles.Location = new System.Drawing.Point(16, 88);
@@ -263,13 +266,40 @@
             this.lblTotalTitles.TabIndex = 2;
             this.lblTotalTitles.Text = "Total de Títulos: ";
             // 
+            // pnlFormFooter
+            // 
+            this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormFooter.CornerRadius = 10;
+            this.pnlFormFooter.Location = new System.Drawing.Point(128, 472);
+            this.pnlFormFooter.Name = "pnlFormFooter";
+            this.pnlFormFooter.Size = new System.Drawing.Size(904, 48);
+            this.pnlFormFooter.TabIndex = 62;
+            // 
+            // pnlLineTop
+            // 
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(128, 182);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(904, 12);
+            this.pnlLineTop.TabIndex = 64;
+            // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 294);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(904, 12);
+            this.pnlLineBottom.TabIndex = 65;
+            // 
             // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 450);
-            this.Controls.Add(this.pnlFormHeader);
+            this.ClientSize = new System.Drawing.Size(1132, 518);
             this.Controls.Add(this.pnlFormBody);
+            this.Controls.Add(this.pnlLineTop);
+            this.Controls.Add(this.pnlFormFooter);
+            this.Controls.Add(this.pnlFormHeader);
             this.Name = "frmStatistics";
             this.Text = "Estatísticas";
             this.pnlFormHeader.ResumeLayout(false);
@@ -290,7 +320,7 @@
         private RoundedGroupBox groupBox1;
         private RoundedPanel pnlFormHeader;
         private System.Windows.Forms.Label lblListagem;
-        private RoundedPanelBottom pnlFormBody;
+        private System.Windows.Forms.Panel pnlFormBody;
         private RoundedGroupBox roundedGroupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblConsultaLocal;
@@ -300,5 +330,8 @@
         private System.Windows.Forms.Label lblExposicao;
         private System.Windows.Forms.Label lblDeposito;
         private System.Windows.Forms.Label lblPerdido;
+        private RoundedPanelBottom pnlFormFooter;
+        private System.Windows.Forms.Panel pnlLineBottom;
+        private System.Windows.Forms.Panel pnlLineTop;
     }
 }

@@ -40,10 +40,12 @@
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new RoundedPanel();
             this.txtSearch_DGV = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.lblListagem = new System.Windows.Forms.Label();
-            this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
+            this.lblListagem = new System.Windows.Forms.Label();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pnlFormBody.SuspendLayout();
@@ -79,6 +81,7 @@
             // pnlFormBody
             // 
             this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormBody.Controls.Add(this.panel1);
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.bttPrint_DGV);
             this.pnlFormBody.Controls.Add(this.bttPreviousPage);
@@ -159,6 +162,7 @@
             // pnlFormHeader
             // 
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormHeader.Controls.Add(this.pnlLineTop);
             this.pnlFormHeader.Controls.Add(this.txtSearch_DGV);
             this.pnlFormHeader.Controls.Add(this.label2);
             this.pnlFormHeader.Controls.Add(this.label1);
@@ -173,7 +177,7 @@
             // txtSearch_DGV
             // 
             this.txtSearch_DGV.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSearch_DGV.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtSearch_DGV.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.txtSearch_DGV.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtSearch_DGV.BorderSize = 2;
             this.txtSearch_DGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -192,16 +196,27 @@
             this.txtSearch_DGV.TextChanged += new System.EventHandler(this.txtSearch_DGV_TextChanged);
             this.txtSearch_DGV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_DGV_KeyPress);
             // 
-            // lblListagem
+            // label2
             // 
-            this.lblListagem.AutoSize = true;
-            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.lblListagem.Location = new System.Drawing.Point(24, 20);
-            this.lblListagem.Name = "lblListagem";
-            this.lblListagem.Size = new System.Drawing.Size(271, 26);
-            this.lblListagem.TabIndex = 11;
-            this.lblListagem.Text = "Pesquisa de Exemplares";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.label2.Location = new System.Drawing.Point(748, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 23);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "Procurar ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.label1.Location = new System.Drawing.Point(480, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 23);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "Filtro";
             // 
             // cbxFilter_DGV
             // 
@@ -219,27 +234,32 @@
             this.cbxFilter_DGV.UseSelectable = true;
             this.cbxFilter_DGV.SelectedIndexChanged += new System.EventHandler(this.cbxFilter_DGV_OnSelectedIndexChanged);
             // 
-            // label1
+            // lblListagem
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label1.Location = new System.Drawing.Point(480, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 23);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Filtro";
+            this.lblListagem.AutoSize = true;
+            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblListagem.Location = new System.Drawing.Point(24, 22);
+            this.lblListagem.Name = "lblListagem";
+            this.lblListagem.Size = new System.Drawing.Size(271, 26);
+            this.lblListagem.TabIndex = 11;
+            this.lblListagem.Text = "Pesquisa de Exemplares";
             // 
-            // label2
+            // pnlLineTop
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label2.Location = new System.Drawing.Point(748, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 23);
-            this.label2.TabIndex = 47;
-            this.label2.Text = "Procurar ";
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(0, 62);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineTop.TabIndex = 52;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.panel1.Location = new System.Drawing.Point(0, -10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1104, 12);
+            this.panel1.TabIndex = 52;
             // 
             // frmBookViewer
             // 
@@ -274,5 +294,7 @@
         private MetroFramework.Controls.MetroComboBox cbxFilter_DGV;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlLineTop;
     }
 }
