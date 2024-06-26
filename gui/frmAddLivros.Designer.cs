@@ -39,7 +39,6 @@
             this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblDataEntrada = new System.Windows.Forms.Label();
             this.groupBox2 = new RoundedGroupBox();
-            this.cbxAquisicao = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.lblAquisicao = new System.Windows.Forms.Label();
             this.lblEditoraAdd = new System.Windows.Forms.Label();
             this.txtEditora = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -48,6 +47,7 @@
             this.lblAutor = new System.Windows.Forms.Label();
             this.lblTituloAdd = new System.Windows.Forms.Label();
             this.groupBox3 = new RoundedGroupBox();
+            this.bttClear = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.cbxEstado = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.bttSave = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.lblEstadoAdd = new System.Windows.Forms.Label();
@@ -57,7 +57,8 @@
             this.txtNVolume = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblObservAdd = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.bttClear = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.pnlAddLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -69,6 +70,7 @@
             // pnlAddLivros
             // 
             this.pnlAddLivros.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlAddLivros.Controls.Add(this.metroTextBox1);
             this.pnlAddLivros.Controls.Add(this.pnlFormHeader);
             this.pnlAddLivros.Controls.Add(this.pnlFormBody);
             this.pnlAddLivros.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -207,31 +209,6 @@
             this.groupBox2.TabIndex = 55;
             this.groupBox2.TabStop = false;
             // 
-            // cbxAquisicao
-            // 
-            this.cbxAquisicao.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxAquisicao.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.cbxAquisicao.BorderSize = 1;
-            this.cbxAquisicao.DataSource = null;
-            this.cbxAquisicao.DisplayMember = "";
-            this.cbxAquisicao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxAquisicao.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxAquisicao.HoverColor = System.Drawing.Color.MediumPurple;
-            this.cbxAquisicao.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxAquisicao.Items.AddRange(new object[] {
-            "Compra",
-            "Oferta"});
-            this.cbxAquisicao.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxAquisicao.ListFontSize = 10F;
-            this.cbxAquisicao.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxAquisicao.Location = new System.Drawing.Point(120, 136);
-            this.cbxAquisicao.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxAquisicao.Name = "cbxAquisicao";
-            this.cbxAquisicao.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxAquisicao.Size = new System.Drawing.Size(200, 30);
-            this.cbxAquisicao.TabIndex = 50;
-            this.cbxAquisicao.Texts = "<Aquisição>";
-            // 
             // lblAquisicao
             // 
             this.lblAquisicao.AutoSize = true;
@@ -353,6 +330,25 @@
             this.groupBox3.Size = new System.Drawing.Size(464, 264);
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
+            // 
+            // bttClear
+            // 
+            this.bttClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttClear.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.bttClear.BorderRadius = 5;
+            this.bttClear.BorderSize = 0;
+            this.bttClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttClear.ForeColor = System.Drawing.Color.Transparent;
+            this.bttClear.Image = ((System.Drawing.Image)(resources.GetObject("bttClear.Image")));
+            this.bttClear.Location = new System.Drawing.Point(40, 208);
+            this.bttClear.Margin = new System.Windows.Forms.Padding(0);
+            this.bttClear.Name = "bttClear";
+            this.bttClear.Size = new System.Drawing.Size(40, 40);
+            this.bttClear.TabIndex = 54;
+            this.bttClear.UseVisualStyleBackColor = false;
+            this.bttClear.Click += new System.EventHandler(this.bttClear_Click);
             // 
             // cbxEstado
             // 
@@ -506,24 +502,55 @@
             this.txtObservacoes.Texts = "";
             this.txtObservacoes.UnderlinedStyle = true;
             // 
-            // bttClear
+            // cbxAquisicao
             // 
-            this.bttClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.bttClear.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttClear.BorderRadius = 5;
-            this.bttClear.BorderSize = 0;
-            this.bttClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttClear.ForeColor = System.Drawing.Color.Transparent;
-            this.bttClear.Image = ((System.Drawing.Image)(resources.GetObject("bttClear.Image")));
-            this.bttClear.Location = new System.Drawing.Point(40, 208);
-            this.bttClear.Margin = new System.Windows.Forms.Padding(0);
-            this.bttClear.Name = "bttClear";
-            this.bttClear.Size = new System.Drawing.Size(40, 40);
-            this.bttClear.TabIndex = 54;
-            this.bttClear.UseVisualStyleBackColor = false;
-            this.bttClear.Click += new System.EventHandler(this.bttClear_Click);
+            this.cbxAquisicao.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cbxAquisicao.ForeColor = System.Drawing.Color.DimGray;
+            this.cbxAquisicao.FormattingEnabled = true;
+            this.cbxAquisicao.ItemHeight = 23;
+            this.cbxAquisicao.Items.AddRange(new object[] {
+            "Compra",
+            "Oferta"});
+            this.cbxAquisicao.Location = new System.Drawing.Point(120, 136);
+            this.cbxAquisicao.Name = "cbxAquisicao";
+            this.cbxAquisicao.Size = new System.Drawing.Size(192, 29);
+            this.cbxAquisicao.TabIndex = 61;
+            this.cbxAquisicao.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.cbxAquisicao.UseSelectable = true;
+            // 
+            // metroTextBox1
+            // 
+            // 
+            // 
+            // 
+            this.metroTextBox1.CustomButton.Image = null;
+            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(164, 1);
+            this.metroTextBox1.CustomButton.Name = "";
+            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox1.CustomButton.TabIndex = 1;
+            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox1.CustomButton.UseSelectable = true;
+            this.metroTextBox1.CustomButton.Visible = false;
+            this.metroTextBox1.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.metroTextBox1.Lines = new string[] {
+        "Jorge da Silva nunes"};
+            this.metroTextBox1.Location = new System.Drawing.Point(416, 40);
+            this.metroTextBox1.MaxLength = 32767;
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.PasswordChar = '\0';
+            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox1.SelectedText = "";
+            this.metroTextBox1.SelectionLength = 0;
+            this.metroTextBox1.SelectionStart = 0;
+            this.metroTextBox1.ShortcutsEnabled = true;
+            this.metroTextBox1.Size = new System.Drawing.Size(192, 29);
+            this.metroTextBox1.TabIndex = 62;
+            this.metroTextBox1.Text = "Jorge da Silva nunes";
+            this.metroTextBox1.UseCustomBackColor = true;
+            this.metroTextBox1.UseSelectable = true;
+            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // frmAddLivros
             // 
@@ -569,7 +596,6 @@
         private RoundedGroupBox groupBox1;
         private controls.RoundedButton bttSave;
         private System.Windows.Forms.Label lblListagem;
-        private controls.UC_ComboBox cbxAquisicao;
         private System.Windows.Forms.Label lblAquisicao;
         private System.Windows.Forms.Label lblEditoraAdd;
         private controls.UC_textbox txtEditora;
@@ -578,5 +604,7 @@
         private RoundedPanelBottom pnlFormBody;
         private RoundedPanel pnlFormHeader;
         private controls.RoundedButton bttClear;
+        private MetroFramework.Controls.MetroComboBox cbxAquisicao;
+        private MetroFramework.Controls.MetroTextBox metroTextBox1;
     }
 }

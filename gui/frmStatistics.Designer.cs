@@ -56,9 +56,9 @@
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.pnlFormHeader.Controls.Add(this.lblListagem);
             this.pnlFormHeader.CornerRadius = 10;
-            this.pnlFormHeader.Location = new System.Drawing.Point(152, 136);
+            this.pnlFormHeader.Location = new System.Drawing.Point(128, 136);
             this.pnlFormHeader.Name = "pnlFormHeader";
-            this.pnlFormHeader.Size = new System.Drawing.Size(920, 48);
+            this.pnlFormHeader.Size = new System.Drawing.Size(904, 48);
             this.pnlFormHeader.TabIndex = 60;
             // 
             // lblListagem
@@ -78,9 +78,9 @@
             this.pnlFormBody.Controls.Add(this.roundedGroupBox1);
             this.pnlFormBody.Controls.Add(this.groupBox1);
             this.pnlFormBody.CornerRadius = 10;
-            this.pnlFormBody.Location = new System.Drawing.Point(152, 184);
+            this.pnlFormBody.Location = new System.Drawing.Point(128, 184);
             this.pnlFormBody.Name = "pnlFormBody";
-            this.pnlFormBody.Size = new System.Drawing.Size(920, 296);
+            this.pnlFormBody.Size = new System.Drawing.Size(904, 296);
             this.pnlFormBody.TabIndex = 5;
             // 
             // roundedGroupBox1
@@ -267,7 +267,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1094, 450);
             this.Controls.Add(this.pnlFormHeader);
             this.Controls.Add(this.pnlFormBody);
             this.Name = "frmStatistics";
