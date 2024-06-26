@@ -34,7 +34,6 @@
             this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody = new RoundedPanelBottom();
             this.gpbCota_Edit = new RoundedGroupBox();
-            this.cbxEstado_Edit = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.txtObservacoes_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblEstadoAdd = new System.Windows.Forms.Label();
             this.txtNVolume_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -53,13 +52,14 @@
             this.bttClear_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.gpbAutor_Edit = new RoundedGroupBox();
             this.txtEditora_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.cbxAquisicao_Edit = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtAutor_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtTitulo_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.cbxAquisicao_Edit = new MetroFramework.Controls.MetroComboBox();
+            this.cbxEstado_Edit = new MetroFramework.Controls.MetroComboBox();
             this.pnlEditLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -134,36 +134,6 @@
             this.gpbCota_Edit.Size = new System.Drawing.Size(528, 200);
             this.gpbCota_Edit.TabIndex = 36;
             this.gpbCota_Edit.TabStop = false;
-            // 
-            // cbxEstado_Edit
-            // 
-            this.cbxEstado_Edit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxEstado_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.cbxEstado_Edit.BorderSize = 1;
-            this.cbxEstado_Edit.DataSource = null;
-            this.cbxEstado_Edit.DisplayMember = "";
-            this.cbxEstado_Edit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxEstado_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxEstado_Edit.HoverColor = System.Drawing.Color.MediumPurple;
-            this.cbxEstado_Edit.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxEstado_Edit.Items.AddRange(new object[] {
-            "Disponível",
-            "Indisponível",
-            "Abatido",
-            "Perdido",
-            "Consulta local",
-            "Exposição",
-            "Depósito"});
-            this.cbxEstado_Edit.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxEstado_Edit.ListFontSize = 10F;
-            this.cbxEstado_Edit.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxEstado_Edit.Location = new System.Drawing.Point(128, 64);
-            this.cbxEstado_Edit.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxEstado_Edit.Name = "cbxEstado_Edit";
-            this.cbxEstado_Edit.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxEstado_Edit.Size = new System.Drawing.Size(200, 30);
-            this.cbxEstado_Edit.TabIndex = 51;
-            this.cbxEstado_Edit.Texts = "<Estado>";
             // 
             // txtObservacoes_Edit
             // 
@@ -423,8 +393,8 @@
             // 
             this.gpbAutor_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.gpbAutor_Edit.BorderRadius = 8;
-            this.gpbAutor_Edit.Controls.Add(this.txtEditora_Edit);
             this.gpbAutor_Edit.Controls.Add(this.cbxAquisicao_Edit);
+            this.gpbAutor_Edit.Controls.Add(this.txtEditora_Edit);
             this.gpbAutor_Edit.Controls.Add(this.label8);
             this.gpbAutor_Edit.Controls.Add(this.label9);
             this.gpbAutor_Edit.Controls.Add(this.txtAutor_Edit);
@@ -447,7 +417,7 @@
             this.txtEditora_Edit.BorderSize = 2;
             this.txtEditora_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditora_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtEditora_Edit.Location = new System.Drawing.Point(125, 184);
+            this.txtEditora_Edit.Location = new System.Drawing.Point(128, 184);
             this.txtEditora_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.txtEditora_Edit.Multiline = false;
             this.txtEditora_Edit.Name = "txtEditora_Edit";
@@ -457,31 +427,6 @@
             this.txtEditora_Edit.TabIndex = 52;
             this.txtEditora_Edit.Texts = "";
             this.txtEditora_Edit.UnderlinedStyle = true;
-            // 
-            // cbxAquisicao_Edit
-            // 
-            this.cbxAquisicao_Edit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxAquisicao_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.cbxAquisicao_Edit.BorderSize = 1;
-            this.cbxAquisicao_Edit.DataSource = null;
-            this.cbxAquisicao_Edit.DisplayMember = "";
-            this.cbxAquisicao_Edit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxAquisicao_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxAquisicao_Edit.HoverColor = System.Drawing.Color.MediumPurple;
-            this.cbxAquisicao_Edit.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxAquisicao_Edit.Items.AddRange(new object[] {
-            "Compra",
-            "Oferta"});
-            this.cbxAquisicao_Edit.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxAquisicao_Edit.ListFontSize = 10F;
-            this.cbxAquisicao_Edit.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxAquisicao_Edit.Location = new System.Drawing.Point(125, 128);
-            this.cbxAquisicao_Edit.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxAquisicao_Edit.Name = "cbxAquisicao_Edit";
-            this.cbxAquisicao_Edit.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxAquisicao_Edit.Size = new System.Drawing.Size(232, 30);
-            this.cbxAquisicao_Edit.TabIndex = 51;
-            this.cbxAquisicao_Edit.Texts = "<Aquisição>";
             // 
             // label8
             // 
@@ -513,7 +458,7 @@
             this.txtAutor_Edit.BorderSize = 2;
             this.txtAutor_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAutor_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtAutor_Edit.Location = new System.Drawing.Point(127, 80);
+            this.txtAutor_Edit.Location = new System.Drawing.Point(128, 80);
             this.txtAutor_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.txtAutor_Edit.Multiline = false;
             this.txtAutor_Edit.Name = "txtAutor_Edit";
@@ -532,7 +477,7 @@
             this.txtTitulo_Edit.BorderSize = 2;
             this.txtTitulo_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtTitulo_Edit.Location = new System.Drawing.Point(127, 24);
+            this.txtTitulo_Edit.Location = new System.Drawing.Point(128, 24);
             this.txtTitulo_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.txtTitulo_Edit.Multiline = false;
             this.txtTitulo_Edit.Name = "txtTitulo_Edit";
@@ -564,6 +509,37 @@
             this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Autor";
+            // 
+            // cbxAquisicao_Edit
+            // 
+            this.cbxAquisicao_Edit.FormattingEnabled = true;
+            this.cbxAquisicao_Edit.ItemHeight = 23;
+            this.cbxAquisicao_Edit.Items.AddRange(new object[] {
+            "Compra",
+            "Oferta"});
+            this.cbxAquisicao_Edit.Location = new System.Drawing.Point(128, 136);
+            this.cbxAquisicao_Edit.Name = "cbxAquisicao_Edit";
+            this.cbxAquisicao_Edit.Size = new System.Drawing.Size(176, 29);
+            this.cbxAquisicao_Edit.TabIndex = 53;
+            this.cbxAquisicao_Edit.UseSelectable = true;
+            // 
+            // cbxEstado_Edit
+            // 
+            this.cbxEstado_Edit.FormattingEnabled = true;
+            this.cbxEstado_Edit.ItemHeight = 23;
+            this.cbxEstado_Edit.Items.AddRange(new object[] {
+            "Disponível",
+            "Indisponível",
+            "Abatido",
+            "Perdido",
+            "Consulta local",
+            "Exposição",
+            "Depósito"});
+            this.cbxEstado_Edit.Location = new System.Drawing.Point(128, 64);
+            this.cbxEstado_Edit.Name = "cbxEstado_Edit";
+            this.cbxEstado_Edit.Size = new System.Drawing.Size(176, 29);
+            this.cbxEstado_Edit.TabIndex = 62;
+            this.cbxEstado_Edit.UseSelectable = true;
             // 
             // frmEditLivros
             // 
@@ -615,11 +591,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private controls.UC_textbox txtEditora_Edit;
-        private controls.UC_ComboBox cbxAquisicao_Edit;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private controls.RoundedButton bttFilterDate;
-        private controls.UC_ComboBox cbxEstado_Edit;
         private System.Windows.Forms.Label lblEstadoAdd;
+        private MetroFramework.Controls.MetroComboBox cbxEstado_Edit;
+        private MetroFramework.Controls.MetroComboBox cbxAquisicao_Edit;
     }
 }

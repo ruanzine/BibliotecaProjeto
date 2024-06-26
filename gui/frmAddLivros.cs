@@ -1,5 +1,6 @@
 ﻿using BIBLIOTECA_PROJETO.classes.services;
 using BIBLIOTECA_PROJETO.controls;
+using MetroFramework.Controls;
 using System;
 using System.Globalization;
 using System.Windows.Forms;
@@ -59,7 +60,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
             DateTime dataEntrega = DateTime.ParseExact(txtDataEntrega.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            if (cbxAquisicao.Texts == "" || cbxEstado.Texts == "")
+            if (cbxAquisicao.Text == "" || cbxEstado.Text == "")
             {
                 MessageBox.Show("Campo(s) de escolha vazio(s).", "Falha ao registar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -70,10 +71,10 @@ namespace BIBLIOTECA_PROJETO.gui
             string autor = txtAutor.Texts;
             string cota = txtCota.Texts;
             string nVolume = txtNVolume.Texts;
-            string aquisicao = cbxAquisicao.Texts;
+            string aquisicao = cbxAquisicao.Text;
             string editora = txtEditora.Texts;
             string observacoes = txtObservacoes.Texts;
-            string estado = cbxEstado.Texts;
+            string estado = cbxEstado.Text;
 
             if (livroService.IsRegistrationNumberExists(nRegisto))
             {
@@ -112,9 +113,9 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
-        private bool ValidateComboBox(UC_ComboBox comboBox, string fieldName)
+        private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
-            if (comboBox.Texts == "<Aquisição>" || comboBox.Texts == "<Estado>")
+            if (comboBox.Text == "<Aquisição>" || comboBox.Text == "<Estado>")
             {
                 MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -150,8 +151,8 @@ namespace BIBLIOTECA_PROJETO.gui
             txtNVolume.Texts = "";
             txtEditora.Texts = "";
             txtObservacoes.Texts = "";
-            cbxAquisicao.Texts = "<Aquisição>";
-            cbxEstado.Texts = "<Estado>";
+            cbxAquisicao.Text = "<Aquisição>";
+            cbxEstado.Text = "<Estado>";
         }
     }
 }

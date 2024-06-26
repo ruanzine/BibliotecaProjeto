@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
@@ -51,11 +52,11 @@ namespace BIBLIOTECA_PROJETO.gui
                 string titulo = this.txtTitulo_Edit.Texts;
                 string autor = this.txtAutor_Edit.Texts;
                 string cota = this.txtCota_Edit.Texts;
-                string aquisicao = this.cbxAquisicao_Edit.Texts;
+                string aquisicao = this.cbxAquisicao_Edit.Text;
                 string editora = this.txtEditora_Edit.Texts;
                 string numeroVolume = this.txtNVolume_Edit.Texts;
                 string observacoes = this.txtObservacoes_Edit.Texts;
-                string estado = this.cbxEstado_Edit.Texts;
+                string estado = this.cbxEstado_Edit.Text;
 
                 int autorID = livroService.GetAuthorID(autor);
                 if (autorID == -1)
@@ -141,11 +142,11 @@ namespace BIBLIOTECA_PROJETO.gui
                 this.txtTitulo_Edit.Texts = livroSelecionado.Titulo;
                 this.txtAutor_Edit.Texts = livroSelecionado.Autor;
                 this.txtCota_Edit.Texts = livroSelecionado.Cota;
-                this.cbxAquisicao_Edit.Texts = livroSelecionado.Aquisicao;
+                this.cbxAquisicao_Edit.Text = livroSelecionado.Aquisicao;
                 this.txtEditora_Edit.Texts = livroSelecionado.Editora;
                 this.txtNVolume_Edit.Texts = livroSelecionado.NumeroVolume;
                 this.txtObservacoes_Edit.Texts = livroSelecionado.Observacoes;
-                this.cbxEstado_Edit.Texts = livroSelecionado.Estado;
+                this.cbxEstado_Edit.Text = livroSelecionado.Estado;
                 this.txtNRegisto_Edit.Enabled = false;
                 this.EnableText();
             }
@@ -174,9 +175,9 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
-        private bool ValidateComboBox(UC_ComboBox comboBox, string fieldName)
+        private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
-            if (comboBox.Texts == "<Aquisição>" || comboBox.Texts == "<Estado>")
+            if (comboBox.Text == "<Aquisição>" || comboBox.Text == "<Estado>")
             {
                 MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -191,8 +192,8 @@ namespace BIBLIOTECA_PROJETO.gui
             this.txtTitulo_Edit.Texts = "";
             this.txtCota_Edit.Texts = "";
             this.txtEditora_Edit.Texts = "";
-            this.cbxEstado_Edit.Texts = "<Estado>";
-            this.cbxAquisicao_Edit.Texts = "<Aquisição>";
+            this.cbxEstado_Edit.Text = "<Estado>";
+            this.cbxAquisicao_Edit.Text = "<Aquisição>";
             this.txtNVolume_Edit.Texts = "";
             this.txtObservacoes_Edit.Texts = "";
         }

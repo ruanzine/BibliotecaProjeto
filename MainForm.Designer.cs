@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.bttStatistics = new System.Windows.Forms.Button();
             this.bttDateListing = new System.Windows.Forms.Button();
             this.bttListing = new System.Windows.Forms.Button();
             this.bttEdit = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.bttSearch = new System.Windows.Forms.Button();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.bttStatistics = new System.Windows.Forms.Button();
             this.pnlMainFrame.SuspendLayout();
             this.jorge.SuspendLayout();
             this.pnlMenu.SuspendLayout();
@@ -72,7 +72,7 @@
             // 
             // jorge
             // 
-            this.jorge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.jorge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(166)))), ((int)(((byte)(224)))));
             this.jorge.Controls.Add(this.label1);
             this.jorge.Controls.Add(this.lblTitle);
             this.jorge.Dock = System.Windows.Forms.DockStyle.Top;
@@ -86,7 +86,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(88)))), ((int)(((byte)(188)))));
             this.label1.Location = new System.Drawing.Point(592, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(418, 23);
@@ -107,7 +107,7 @@
             // 
             // pnlMenu
             // 
-            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
             this.pnlMenu.Controls.Add(this.bttStatistics);
             this.pnlMenu.Controls.Add(this.bttDateListing);
             this.pnlMenu.Controls.Add(this.bttListing);
@@ -121,124 +121,9 @@
             this.pnlMenu.Size = new System.Drawing.Size(203, 647);
             this.pnlMenu.TabIndex = 2;
             // 
-            // bttDateListing
-            // 
-            this.bttDateListing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttDateListing.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bttDateListing.FlatAppearance.BorderSize = 0;
-            this.bttDateListing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttDateListing.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
-            this.bttDateListing.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttDateListing.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_statistics;
-            this.bttDateListing.Location = new System.Drawing.Point(0, 472);
-            this.bttDateListing.Name = "bttDateListing";
-            this.bttDateListing.Size = new System.Drawing.Size(203, 80);
-            this.bttDateListing.TabIndex = 12;
-            this.bttDateListing.Text = "   Listagem Data  ";
-            this.bttDateListing.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bttDateListing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bttDateListing.UseVisualStyleBackColor = true;
-            this.bttDateListing.Click += new System.EventHandler(this.bttDateListing_Click);
-            // 
-            // bttListing
-            // 
-            this.bttListing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttListing.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bttListing.FlatAppearance.BorderSize = 0;
-            this.bttListing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttListing.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
-            this.bttListing.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttListing.Image = ((System.Drawing.Image)(resources.GetObject("bttListing.Image")));
-            this.bttListing.Location = new System.Drawing.Point(0, 392);
-            this.bttListing.Name = "bttListing";
-            this.bttListing.Size = new System.Drawing.Size(203, 80);
-            this.bttListing.TabIndex = 13;
-            this.bttListing.Text = "   Listagem           ";
-            this.bttListing.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bttListing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bttListing.UseVisualStyleBackColor = true;
-            this.bttListing.Click += new System.EventHandler(this.bttListing_Click);
-            // 
-            // bttEdit
-            // 
-            this.bttEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bttEdit.FlatAppearance.BorderSize = 0;
-            this.bttEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttEdit.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
-            this.bttEdit.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttEdit.Image = ((System.Drawing.Image)(resources.GetObject("bttEdit.Image")));
-            this.bttEdit.Location = new System.Drawing.Point(0, 312);
-            this.bttEdit.Name = "bttEdit";
-            this.bttEdit.Size = new System.Drawing.Size(203, 80);
-            this.bttEdit.TabIndex = 9;
-            this.bttEdit.Text = "   Editar Exemplar ";
-            this.bttEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bttEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bttEdit.UseVisualStyleBackColor = true;
-            this.bttEdit.Click += new System.EventHandler(this.bttEdit_Click);
-            // 
-            // bttNew
-            // 
-            this.bttNew.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttNew.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bttNew.FlatAppearance.BorderSize = 0;
-            this.bttNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttNew.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttNew.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttNew.Image = ((System.Drawing.Image)(resources.GetObject("bttNew.Image")));
-            this.bttNew.Location = new System.Drawing.Point(0, 232);
-            this.bttNew.Name = "bttNew";
-            this.bttNew.Size = new System.Drawing.Size(203, 80);
-            this.bttNew.TabIndex = 8;
-            this.bttNew.Text = "   Novo Exemplar   ";
-            this.bttNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bttNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bttNew.UseVisualStyleBackColor = true;
-            this.bttNew.Click += new System.EventHandler(this.bttNew_Click);
-            // 
-            // bttSearch
-            // 
-            this.bttSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bttSearch.FlatAppearance.BorderSize = 0;
-            this.bttSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttSearch.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
-            this.bttSearch.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttSearch.Image = ((System.Drawing.Image)(resources.GetObject("bttSearch.Image")));
-            this.bttSearch.Location = new System.Drawing.Point(0, 152);
-            this.bttSearch.Name = "bttSearch";
-            this.bttSearch.Size = new System.Drawing.Size(203, 80);
-            this.bttSearch.TabIndex = 10;
-            this.bttSearch.Text = "   Pesquisar           ";
-            this.bttSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bttSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bttSearch.UseVisualStyleBackColor = true;
-            this.bttSearch.Click += new System.EventHandler(this.bttSearch_Click);
-            // 
-            // pnlLogo
-            // 
-            this.pnlLogo.Controls.Add(this.picLogo);
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(203, 152);
-            this.pnlLogo.TabIndex = 1;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.Location = new System.Drawing.Point(0, 0);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(203, 152);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabIndex = 0;
-            this.picLogo.TabStop = false;
-            // 
             // bttStatistics
             // 
+            this.bttStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
             this.bttStatistics.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttStatistics.Dock = System.Windows.Forms.DockStyle.Top;
             this.bttStatistics.FlatAppearance.BorderSize = 0;
@@ -253,8 +138,130 @@
             this.bttStatistics.Text = "Estatísticas";
             this.bttStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bttStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bttStatistics.UseVisualStyleBackColor = true;
+            this.bttStatistics.UseVisualStyleBackColor = false;
             this.bttStatistics.Click += new System.EventHandler(this.bttStatistics_Click);
+            // 
+            // bttDateListing
+            // 
+            this.bttDateListing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttDateListing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttDateListing.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bttDateListing.FlatAppearance.BorderSize = 0;
+            this.bttDateListing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttDateListing.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
+            this.bttDateListing.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bttDateListing.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_statistics;
+            this.bttDateListing.Location = new System.Drawing.Point(0, 472);
+            this.bttDateListing.Name = "bttDateListing";
+            this.bttDateListing.Size = new System.Drawing.Size(203, 80);
+            this.bttDateListing.TabIndex = 12;
+            this.bttDateListing.Text = "   Listagem Data  ";
+            this.bttDateListing.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttDateListing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bttDateListing.UseVisualStyleBackColor = false;
+            this.bttDateListing.Click += new System.EventHandler(this.bttDateListing_Click);
+            // 
+            // bttListing
+            // 
+            this.bttListing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttListing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttListing.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bttListing.FlatAppearance.BorderSize = 0;
+            this.bttListing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttListing.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
+            this.bttListing.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bttListing.Image = ((System.Drawing.Image)(resources.GetObject("bttListing.Image")));
+            this.bttListing.Location = new System.Drawing.Point(0, 392);
+            this.bttListing.Name = "bttListing";
+            this.bttListing.Size = new System.Drawing.Size(203, 80);
+            this.bttListing.TabIndex = 13;
+            this.bttListing.Text = "   Listagem           ";
+            this.bttListing.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttListing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bttListing.UseVisualStyleBackColor = false;
+            this.bttListing.Click += new System.EventHandler(this.bttListing_Click);
+            // 
+            // bttEdit
+            // 
+            this.bttEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttEdit.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bttEdit.FlatAppearance.BorderSize = 0;
+            this.bttEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttEdit.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
+            this.bttEdit.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bttEdit.Image = ((System.Drawing.Image)(resources.GetObject("bttEdit.Image")));
+            this.bttEdit.Location = new System.Drawing.Point(0, 312);
+            this.bttEdit.Name = "bttEdit";
+            this.bttEdit.Size = new System.Drawing.Size(203, 80);
+            this.bttEdit.TabIndex = 9;
+            this.bttEdit.Text = "   Editar Exemplar ";
+            this.bttEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bttEdit.UseVisualStyleBackColor = false;
+            this.bttEdit.Click += new System.EventHandler(this.bttEdit_Click);
+            // 
+            // bttNew
+            // 
+            this.bttNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttNew.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttNew.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bttNew.FlatAppearance.BorderSize = 0;
+            this.bttNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttNew.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttNew.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bttNew.Image = ((System.Drawing.Image)(resources.GetObject("bttNew.Image")));
+            this.bttNew.Location = new System.Drawing.Point(0, 232);
+            this.bttNew.Name = "bttNew";
+            this.bttNew.Size = new System.Drawing.Size(203, 80);
+            this.bttNew.TabIndex = 8;
+            this.bttNew.Text = "   Novo Exemplar   ";
+            this.bttNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bttNew.UseVisualStyleBackColor = false;
+            this.bttNew.Click += new System.EventHandler(this.bttNew_Click);
+            // 
+            // bttSearch
+            // 
+            this.bttSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bttSearch.FlatAppearance.BorderSize = 0;
+            this.bttSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttSearch.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
+            this.bttSearch.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bttSearch.Image = ((System.Drawing.Image)(resources.GetObject("bttSearch.Image")));
+            this.bttSearch.Location = new System.Drawing.Point(0, 152);
+            this.bttSearch.Name = "bttSearch";
+            this.bttSearch.Size = new System.Drawing.Size(203, 80);
+            this.bttSearch.TabIndex = 10;
+            this.bttSearch.Text = "   Pesquisar           ";
+            this.bttSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bttSearch.UseVisualStyleBackColor = false;
+            this.bttSearch.Click += new System.EventHandler(this.bttSearch_Click);
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.Controls.Add(this.picLogo);
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(203, 152);
+            this.pnlLogo.TabIndex = 1;
+            // 
+            // picLogo
+            // 
+            this.picLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(0, 0);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(203, 152);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 0;
+            this.picLogo.TabStop = false;
             // 
             // MainForm
             // 

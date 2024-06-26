@@ -34,7 +34,7 @@ namespace BIBLIOTECA_PROJETO.gui
                     saveFileDialog.FileName = "nome_do_ficheiro";
 
                     DataTable dt = null;
-                    string filter = cbxFilter_DGV.Texts;
+                    string filter = cbxFilter_DGV.Text;
                     string searchText = txtSearch_DGV.Texts;
 
                     switch (filter)
@@ -95,7 +95,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
         public void FillDGV()
         {
-            if (cbxFilter_DGV.Texts == "Número de Registo")
+            if (cbxFilter_DGV.Text == "Número de Registo")
             {
                 if (!int.TryParse(this.txtSearch_DGV.Texts, out _))
                 {
@@ -131,7 +131,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             try
             {
-                string selectedOption = this.cbxFilter_DGV.Texts;
+                string selectedOption = this.cbxFilter_DGV.Text;
                 string searchText = this.txtSearch_DGV.Texts;
 
                 switch (selectedOption)
@@ -231,7 +231,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void txtSearch_DGV_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cbxFilter_DGV.Texts == "Número de Registo")
+            if (cbxFilter_DGV.Text == "Número de Registo")
             {
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {

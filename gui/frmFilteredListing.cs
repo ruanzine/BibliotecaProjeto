@@ -22,8 +22,6 @@ namespace BIBLIOTECA_PROJETO.gui
             this.dgvFilteredListing.DataBindingComplete += dgvFilteredListing_DataBindingComplete;
 
             // Add event handler for the primary combobox
-            cbxFilter.OnSelectedIndexChanged += cbxFilter_OnSelectedIndexChanged;
-            cbxSecondaryFilter.OnSelectedIndexChanged += cbxSecondaryFilter_OnSelectedIndexChanged;
         }
 
         private void bttPrint_Click(object sender, EventArgs e)
@@ -79,7 +77,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private void cbxFilter_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             this.currentPage = 1;
-            LoadAllData(cbxFilter.Texts);
+            LoadAllData(cbxFilter.Text);
             FillDGV_Filter();
 
             // Load secondary filter combobox
@@ -120,7 +118,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void LoadSecondaryFilter()
         {
-            string primaryFilter = cbxFilter.Texts;
+            string primaryFilter = cbxFilter.Text;
 
             switch (primaryFilter)
             {
@@ -147,12 +145,12 @@ namespace BIBLIOTECA_PROJETO.gui
             try
             {
                 DataTable dt = allData.Clone();
-                string secondaryFilter = cbxSecondaryFilter.Texts;
+                string secondaryFilter = cbxSecondaryFilter.Text;
 
                 // Apply secondary filter
                 foreach (DataRow row in allData.Rows)
                 {
-                    if (string.IsNullOrEmpty(secondaryFilter) || row[cbxFilter.Texts].ToString() == secondaryFilter)
+                    if (string.IsNullOrEmpty(secondaryFilter) || row[cbxFilter.Text].ToString() == secondaryFilter)
                     {
                         dt.ImportRow(row);
                     }
@@ -212,7 +210,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void dgvFilteredListing_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            switch (cbxFilter.Texts)
+            switch (cbxFilter.Text)
             {
                 case "Número de Registo":
                     ResizeData();

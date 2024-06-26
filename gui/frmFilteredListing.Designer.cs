@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilteredListing));
             this.dgvFilteredListing = new System.Windows.Forms.DataGridView();
             this.pnlFormBody = new RoundedPanelBottom();
@@ -40,9 +40,11 @@
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new RoundedPanel();
-            this.cbxFilter = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
+            this.cbxSecondaryFilter = new MetroFramework.Controls.MetroComboBox();
+            this.cbxFilter = new MetroFramework.Controls.MetroComboBox();
             this.lblListagem = new System.Windows.Forms.Label();
-            this.cbxSecondaryFilter = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilteredListing)).BeginInit();
             this.pnlFormBody.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
@@ -53,28 +55,28 @@
             this.dgvFilteredListing.AllowUserToAddRows = false;
             this.dgvFilteredListing.AllowUserToDeleteRows = false;
             this.dgvFilteredListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvFilteredListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvFilteredListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvFilteredListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.dgvFilteredListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFilteredListing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFilteredListing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvFilteredListing.ColumnHeadersHeight = 40;
             this.dgvFilteredListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 11F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFilteredListing.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 11F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFilteredListing.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvFilteredListing.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvFilteredListing.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.dgvFilteredListing.Location = new System.Drawing.Point(40, 96);
@@ -183,6 +185,8 @@
             // pnlFormHeader
             // 
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormHeader.Controls.Add(this.label3);
+            this.pnlFormHeader.Controls.Add(this.label2);
             this.pnlFormHeader.Controls.Add(this.cbxSecondaryFilter);
             this.pnlFormHeader.Controls.Add(this.cbxFilter);
             this.pnlFormHeader.Controls.Add(this.lblListagem);
@@ -192,31 +196,32 @@
             this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormHeader.TabIndex = 48;
             // 
+            // cbxSecondaryFilter
+            // 
+            this.cbxSecondaryFilter.FormattingEnabled = true;
+            this.cbxSecondaryFilter.ItemHeight = 23;
+            this.cbxSecondaryFilter.Location = new System.Drawing.Point(864, 18);
+            this.cbxSecondaryFilter.Name = "cbxSecondaryFilter";
+            this.cbxSecondaryFilter.Size = new System.Drawing.Size(216, 29);
+            this.cbxSecondaryFilter.TabIndex = 51;
+            this.cbxSecondaryFilter.UseSelectable = true;
+            this.cbxSecondaryFilter.SelectedIndexChanged += new System.EventHandler(this.cbxSecondaryFilter_OnSelectedIndexChanged);
+            // 
             // cbxFilter
             // 
-            this.cbxFilter.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxFilter.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxFilter.BorderSize = 1;
-            this.cbxFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxFilter.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxFilter.HoverColor = System.Drawing.Color.MediumPurple;
-            this.cbxFilter.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.cbxFilter.FormattingEnabled = true;
+            this.cbxFilter.ItemHeight = 23;
             this.cbxFilter.Items.AddRange(new object[] {
             "Número de Registo",
             "Título",
             "Autor",
             "Cota"});
-            this.cbxFilter.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxFilter.ListFontSize = 10F;
-            this.cbxFilter.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxFilter.Location = new System.Drawing.Point(640, 16);
-            this.cbxFilter.MinimumSize = new System.Drawing.Size(200, 30);
+            this.cbxFilter.Location = new System.Drawing.Point(512, 18);
             this.cbxFilter.Name = "cbxFilter";
-            this.cbxFilter.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxFilter.Size = new System.Drawing.Size(200, 30);
-            this.cbxFilter.TabIndex = 47;
-            this.cbxFilter.Texts = "Filtro";
-            this.cbxFilter.OnSelectedIndexChanged += new System.EventHandler(this.cbxFilter_OnSelectedIndexChanged);
+            this.cbxFilter.Size = new System.Drawing.Size(192, 29);
+            this.cbxFilter.TabIndex = 49;
+            this.cbxFilter.UseSelectable = true;
+            this.cbxFilter.SelectedIndexChanged += new System.EventHandler(this.cbxFilter_OnSelectedIndexChanged);
             // 
             // lblListagem
             // 
@@ -229,30 +234,28 @@
             this.lblListagem.TabIndex = 11;
             this.lblListagem.Text = "Listagem";
             // 
-            // cbxSecondaryFilter
+            // label2
             // 
-            this.cbxSecondaryFilter.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxSecondaryFilter.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxSecondaryFilter.BorderSize = 1;
-            this.cbxSecondaryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxSecondaryFilter.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxSecondaryFilter.HoverColor = System.Drawing.Color.MediumPurple;
-            this.cbxSecondaryFilter.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxSecondaryFilter.Items.AddRange(new object[] {
-            "Número de Registo",
-            "Título",
-            "Autor",
-            "Cota"});
-            this.cbxSecondaryFilter.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxSecondaryFilter.ListFontSize = 10F;
-            this.cbxSecondaryFilter.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxSecondaryFilter.Location = new System.Drawing.Point(880, 16);
-            this.cbxSecondaryFilter.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxSecondaryFilter.Name = "cbxSecondaryFilter";
-            this.cbxSecondaryFilter.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxSecondaryFilter.Size = new System.Drawing.Size(200, 30);
-            this.cbxSecondaryFilter.TabIndex = 48;
-            this.cbxSecondaryFilter.Texts = "Filtro Secundário";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.label2.Location = new System.Drawing.Point(448, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 23);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "Filtro";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.label3.Location = new System.Drawing.Point(744, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 23);
+            this.label3.TabIndex = 53;
+            this.label3.Text = "Avançado";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // frmFilteredListing
             // 
@@ -276,13 +279,15 @@
         private System.Windows.Forms.Label lblListagem;
         private System.Windows.Forms.DataGridView dgvFilteredListing;
         private System.Windows.Forms.Label lblPagination;
-        private controls.UC_ComboBox cbxFilter;
         private System.Windows.Forms.Label label1;
         private controls.RoundedButton bttPrint;
         private controls.RoundedButton bttPreviousPage;
         private controls.RoundedButton bttNextPage;
         private RoundedPanel pnlFormHeader;
         private RoundedPanelBottom pnlFormBody;
-        private controls.UC_ComboBox cbxSecondaryFilter;
+        private MetroFramework.Controls.MetroComboBox cbxFilter;
+        private MetroFramework.Controls.MetroComboBox cbxSecondaryFilter;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
