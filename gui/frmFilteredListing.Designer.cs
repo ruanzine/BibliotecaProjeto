@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilteredListing));
             this.dgvFilteredListing = new System.Windows.Forms.DataGridView();
             this.pnlFormBody = new RoundedPanelBottom();
@@ -40,11 +40,13 @@
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new RoundedPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.cbxSecondaryFilter = new MetroFramework.Controls.MetroComboBox();
             this.cbxFilter = new MetroFramework.Controls.MetroComboBox();
             this.lblListagem = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilteredListing)).BeginInit();
             this.pnlFormBody.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
@@ -55,28 +57,28 @@
             this.dgvFilteredListing.AllowUserToAddRows = false;
             this.dgvFilteredListing.AllowUserToDeleteRows = false;
             this.dgvFilteredListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvFilteredListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvFilteredListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvFilteredListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvFilteredListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvFilteredListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFilteredListing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 9F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFilteredListing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvFilteredListing.ColumnHeadersHeight = 40;
             this.dgvFilteredListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 11F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFilteredListing.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 11F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFilteredListing.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgvFilteredListing.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvFilteredListing.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.dgvFilteredListing.Location = new System.Drawing.Point(40, 96);
@@ -91,7 +93,7 @@
             // 
             // pnlFormBody
             // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormBody.Controls.Add(this.label1);
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.bttPrint);
@@ -125,7 +127,7 @@
             // 
             // bttPrint
             // 
-            this.bttPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttPrint.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPrint.BorderRadius = 5;
@@ -144,7 +146,7 @@
             // 
             // bttPreviousPage
             // 
-            this.bttPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPreviousPage.BorderRadius = 5;
@@ -164,7 +166,7 @@
             // 
             // bttNextPage
             // 
-            this.bttNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttNextPage.BorderRadius = 5;
@@ -184,7 +186,8 @@
             // 
             // pnlFormHeader
             // 
-            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormHeader.Controls.Add(this.pnlLineTop);
             this.pnlFormHeader.Controls.Add(this.label3);
             this.pnlFormHeader.Controls.Add(this.label2);
             this.pnlFormHeader.Controls.Add(this.cbxSecondaryFilter);
@@ -195,6 +198,29 @@
             this.pnlFormHeader.Name = "pnlFormHeader";
             this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormHeader.TabIndex = 48;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.label3.Location = new System.Drawing.Point(744, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 23);
+            this.label3.TabIndex = 53;
+            this.label3.Text = "Avançado";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.label2.Location = new System.Drawing.Point(448, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 23);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "Filtro";
             // 
             // cbxSecondaryFilter
             // 
@@ -227,35 +253,28 @@
             // 
             this.lblListagem.AutoSize = true;
             this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.lblListagem.Location = new System.Drawing.Point(24, 24);
             this.lblListagem.Name = "lblListagem";
             this.lblListagem.Size = new System.Drawing.Size(109, 26);
             this.lblListagem.TabIndex = 11;
             this.lblListagem.Text = "Listagem";
             // 
-            // label2
+            // pnlLineTop
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.label2.Location = new System.Drawing.Point(448, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 23);
-            this.label2.TabIndex = 52;
-            this.label2.Text = "Filtro";
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(0, 62);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineTop.TabIndex = 51;
             // 
-            // label3
+            // pnlLineBottom
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.label3.Location = new System.Drawing.Point(744, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 23);
-            this.label3.TabIndex = 53;
-            this.label3.Text = "Avançado";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(40, 574);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineBottom.TabIndex = 52;
             // 
             // frmFilteredListing
             // 
@@ -263,6 +282,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1155, 685);
             this.Controls.Add(this.pnlFormBody);
+            this.Controls.Add(this.pnlLineBottom);
             this.Controls.Add(this.dgvFilteredListing);
             this.Controls.Add(this.pnlFormHeader);
             this.Name = "frmFilteredListing";
@@ -289,5 +309,7 @@
         private MetroFramework.Controls.MetroComboBox cbxSecondaryFilter;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel pnlLineTop;
+        private System.Windows.Forms.Panel pnlLineBottom;
     }
 }

@@ -70,10 +70,10 @@ namespace BIBLIOTECA_PROJETO
         {
             if (_selectedButton != null)
             {
-                _selectedButton.BackColor = Color.FromArgb(51, 58, 94); // Original color
+                _selectedButton.BackColor = Color.FromArgb(56, 83, 117); // Original color
             }
             _selectedButton = button;
-            _selectedButton.BackColor = Color.FromArgb(23, 23, 55); // Color to show it's been selected
+            _selectedButton.BackColor = Color.FromArgb(33, 50, 88); // Color to show it's been selected
         }
 
         private void bttNew_Click(object sender, EventArgs e)

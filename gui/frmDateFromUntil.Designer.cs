@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDateFromUntil));
             this.dgvDateListing = new System.Windows.Forms.DataGridView();
             this.pnlFormHeader = new RoundedPanel();
@@ -43,6 +43,8 @@
             this.bttPrintDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDateListing)).BeginInit();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -53,8 +55,8 @@
             this.dgvDateListing.AllowUserToAddRows = false;
             this.dgvDateListing.AllowUserToDeleteRows = false;
             this.dgvDateListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDateListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvDateListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDateListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -72,6 +74,7 @@
             // pnlFormHeader
             // 
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormHeader.Controls.Add(this.panel1);
             this.pnlFormHeader.Controls.Add(this.label2);
             this.pnlFormHeader.Controls.Add(this.label1);
             this.pnlFormHeader.Controls.Add(this.txtUntil);
@@ -128,7 +131,7 @@
             // 
             // bttFilterDate
             // 
-            this.bttFilterDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttFilterDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttFilterDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttFilterDate.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttFilterDate.BorderRadius = 5;
@@ -178,6 +181,7 @@
             // pnlFormBody
             // 
             this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormBody.Controls.Add(this.panel2);
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.bttPrintDate);
             this.pnlFormBody.Controls.Add(this.bttPreviousPage);
@@ -257,6 +261,22 @@
             this.bttNextPage.UseVisualStyleBackColor = false;
             this.bttNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.panel1.Location = new System.Drawing.Point(0, 62);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1104, 12);
+            this.panel1.TabIndex = 60;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.panel2.Location = new System.Drawing.Point(0, -10);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1104, 12);
+            this.panel2.TabIndex = 60;
+            // 
             // frmDateFromUntil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -290,5 +310,7 @@
         private controls.RoundedButton bttNextPage;
         private RoundedPanel pnlFormHeader;
         private RoundedPanelBottom pnlFormBody;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

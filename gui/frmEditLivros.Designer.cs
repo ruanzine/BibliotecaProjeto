@@ -30,10 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditLivros));
             this.pnlEditLivros = new System.Windows.Forms.Panel();
+            this.pnlFormFooter = new RoundedPanelBottom();
             this.pnlFormHeader = new RoundedPanel();
             this.lblListagem = new System.Windows.Forms.Label();
-            this.pnlFormBody = new RoundedPanelBottom();
+            this.pnlFormBody = new System.Windows.Forms.Panel();
             this.gpbCota_Edit = new RoundedGroupBox();
+            this.cbxEstado_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtObservacoes_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblEstadoAdd = new System.Windows.Forms.Label();
             this.txtNVolume_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -51,6 +53,7 @@
             this.bttDel = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttClear_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.gpbAutor_Edit = new RoundedGroupBox();
+            this.cbxAquisicao_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtEditora_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,8 +61,8 @@
             this.txtTitulo_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbxAquisicao_Edit = new MetroFramework.Controls.MetroComboBox();
-            this.cbxEstado_Edit = new MetroFramework.Controls.MetroComboBox();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.pnlEditLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -71,6 +74,7 @@
             // pnlEditLivros
             // 
             this.pnlEditLivros.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlEditLivros.Controls.Add(this.pnlFormFooter);
             this.pnlEditLivros.Controls.Add(this.pnlFormHeader);
             this.pnlEditLivros.Controls.Add(this.pnlFormBody);
             this.pnlEditLivros.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -79,12 +83,22 @@
             this.pnlEditLivros.Size = new System.Drawing.Size(1155, 685);
             this.pnlEditLivros.TabIndex = 0;
             // 
+            // pnlFormFooter
+            // 
+            this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormFooter.CornerRadius = 10;
+            this.pnlFormFooter.Location = new System.Drawing.Point(224, 624);
+            this.pnlFormFooter.Name = "pnlFormFooter";
+            this.pnlFormFooter.Size = new System.Drawing.Size(688, 32);
+            this.pnlFormFooter.TabIndex = 62;
+            // 
             // pnlFormHeader
             // 
-            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormHeader.Controls.Add(this.pnlLineTop);
             this.pnlFormHeader.Controls.Add(this.lblListagem);
             this.pnlFormHeader.CornerRadius = 10;
-            this.pnlFormHeader.Location = new System.Drawing.Point(224, 24);
+            this.pnlFormHeader.Location = new System.Drawing.Point(224, 16);
             this.pnlFormHeader.Name = "pnlFormHeader";
             this.pnlFormHeader.Size = new System.Drawing.Size(688, 48);
             this.pnlFormHeader.TabIndex = 60;
@@ -93,8 +107,8 @@
             // 
             this.lblListagem.AutoSize = true;
             this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.lblListagem.Location = new System.Drawing.Point(20, 16);
+            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblListagem.Location = new System.Drawing.Point(20, 12);
             this.lblListagem.Name = "lblListagem";
             this.lblListagem.Size = new System.Drawing.Size(156, 26);
             this.lblListagem.TabIndex = 12;
@@ -102,15 +116,15 @@
             // 
             // pnlFormBody
             // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
             this.pnlFormBody.Controls.Add(this.gpbCota_Edit);
             this.pnlFormBody.Controls.Add(this.bttSave_Edit);
             this.pnlFormBody.Controls.Add(this.gpbN_Edit);
             this.pnlFormBody.Controls.Add(this.bttDel);
             this.pnlFormBody.Controls.Add(this.bttClear_Edit);
             this.pnlFormBody.Controls.Add(this.gpbAutor_Edit);
-            this.pnlFormBody.CornerRadius = 10;
-            this.pnlFormBody.Location = new System.Drawing.Point(224, 72);
+            this.pnlFormBody.Location = new System.Drawing.Point(224, 64);
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(688, 560);
             this.pnlFormBody.TabIndex = 61;
@@ -118,7 +132,7 @@
             // 
             // gpbCota_Edit
             // 
-            this.gpbCota_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.gpbCota_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.gpbCota_Edit.BorderRadius = 8;
             this.gpbCota_Edit.Controls.Add(this.cbxEstado_Edit);
             this.gpbCota_Edit.Controls.Add(this.txtObservacoes_Edit);
@@ -134,6 +148,24 @@
             this.gpbCota_Edit.Size = new System.Drawing.Size(528, 200);
             this.gpbCota_Edit.TabIndex = 36;
             this.gpbCota_Edit.TabStop = false;
+            // 
+            // cbxEstado_Edit
+            // 
+            this.cbxEstado_Edit.FormattingEnabled = true;
+            this.cbxEstado_Edit.ItemHeight = 23;
+            this.cbxEstado_Edit.Items.AddRange(new object[] {
+            "Disponível",
+            "Indisponível",
+            "Abatido",
+            "Perdido",
+            "Consulta local",
+            "Exposição",
+            "Depósito"});
+            this.cbxEstado_Edit.Location = new System.Drawing.Point(128, 64);
+            this.cbxEstado_Edit.Name = "cbxEstado_Edit";
+            this.cbxEstado_Edit.Size = new System.Drawing.Size(176, 29);
+            this.cbxEstado_Edit.TabIndex = 62;
+            this.cbxEstado_Edit.UseSelectable = true;
             // 
             // txtObservacoes_Edit
             // 
@@ -159,7 +191,7 @@
             this.lblEstadoAdd.AutoSize = true;
             this.lblEstadoAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstadoAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblEstadoAdd.Location = new System.Drawing.Point(56, 72);
+            this.lblEstadoAdd.Location = new System.Drawing.Point(59, 72);
             this.lblEstadoAdd.Name = "lblEstadoAdd";
             this.lblEstadoAdd.Size = new System.Drawing.Size(52, 17);
             this.lblEstadoAdd.TabIndex = 50;
@@ -173,7 +205,7 @@
             this.txtNVolume_Edit.BorderSize = 2;
             this.txtNVolume_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNVolume_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtNVolume_Edit.Location = new System.Drawing.Point(360, 16);
+            this.txtNVolume_Edit.Location = new System.Drawing.Point(368, 16);
             this.txtNVolume_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.txtNVolume_Edit.Multiline = false;
             this.txtNVolume_Edit.Name = "txtNVolume_Edit";
@@ -208,7 +240,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label6.Location = new System.Drawing.Point(24, 120);
+            this.label6.Location = new System.Drawing.Point(19, 120);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 17);
             this.label6.TabIndex = 13;
@@ -219,7 +251,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label7.Location = new System.Drawing.Point(16, 26);
+            this.label7.Location = new System.Drawing.Point(14, 26);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(97, 17);
             this.label7.TabIndex = 11;
@@ -230,7 +262,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label4.Location = new System.Drawing.Point(272, 26);
+            this.label4.Location = new System.Drawing.Point(280, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 17);
             this.label4.TabIndex = 9;
@@ -238,7 +270,7 @@
             // 
             // bttSave_Edit
             // 
-            this.bttSave_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttSave_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttSave_Edit.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttSave_Edit.BorderRadius = 5;
             this.bttSave_Edit.BorderSize = 0;
@@ -257,7 +289,7 @@
             // 
             // gpbN_Edit
             // 
-            this.gpbN_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.gpbN_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.gpbN_Edit.BorderRadius = 8;
             this.gpbN_Edit.Controls.Add(this.bttFilterDate);
             this.gpbN_Edit.Controls.Add(this.txtDataEntrega_Edit);
@@ -273,7 +305,7 @@
             // 
             // bttFilterDate
             // 
-            this.bttFilterDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttFilterDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttFilterDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttFilterDate.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttFilterDate.BorderRadius = 5;
@@ -297,7 +329,7 @@
             this.txtDataEntrega_Edit.BorderSize = 2;
             this.txtDataEntrega_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataEntrega_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDataEntrega_Edit.Location = new System.Drawing.Point(429, 21);
+            this.txtDataEntrega_Edit.Location = new System.Drawing.Point(416, 20);
             this.txtDataEntrega_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.txtDataEntrega_Edit.Multiline = false;
             this.txtDataEntrega_Edit.Name = "txtDataEntrega_Edit";
@@ -317,7 +349,7 @@
             this.txtNRegisto_Edit.BorderSize = 2;
             this.txtNRegisto_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNRegisto_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtNRegisto_Edit.Location = new System.Drawing.Point(128, 22);
+            this.txtNRegisto_Edit.Location = new System.Drawing.Point(128, 20);
             this.txtNRegisto_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.txtNRegisto_Edit.Multiline = false;
             this.txtNRegisto_Edit.Name = "txtNRegisto_Edit";
@@ -334,7 +366,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label2.Location = new System.Drawing.Point(304, 30);
+            this.label2.Location = new System.Drawing.Point(288, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 17);
             this.label2.TabIndex = 1;
@@ -345,7 +377,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label1.Location = new System.Drawing.Point(16, 30);
+            this.label1.Location = new System.Drawing.Point(16, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 17);
             this.label1.TabIndex = 1;
@@ -372,7 +404,7 @@
             // 
             // bttClear_Edit
             // 
-            this.bttClear_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttClear_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttClear_Edit.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttClear_Edit.BorderRadius = 5;
             this.bttClear_Edit.BorderSize = 0;
@@ -391,7 +423,7 @@
             // 
             // gpbAutor_Edit
             // 
-            this.gpbAutor_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.gpbAutor_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.gpbAutor_Edit.BorderRadius = 8;
             this.gpbAutor_Edit.Controls.Add(this.cbxAquisicao_Edit);
             this.gpbAutor_Edit.Controls.Add(this.txtEditora_Edit);
@@ -408,6 +440,19 @@
             this.gpbAutor_Edit.TabIndex = 31;
             this.gpbAutor_Edit.TabStop = false;
             this.gpbAutor_Edit.Enter += new System.EventHandler(this.gpbAutor_Edit_Enter);
+            // 
+            // cbxAquisicao_Edit
+            // 
+            this.cbxAquisicao_Edit.FormattingEnabled = true;
+            this.cbxAquisicao_Edit.ItemHeight = 23;
+            this.cbxAquisicao_Edit.Items.AddRange(new object[] {
+            "Compra",
+            "Oferta"});
+            this.cbxAquisicao_Edit.Location = new System.Drawing.Point(128, 136);
+            this.cbxAquisicao_Edit.Name = "cbxAquisicao_Edit";
+            this.cbxAquisicao_Edit.Size = new System.Drawing.Size(176, 29);
+            this.cbxAquisicao_Edit.TabIndex = 53;
+            this.cbxAquisicao_Edit.UseSelectable = true;
             // 
             // txtEditora_Edit
             // 
@@ -433,7 +478,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label8.Location = new System.Drawing.Point(45, 194);
+            this.label8.Location = new System.Drawing.Point(57, 194);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 17);
             this.label8.TabIndex = 50;
@@ -444,7 +489,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label9.Location = new System.Drawing.Point(31, 136);
+            this.label9.Location = new System.Drawing.Point(40, 144);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 17);
             this.label9.TabIndex = 49;
@@ -493,7 +538,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label5.Location = new System.Drawing.Point(64, 90);
+            this.label5.Location = new System.Drawing.Point(70, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 17);
             this.label5.TabIndex = 7;
@@ -504,42 +549,27 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label3.Location = new System.Drawing.Point(64, 32);
+            this.label3.Location = new System.Drawing.Point(68, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Autor";
             // 
-            // cbxAquisicao_Edit
+            // pnlLineTop
             // 
-            this.cbxAquisicao_Edit.FormattingEnabled = true;
-            this.cbxAquisicao_Edit.ItemHeight = 23;
-            this.cbxAquisicao_Edit.Items.AddRange(new object[] {
-            "Compra",
-            "Oferta"});
-            this.cbxAquisicao_Edit.Location = new System.Drawing.Point(128, 136);
-            this.cbxAquisicao_Edit.Name = "cbxAquisicao_Edit";
-            this.cbxAquisicao_Edit.Size = new System.Drawing.Size(176, 29);
-            this.cbxAquisicao_Edit.TabIndex = 53;
-            this.cbxAquisicao_Edit.UseSelectable = true;
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(0, 46);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(688, 12);
+            this.pnlLineTop.TabIndex = 63;
             // 
-            // cbxEstado_Edit
+            // pnlLineBottom
             // 
-            this.cbxEstado_Edit.FormattingEnabled = true;
-            this.cbxEstado_Edit.ItemHeight = 23;
-            this.cbxEstado_Edit.Items.AddRange(new object[] {
-            "Disponível",
-            "Indisponível",
-            "Abatido",
-            "Perdido",
-            "Consulta local",
-            "Exposição",
-            "Depósito"});
-            this.cbxEstado_Edit.Location = new System.Drawing.Point(128, 64);
-            this.cbxEstado_Edit.Name = "cbxEstado_Edit";
-            this.cbxEstado_Edit.Size = new System.Drawing.Size(176, 29);
-            this.cbxEstado_Edit.TabIndex = 62;
-            this.cbxEstado_Edit.UseSelectable = true;
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 557);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(688, 12);
+            this.pnlLineBottom.TabIndex = 64;
             // 
             // frmEditLivros
             // 
@@ -582,7 +612,7 @@
         private RoundedGroupBox gpbAutor_Edit;
         private RoundedPanel pnlFormHeader;
         private System.Windows.Forms.Label lblListagem;
-        private RoundedPanelBottom pnlFormBody;
+        private System.Windows.Forms.Panel pnlFormBody;
         private RoundedGroupBox gpbCota_Edit;
         private controls.UC_textbox txtObservacoes_Edit;
         private controls.UC_textbox txtNVolume_Edit;
@@ -597,5 +627,8 @@
         private System.Windows.Forms.Label lblEstadoAdd;
         private MetroFramework.Controls.MetroComboBox cbxEstado_Edit;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao_Edit;
+        private RoundedPanelBottom pnlFormFooter;
+        private System.Windows.Forms.Panel pnlLineTop;
+        private System.Windows.Forms.Panel pnlLineBottom;
     }
 }
