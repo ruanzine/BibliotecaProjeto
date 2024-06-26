@@ -48,7 +48,6 @@
             this.lblTituloAdd = new System.Windows.Forms.Label();
             this.groupBox3 = new RoundedGroupBox();
             this.bttClear = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.cbxEstado = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.bttSave = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.lblEstadoAdd = new System.Windows.Forms.Label();
             this.txtCota = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -58,7 +57,7 @@
             this.lblObservAdd = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.cbxEstado = new MetroFramework.Controls.MetroComboBox();
             this.pnlAddLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -70,7 +69,6 @@
             // pnlAddLivros
             // 
             this.pnlAddLivros.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlAddLivros.Controls.Add(this.metroTextBox1);
             this.pnlAddLivros.Controls.Add(this.pnlFormHeader);
             this.pnlAddLivros.Controls.Add(this.pnlFormBody);
             this.pnlAddLivros.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -314,8 +312,8 @@
             // 
             this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.groupBox3.BorderRadius = 5;
-            this.groupBox3.Controls.Add(this.bttClear);
             this.groupBox3.Controls.Add(this.cbxEstado);
+            this.groupBox3.Controls.Add(this.bttClear);
             this.groupBox3.Controls.Add(this.bttSave);
             this.groupBox3.Controls.Add(this.lblEstadoAdd);
             this.groupBox3.Controls.Add(this.txtCota);
@@ -349,36 +347,6 @@
             this.bttClear.TabIndex = 54;
             this.bttClear.UseVisualStyleBackColor = false;
             this.bttClear.Click += new System.EventHandler(this.bttClear_Click);
-            // 
-            // cbxEstado
-            // 
-            this.cbxEstado.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxEstado.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.cbxEstado.BorderSize = 1;
-            this.cbxEstado.DataSource = null;
-            this.cbxEstado.DisplayMember = "";
-            this.cbxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxEstado.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxEstado.HoverColor = System.Drawing.Color.MediumPurple;
-            this.cbxEstado.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxEstado.Items.AddRange(new object[] {
-            "Disponível",
-            "Indisponível",
-            "Abatido",
-            "Perdido",
-            "Consulta local",
-            "Exposição",
-            "Depósito"});
-            this.cbxEstado.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxEstado.ListFontSize = 10F;
-            this.cbxEstado.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxEstado.Location = new System.Drawing.Point(120, 80);
-            this.cbxEstado.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxEstado.Name = "cbxEstado";
-            this.cbxEstado.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxEstado.Size = new System.Drawing.Size(200, 30);
-            this.cbxEstado.TabIndex = 49;
-            this.cbxEstado.Texts = "<Estado>";
             // 
             // bttSave
             // 
@@ -518,39 +486,26 @@
             this.cbxAquisicao.Theme = MetroFramework.MetroThemeStyle.Light;
             this.cbxAquisicao.UseSelectable = true;
             // 
-            // metroTextBox1
+            // cbxEstado
             // 
-            // 
-            // 
-            // 
-            this.metroTextBox1.CustomButton.Image = null;
-            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(164, 1);
-            this.metroTextBox1.CustomButton.Name = "";
-            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox1.CustomButton.TabIndex = 1;
-            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox1.CustomButton.UseSelectable = true;
-            this.metroTextBox1.CustomButton.Visible = false;
-            this.metroTextBox1.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.metroTextBox1.Lines = new string[] {
-        "Jorge da Silva nunes"};
-            this.metroTextBox1.Location = new System.Drawing.Point(416, 40);
-            this.metroTextBox1.MaxLength = 32767;
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox1.SelectedText = "";
-            this.metroTextBox1.SelectionLength = 0;
-            this.metroTextBox1.SelectionStart = 0;
-            this.metroTextBox1.ShortcutsEnabled = true;
-            this.metroTextBox1.Size = new System.Drawing.Size(192, 29);
-            this.metroTextBox1.TabIndex = 62;
-            this.metroTextBox1.Text = "Jorge da Silva nunes";
-            this.metroTextBox1.UseCustomBackColor = true;
-            this.metroTextBox1.UseSelectable = true;
-            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxEstado.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cbxEstado.ForeColor = System.Drawing.Color.DimGray;
+            this.cbxEstado.FormattingEnabled = true;
+            this.cbxEstado.ItemHeight = 23;
+            this.cbxEstado.Items.AddRange(new object[] {
+            "Disponível",
+            "Indisponível",
+            "Abatido",
+            "Perdido",
+            "Consulta local",
+            "Exposição",
+            "Depósito"});
+            this.cbxEstado.Location = new System.Drawing.Point(120, 80);
+            this.cbxEstado.Name = "cbxEstado";
+            this.cbxEstado.Size = new System.Drawing.Size(192, 29);
+            this.cbxEstado.TabIndex = 62;
+            this.cbxEstado.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.cbxEstado.UseSelectable = true;
             // 
             // frmAddLivros
             // 
@@ -599,12 +554,11 @@
         private System.Windows.Forms.Label lblAquisicao;
         private System.Windows.Forms.Label lblEditoraAdd;
         private controls.UC_textbox txtEditora;
-        private controls.UC_ComboBox cbxEstado;
         private System.Windows.Forms.Label lblEstadoAdd;
         private RoundedPanelBottom pnlFormBody;
         private RoundedPanel pnlFormHeader;
         private controls.RoundedButton bttClear;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
+        private MetroFramework.Controls.MetroComboBox cbxEstado;
     }
 }

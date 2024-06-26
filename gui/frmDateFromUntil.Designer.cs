@@ -55,7 +55,7 @@
             this.dgvDateListing.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDateListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dgvDateListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvDateListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDateListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDateListing.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -71,7 +71,7 @@
             // 
             // pnlFormHeader
             // 
-            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormHeader.Controls.Add(this.label2);
             this.pnlFormHeader.Controls.Add(this.label1);
             this.pnlFormHeader.Controls.Add(this.txtUntil);
@@ -88,7 +88,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.label2.Location = new System.Drawing.Point(864, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 23);
@@ -99,7 +99,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.label1.Location = new System.Drawing.Point(688, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 23);
@@ -109,7 +109,7 @@
             // txtUntil
             // 
             this.txtUntil.BackColor = System.Drawing.SystemColors.Window;
-            this.txtUntil.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtUntil.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.txtUntil.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtUntil.BorderSize = 2;
             this.txtUntil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,7 +147,7 @@
             // txtFrom
             // 
             this.txtFrom.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFrom.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtFrom.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.txtFrom.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtFrom.BorderSize = 2;
             this.txtFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -168,7 +168,7 @@
             // 
             this.lblListagem.AutoSize = true;
             this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.lblListagem.Location = new System.Drawing.Point(24, 24);
             this.lblListagem.Name = "lblListagem";
             this.lblListagem.Size = new System.Drawing.Size(374, 26);
@@ -177,7 +177,7 @@
             // 
             // pnlFormBody
             // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.bttPrintDate);
             this.pnlFormBody.Controls.Add(this.bttPreviousPage);
@@ -200,7 +200,7 @@
             // 
             // bttPrintDate
             // 
-            this.bttPrintDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttPrintDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttPrintDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttPrintDate.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPrintDate.BorderRadius = 5;
@@ -219,7 +219,7 @@
             // 
             // bttPreviousPage
             // 
-            this.bttPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPreviousPage.BorderRadius = 5;
@@ -239,7 +239,7 @@
             // 
             // bttNextPage
             // 
-            this.bttNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttNextPage.BorderRadius = 5;

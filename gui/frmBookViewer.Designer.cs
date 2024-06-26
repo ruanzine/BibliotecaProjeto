@@ -40,8 +40,10 @@
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new RoundedPanel();
             this.txtSearch_DGV = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.cbxFilter_DGV = new BIBLIOTECA_PROJETO.controls.UC_ComboBox();
             this.lblListagem = new System.Windows.Forms.Label();
+            this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pnlFormBody.SuspendLayout();
@@ -55,7 +57,7 @@
             this.dgvBook.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvBook.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dgvBook.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvBook.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBook.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -76,7 +78,7 @@
             // 
             // pnlFormBody
             // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.bttPrint_DGV);
             this.pnlFormBody.Controls.Add(this.bttPreviousPage);
@@ -99,7 +101,7 @@
             // 
             // bttPrint_DGV
             // 
-            this.bttPrint_DGV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttPrint_DGV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttPrint_DGV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttPrint_DGV.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPrint_DGV.BorderRadius = 5;
@@ -118,7 +120,7 @@
             // 
             // bttPreviousPage
             // 
-            this.bttPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPreviousPage.BorderRadius = 5;
@@ -137,7 +139,7 @@
             // 
             // bttNextPage
             // 
-            this.bttNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.bttNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.bttNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bttNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttNextPage.BorderRadius = 5;
@@ -156,8 +158,10 @@
             // 
             // pnlFormHeader
             // 
-            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
+            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormHeader.Controls.Add(this.txtSearch_DGV);
+            this.pnlFormHeader.Controls.Add(this.label2);
+            this.pnlFormHeader.Controls.Add(this.label1);
             this.pnlFormHeader.Controls.Add(this.cbxFilter_DGV);
             this.pnlFormHeader.Controls.Add(this.lblListagem);
             this.pnlFormHeader.CornerRadius = 10;
@@ -174,7 +178,7 @@
             this.txtSearch_DGV.BorderSize = 2;
             this.txtSearch_DGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch_DGV.ForeColor = System.Drawing.Color.DimGray;
-            this.txtSearch_DGV.Location = new System.Drawing.Point(824, 24);
+            this.txtSearch_DGV.Location = new System.Drawing.Point(840, 18);
             this.txtSearch_DGV.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch_DGV.Multiline = false;
             this.txtSearch_DGV.Name = "txtSearch_DGV";
@@ -188,44 +192,54 @@
             this.txtSearch_DGV.TextChanged += new System.EventHandler(this.txtSearch_DGV_TextChanged);
             this.txtSearch_DGV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_DGV_KeyPress);
             // 
-            // cbxFilter_DGV
-            // 
-            this.cbxFilter_DGV.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxFilter_DGV.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxFilter_DGV.BorderSize = 1;
-            this.cbxFilter_DGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.cbxFilter_DGV.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxFilter_DGV.ForeColor = System.Drawing.Color.DimGray;
-            this.cbxFilter_DGV.HoverColor = System.Drawing.Color.MediumPurple;
-            this.cbxFilter_DGV.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.cbxFilter_DGV.Items.AddRange(new object[] {
-            "Todos",
-            "Número de Registo",
-            "Título",
-            "Autor",
-            "Cota"});
-            this.cbxFilter_DGV.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbxFilter_DGV.ListFontSize = 10F;
-            this.cbxFilter_DGV.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbxFilter_DGV.Location = new System.Drawing.Point(608, 24);
-            this.cbxFilter_DGV.MinimumSize = new System.Drawing.Size(200, 30);
-            this.cbxFilter_DGV.Name = "cbxFilter_DGV";
-            this.cbxFilter_DGV.Padding = new System.Windows.Forms.Padding(1);
-            this.cbxFilter_DGV.Size = new System.Drawing.Size(200, 30);
-            this.cbxFilter_DGV.TabIndex = 12;
-            this.cbxFilter_DGV.Texts = "Todos";
-            this.cbxFilter_DGV.OnSelectedIndexChanged += new System.EventHandler(this.cbxFilter_DGV_OnSelectedIndexChanged);
-            // 
             // lblListagem
             // 
             this.lblListagem.AutoSize = true;
             this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.lblListagem.Location = new System.Drawing.Point(24, 24);
+            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblListagem.Location = new System.Drawing.Point(24, 20);
             this.lblListagem.Name = "lblListagem";
             this.lblListagem.Size = new System.Drawing.Size(271, 26);
             this.lblListagem.TabIndex = 11;
             this.lblListagem.Text = "Pesquisa de Exemplares";
+            // 
+            // cbxFilter_DGV
+            // 
+            this.cbxFilter_DGV.FormattingEnabled = true;
+            this.cbxFilter_DGV.ItemHeight = 23;
+            this.cbxFilter_DGV.Items.AddRange(new object[] {
+            "Número de Registo",
+            "Título",
+            "Autor",
+            "Cota"});
+            this.cbxFilter_DGV.Location = new System.Drawing.Point(536, 19);
+            this.cbxFilter_DGV.Name = "cbxFilter_DGV";
+            this.cbxFilter_DGV.Size = new System.Drawing.Size(184, 29);
+            this.cbxFilter_DGV.TabIndex = 44;
+            this.cbxFilter_DGV.UseSelectable = true;
+            this.cbxFilter_DGV.SelectedIndexChanged += new System.EventHandler(this.cbxFilter_DGV_OnSelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.label1.Location = new System.Drawing.Point(480, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 23);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "Filtro";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.label2.Location = new System.Drawing.Point(748, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 23);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "Procurar ";
             // 
             // frmBookViewer
             // 
@@ -248,7 +262,6 @@
 
         #endregion
         private System.Windows.Forms.Label lblListagem;
-        private controls.UC_ComboBox cbxFilter_DGV;
         private controls.UC_textbox txtSearch_DGV;
         private System.Windows.Forms.DataGridView dgvBook;
         private System.Windows.Forms.Label lblPagination;
@@ -258,5 +271,8 @@
         private controls.RoundedButton bttNextPage;
         private RoundedPanel pnlFormHeader;
         private RoundedPanelBottom pnlFormBody;
+        private MetroFramework.Controls.MetroComboBox cbxFilter_DGV;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
