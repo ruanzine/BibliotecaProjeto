@@ -21,7 +21,10 @@ namespace BIBLIOTECA_PROJETO.gui
             this.bookService = new BookGeneralListingService();
             this.dgvFilteredListing.DataBindingComplete += dgvFilteredListing_DataBindingComplete;
 
-            // Add event handler for the primary combobox
+            cbxFilter.SelectedIndexChanged += cbxFilter_OnSelectedIndexChanged;
+            dgvFilteredListing.SelectionChanged += dgvFilteredListing_SelectionChanged;
+            bttAdvanced.Click += bttAdvanced_Click;
+            bttAdvanced.Enabled = false; // Initially disable the button
         }
 
         private void bttPrint_Click(object sender, EventArgs e)
@@ -76,12 +79,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void cbxFilter_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            this.currentPage = 1;
             LoadAllData(cbxFilter.Text);
-            FillDGV_Filter();
-
-            // Load secondary filter combobox
-            LoadSecondaryFilter();
         }
 
         private void cbxSecondaryFilter_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -92,6 +90,8 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void LoadAllData(string filter)
         {
+            ClearDataGridView(dgvFilteredListing); // Clear the DataGridView before loading new data
+
             switch (filter)
             {
                 case "Número de Registo":
@@ -113,59 +113,43 @@ namespace BIBLIOTECA_PROJETO.gui
 
             int totalCount = allData.Rows.Count;
             totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
+
+            // Reset pagination
+            currentPage = 1;
             UpdatePaginationLabel();
+
+            // Fill DataGridView with new data
+            FillDGV_Filter();
         }
 
-        private void LoadSecondaryFilter()
+        private void ClearDataGridView(DataGridView dgv)
         {
-            string primaryFilter = cbxFilter.Text;
-
-            switch (primaryFilter)
-            {
-                case "Autor":
-                    cbxSecondaryFilter.DataSource = this.bookService.GetDistinctAuthors();
-                    cbxSecondaryFilter.DisplayMember = "Autor";
-                    break;
-                case "Título":
-                    cbxSecondaryFilter.DataSource = this.bookService.GetDistinctTitles();
-                    cbxSecondaryFilter.DisplayMember = "Título";
-                    break;
-                case "Cota":
-                    cbxSecondaryFilter.DataSource = this.bookService.GetDistinctCotas();
-                    cbxSecondaryFilter.DisplayMember = "Cota";
-                    break;
-                default:
-                    cbxSecondaryFilter.DataSource = null;
-                    break;
-            }
+            // Clear the DataGridView by setting its DataSource to null
+            dgv.DataSource = null;
+            // Clear any manually added columns if necessary
+            dgv.Columns.Clear();
         }
 
         public void FillDGV_Filter()
         {
             try
             {
-                DataTable dt = allData.Clone();
-                string secondaryFilter = cbxSecondaryFilter.Text;
-
-                // Apply secondary filter
-                foreach (DataRow row in allData.Rows)
+                if (allData == null)
                 {
-                    if (string.IsNullOrEmpty(secondaryFilter) || row[cbxFilter.Text].ToString() == secondaryFilter)
-                    {
-                        dt.ImportRow(row);
-                    }
+                    return;
                 }
+
+                DataTable dt = allData.Clone();
 
                 int startIndex = (currentPage - 1) * itemsPerPage;
-                int endIndex = Math.Min(startIndex + itemsPerPage, dt.Rows.Count);
+                int endIndex = Math.Min(startIndex + itemsPerPage, allData.Rows.Count);
 
-                DataTable pageData = dt.Clone();
                 for (int i = startIndex; i < endIndex; i++)
                 {
-                    pageData.ImportRow(dt.Rows[i]);
+                    dt.ImportRow(allData.Rows[i]);
                 }
 
-                this.dgvFilteredListing.DataSource = pageData;
+                this.dgvFilteredListing.DataSource = dt;
                 SetRowHeight(dgvFilteredListing, 40);
                 UpdatePaginationLabel(); // Update pagination label after filling the data grid view
             }
@@ -206,6 +190,64 @@ namespace BIBLIOTECA_PROJETO.gui
                 FillDGV_Filter();
                 UpdatePaginationLabel(); // Call UpdatePaginationLabel here
             }
+        }
+
+        private void dgvFilteredListing_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvFilteredListing.SelectedRows.Count > 0)
+            {
+                bttAdvanced.Enabled = true;
+            }
+            else
+            {
+                bttAdvanced.Enabled = false;
+            }
+        }
+
+        private void bttAdvanced_Click(object sender, EventArgs e)
+        {
+            if (dgvFilteredListing.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvFilteredListing.SelectedRows[0];
+                string selectedFilter = cbxFilter.Text;
+                string selectedValue = "";
+
+                switch (selectedFilter)
+                {
+                    case "Título":
+                        selectedValue = selectedRow.Cells["Título"].Value.ToString();
+                        LoadBooksByTitle(selectedValue);
+                        break;
+                    case "Autor":
+                        selectedValue = selectedRow.Cells["Autor"].Value.ToString();
+                        LoadBooksByAuthor(selectedValue);
+                        break;
+                    case "Cota":
+                        selectedValue = selectedRow.Cells["Cota"].Value.ToString();
+                        LoadBooksByCota(selectedValue);
+                        break;
+                    default:
+                        MessageBox.Show("Filtro inválido no bttAdvanced_Click", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                }
+
+                FillDGV_Filter();
+            }
+        }
+
+        private void LoadBooksByTitle(string title)
+        {
+            allData = this.bookService.GetBooksByTitle(title);
+        }
+
+        private void LoadBooksByAuthor(string author)
+        {
+            allData = this.bookService.GetBooksByAuthor(author);
+        }
+
+        private void LoadBooksByCota(string cota)
+        {
+            allData = this.bookService.GetBooksByCota(cota);
         }
 
         private void dgvFilteredListing_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

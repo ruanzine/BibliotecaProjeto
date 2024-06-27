@@ -250,5 +250,10 @@ namespace BIBLIOTECA_PROJETO.gui
         {
 
         }
+
+        private void frmBookViewer_Load(object sender, EventArgs e)
+        {
+            txtSearch_DGV.Focus();
+        }
     }
 }

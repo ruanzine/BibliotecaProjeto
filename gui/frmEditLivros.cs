@@ -47,15 +47,15 @@ namespace BIBLIOTECA_PROJETO.gui
 
             try
             {
-                int numeroRegistro = int.Parse(this.txtNRegisto_Edit.Texts);
-                DateTime dataEntrega = DateTime.ParseExact(this.txtDataEntrega_Edit.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string titulo = this.txtTitulo_Edit.Texts;
-                string autor = this.txtAutor_Edit.Texts;
-                string cota = this.txtCota_Edit.Texts;
+                int numeroRegistro = int.Parse(this.txtNRegisto_Edit.Texts.Trim());
+                DateTime dataEntrega = DateTime.ParseExact(this.txtDataEntrega_Edit.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                string titulo = this.txtTitulo_Edit.Texts.Trim();
+                string autor = this.txtAutor_Edit.Texts.Trim();
+                string cota = this.txtCota_Edit.Texts.Trim();
                 string aquisicao = this.cbxAquisicao_Edit.Text;
-                string editora = this.txtEditora_Edit.Texts;
-                string numeroVolume = this.txtNVolume_Edit.Texts;
-                string observacoes = this.txtObservacoes_Edit.Texts;
+                string editora = this.txtEditora_Edit.Texts.Trim();
+                string numeroVolume = this.txtNVolume_Edit.Texts.Trim();
+                string observacoes = this.txtObservacoes_Edit.Texts.Trim();
                 string estado = this.cbxEstado_Edit.Text;
 
                 int autorID = livroService.GetAuthorID(autor);
@@ -80,6 +80,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+
         private void bttClear_Edit_Click(object sender, EventArgs e)
         {
             ClearText();
@@ -101,7 +102,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             if (!ValidateTextBox(txtNRegisto_Edit, "o número de registo do exemplar"))
                 return;
-            int numeroRegistro = int.Parse(txtNRegisto_Edit.Texts);
+            int numeroRegistro = int.Parse(txtNRegisto_Edit.Texts.Trim());
             try
             {
                 if (livroService.IsRegistrationNumberExists(numeroRegistro))
@@ -127,6 +128,8 @@ namespace BIBLIOTECA_PROJETO.gui
                 MessageBox.Show("Ocorreu um erro ao excluir o registro: " + ex.Message, "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void pnlFormBody_Paint(object sender, PaintEventArgs e) { }
 
@@ -159,14 +162,15 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
-            if (string.IsNullOrEmpty(textBox.Texts))
+            string text = textBox.Texts?.Trim();
+            if (string.IsNullOrEmpty(text))
             {
                 MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (textBox == this.txtDataEntrega_Edit)
             {
-                if (!DateTime.TryParseExact(textBox.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+                if (!DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
                 {
                     MessageBox.Show($"Por favor, insira {fieldName} no formato dd/MM/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -174,6 +178,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             return true;
         }
+
 
         private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
