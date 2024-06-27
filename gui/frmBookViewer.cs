@@ -21,6 +21,37 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             InitializeComponent();
             this.bookService = new BookSearchService();
+
+            // Subscribe to the CellFormatting event
+            this.dgvBook.CellFormatting += dgvBook_CellFormatting;
+        }
+
+        private void dgvBook_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvBook.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                if (e.Value != null)
+                {
+                    switch (e.Value.ToString())
+                    {
+                        case "Disponível":
+                            e.CellStyle.BackColor = Color.FromArgb(207, 228, 183);
+                            break;
+                        case "Abatido":
+                            e.CellStyle.BackColor = Color.FromArgb(248, 193, 193);
+                            break;
+                        case "Perdido":
+                            e.CellStyle.BackColor = Color.FromArgb(248, 237, 195);
+                            break;
+                        case "Depósito":
+                            e.CellStyle.BackColor = Color.FromArgb(191, 175, 228);
+                            break;
+                        default:
+                            e.CellStyle.BackColor = dgvBook.DefaultCellStyle.BackColor;
+                            break;
+                    }
+                }
+            }
         }
 
         private void bttPrint_Search_Click(object sender, EventArgs e)
@@ -157,6 +188,16 @@ namespace BIBLIOTECA_PROJETO.gui
                 totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
                 UpdatePaginationLabel();
                 FillDGV();
+
+                // Update the lblAmount label
+                if (totalCount == 0)
+                {
+                    lblAmount.Text = "0 registos encontrados";
+                }
+                else
+                {
+                    lblAmount.Text = $"{totalCount} registos encontrados";
+                }
             }
             catch (Exception ex)
             {
@@ -254,6 +295,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private void frmBookViewer_Load(object sender, EventArgs e)
         {
             txtSearch_DGV.Focus();
+           
         }
     }
 }

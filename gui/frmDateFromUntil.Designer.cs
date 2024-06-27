@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDateFromUntil));
             this.dgvDateListing = new System.Windows.Forms.DataGridView();
             this.pnlFormHeader = new RoundedPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUntil = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -39,12 +40,12 @@
             this.txtFrom = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody = new RoundedPanelBottom();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrintDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDateListing)).BeginInit();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -86,6 +87,14 @@
             this.pnlFormHeader.Name = "pnlFormHeader";
             this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormHeader.TabIndex = 47;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.panel1.Location = new System.Drawing.Point(0, 62);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1104, 12);
+            this.panel1.TabIndex = 60;
             // 
             // label2
             // 
@@ -181,6 +190,7 @@
             // pnlFormBody
             // 
             this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormBody.Controls.Add(this.lblAmount);
             this.pnlFormBody.Controls.Add(this.panel2);
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.bttPrintDate);
@@ -191,6 +201,14 @@
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormBody.TabIndex = 48;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.panel2.Location = new System.Drawing.Point(0, -10);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1104, 12);
+            this.panel2.TabIndex = 60;
             // 
             // lblPagination
             // 
@@ -261,21 +279,16 @@
             this.bttNextPage.UseVisualStyleBackColor = false;
             this.bttNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
-            // panel1
+            // lblAmount
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.panel1.Location = new System.Drawing.Point(0, 62);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1104, 12);
-            this.panel1.TabIndex = 60;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.panel2.Location = new System.Drawing.Point(0, -10);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1104, 12);
-            this.panel2.TabIndex = 60;
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblAmount.Location = new System.Drawing.Point(72, 24);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(185, 21);
+            this.lblAmount.TabIndex = 61;
+            this.lblAmount.Text = "0 registos encontrados";
             // 
             // frmDateFromUntil
             // 
@@ -312,5 +325,6 @@
         private RoundedPanelBottom pnlFormBody;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblAmount;
     }
 }

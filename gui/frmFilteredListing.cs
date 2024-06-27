@@ -25,6 +25,37 @@ namespace BIBLIOTECA_PROJETO.gui
             dgvFilteredListing.SelectionChanged += dgvFilteredListing_SelectionChanged;
             bttAdvanced.Click += bttAdvanced_Click;
             bttAdvanced.Enabled = false; // Initially disable the button
+
+            // Subscribe to the CellFormatting event
+            this.dgvFilteredListing.CellFormatting += dgvFilteredListing_CellFormatting;
+        }
+
+        private void dgvFilteredListing_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvFilteredListing.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                if (e.Value != null)
+                {
+                    switch (e.Value.ToString())
+                    {
+                        case "Disponível":
+                            e.CellStyle.BackColor = Color.FromArgb(207, 228, 183);
+                            break;
+                        case "Abatido":
+                            e.CellStyle.BackColor = Color.FromArgb(248, 193, 193);
+                            break;
+                        case "Perdido":
+                            e.CellStyle.BackColor = Color.FromArgb(248, 237, 195);
+                            break;
+                        case "Depósito":
+                            e.CellStyle.BackColor = Color.FromArgb(191, 175, 228);
+                            break;
+                        default:
+                            e.CellStyle.BackColor = dgvFilteredListing.DefaultCellStyle.BackColor;
+                            break;
+                    }
+                }
+            }
         }
 
         private void bttPrint_Click(object sender, EventArgs e)
@@ -117,6 +148,16 @@ namespace BIBLIOTECA_PROJETO.gui
             // Reset pagination
             currentPage = 1;
             UpdatePaginationLabel();
+
+            // Update the lblAmount label
+            if (totalCount == 0)
+            {
+                lblAmount.Text = "0 registos encontrados";
+            }
+            else
+            {
+                lblAmount.Text = $"{totalCount} registos encontrados";
+            }
 
             // Fill DataGridView with new data
             FillDGV_Filter();
@@ -317,6 +358,16 @@ namespace BIBLIOTECA_PROJETO.gui
             this.dgvFilteredListing.Columns["Aquisição"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.dgvFilteredListing.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.SetRowHeight(this.dgvFilteredListing, 40);
+        }
+
+        private void bttAdvanced_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttAdvanced_Click_2(object sender, EventArgs e)
+        {
+
         }
     }
 }
