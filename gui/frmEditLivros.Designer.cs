@@ -47,7 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.bttSave_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.gpbN_Edit = new RoundedGroupBox();
-            this.bttFilterDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.bttSearchEdit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.txtDataEntrega_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtNRegisto_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.label2 = new System.Windows.Forms.Label();
@@ -167,6 +167,7 @@
             // 
             // cbxEstado_Edit
             // 
+            this.cbxEstado_Edit.Enabled = false;
             this.cbxEstado_Edit.FormattingEnabled = true;
             this.cbxEstado_Edit.ItemHeight = 23;
             this.cbxEstado_Edit.Items.AddRange(new object[] {
@@ -189,6 +190,7 @@
             this.txtObservacoes_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.txtObservacoes_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtObservacoes_Edit.BorderSize = 2;
+            this.txtObservacoes_Edit.Enabled = false;
             this.txtObservacoes_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtObservacoes_Edit.ForeColor = System.Drawing.Color.DimGray;
             this.txtObservacoes_Edit.Location = new System.Drawing.Point(128, 120);
@@ -219,6 +221,7 @@
             this.txtNVolume_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.txtNVolume_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtNVolume_Edit.BorderSize = 2;
+            this.txtNVolume_Edit.Enabled = false;
             this.txtNVolume_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNVolume_Edit.ForeColor = System.Drawing.Color.DimGray;
             this.txtNVolume_Edit.Location = new System.Drawing.Point(368, 16);
@@ -238,6 +241,7 @@
             this.txtCota_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.txtCota_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtCota_Edit.BorderSize = 2;
+            this.txtCota_Edit.Enabled = false;
             this.txtCota_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCota_Edit.ForeColor = System.Drawing.Color.DimGray;
             this.txtCota_Edit.Location = new System.Drawing.Point(128, 16);
@@ -292,14 +296,18 @@
             this.bttSave_Edit.BorderSize = 0;
             this.bttSave_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttSave_Edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttSave_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttSave_Edit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttSave_Edit.ForeColor = System.Drawing.Color.Transparent;
             this.bttSave_Edit.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttsaveedit;
-            this.bttSave_Edit.Location = new System.Drawing.Point(600, 144);
+            this.bttSave_Edit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttSave_Edit.Location = new System.Drawing.Point(568, 136);
             this.bttSave_Edit.Margin = new System.Windows.Forms.Padding(0);
             this.bttSave_Edit.Name = "bttSave_Edit";
-            this.bttSave_Edit.Size = new System.Drawing.Size(40, 40);
+            this.bttSave_Edit.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bttSave_Edit.Size = new System.Drawing.Size(104, 40);
             this.bttSave_Edit.TabIndex = 29;
+            this.bttSave_Edit.Text = "Guardar";
+            this.bttSave_Edit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bttSave_Edit.UseVisualStyleBackColor = false;
             this.bttSave_Edit.Click += new System.EventHandler(this.bttSave_Edit_Click);
             // 
@@ -307,7 +315,7 @@
             // 
             this.gpbN_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.gpbN_Edit.BorderRadius = 8;
-            this.gpbN_Edit.Controls.Add(this.bttFilterDate);
+            this.gpbN_Edit.Controls.Add(this.bttSearchEdit);
             this.gpbN_Edit.Controls.Add(this.txtDataEntrega_Edit);
             this.gpbN_Edit.Controls.Add(this.txtNRegisto_Edit);
             this.gpbN_Edit.Controls.Add(this.label2);
@@ -319,23 +327,23 @@
             this.gpbN_Edit.TabIndex = 34;
             this.gpbN_Edit.TabStop = false;
             // 
-            // bttFilterDate
+            // bttSearchEdit
             // 
-            this.bttFilterDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.bttFilterDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bttFilterDate.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttFilterDate.BorderRadius = 5;
-            this.bttFilterDate.BorderSize = 0;
-            this.bttFilterDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttFilterDate.ForeColor = System.Drawing.Color.White;
-            this.bttFilterDate.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttsearchdate;
-            this.bttFilterDate.Location = new System.Drawing.Point(216, 18);
-            this.bttFilterDate.Margin = new System.Windows.Forms.Padding(0);
-            this.bttFilterDate.Name = "bttFilterDate";
-            this.bttFilterDate.Size = new System.Drawing.Size(35, 35);
-            this.bttFilterDate.TabIndex = 37;
-            this.bttFilterDate.UseVisualStyleBackColor = false;
-            this.bttFilterDate.Click += new System.EventHandler(this.bttFilterDate_Click);
+            this.bttSearchEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.bttSearchEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bttSearchEdit.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.bttSearchEdit.BorderRadius = 5;
+            this.bttSearchEdit.BorderSize = 0;
+            this.bttSearchEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttSearchEdit.ForeColor = System.Drawing.Color.White;
+            this.bttSearchEdit.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttsearchdate;
+            this.bttSearchEdit.Location = new System.Drawing.Point(216, 18);
+            this.bttSearchEdit.Margin = new System.Windows.Forms.Padding(0);
+            this.bttSearchEdit.Name = "bttSearchEdit";
+            this.bttSearchEdit.Size = new System.Drawing.Size(35, 35);
+            this.bttSearchEdit.TabIndex = 37;
+            this.bttSearchEdit.UseVisualStyleBackColor = false;
+            this.bttSearchEdit.Click += new System.EventHandler(this.bttSearchEdit_Click);
             // 
             // txtDataEntrega_Edit
             // 
@@ -343,6 +351,7 @@
             this.txtDataEntrega_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.txtDataEntrega_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtDataEntrega_Edit.BorderSize = 2;
+            this.txtDataEntrega_Edit.Enabled = false;
             this.txtDataEntrega_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataEntrega_Edit.ForeColor = System.Drawing.Color.DimGray;
             this.txtDataEntrega_Edit.Location = new System.Drawing.Point(416, 20);
@@ -395,9 +404,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.label1.Location = new System.Drawing.Point(16, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 17);
+            this.label1.Size = new System.Drawing.Size(99, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Nº de Registo";
+            this.label1.Text = "Nº. de Registo";
             // 
             // bttDel
             // 
@@ -407,33 +416,41 @@
             this.bttDel.BorderSize = 0;
             this.bttDel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttDel.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttDel.ForeColor = System.Drawing.Color.Transparent;
             this.bttDel.Image = ((System.Drawing.Image)(resources.GetObject("bttDel.Image")));
-            this.bttDel.Location = new System.Drawing.Point(600, 32);
+            this.bttDel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttDel.Location = new System.Drawing.Point(568, 80);
             this.bttDel.Margin = new System.Windows.Forms.Padding(0);
             this.bttDel.Name = "bttDel";
-            this.bttDel.Size = new System.Drawing.Size(40, 40);
+            this.bttDel.Padding = new System.Windows.Forms.Padding(4, 0, 6, 0);
+            this.bttDel.Size = new System.Drawing.Size(104, 40);
             this.bttDel.TabIndex = 36;
+            this.bttDel.Text = "Eliminar";
+            this.bttDel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bttDel.UseVisualStyleBackColor = false;
             this.bttDel.Click += new System.EventHandler(this.bttDel_Click);
             // 
             // bttClear_Edit
             // 
-            this.bttClear_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.bttClear_Edit.BackColor = System.Drawing.Color.DimGray;
             this.bttClear_Edit.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttClear_Edit.BorderRadius = 5;
             this.bttClear_Edit.BorderSize = 0;
             this.bttClear_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttClear_Edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttClear_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttClear_Edit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttClear_Edit.ForeColor = System.Drawing.Color.Transparent;
             this.bttClear_Edit.Image = ((System.Drawing.Image)(resources.GetObject("bttClear_Edit.Image")));
-            this.bttClear_Edit.Location = new System.Drawing.Point(600, 88);
+            this.bttClear_Edit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttClear_Edit.Location = new System.Drawing.Point(568, 24);
             this.bttClear_Edit.Margin = new System.Windows.Forms.Padding(0);
             this.bttClear_Edit.Name = "bttClear_Edit";
-            this.bttClear_Edit.Size = new System.Drawing.Size(40, 40);
+            this.bttClear_Edit.Padding = new System.Windows.Forms.Padding(4, 0, 7, 0);
+            this.bttClear_Edit.Size = new System.Drawing.Size(104, 40);
             this.bttClear_Edit.TabIndex = 30;
+            this.bttClear_Edit.Text = "Limpar";
+            this.bttClear_Edit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bttClear_Edit.UseVisualStyleBackColor = false;
             this.bttClear_Edit.Click += new System.EventHandler(this.bttClear_Edit_Click);
             // 
@@ -459,6 +476,7 @@
             // 
             // cbxAquisicao_Edit
             // 
+            this.cbxAquisicao_Edit.Enabled = false;
             this.cbxAquisicao_Edit.FormattingEnabled = true;
             this.cbxAquisicao_Edit.ItemHeight = 23;
             this.cbxAquisicao_Edit.Items.AddRange(new object[] {
@@ -476,6 +494,7 @@
             this.txtEditora_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.txtEditora_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtEditora_Edit.BorderSize = 2;
+            this.txtEditora_Edit.Enabled = false;
             this.txtEditora_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditora_Edit.ForeColor = System.Drawing.Color.DimGray;
             this.txtEditora_Edit.Location = new System.Drawing.Point(128, 184);
@@ -517,6 +536,7 @@
             this.txtAutor_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.txtAutor_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtAutor_Edit.BorderSize = 2;
+            this.txtAutor_Edit.Enabled = false;
             this.txtAutor_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAutor_Edit.ForeColor = System.Drawing.Color.DimGray;
             this.txtAutor_Edit.Location = new System.Drawing.Point(128, 80);
@@ -536,6 +556,7 @@
             this.txtTitulo_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.txtTitulo_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
             this.txtTitulo_Edit.BorderSize = 2;
+            this.txtTitulo_Edit.Enabled = false;
             this.txtTitulo_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo_Edit.ForeColor = System.Drawing.Color.DimGray;
             this.txtTitulo_Edit.Location = new System.Drawing.Point(128, 24);
@@ -623,7 +644,7 @@
         private controls.UC_textbox txtEditora_Edit;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private controls.RoundedButton bttFilterDate;
+        private controls.RoundedButton bttSearchEdit;
         private System.Windows.Forms.Label lblEstadoAdd;
         private MetroFramework.Controls.MetroComboBox cbxEstado_Edit;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao_Edit;

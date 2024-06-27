@@ -21,6 +21,37 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             this.InitializeComponent();
             this.bookDateService = new BookDateListingService();
+
+            // Subscribe to the CellFormatting event
+            this.dgvDateListing.CellFormatting += dgvDateListing_CellFormatting;
+        }
+
+        private void dgvDateListing_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvDateListing.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                if (e.Value != null)
+                {
+                    switch (e.Value.ToString())
+                    {
+                        case "Disponível":
+                            e.CellStyle.BackColor = Color.FromArgb(207, 228, 183);
+                            break;
+                        case "Abatido":
+                            e.CellStyle.BackColor = Color.FromArgb(248, 193, 193);
+                            break;
+                        case "Perdido":
+                            e.CellStyle.BackColor = Color.FromArgb(248, 237, 195);
+                            break;
+                        case "Depósito":
+                            e.CellStyle.BackColor = Color.FromArgb(191, 175, 228);
+                            break;
+                        default:
+                            e.CellStyle.BackColor = dgvDateListing.DefaultCellStyle.BackColor;
+                            break;
+                    }
+                }
+            }
         }
 
         private void bttFilterDate_Click(object sender, EventArgs e)
@@ -59,6 +90,16 @@ namespace BIBLIOTECA_PROJETO.gui
             int totalCount = allData.Rows.Count;
             totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
             UpdatePaginationLabel();
+
+            // Update the lblAmount label
+            if (totalCount == 0)
+            {
+                lblAmount.Text = "0 registos encontrados";
+            }
+            else
+            {
+                lblAmount.Text = $"{totalCount} registos encontrados";
+            }
         }
 
         private void FillDGV_Filter()
@@ -228,6 +269,5 @@ namespace BIBLIOTECA_PROJETO.gui
                 row.Height = rowHeight;
             }
         }
-
     }
 }

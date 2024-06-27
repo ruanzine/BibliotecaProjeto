@@ -34,6 +34,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilteredListing));
             this.dgvFilteredListing = new System.Windows.Forms.DataGridView();
             this.pnlFormBody = new RoundedPanelBottom();
+            this.lblAmount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrint = new BIBLIOTECA_PROJETO.controls.RoundedButton();
@@ -93,6 +94,7 @@
             // pnlFormBody
             // 
             this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormBody.Controls.Add(this.lblAmount);
             this.pnlFormBody.Controls.Add(this.label1);
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.bttPrint);
@@ -103,6 +105,17 @@
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormBody.TabIndex = 50;
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblAmount.Location = new System.Drawing.Point(72, 24);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(185, 21);
+            this.lblAmount.TabIndex = 54;
+            this.lblAmount.Text = "0 registos encontrados";
             // 
             // label1
             // 
@@ -216,6 +229,7 @@
             this.bttAdvanced.TabIndex = 54;
             this.bttAdvanced.Text = "Avançado";
             this.bttAdvanced.UseVisualStyleBackColor = false;
+            this.bttAdvanced.Click += new System.EventHandler(this.bttAdvanced_Click_2);
             // 
             // pnlLineTop
             // 
@@ -305,5 +319,6 @@
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Panel pnlLineBottom;
         private controls.RoundedButton bttAdvanced;
+        private System.Windows.Forms.Label lblAmount;
     }
 }

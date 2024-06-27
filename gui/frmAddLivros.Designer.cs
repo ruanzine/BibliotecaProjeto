@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddLivros));
             this.pnlAddLivros = new System.Windows.Forms.Panel();
+            this.pnlFormBody = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.pnlFormFooter = new RoundedPanelBottom();
             this.pnlFormHeader = new RoundedPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblListagem = new System.Windows.Forms.Label();
-            this.pnlFormBody = new System.Windows.Forms.Panel();
             this.groupBox1 = new RoundedGroupBox();
             this.nRegistoAdd = new System.Windows.Forms.Label();
             this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblDataEntrada = new System.Windows.Forms.Label();
-            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.groupBox2 = new RoundedGroupBox();
             this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
             this.lblAquisicao = new System.Windows.Forms.Label();
@@ -51,8 +51,8 @@
             this.lblAutor = new System.Windows.Forms.Label();
             this.lblTituloAdd = new System.Windows.Forms.Label();
             this.groupBox3 = new RoundedGroupBox();
+            this.bttClear_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.cbxEstado = new MetroFramework.Controls.MetroComboBox();
-            this.bttClear = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttSave = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.lblEstadoAdd = new System.Windows.Forms.Label();
             this.txtCota = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -62,8 +62,8 @@
             this.lblObservAdd = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.pnlAddLivros.SuspendLayout();
-            this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
+            this.pnlFormHeader.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -78,9 +78,29 @@
             this.pnlAddLivros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAddLivros.Location = new System.Drawing.Point(0, 0);
             this.pnlAddLivros.Name = "pnlAddLivros";
-            this.pnlAddLivros.Size = new System.Drawing.Size(1018, 749);
+            this.pnlAddLivros.Size = new System.Drawing.Size(1064, 749);
             this.pnlAddLivros.TabIndex = 0;
             this.pnlAddLivros.Resize += new System.EventHandler(this.pnlAddLivros_Resize);
+            // 
+            // pnlFormBody
+            // 
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.pnlFormBody.Controls.Add(this.groupBox1);
+            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
+            this.pnlFormBody.Controls.Add(this.groupBox2);
+            this.pnlFormBody.Controls.Add(this.groupBox3);
+            this.pnlFormBody.Location = new System.Drawing.Point(80, 136);
+            this.pnlFormBody.Name = "pnlFormBody";
+            this.pnlFormBody.Size = new System.Drawing.Size(992, 416);
+            this.pnlFormBody.TabIndex = 60;
+            // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 414);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(992, 12);
+            this.pnlLineBottom.TabIndex = 58;
             // 
             // pnlFormFooter
             // 
@@ -121,18 +141,6 @@
             this.lblListagem.TabIndex = 12;
             this.lblListagem.Text = "Novo Registo";
             // 
-            // pnlFormBody
-            // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.pnlFormBody.Controls.Add(this.groupBox1);
-            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
-            this.pnlFormBody.Controls.Add(this.groupBox2);
-            this.pnlFormBody.Controls.Add(this.groupBox3);
-            this.pnlFormBody.Location = new System.Drawing.Point(80, 136);
-            this.pnlFormBody.Name = "pnlFormBody";
-            this.pnlFormBody.Size = new System.Drawing.Size(992, 416);
-            this.pnlFormBody.TabIndex = 60;
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
@@ -153,11 +161,11 @@
             this.nRegistoAdd.AutoSize = true;
             this.nRegistoAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nRegistoAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.nRegistoAdd.Location = new System.Drawing.Point(22, 32);
+            this.nRegistoAdd.Location = new System.Drawing.Point(16, 32);
             this.nRegistoAdd.Name = "nRegistoAdd";
-            this.nRegistoAdd.Size = new System.Drawing.Size(95, 17);
+            this.nRegistoAdd.Size = new System.Drawing.Size(99, 17);
             this.nRegistoAdd.TabIndex = 30;
-            this.nRegistoAdd.Text = "Nº de Registo";
+            this.nRegistoAdd.Text = "Nº. de Registo";
             // 
             // txtNRegisto
             // 
@@ -209,14 +217,6 @@
             this.lblDataEntrada.Size = new System.Drawing.Size(117, 17);
             this.lblDataEntrada.TabIndex = 31;
             this.lblDataEntrada.Text = "Data de Entrada";
-            // 
-            // pnlLineBottom
-            // 
-            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineBottom.Location = new System.Drawing.Point(0, 414);
-            this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(992, 12);
-            this.pnlLineBottom.TabIndex = 58;
             // 
             // groupBox2
             // 
@@ -358,8 +358,8 @@
             // 
             this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.groupBox3.BorderRadius = 5;
+            this.groupBox3.Controls.Add(this.bttClear_Edit);
             this.groupBox3.Controls.Add(this.cbxEstado);
-            this.groupBox3.Controls.Add(this.bttClear);
             this.groupBox3.Controls.Add(this.bttSave);
             this.groupBox3.Controls.Add(this.lblEstadoAdd);
             this.groupBox3.Controls.Add(this.txtCota);
@@ -374,6 +374,28 @@
             this.groupBox3.Size = new System.Drawing.Size(464, 264);
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
+            // 
+            // bttClear_Edit
+            // 
+            this.bttClear_Edit.BackColor = System.Drawing.Color.DimGray;
+            this.bttClear_Edit.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.bttClear_Edit.BorderRadius = 5;
+            this.bttClear_Edit.BorderSize = 0;
+            this.bttClear_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttClear_Edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttClear_Edit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttClear_Edit.ForeColor = System.Drawing.Color.Transparent;
+            this.bttClear_Edit.Image = ((System.Drawing.Image)(resources.GetObject("bttClear_Edit.Image")));
+            this.bttClear_Edit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttClear_Edit.Location = new System.Drawing.Point(120, 208);
+            this.bttClear_Edit.Margin = new System.Windows.Forms.Padding(0);
+            this.bttClear_Edit.Name = "bttClear_Edit";
+            this.bttClear_Edit.Padding = new System.Windows.Forms.Padding(4, 0, 7, 0);
+            this.bttClear_Edit.Size = new System.Drawing.Size(104, 40);
+            this.bttClear_Edit.TabIndex = 59;
+            this.bttClear_Edit.Text = "Limpar";
+            this.bttClear_Edit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bttClear_Edit.UseVisualStyleBackColor = false;
             // 
             // cbxEstado
             // 
@@ -396,25 +418,6 @@
             this.cbxEstado.Theme = MetroFramework.MetroThemeStyle.Light;
             this.cbxEstado.UseSelectable = true;
             // 
-            // bttClear
-            // 
-            this.bttClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.bttClear.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttClear.BorderRadius = 5;
-            this.bttClear.BorderSize = 0;
-            this.bttClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttClear.ForeColor = System.Drawing.Color.Transparent;
-            this.bttClear.Image = ((System.Drawing.Image)(resources.GetObject("bttClear.Image")));
-            this.bttClear.Location = new System.Drawing.Point(40, 208);
-            this.bttClear.Margin = new System.Windows.Forms.Padding(0);
-            this.bttClear.Name = "bttClear";
-            this.bttClear.Size = new System.Drawing.Size(40, 40);
-            this.bttClear.TabIndex = 54;
-            this.bttClear.UseVisualStyleBackColor = false;
-            this.bttClear.Click += new System.EventHandler(this.bttClear_Click);
-            // 
             // bttSave
             // 
             this.bttSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
@@ -425,14 +428,18 @@
             this.bttSave.FlatAppearance.BorderColor = System.Drawing.Color.CornflowerBlue;
             this.bttSave.FlatAppearance.BorderSize = 0;
             this.bttSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttSave.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttSave.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttSave.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttSave.Location = new System.Drawing.Point(120, 208);
+            this.bttSave.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_newbook;
+            this.bttSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttSave.Location = new System.Drawing.Point(240, 208);
             this.bttSave.Margin = new System.Windows.Forms.Padding(0);
             this.bttSave.Name = "bttSave";
-            this.bttSave.Size = new System.Drawing.Size(320, 40);
+            this.bttSave.Padding = new System.Windows.Forms.Padding(10, 0, 9, 0);
+            this.bttSave.Size = new System.Drawing.Size(200, 40);
             this.bttSave.TabIndex = 53;
             this.bttSave.Text = "Adicionar Exemplar";
+            this.bttSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bttSave.UseVisualStyleBackColor = false;
             this.bttSave.Click += new System.EventHandler(this.bttSave_Click);
             // 
@@ -541,14 +548,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1018, 749);
+            this.ClientSize = new System.Drawing.Size(1064, 749);
             this.Controls.Add(this.pnlAddLivros);
             this.Name = "frmAddLivros";
             this.Load += new System.EventHandler(this.frmAddLivros_Load);
             this.pnlAddLivros.ResumeLayout(false);
+            this.pnlFormBody.ResumeLayout(false);
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
-            this.pnlFormBody.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -587,11 +594,11 @@
         private System.Windows.Forms.Label lblEstadoAdd;
         private System.Windows.Forms.Panel pnlFormBody;
         private RoundedPanel pnlFormHeader;
-        private controls.RoundedButton bttClear;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao;
         private MetroFramework.Controls.MetroComboBox cbxEstado;
         private RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Panel panel1;
+        private controls.RoundedButton bttClear_Edit;
     }
 }

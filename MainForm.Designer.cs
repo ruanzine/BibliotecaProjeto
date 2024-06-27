@@ -135,7 +135,7 @@
             this.bttStatistics.Name = "bttStatistics";
             this.bttStatistics.Size = new System.Drawing.Size(203, 80);
             this.bttStatistics.TabIndex = 14;
-            this.bttStatistics.Text = "Estatísticas";
+            this.bttStatistics.Text = "   Estatísticas      ";
             this.bttStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bttStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bttStatistics.UseVisualStyleBackColor = false;
@@ -150,12 +150,14 @@
             this.bttDateListing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttDateListing.Font = new System.Drawing.Font("Arial Nova Cond", 12F, System.Drawing.FontStyle.Bold);
             this.bttDateListing.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bttDateListing.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_statistics;
+            this.bttDateListing.Image = ((System.Drawing.Image)(resources.GetObject("bttDateListing.Image")));
+            this.bttDateListing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bttDateListing.Location = new System.Drawing.Point(0, 472);
+            this.bttDateListing.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
             this.bttDateListing.Name = "bttDateListing";
             this.bttDateListing.Size = new System.Drawing.Size(203, 80);
             this.bttDateListing.TabIndex = 12;
-            this.bttDateListing.Text = "   Listagem Data  ";
+            this.bttDateListing.Text = "   Listagem  p/ Data   ";
             this.bttDateListing.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bttDateListing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bttDateListing.UseVisualStyleBackColor = false;

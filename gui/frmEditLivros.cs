@@ -23,15 +23,6 @@ namespace BIBLIOTECA_PROJETO.gui
             mainForm.AddControlBounds(this.pnlEditLivros);
         }
 
-        private void bttFilterDate_Click(object sender, EventArgs e)
-        {
-            if (!this.ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar"))
-                return;
-            int numeroRegistro = int.Parse(this.txtNRegisto_Edit.Texts);
-            this.UnableText();
-            this.FillTextBoxes(numeroRegistro);
-        }
-
         private void bttSave_Edit_Click(object sender, EventArgs e)
         {
             if (!this.ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar") ||
@@ -98,6 +89,16 @@ namespace BIBLIOTECA_PROJETO.gui
                 e.Handled = true;
         }
 
+
+        private void bttSearchEdit_Click(object sender, EventArgs e)
+        {
+            if (!this.ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar"))
+                return;
+            int numeroRegistro = int.Parse(this.txtNRegisto_Edit.Texts);
+            this.UnableText();
+            this.FillTextBoxes(numeroRegistro);
+        }
+
         private void bttDel_Click(object sender, EventArgs e)
         {
             if (!ValidateTextBox(txtNRegisto_Edit, "o número de registo do exemplar"))
@@ -134,6 +135,8 @@ namespace BIBLIOTECA_PROJETO.gui
         private void pnlFormBody_Paint(object sender, PaintEventArgs e) { }
 
         private void gpbAutor_Edit_Enter(object sender, EventArgs e) { }
+
+        
 
         private void FillTextBoxes(int numeroRegistro)
         {
@@ -197,25 +200,38 @@ namespace BIBLIOTECA_PROJETO.gui
             this.txtTitulo_Edit.Texts = "";
             this.txtCota_Edit.Texts = "";
             this.txtEditora_Edit.Texts = "";
-            this.cbxEstado_Edit.Text = "<Estado>";
-            this.cbxAquisicao_Edit.Text = "<Aquisição>";
+            this.cbxEstado_Edit.SelectedIndex = -1;
+            this.cbxAquisicao_Edit.SelectedIndex = -1;
             this.txtNVolume_Edit.Texts = "";
             this.txtObservacoes_Edit.Texts = "";
         }
 
         private void EnableText()
         {
-            this.gpbAutor_Edit.Enabled = true;
-            this.gpbCota_Edit.Enabled = true;
-            this.bttSave_Edit.Enabled = true;
-            this.bttClear_Edit.Enabled = true;
+            this.txtDataEntrega_Edit.Enabled = true;
+            this.txtAutor_Edit.Enabled = true;
+            this.txtTitulo_Edit.Enabled = true;
+            this.txtCota_Edit.Enabled = true;
+            this.txtEditora_Edit.Enabled= true;
+            this.cbxEstado_Edit.Enabled = true; ;
+            this.cbxAquisicao_Edit.Enabled = true;
+            this.txtNVolume_Edit.Enabled = true;
+            this.txtObservacoes_Edit.Enabled = true;
         }
 
         private void UnableText()
         {
-            this.gpbAutor_Edit.Enabled = false;
-            this.gpbCota_Edit.Enabled = false;
-            this.bttClear_Edit.Enabled = false;
+            this.txtNRegisto_Edit.Focus();
+            this.txtDataEntrega_Edit.Enabled = false;
+            this.txtAutor_Edit.Enabled = false;
+            this.txtTitulo_Edit.Enabled = false;
+            this.txtCota_Edit.Enabled = false;
+            this.txtEditora_Edit.Enabled = false;
+            this.cbxEstado_Edit.Enabled = false;
+            this.cbxAquisicao_Edit.Enabled = false;
+            this.txtNVolume_Edit.Enabled = false;
+            this.txtObservacoes_Edit.Enabled = false;
+            ClearText();
         }
     }
 }
