@@ -341,5 +341,50 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 throw new Exception("Ocorreu um erro ao obter os livros: " + ex.Message);
             }
         }
+        public List<string> GetTitlesBySearch(string searchText)
+        {
+            List<string> titles = new List<string>();
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "SELECT TituloNome FROM Titulos WHERE TituloNome LIKE @searchText + '%'";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@searchText", searchText);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            titles.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return titles;
+        }
+
+        public List<string> GetAuthorsBySearch(string searchText)
+        {
+            List<string> authors = new List<string>();
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "SELECT Nome FROM Autores WHERE Nome LIKE @searchText + '%'";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@searchText", searchText);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            authors.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return authors;
+        }
+
+
     }
 }

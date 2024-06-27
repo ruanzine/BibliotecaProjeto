@@ -15,15 +15,14 @@ namespace BIBLIOTECA_PROJETO.controls
 
         public event EventHandler _TextChanged;
 
-        //Fields 
+        // Fields 
         private Color borderColor = Color.MediumSlateBlue;
         private int borderSize = 2;
         private Color borderFocusColor = Color.FromArgb(255, 128, 0);
         private bool underlinedStyle = false;
         private bool isFocused = false;
 
-
-        //Constructor 
+        // Properties 
         [Category("TextBox Coding")]
         public Color BorderColor
         {
@@ -64,13 +63,11 @@ namespace BIBLIOTECA_PROJETO.controls
             set { textBox1.Text = value; }
         }
 
-
         [Category("TextBox Coding")]
         public bool PasswordChar
         {
             get { return textBox1.UseSystemPasswordChar; }
             set { textBox1.UseSystemPasswordChar = value; }
-
         }
 
         [Category("TextBox Coding")]
@@ -101,7 +98,6 @@ namespace BIBLIOTECA_PROJETO.controls
                 textBox1.Font = value;
                 if (this.DesignMode) UpdateControlHeight();
             }
-
         }
 
         [Category("TextBox Coding")]
@@ -117,13 +113,13 @@ namespace BIBLIOTECA_PROJETO.controls
             }
         }
 
-        //Overriden methods
+        // Overriden methods
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             Graphics graph = e.Graphics;
 
-            //Draw border
+            // Draw border
             using (Pen penBorder = new Pen(borderColor, borderSize))
             {
                 penBorder.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
@@ -144,7 +140,6 @@ namespace BIBLIOTECA_PROJETO.controls
                     else
                         graph.DrawRectangle(penBorder, 0, 0, this.Width - 0.5F, this.Height - 0.5F);
                 }
-
             }
         }
 
@@ -160,9 +155,7 @@ namespace BIBLIOTECA_PROJETO.controls
             UpdateControlHeight();
         }
 
-        //Events
-        //public event EventHandler _TextChanged; 
-        //Private Methods 
+        // Private Methods 
         private void UpdateControlHeight()
         {
             if (textBox1.Multiline == false)
@@ -174,14 +167,14 @@ namespace BIBLIOTECA_PROJETO.controls
 
                 this.Height = textBox1.Height + this.Padding.Top + this.Padding.Bottom;
             }
-
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e) => this.OnKeyPress(e);
 
-        private void textBox1_TextChanged(object sender, EventArgs e) => _TextChanged?.Invoke(sender, e);
-
-        
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            _TextChanged?.Invoke(sender, e);
+        }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
