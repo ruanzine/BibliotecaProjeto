@@ -28,6 +28,15 @@ namespace BIBLIOTECA_PROJETO.gui
 
             // Subscribe to the CellFormatting event
             this.dgvFilteredListing.CellFormatting += dgvFilteredListing_CellFormatting;
+
+            // Subscribe to the DataBindingComplete event to clear selection
+            this.dgvFilteredListing.DataBindingComplete += dgvFilteredListing_ClearSelection;
+        }
+
+        private void dgvFilteredListing_ClearSelection(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            // Clear selection after data binding is complete
+            dgvFilteredListing.ClearSelection();
         }
 
         private void dgvFilteredListing_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -136,6 +145,9 @@ namespace BIBLIOTECA_PROJETO.gui
                     break;
                 case "Cota":
                     allData = this.bookService.GetAllCotas();
+                    break;
+                case "Estado":
+                    allData = this.bookService.GetAllEstados();
                     break;
                 default:
                     MessageBox.Show("Filtro inválido no LoadAllData", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -267,9 +279,28 @@ namespace BIBLIOTECA_PROJETO.gui
                         selectedValue = selectedRow.Cells["Cota"].Value.ToString();
                         LoadBooksByCota(selectedValue);
                         break;
+                    case "Estado":
+                        selectedValue = selectedRow.Cells["Estado"].Value.ToString();
+                        LoadBooksByEstado(selectedValue);
+                        break;
                     default:
                         MessageBox.Show("Filtro inválido no bttAdvanced_Click", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                }
+
+                // Reset pagination
+                currentPage = 1;
+                int totalCount = allData.Rows.Count;
+                totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
+
+                // Update the lblAmount label
+                if (totalCount == 0)
+                {
+                    lblAmount.Text = "0 registos encontrados";
+                }
+                else
+                {
+                    lblAmount.Text = $"{totalCount} registos encontrados";
                 }
 
                 FillDGV_Filter();
@@ -291,6 +322,11 @@ namespace BIBLIOTECA_PROJETO.gui
             allData = this.bookService.GetBooksByCota(cota);
         }
 
+        private void LoadBooksByEstado(string estado)
+        {
+            allData = this.bookService.GetBooksByEstado(estado);
+        }
+
         private void dgvFilteredListing_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             switch (cbxFilter.Text)
@@ -306,6 +342,9 @@ namespace BIBLIOTECA_PROJETO.gui
                     break;
                 case "Cota":
                     ResizeCota();
+                    break;
+                case "Estado":
+                    ResizeEstado();
                     break;
                 default:
                     MessageBox.Show("Filtro inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -332,6 +371,14 @@ namespace BIBLIOTECA_PROJETO.gui
         public void ResizeCota()
         {
             this.dgvFilteredListing.Columns["Cota"].Width = 130;
+            this.dgvFilteredListing.DefaultCellStyle.Font = new Font("Century Gothic", 11);
+            this.dgvFilteredListing.DefaultCellStyle.ForeColor = Color.FromArgb(30, 30, 32);
+            this.SetRowHeight(this.dgvFilteredListing, 40);
+        }
+
+        public void ResizeEstado()
+        {
+            this.dgvFilteredListing.Columns["Estado"].Width = 130;
             this.dgvFilteredListing.DefaultCellStyle.Font = new Font("Century Gothic", 11);
             this.dgvFilteredListing.DefaultCellStyle.ForeColor = Color.FromArgb(30, 30, 32);
             this.SetRowHeight(this.dgvFilteredListing, 40);

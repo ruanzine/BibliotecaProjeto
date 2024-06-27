@@ -98,6 +98,24 @@ namespace BIBLIOTECA_PROJETO.services
             }
         }
 
+        public DataTable GetAllEstados()
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "SELECT DISTINCT Estado FROM Livros";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        return dt;
+                    }
+                }
+            }
+        }
+
         public DataTable GetBooksByTitle(string title)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
@@ -183,6 +201,33 @@ namespace BIBLIOTECA_PROJETO.services
             }
         }
 
+        public DataTable GetBooksByEstado(string estado)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], 
+                         T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, 
+                         L.Aquisicao AS [Aquisição], L.Editora AS [Editora], 
+                         L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]
+                         FROM Livros L
+                         INNER JOIN Autores A ON L.AutorID = A.ID
+                         INNER JOIN Cotas C ON L.CotaID = C.ID
+                         INNER JOIN Titulos T ON L.TituloID = T.ID
+                         WHERE L.Estado = @estado
+                         ORDER BY L.ID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@estado", estado);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        return dt;
+                    }
+                }
+            }
+        }
 
 
     }
