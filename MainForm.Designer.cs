@@ -270,7 +270,6 @@
             this.ClientSize = new System.Drawing.Size(1226, 647);
             this.Controls.Add(this.pnlMainFrame);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Livro de Registos Digital";

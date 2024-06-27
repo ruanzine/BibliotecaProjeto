@@ -34,18 +34,18 @@
             this.dgvBook = new System.Windows.Forms.DataGridView();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlFormBody = new RoundedPanelBottom();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrint_DGV = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new RoundedPanel();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
             this.txtSearch_DGV = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
             this.lblListagem = new System.Windows.Forms.Label();
-            this.pnlLineTop = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pnlFormBody.SuspendLayout();
@@ -91,6 +91,14 @@
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormBody.TabIndex = 44;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.panel1.Location = new System.Drawing.Point(0, -10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1104, 12);
+            this.panel1.TabIndex = 52;
             // 
             // lblPagination
             // 
@@ -174,6 +182,14 @@
             this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormHeader.TabIndex = 2;
             // 
+            // pnlLineTop
+            // 
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(0, 62);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineTop.TabIndex = 52;
+            // 
             // txtSearch_DGV
             // 
             this.txtSearch_DGV.BackColor = System.Drawing.SystemColors.Window;
@@ -245,22 +261,6 @@
             this.lblListagem.TabIndex = 11;
             this.lblListagem.Text = "Pesquisa de Exemplares";
             // 
-            // pnlLineTop
-            // 
-            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineTop.Location = new System.Drawing.Point(0, 62);
-            this.pnlLineTop.Name = "pnlLineTop";
-            this.pnlLineTop.Size = new System.Drawing.Size(1104, 12);
-            this.pnlLineTop.TabIndex = 52;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.panel1.Location = new System.Drawing.Point(0, -10);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1104, 12);
-            this.panel1.TabIndex = 52;
-            // 
             // frmBookViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +270,7 @@
             this.Controls.Add(this.pnlFormBody);
             this.Controls.Add(this.pnlFormHeader);
             this.Name = "frmBookViewer";
+            this.Load += new System.EventHandler(this.frmBookViewer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.pnlFormBody.ResumeLayout(false);
