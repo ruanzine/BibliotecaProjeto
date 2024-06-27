@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlFormHeader = new RoundedPanel();
-            this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
             this.roundedGroupBox1 = new RoundedGroupBox();
             this.lblPerdido = new System.Windows.Forms.Label();
             this.lblDeposito = new System.Windows.Forms.Label();
@@ -46,34 +46,13 @@
             this.lblTotalBooks = new System.Windows.Forms.Label();
             this.lblTotalTitles = new System.Windows.Forms.Label();
             this.pnlFormFooter = new RoundedPanelBottom();
-            this.pnlLineTop = new System.Windows.Forms.Panel();
-            this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.pnlFormHeader.SuspendLayout();
+            this.pnlFormHeader = new RoundedPanel();
+            this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody.SuspendLayout();
             this.roundedGroupBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.pnlFormHeader.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlFormHeader
-            // 
-            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
-            this.pnlFormHeader.Controls.Add(this.lblListagem);
-            this.pnlFormHeader.CornerRadius = 10;
-            this.pnlFormHeader.Location = new System.Drawing.Point(128, 136);
-            this.pnlFormHeader.Name = "pnlFormHeader";
-            this.pnlFormHeader.Size = new System.Drawing.Size(904, 48);
-            this.pnlFormHeader.TabIndex = 60;
-            // 
-            // lblListagem
-            // 
-            this.lblListagem.AutoSize = true;
-            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.lblListagem.Location = new System.Drawing.Point(20, 16);
-            this.lblListagem.Name = "lblListagem";
-            this.lblListagem.Size = new System.Drawing.Size(128, 26);
-            this.lblListagem.TabIndex = 12;
-            this.lblListagem.Text = "Estatísticas";
             // 
             // pnlFormBody
             // 
@@ -85,6 +64,22 @@
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(904, 296);
             this.pnlFormBody.TabIndex = 5;
+            // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 294);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(904, 12);
+            this.pnlLineBottom.TabIndex = 65;
+            // 
+            // pnlLineTop
+            // 
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(128, 182);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(904, 12);
+            this.pnlLineTop.TabIndex = 64;
             // 
             // roundedGroupBox1
             // 
@@ -275,21 +270,26 @@
             this.pnlFormFooter.Size = new System.Drawing.Size(904, 48);
             this.pnlFormFooter.TabIndex = 62;
             // 
-            // pnlLineTop
+            // pnlFormHeader
             // 
-            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineTop.Location = new System.Drawing.Point(128, 182);
-            this.pnlLineTop.Name = "pnlLineTop";
-            this.pnlLineTop.Size = new System.Drawing.Size(904, 12);
-            this.pnlLineTop.TabIndex = 64;
+            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormHeader.Controls.Add(this.lblListagem);
+            this.pnlFormHeader.CornerRadius = 10;
+            this.pnlFormHeader.Location = new System.Drawing.Point(128, 136);
+            this.pnlFormHeader.Name = "pnlFormHeader";
+            this.pnlFormHeader.Size = new System.Drawing.Size(904, 48);
+            this.pnlFormHeader.TabIndex = 60;
             // 
-            // pnlLineBottom
+            // lblListagem
             // 
-            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineBottom.Location = new System.Drawing.Point(0, 294);
-            this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(904, 12);
-            this.pnlLineBottom.TabIndex = 65;
+            this.lblListagem.AutoSize = true;
+            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblListagem.Location = new System.Drawing.Point(20, 16);
+            this.lblListagem.Name = "lblListagem";
+            this.lblListagem.Size = new System.Drawing.Size(128, 26);
+            this.lblListagem.TabIndex = 12;
+            this.lblListagem.Text = "Estatísticas";
             // 
             // frmStatistics
             // 
@@ -302,13 +302,13 @@
             this.Controls.Add(this.pnlFormHeader);
             this.Name = "frmStatistics";
             this.Text = "Estatísticas";
-            this.pnlFormHeader.ResumeLayout(false);
-            this.pnlFormHeader.PerformLayout();
             this.pnlFormBody.ResumeLayout(false);
             this.roundedGroupBox1.ResumeLayout(false);
             this.roundedGroupBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.pnlFormHeader.ResumeLayout(false);
+            this.pnlFormHeader.PerformLayout();
             this.ResumeLayout(false);
 
         }

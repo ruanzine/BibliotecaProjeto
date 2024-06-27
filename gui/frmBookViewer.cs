@@ -82,6 +82,9 @@ namespace BIBLIOTECA_PROJETO.gui
                         case "Cota":
                             dt = this.bookService.GetBooksByCota_Printing(searchText);
                             break;
+                        case "Estado":
+                            dt = this.bookService.GetBooksByEstado(searchText);
+                            break;
                         default:
                             break;
                     }
@@ -178,6 +181,9 @@ namespace BIBLIOTECA_PROJETO.gui
                         break;
                     case "Título":
                         allData = this.bookService.GetBooksByTitulo(searchText);
+                        break;
+                    case "Estado":
+                        allData = this.bookService.GetBooksByEstado(searchText);
                         break;
                     default:
                         allData = this.bookService.GetBooksByTitulo(searchText);
@@ -295,7 +301,6 @@ namespace BIBLIOTECA_PROJETO.gui
         private void frmBookViewer_Load(object sender, EventArgs e)
         {
             txtSearch_DGV.Focus();
-           
         }
     }
 }

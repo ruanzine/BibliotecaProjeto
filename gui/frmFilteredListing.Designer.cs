@@ -258,7 +258,8 @@
             "Número de Registo",
             "Título",
             "Autor",
-            "Cota"});
+            "Cota",
+            "Estado"});
             this.cbxFilter.Location = new System.Drawing.Point(760, 18);
             this.cbxFilter.Name = "cbxFilter";
             this.cbxFilter.Size = new System.Drawing.Size(192, 29);

@@ -271,5 +271,43 @@ namespace BIBLIOTECA_PROJETO.services
                 throw new Exception("Ocorreu um erro ao obter os livros por cota: " + ex.Message);
             }
         }
+
+        public DataTable GetBooksByEstado(string estado)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+
+                    string query = @"SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], 
+                                     T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, 
+                                     L.Aquisicao AS [Aquisição], L.Editora AS [Editora], 
+                                     L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]
+                                     FROM Livros L
+                                     INNER JOIN Autores A ON L.AutorID = A.ID
+                                     INNER JOIN Cotas C ON L.CotaID = C.ID
+                                     INNER JOIN Titulos T ON L.TituloID = T.ID
+                                     WHERE L.Estado LIKE @estado
+                                     ORDER BY L.ID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@estado", estado + "%");
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Ocorreu um erro ao obter os livros: " + ex.Message);
+            }
+        }
     }
 }

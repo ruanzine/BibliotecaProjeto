@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookViewer));
             this.dgvBook = new System.Windows.Forms.DataGridView();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlFormBody = new RoundedPanelBottom();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
+            this.lblAmount = new System.Windows.Forms.Label();
             this.bttPrint_DGV = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
@@ -46,7 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
             this.lblListagem = new System.Windows.Forms.Label();
-            this.lblAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pnlFormBody.SuspendLayout();
@@ -58,8 +58,8 @@
             this.dgvBook.AllowUserToAddRows = false;
             this.dgvBook.AllowUserToDeleteRows = false;
             this.dgvBook.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBook.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvBook.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -112,6 +112,17 @@
             this.lblPagination.Name = "lblPagination";
             this.lblPagination.Size = new System.Drawing.Size(0, 21);
             this.lblPagination.TabIndex = 47;
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblAmount.Location = new System.Drawing.Point(72, 24);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(185, 21);
+            this.lblAmount.TabIndex = 53;
+            this.lblAmount.Text = "0 registos encontrados";
             // 
             // bttPrint_DGV
             // 
@@ -245,7 +256,8 @@
             "Número de Registo",
             "Título",
             "Autor",
-            "Cota"});
+            "Cota",
+            "Estado"});
             this.cbxFilter_DGV.Location = new System.Drawing.Point(536, 19);
             this.cbxFilter_DGV.Name = "cbxFilter_DGV";
             this.cbxFilter_DGV.Size = new System.Drawing.Size(184, 29);
@@ -263,17 +275,6 @@
             this.lblListagem.Size = new System.Drawing.Size(271, 26);
             this.lblListagem.TabIndex = 11;
             this.lblListagem.Text = "Pesquisa de Exemplares";
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.lblAmount.Location = new System.Drawing.Point(72, 24);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(185, 21);
-            this.lblAmount.TabIndex = 53;
-            this.lblAmount.Text = "0 registos encontrados";
             // 
             // frmBookViewer
             // 
