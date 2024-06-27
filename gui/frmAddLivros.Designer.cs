@@ -32,6 +32,7 @@
             this.pnlAddLivros = new System.Windows.Forms.Panel();
             this.pnlFormFooter = new RoundedPanelBottom();
             this.pnlFormHeader = new RoundedPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody = new System.Windows.Forms.Panel();
             this.groupBox1 = new RoundedGroupBox();
@@ -39,6 +40,7 @@
             this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblDataEntrada = new System.Windows.Forms.Label();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.groupBox2 = new RoundedGroupBox();
             this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
             this.lblAquisicao = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@
             this.txtNVolume = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblObservAdd = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlAddLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -101,6 +101,14 @@
             this.pnlFormHeader.Name = "pnlFormHeader";
             this.pnlFormHeader.Size = new System.Drawing.Size(992, 56);
             this.pnlFormHeader.TabIndex = 59;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.panel1.Location = new System.Drawing.Point(0, 54);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(992, 12);
+            this.panel1.TabIndex = 59;
             // 
             // lblListagem
             // 
@@ -201,6 +209,14 @@
             this.lblDataEntrada.Size = new System.Drawing.Size(117, 17);
             this.lblDataEntrada.TabIndex = 31;
             this.lblDataEntrada.Text = "Data de Entrada";
+            // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 414);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(992, 12);
+            this.pnlLineBottom.TabIndex = 58;
             // 
             // groupBox2
             // 
@@ -321,7 +337,7 @@
             this.lblAutor.AutoSize = true;
             this.lblAutor.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAutor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblAutor.Location = new System.Drawing.Point(65, 32);
+            this.lblAutor.Location = new System.Drawing.Point(65, 88);
             this.lblAutor.Name = "lblAutor";
             this.lblAutor.Size = new System.Drawing.Size(43, 17);
             this.lblAutor.TabIndex = 32;
@@ -332,7 +348,7 @@
             this.lblTituloAdd.AutoSize = true;
             this.lblTituloAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblTituloAdd.Location = new System.Drawing.Point(67, 88);
+            this.lblTituloAdd.Location = new System.Drawing.Point(64, 32);
             this.lblTituloAdd.Name = "lblTituloAdd";
             this.lblTituloAdd.Size = new System.Drawing.Size(41, 17);
             this.lblTituloAdd.TabIndex = 33;
@@ -520,22 +536,6 @@
             this.txtObservacoes.TabIndex = 44;
             this.txtObservacoes.Texts = "";
             this.txtObservacoes.UnderlinedStyle = true;
-            // 
-            // pnlLineBottom
-            // 
-            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineBottom.Location = new System.Drawing.Point(0, 414);
-            this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(992, 12);
-            this.pnlLineBottom.TabIndex = 58;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.panel1.Location = new System.Drawing.Point(0, 54);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(992, 12);
-            this.panel1.TabIndex = 59;
             // 
             // frmAddLivros
             // 

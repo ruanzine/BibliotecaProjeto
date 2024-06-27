@@ -32,8 +32,10 @@
             this.pnlEditLivros = new System.Windows.Forms.Panel();
             this.pnlFormFooter = new RoundedPanelBottom();
             this.pnlFormHeader = new RoundedPanel();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.gpbCota_Edit = new RoundedGroupBox();
             this.cbxEstado_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtObservacoes_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -61,8 +63,6 @@
             this.txtTitulo_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pnlLineTop = new System.Windows.Forms.Panel();
-            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.pnlEditLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -103,6 +103,14 @@
             this.pnlFormHeader.Size = new System.Drawing.Size(688, 48);
             this.pnlFormHeader.TabIndex = 60;
             // 
+            // pnlLineTop
+            // 
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(0, 46);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(688, 12);
+            this.pnlLineTop.TabIndex = 63;
+            // 
             // lblListagem
             // 
             this.lblListagem.AutoSize = true;
@@ -129,6 +137,14 @@
             this.pnlFormBody.Size = new System.Drawing.Size(688, 560);
             this.pnlFormBody.TabIndex = 61;
             this.pnlFormBody.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFormBody_Paint);
+            // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 558);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(688, 12);
+            this.pnlLineBottom.TabIndex = 64;
             // 
             // gpbCota_Edit
             // 
@@ -538,7 +554,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label5.Location = new System.Drawing.Point(70, 90);
+            this.label5.Location = new System.Drawing.Point(70, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 17);
             this.label5.TabIndex = 7;
@@ -549,27 +565,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label3.Location = new System.Drawing.Point(68, 32);
+            this.label3.Location = new System.Drawing.Point(68, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Autor";
-            // 
-            // pnlLineTop
-            // 
-            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineTop.Location = new System.Drawing.Point(0, 46);
-            this.pnlLineTop.Name = "pnlLineTop";
-            this.pnlLineTop.Size = new System.Drawing.Size(688, 12);
-            this.pnlLineTop.TabIndex = 63;
-            // 
-            // pnlLineBottom
-            // 
-            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineBottom.Location = new System.Drawing.Point(0, 557);
-            this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(688, 12);
-            this.pnlLineBottom.TabIndex = 64;
             // 
             // frmEditLivros
             // 

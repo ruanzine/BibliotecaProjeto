@@ -58,7 +58,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 !ValidateComboBox(this.cbxAquisicao, "o método de aquisição do exemplar") ||
                 !ValidateComboBox(this.cbxEstado, "o estado do exemplar")) return;
 
-            DateTime dataEntrega = DateTime.ParseExact(txtDataEntrega.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime dataEntrega = DateTime.ParseExact(txtDataEntrega.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             if (cbxAquisicao.Text == "" || cbxEstado.Text == "")
             {
@@ -66,14 +66,14 @@ namespace BIBLIOTECA_PROJETO.gui
                 return;
             }
 
-            int nRegisto = int.Parse(txtNRegisto.Texts);
-            string titulo = txtTitulo.Texts;
-            string autor = txtAutor.Texts;
-            string cota = txtCota.Texts;
-            string nVolume = txtNVolume.Texts;
+            int nRegisto = int.Parse(txtNRegisto.Texts.Trim());
+            string titulo = txtTitulo.Texts.Trim();
+            string autor = txtAutor.Texts.Trim();
+            string cota = txtCota.Texts.Trim();
+            string nVolume = txtNVolume.Texts.Trim();
             string aquisicao = cbxAquisicao.Text;
-            string editora = txtEditora.Texts;
-            string observacoes = txtObservacoes.Texts;
+            string editora = txtEditora.Texts.Trim();
+            string observacoes = txtObservacoes.Texts.Trim();
             string estado = cbxEstado.Text;
 
             if (livroService.IsRegistrationNumberExists(nRegisto))
@@ -95,16 +95,18 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
-            if (string.IsNullOrEmpty(textBox.Texts))
+            string text = textBox.Texts?.Trim();
+            if (string.IsNullOrEmpty(text))
             {
                 MessageBox.Show($"Por favor, introduza {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (textBox == txtDataEntrega)
             {
-                if (!DateTime.TryParseExact(textBox.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+                if (!DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
                 {
                     MessageBox.Show($"Por favor, introduza {fieldName} no formato dd/mm/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -112,6 +114,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             return true;
         }
+
 
         private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
