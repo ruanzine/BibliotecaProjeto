@@ -37,7 +37,7 @@ namespace BIBLIOTECA_PROJETO.gui
                         case "Disponível":
                             e.CellStyle.BackColor = Color.FromArgb(207, 228, 183);
                             break;
-                        case "Abatido":
+                        case "Indisponível":
                             e.CellStyle.BackColor = Color.FromArgb(248, 193, 193);
                             break;
                         case "Perdido":
@@ -46,6 +46,16 @@ namespace BIBLIOTECA_PROJETO.gui
                         case "Depósito":
                             e.CellStyle.BackColor = Color.FromArgb(191, 175, 228);
                             break;
+                        case "Exposição":
+                            e.CellStyle.BackColor = Color.FromArgb(199, 209, 255);
+                            break;
+                        case "Abatido":
+                            e.CellStyle.BackColor = Color.FromArgb(244, 207, 173);
+                            break;
+                        case "Consulta local":
+                            e.CellStyle.BackColor = Color.FromArgb(191, 232, 255);
+                            break;
+
                         default:
                             e.CellStyle.BackColor = dgvBook.DefaultCellStyle.BackColor;
                             break;
