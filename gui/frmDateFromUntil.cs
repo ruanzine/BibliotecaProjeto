@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
+    /// <summary>
+    /// Represents a form for viewing books within a specific date range.
+    /// </summary>
     public partial class frmDateFromUntil : Form
     {
         private BookDateListingService bookDateService;
@@ -17,6 +20,9 @@ namespace BIBLIOTECA_PROJETO.gui
         private int totalPages = 0;
         private DataTable allData;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmDateFromUntil"/> class.
+        /// </summary>
         public frmDateFromUntil()
         {
             this.InitializeComponent();
@@ -26,17 +32,22 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Initialization
 
+        /// <summary>
+        /// Initializes the event handlers for the form controls.
+        /// </summary>
         private void InitializeEventHandlers()
         {
             this.dgvDateListing.CellFormatting += dgvDateListing_CellFormatting;
             this.dgvDateListing.DataBindingComplete += dgvDateListing_DataBindingComplete;
-
         }
 
         #endregion
 
         #region Event Handlers
 
+        /// <summary>
+        /// Handles the CellFormatting event of the DataGridView to format cell colors based on the "Estado" column value.
+        /// </summary>
         private void dgvDateListing_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvDateListing.Columns[e.ColumnIndex].Name == "Estado" && e.Value != null)
@@ -55,11 +66,17 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the DataBindingComplete event of the DataGridView to clear selection after data binding is complete.
+        /// </summary>
         private void dgvDateListing_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvDateListing.ClearSelection(); // Clear selection after data binding is complete
         }
 
+        /// <summary>
+        /// Handles the Click event of the Filter button to filter books by date range.
+        /// </summary>
         private void bttFilterDate_Click(object sender, EventArgs e)
         {
             if (!ValidateTextBox(txtUntil, "a data de entrada do exemplar") ||
@@ -90,6 +107,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the Print button to export data to Excel.
+        /// </summary>
         private void bttPrintDate_Click(object sender, EventArgs e)
         {
             try
@@ -149,6 +169,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the Next Page button to navigate to the next page.
+        /// </summary>
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             if (currentPage < totalPages)
@@ -158,6 +181,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the Previous Page button to navigate to the previous page.
+        /// </summary>
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
@@ -167,6 +193,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the KeyPress event to validate date input.
+        /// </summary>
         private void txtFromUntil_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
@@ -177,6 +206,11 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Data Loading
 
+        /// <summary>
+        /// Loads all data based on the specified date range.
+        /// </summary>
+        /// <param name="dataDe">The start date.</param>
+        /// <param name="dataAte">The end date.</param>
         private void LoadAllData(DateTime dataDe, DateTime dataAte)
         {
             allData = bookDateService.GetAllBooksByDate(dataDe, dataAte);
@@ -188,6 +222,9 @@ namespace BIBLIOTECA_PROJETO.gui
             lblAmount.Text = totalCount == 0 ? "0 registos encontrados" : $"{totalCount} registos encontrados";
         }
 
+        /// <summary>
+        /// Fills the DataGridView with filtered data.
+        /// </summary>
         private void FillDGV_Filter()
         {
             try
@@ -216,6 +253,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Pagination
 
+        /// <summary>
+        /// Resets the pagination to the first page.
+        /// </summary>
         private void ResetPagination()
         {
             currentPage = 1;
@@ -226,6 +266,9 @@ namespace BIBLIOTECA_PROJETO.gui
             lblAmount.Text = totalCount == 0 ? "0 registos encontrados" : $"{totalCount} registos encontrados";
         }
 
+        /// <summary>
+        /// Updates the pagination label based on the current page and total pages.
+        /// </summary>
         private void UpdatePaginationLabel()
         {
             lblPagination.Text = totalPages == 0 ? "Não há registos" : $"Página {currentPage} de {totalPages}";
@@ -235,6 +278,12 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Validation
 
+        /// <summary>
+        /// Validates the TextBox input for date fields.
+        /// </summary>
+        /// <param name="textBox">The TextBox to validate.</param>
+        /// <param name="fieldName">The name of the field for error messages.</param>
+        /// <returns>true if the TextBox contains a valid date; otherwise, false.</returns>
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
             if (string.IsNullOrEmpty(textBox.Texts))
@@ -259,6 +308,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region DataGridView Methods
 
+        /// <summary>
+        /// Resizes the DataGridView columns.
+        /// </summary>
         public void ResizeData()
         {
             dgvDateListing.Columns["Nº"].Width = 50;
@@ -285,6 +337,11 @@ namespace BIBLIOTECA_PROJETO.gui
             SetRowHeight(dgvDateListing, 40);
         }
 
+        /// <summary>
+        /// Sets the row height for the DataGridView.
+        /// </summary>
+        /// <param name="dataGridView">The DataGridView to set the row height.</param>
+        /// <param name="rowHeight">The height of the rows.</param>
         private void SetRowHeight(DataGridView dataGridView, int rowHeight)
         {
             foreach (DataGridViewRow row in dataGridView.Rows)

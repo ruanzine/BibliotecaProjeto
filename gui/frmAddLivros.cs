@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
+    /// <summary>
+    /// Represents a form for adding new books to the library.
+    /// </summary>
     public partial class frmAddLivros : Form
     {
         MainForm mainForm = new MainForm();
@@ -17,6 +20,9 @@ namespace BIBLIOTECA_PROJETO.gui
         private ListBox listBoxSuggestionsTitulo;
         private ListBox listBoxSuggestionsAutor;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmAddLivros"/> class.
+        /// </summary>
         public frmAddLivros()
         {
             InitializeComponent();
@@ -26,6 +32,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Initialization
 
+        /// <summary>
+        /// Initializes the suggestion ListBox controls for Título and Autor.
+        /// </summary>
         private void InitializeSuggestionListBoxes()
         {
             int maxHeight = 100; // Define the maximum height for the ListBox
@@ -65,6 +74,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Event Handlers
 
+        /// <summary>
+        /// Handles the Load event of the form to initialize components and event handlers.
+        /// </summary>
         private void frmAddLivros_Load(object sender, EventArgs e)
         {
             GetNRegisto();
@@ -72,26 +84,41 @@ namespace BIBLIOTECA_PROJETO.gui
             txtAutor._TextChanged += txtAutor_TextChanged;
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the Título TextBox to show suggestions.
+        /// </summary>
         private void txtTitulo_TextChanged(object sender, EventArgs e)
         {
             ShowSuggestions(txtTitulo, listBoxSuggestionsTitulo, livroService.GetTitlesBySearch);
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the Autor TextBox to show suggestions.
+        /// </summary>
         private void txtAutor_TextChanged(object sender, EventArgs e)
         {
             ShowSuggestions(txtAutor, listBoxSuggestionsAutor, livroService.GetAuthorsBySearch);
         }
 
+        /// <summary>
+        /// Handles the MouseClick event of the Título suggestion ListBox to select a suggestion.
+        /// </summary>
         private void listBoxSuggestionsTitulo_MouseClick(object sender, MouseEventArgs e)
         {
             SelectSuggestion(listBoxSuggestionsTitulo, txtTitulo);
         }
 
+        /// <summary>
+        /// Handles the MouseClick event of the Autor suggestion ListBox to select a suggestion.
+        /// </summary>
         private void listBoxSuggestionsAutor_MouseClick(object sender, MouseEventArgs e)
         {
             SelectSuggestion(listBoxSuggestionsAutor, txtAutor);
         }
 
+        /// <summary>
+        /// Handles the DrawItem event of the suggestion ListBox to customize item drawing.
+        /// </summary>
         private void listBoxSuggestions_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index < 0) return;
@@ -113,26 +140,41 @@ namespace BIBLIOTECA_PROJETO.gui
             e.DrawFocusRectangle();
         }
 
+        /// <summary>
+        /// Handles the Click event of the Save button to save the book data.
+        /// </summary>
         private void bttSave_Click(object sender, EventArgs e)
         {
             SaveData();
         }
 
+        /// <summary>
+        /// Handles the Click event of the Clear button to clear the form fields.
+        /// </summary>
         private void bttClear_Click(object sender, EventArgs e)
         {
             ClearText();
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the DataEntrega TextBox to validate date input.
+        /// </summary>
         private void txtDataEntrega_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateKeyPressForDate(e);
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the NRegisto TextBox to validate numeric input.
+        /// </summary>
         private void txtNRegisto_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             ValidateKeyPressForNumber(e);
         }
 
+        /// <summary>
+        /// Handles the Resize event of the form to resize controls.
+        /// </summary>
         private void pnlAddLivros_Resize(object sender, EventArgs e)
         {
             mainForm.ResizeControls(pnlAddLivros);
@@ -142,6 +184,12 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Helper Methods
 
+        /// <summary>
+        /// Shows suggestions in the ListBox based on the input in the TextBox.
+        /// </summary>
+        /// <param name="textBox">The TextBox containing the input text.</param>
+        /// <param name="listBox">The ListBox to display suggestions.</param>
+        /// <param name="getSuggestions">The function to get suggestions based on the input text.</param>
         private void ShowSuggestions(UC_textbox textBox, ListBox listBox, Func<string, List<string>> getSuggestions)
         {
             string searchText = textBox.Texts.Trim();
@@ -176,6 +224,11 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Selects a suggestion from the ListBox and sets it in the TextBox.
+        /// </summary>
+        /// <param name="listBox">The ListBox containing the suggestions.</param>
+        /// <param name="textBox">The TextBox to set the selected suggestion.</param>
         private void SelectSuggestion(ListBox listBox, UC_textbox textBox)
         {
             if (listBox.SelectedItem != null)
@@ -185,12 +238,20 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Validates the KeyPress event for date input to allow only digits, slash, and control characters.
+        /// </summary>
+        /// <param name="e">The KeyPressEventArgs instance containing the event data.</param>
         private void ValidateKeyPressForDate(KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// Validates the KeyPress event for numeric input to allow only digits and control characters.
+        /// </summary>
+        /// <param name="e">The KeyPressEventArgs instance containing the event data.</param>
         private void ValidateKeyPressForNumber(KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -199,6 +260,9 @@ namespace BIBLIOTECA_PROJETO.gui
             this.KeyPress += form.MainForm_KeyPress;
         }
 
+        /// <summary>
+        /// Gets the next registration number for the book.
+        /// </summary>
         private void GetNRegisto()
         {
             try
@@ -211,6 +275,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Saves the book data entered in the form.
+        /// </summary>
         private void SaveData()
         {
             if (!ValidateFormFields()) return;
@@ -246,6 +313,10 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Validates the form fields before saving data.
+        /// </summary>
+        /// <returns>true if all fields are valid; otherwise, false.</returns>
         private bool ValidateFormFields()
         {
             return ValidateTextBox(txtNRegisto, "o número de registo do exemplar") &&
@@ -259,6 +330,12 @@ namespace BIBLIOTECA_PROJETO.gui
                    ValidateComboBox(this.cbxEstado, "o estado do exemplar");
         }
 
+        /// <summary>
+        /// Validates a TextBox to ensure it contains a value.
+        /// </summary>
+        /// <param name="textBox">The TextBox to validate.</param>
+        /// <param name="fieldName">The name of the field for error messages.</param>
+        /// <returns>true if the TextBox contains a value; otherwise, false.</returns>
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
             string text = textBox.Texts?.Trim();
@@ -275,6 +352,12 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
+        /// <summary>
+        /// Validates a ComboBox to ensure it contains a selected value.
+        /// </summary>
+        /// <param name="comboBox">The ComboBox to validate.</param>
+        /// <param name="fieldName">The name of the field for error messages.</param>
+        /// <returns>true if the ComboBox contains a selected value; otherwise, false.</returns>
         private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
             if (comboBox.Text == "<Aquisição>" || comboBox.Text == "<Estado>")
@@ -285,6 +368,9 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
+        /// <summary>
+        /// Clears all text fields in the form.
+        /// </summary>
         private void ClearText()
         {
             txtDataEntrega.Texts = "";

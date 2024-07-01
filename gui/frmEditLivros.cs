@@ -10,6 +10,9 @@ using MetroFramework.Controls;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
+    /// <summary>
+    /// Represents the form for editing book records.
+    /// </summary>
     public partial class frmEditLivros : Form
     {
         MainForm mainForm = new MainForm();
@@ -17,6 +20,9 @@ namespace BIBLIOTECA_PROJETO.gui
         public string _titulo, _autor, _cota, _editora, _obsrvacoes, _estado;
         public int _nregisto, _nvolume;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmEditLivros"/> class.
+        /// </summary>
         public frmEditLivros()
         {
             InitializeComponent();
@@ -25,6 +31,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Event Handlers
 
+        /// <summary>
+        /// Handles the Click event of the Save button, updating the book record.
+        /// </summary>
         private void bttSave_Edit_Click(object sender, EventArgs e)
         {
             if (!ValidateFormFields()) return;
@@ -64,23 +73,35 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the Clear button, clearing the form fields.
+        /// </summary>
         private void bttClear_Edit_Click(object sender, EventArgs e)
         {
             ClearText();
         }
 
+        /// <summary>
+        /// Handles the KeyPress event for the Número de Registo textbox, ensuring only numeric input.
+        /// </summary>
         private void txtNRegisto_Edit_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// Handles the KeyPress event for the Data de Entrega textbox, ensuring valid date input.
+        /// </summary>
         private void txtDataEntrega_Edit_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// Handles the Click event of the Search button, loading the book record for editing.
+        /// </summary>
         private void bttSearchEdit_Click(object sender, EventArgs e)
         {
             if (!ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar")) return;
@@ -90,6 +111,9 @@ namespace BIBLIOTECA_PROJETO.gui
             FillTextBoxes(numeroRegistro);
         }
 
+        /// <summary>
+        /// Handles the Click event of the Delete button, deleting the book record.
+        /// </summary>
         private void bttDel_Click(object sender, EventArgs e)
         {
             if (!ValidateTextBox(txtNRegisto_Edit, "o número de registo do exemplar")) return;
@@ -121,14 +145,24 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Paint event of the form body panel.
+        /// </summary>
         private void pnlFormBody_Paint(object sender, PaintEventArgs e) { }
 
+        /// <summary>
+        /// Handles the Enter event of the Author group box.
+        /// </summary>
         private void gpbAutor_Edit_Enter(object sender, EventArgs e) { }
 
         #endregion
 
         #region Helper Methods
 
+        /// <summary>
+        /// Fills the form fields with the data of the specified book record.
+        /// </summary>
+        /// <param name="numeroRegistro">The registration number of the book to load.</param>
         private void FillTextBoxes(int numeroRegistro)
         {
             List<Livro> livros = livroService.GetBooks_Edit();
@@ -154,6 +188,10 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Validates the form fields to ensure they are correctly filled.
+        /// </summary>
+        /// <returns>True if all fields are valid, otherwise false.</returns>
         private bool ValidateFormFields()
         {
             return ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar") &&
@@ -167,6 +205,12 @@ namespace BIBLIOTECA_PROJETO.gui
                    ValidateComboBox(this.cbxEstado_Edit, "o estado do exemplar");
         }
 
+        /// <summary>
+        /// Validates a textbox to ensure it contains a valid value.
+        /// </summary>
+        /// <param name="textBox">The textbox to validate.</param>
+        /// <param name="fieldName">The name of the field for error messages.</param>
+        /// <returns>True if the textbox is valid, otherwise false.</returns>
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
             string text = textBox.Texts?.Trim();
@@ -183,6 +227,12 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
+        /// <summary>
+        /// Validates a combobox to ensure it contains a valid selection.
+        /// </summary>
+        /// <param name="comboBox">The combobox to validate.</param>
+        /// <param name="fieldName">The name of the field for error messages.</param>
+        /// <returns>True if the combobox is valid, otherwise false.</returns>
         private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
             if (comboBox.Text == "<Aquisição>" || comboBox.Text == "<Estado>")
@@ -193,6 +243,9 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
+        /// <summary>
+        /// Clears the form fields.
+        /// </summary>
         private void ClearText()
         {
             this.txtDataEntrega_Edit.Texts = "";
@@ -206,6 +259,9 @@ namespace BIBLIOTECA_PROJETO.gui
             this.txtObservacoes_Edit.Texts = "";
         }
 
+        /// <summary>
+        /// Enables the form fields for editing.
+        /// </summary>
         private void EnableText()
         {
             this.txtDataEntrega_Edit.Enabled = true;
@@ -219,6 +275,9 @@ namespace BIBLIOTECA_PROJETO.gui
             this.txtObservacoes_Edit.Enabled = true;
         }
 
+        /// <summary>
+        /// Disables the form fields and clears their contents.
+        /// </summary>
         private void UnableText()
         {
             this.txtNRegisto_Edit.Focus();
