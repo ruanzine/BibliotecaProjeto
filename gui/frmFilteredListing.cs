@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
+    /// <summary>
+    /// Represents a form for viewing filtered listings of books.
+    /// </summary>
     public partial class frmFilteredListing : Form
     {
         private BookGeneralListingService bookService;
@@ -15,6 +18,9 @@ namespace BIBLIOTECA_PROJETO.gui
         private int itemsPerPage = 11;
         private DataTable allData;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmFilteredListing"/> class.
+        /// </summary>
         public frmFilteredListing()
         {
             InitializeComponent();
@@ -24,6 +30,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Initialization
 
+        /// <summary>
+        /// Initializes the event handlers for the form controls.
+        /// </summary>
         private void InitializeEventHandlers()
         {
             this.dgvFilteredListing.DataBindingComplete += dgvFilteredListing_DataBindingComplete;
@@ -40,11 +49,17 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Event Handlers
 
+        /// <summary>
+        /// Handles the DataBindingComplete event of the DataGridView to clear selection after data binding is complete.
+        /// </summary>
         private void dgvFilteredListing_ClearSelection(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvFilteredListing.ClearSelection();
         }
 
+        /// <summary>
+        /// Handles the CellFormatting event of the DataGridView to format cell colors based on the "Estado" column value.
+        /// </summary>
         private void dgvFilteredListing_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvFilteredListing.Columns[e.ColumnIndex].Name == "Estado" && e.Value != null)
@@ -63,16 +78,25 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the ComboBox to load all data based on the selected filter.
+        /// </summary>
         private void cbxFilter_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             LoadAllData(cbxFilter.Text);
         }
 
+        /// <summary>
+        /// Handles the SelectionChanged event of the DataGridView to enable or disable the advanced button based on the selection.
+        /// </summary>
         private void dgvFilteredListing_SelectionChanged(object sender, EventArgs e)
         {
             bttAdvanced.Enabled = dgvFilteredListing.SelectedRows.Count > 0;
         }
 
+        /// <summary>
+        /// Handles the Click event of the advanced button to load books by the selected filter and value.
+        /// </summary>
         private void bttAdvanced_Click(object sender, EventArgs e)
         {
             if (dgvFilteredListing.SelectedRows.Count > 0)
@@ -90,11 +114,17 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the print button to export data to Excel.
+        /// </summary>
         private void bttPrint_Click(object sender, EventArgs e)
         {
             ExportDataToExcel();
         }
 
+        /// <summary>
+        /// Handles the Click event of the previous page button to navigate to the previous page.
+        /// </summary>
         private void bttPreviousPage_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
@@ -105,6 +135,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the next page button to navigate to the next page.
+        /// </summary>
         private void bttNextPage_Click(object sender, EventArgs e)
         {
             if (currentPage < totalPages)
@@ -115,6 +148,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the DataBindingComplete event of the DataGridView to resize columns based on the selected filter.
+        /// </summary>
         private void dgvFilteredListing_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ResizeColumnsBasedOnFilter(cbxFilter.Text);
@@ -124,6 +160,10 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Data Loading
 
+        /// <summary>
+        /// Loads all data based on the specified filter.
+        /// </summary>
+        /// <param name="filter">The filter to apply.</param>
         private void LoadAllData(string filter)
         {
             ClearDataGridView(dgvFilteredListing);
@@ -142,6 +182,11 @@ namespace BIBLIOTECA_PROJETO.gui
             FillDGV_Filter();
         }
 
+        /// <summary>
+        /// Loads books based on the selected filter and value.
+        /// </summary>
+        /// <param name="filter">The filter to apply.</param>
+        /// <param name="value">The value to filter by.</param>
         private void LoadBooksByFilter(string filter, string value)
         {
             allData = filter switch
@@ -158,6 +203,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region DataGridView Methods
 
+        /// <summary>
+        /// Fills the DataGridView with filtered data.
+        /// </summary>
         public void FillDGV_Filter()
         {
             try
@@ -186,12 +234,21 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Clears the DataGridView.
+        /// </summary>
+        /// <param name="dgv">The DataGridView to clear.</param>
         private void ClearDataGridView(DataGridView dgv)
         {
             dgv.DataSource = null;
             dgv.Columns.Clear();
         }
 
+        /// <summary>
+        /// Sets the row height for the DataGridView.
+        /// </summary>
+        /// <param name="dataGridView">The DataGridView to set the row height.</param>
+        /// <param name="rowHeight">The height of the rows.</param>
         private void SetRowHeight(DataGridView dataGridView, int rowHeight)
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -200,6 +257,10 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Resizes the columns based on the selected filter.
+        /// </summary>
+        /// <param name="filter">The selected filter.</param>
         private void ResizeColumnsBasedOnFilter(string filter)
         {
             switch (filter)
@@ -228,6 +289,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Pagination
 
+        /// <summary>
+        /// Resets the pagination to the first page.
+        /// </summary>
         private void ResetPagination()
         {
             currentPage = 1;
@@ -238,6 +302,9 @@ namespace BIBLIOTECA_PROJETO.gui
             lblAmount.Text = totalCount == 0 ? "0 registos encontrados" : $"{totalCount} registos encontrados";
         }
 
+        /// <summary>
+        /// Updates the pagination label based on the current page and total pages.
+        /// </summary>
         private void UpdatePaginationLabel()
         {
             lblPagination.Text = totalPages == 0 ? "Não há registos" : $"Página {currentPage} de {totalPages}";
@@ -247,6 +314,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Excel Export
 
+        /// <summary>
+        /// Exports the data to an Excel file.
+        /// </summary>
         private void ExportDataToExcel()
         {
             try
@@ -296,26 +366,41 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Resize Methods
 
+        /// <summary>
+        /// Resizes the columns for the "Autor" filter.
+        /// </summary>
         private void ResizeAuthor()
         {
             SetColumnProperties("Autor", 250);
         }
 
+        /// <summary>
+        /// Resizes the columns for the "Título" filter.
+        /// </summary>
         private void ResizeTitle()
         {
             SetColumnProperties("Título", 250);
         }
 
+        /// <summary>
+        /// Resizes the columns for the "Cota" filter.
+        /// </summary>
         private void ResizeCota()
         {
             SetColumnProperties("Cota", 130);
         }
 
+        /// <summary>
+        /// Resizes the columns for the "Estado" filter.
+        /// </summary>
         private void ResizeEstado()
         {
             SetColumnProperties("Estado", 130);
         }
 
+        /// <summary>
+        /// Resizes the columns for the "Número de Registo" filter.
+        /// </summary>
         private void ResizeData()
         {
             dgvFilteredListing.Columns["Nº"].Width = 50;
@@ -334,6 +419,11 @@ namespace BIBLIOTECA_PROJETO.gui
             SetRowHeight(dgvFilteredListing, 40);
         }
 
+        /// <summary>
+        /// Sets the column properties.
+        /// </summary>
+        /// <param name="columnName">The name of the column to set properties for.</param>
+        /// <param name="width">The width of the column.</param>
         private void SetColumnProperties(string columnName, int width)
         {
             dgvFilteredListing.Columns[columnName].Width = width;
@@ -341,12 +431,18 @@ namespace BIBLIOTECA_PROJETO.gui
             SetRowHeight(dgvFilteredListing, 40);
         }
 
+        /// <summary>
+        /// Sets the default cell style for the DataGridView.
+        /// </summary>
         private void SetDefaultCellStyle()
         {
             dgvFilteredListing.DefaultCellStyle.Font = new Font("Century Gothic", 11);
             dgvFilteredListing.DefaultCellStyle.ForeColor = Color.FromArgb(30, 30, 32);
         }
 
+        /// <summary>
+        /// Aligns the content of specific columns to the center.
+        /// </summary>
         private void AlignColumnContent()
         {
             dgvFilteredListing.Columns["Nº"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

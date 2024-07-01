@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDateFromUntil));
             this.dgvDateListing = new System.Windows.Forms.DataGridView();
             this.pnlFormHeader = new RoundedPanel();
@@ -40,12 +40,12 @@
             this.txtFrom = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody = new RoundedPanelBottom();
+            this.lblAmount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrintDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.lblAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDateListing)).BeginInit();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -56,8 +56,8 @@
             this.dgvDateListing.AllowUserToAddRows = false;
             this.dgvDateListing.AllowUserToDeleteRows = false;
             this.dgvDateListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDateListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvDateListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDateListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -99,22 +99,22 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.label2.Location = new System.Drawing.Point(864, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 23);
+            this.label2.Size = new System.Drawing.Size(44, 22);
             this.label2.TabIndex = 46;
             this.label2.Text = "Até";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.label1.Location = new System.Drawing.Point(688, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 23);
+            this.label1.Size = new System.Drawing.Size(36, 22);
             this.label1.TabIndex = 45;
             this.label1.Text = "De";
             // 
@@ -202,6 +202,17 @@
             this.pnlFormBody.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormBody.TabIndex = 48;
             // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblAmount.Location = new System.Drawing.Point(72, 24);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(185, 21);
+            this.lblAmount.TabIndex = 61;
+            this.lblAmount.Text = "0 registos encontrados";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
@@ -278,17 +289,6 @@
             this.bttNextPage.TabIndex = 10;
             this.bttNextPage.UseVisualStyleBackColor = false;
             this.bttNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.lblAmount.Location = new System.Drawing.Point(72, 24);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(185, 21);
-            this.lblAmount.TabIndex = 61;
-            this.lblAmount.Text = "0 registos encontrados";
             // 
             // frmDateFromUntil
             // 

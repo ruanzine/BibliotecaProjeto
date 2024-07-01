@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
+    /// <summary>
+    /// Represents a form for displaying book statistics.
+    /// </summary>
     public partial class frmStatistics : Form
     {
         private readonly BookStatisticsService _statisticsService;
@@ -16,6 +19,9 @@ namespace BIBLIOTECA_PROJETO.gui
         private const string Exposicao = "Exposição";
         private const string Deposito = "Depósito";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmStatistics"/> class.
+        /// </summary>
         public frmStatistics()
         {
             InitializeComponent();
@@ -23,6 +29,9 @@ namespace BIBLIOTECA_PROJETO.gui
             LoadStatistics();
         }
 
+        /// <summary>
+        /// Loads the statistics data and updates the labels.
+        /// </summary>
         private void LoadStatistics()
         {
             try
@@ -48,6 +57,12 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Sets the text of the specified label with the given count.
+        /// </summary>
+        /// <param name="label">The label to set the text for.</param>
+        /// <param name="labelText">The text to display before the count.</param>
+        /// <param name="count">The count to display.</param>
         private void SetLabelText(Label label, string labelText, int count)
         {
             label.Text = $"{labelText}: {count}";
