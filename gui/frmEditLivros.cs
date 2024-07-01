@@ -23,18 +23,11 @@ namespace BIBLIOTECA_PROJETO.gui
             mainForm.AddControlBounds(this.pnlEditLivros);
         }
 
+        #region Event Handlers
+
         private void bttSave_Edit_Click(object sender, EventArgs e)
         {
-            if (!this.ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar") ||
-                !this.ValidateTextBox(this.txtDataEntrega_Edit, "a data de entrada do exemplar") ||
-                !this.ValidateTextBox(this.txtTitulo_Edit, "o título do exemplar") ||
-                !this.ValidateTextBox(this.txtAutor_Edit, "o autor do exemplar") ||
-                !this.ValidateTextBox(this.txtCota_Edit, "a cota do exemplar") ||
-                !this.ValidateTextBox(this.txtNVolume_Edit, "o número de volume do exemplar") ||
-                !this.ValidateTextBox(this.txtEditora_Edit, "a editora do exemplar") ||
-                !this.ValidateComboBox(this.cbxAquisicao_Edit, "o método de aquisição do exemplar") ||
-                !this.ValidateComboBox(this.cbxEstado_Edit, "o estado do exemplar"))
-                return;
+            if (!ValidateFormFields()) return;
 
             try
             {
@@ -60,17 +53,16 @@ namespace BIBLIOTECA_PROJETO.gui
                 livroService.UpdateBook(numeroRegistro, dataEntrega, titulo, autor, cota, aquisicao, editora, numeroVolume, observacoes, estado);
 
                 MessageBox.Show("Registo atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.ClearText();
-                this.UnableText();
-                this.bttSave_Edit.Enabled = false;
-                this.txtNRegisto_Edit.Enabled = true;
+                ClearText();
+                UnableText();
+                bttSave_Edit.Enabled = false;
+                txtNRegisto_Edit.Enabled = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro ao atualizar o registro: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void bttClear_Edit_Click(object sender, EventArgs e)
         {
@@ -89,20 +81,19 @@ namespace BIBLIOTECA_PROJETO.gui
                 e.Handled = true;
         }
 
-
         private void bttSearchEdit_Click(object sender, EventArgs e)
         {
-            if (!this.ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar"))
-                return;
+            if (!ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar")) return;
+
             int numeroRegistro = int.Parse(this.txtNRegisto_Edit.Texts);
-            this.UnableText();
-            this.FillTextBoxes(numeroRegistro);
+            UnableText();
+            FillTextBoxes(numeroRegistro);
         }
 
         private void bttDel_Click(object sender, EventArgs e)
         {
-            if (!ValidateTextBox(txtNRegisto_Edit, "o número de registo do exemplar"))
-                return;
+            if (!ValidateTextBox(txtNRegisto_Edit, "o número de registo do exemplar")) return;
+
             int numeroRegistro = int.Parse(txtNRegisto_Edit.Texts.Trim());
             try
             {
@@ -130,13 +121,13 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
-
-
         private void pnlFormBody_Paint(object sender, PaintEventArgs e) { }
 
         private void gpbAutor_Edit_Enter(object sender, EventArgs e) { }
 
-        
+        #endregion
+
+        #region Helper Methods
 
         private void FillTextBoxes(int numeroRegistro)
         {
@@ -163,6 +154,19 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        private bool ValidateFormFields()
+        {
+            return ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar") &&
+                   ValidateTextBox(this.txtDataEntrega_Edit, "a data de entrada do exemplar") &&
+                   ValidateTextBox(this.txtTitulo_Edit, "o título do exemplar") &&
+                   ValidateTextBox(this.txtAutor_Edit, "o autor do exemplar") &&
+                   ValidateTextBox(this.txtCota_Edit, "a cota do exemplar") &&
+                   ValidateTextBox(this.txtNVolume_Edit, "o número de volume do exemplar") &&
+                   ValidateTextBox(this.txtEditora_Edit, "a editora do exemplar") &&
+                   ValidateComboBox(this.cbxAquisicao_Edit, "o método de aquisição do exemplar") &&
+                   ValidateComboBox(this.cbxEstado_Edit, "o estado do exemplar");
+        }
+
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
             string text = textBox.Texts?.Trim();
@@ -171,17 +175,13 @@ namespace BIBLIOTECA_PROJETO.gui
                 MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (textBox == this.txtDataEntrega_Edit)
+            if (textBox == this.txtDataEntrega_Edit && !DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
             {
-                if (!DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
-                {
-                    MessageBox.Show($"Por favor, insira {fieldName} no formato dd/MM/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                MessageBox.Show($"Por favor, insira {fieldName} no formato dd/MM/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             return true;
         }
-
 
         private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
@@ -212,8 +212,8 @@ namespace BIBLIOTECA_PROJETO.gui
             this.txtAutor_Edit.Enabled = true;
             this.txtTitulo_Edit.Enabled = true;
             this.txtCota_Edit.Enabled = true;
-            this.txtEditora_Edit.Enabled= true;
-            this.cbxEstado_Edit.Enabled = true; ;
+            this.txtEditora_Edit.Enabled = true;
+            this.cbxEstado_Edit.Enabled = true;
             this.cbxAquisicao_Edit.Enabled = true;
             this.txtNVolume_Edit.Enabled = true;
             this.txtObservacoes_Edit.Enabled = true;
@@ -233,5 +233,7 @@ namespace BIBLIOTECA_PROJETO.gui
             this.txtObservacoes_Edit.Enabled = false;
             ClearText();
         }
+
+        #endregion
     }
 }

@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddLivros));
             this.pnlAddLivros = new System.Windows.Forms.Panel();
-            this.pnlFormBody = new System.Windows.Forms.Panel();
-            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.pnlFormFooter = new RoundedPanelBottom();
             this.pnlFormHeader = new RoundedPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblListagem = new System.Windows.Forms.Label();
+            this.pnlFormBody = new System.Windows.Forms.Panel();
             this.groupBox1 = new RoundedGroupBox();
             this.nRegistoAdd = new System.Windows.Forms.Label();
             this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblDataEntrada = new System.Windows.Forms.Label();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.groupBox2 = new RoundedGroupBox();
             this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
             this.lblAquisicao = new System.Windows.Forms.Label();
@@ -62,8 +62,8 @@
             this.lblObservAdd = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.pnlAddLivros.SuspendLayout();
-            this.pnlFormBody.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
+            this.pnlFormBody.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -81,26 +81,6 @@
             this.pnlAddLivros.Size = new System.Drawing.Size(1064, 749);
             this.pnlAddLivros.TabIndex = 0;
             this.pnlAddLivros.Resize += new System.EventHandler(this.pnlAddLivros_Resize);
-            // 
-            // pnlFormBody
-            // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.pnlFormBody.Controls.Add(this.groupBox1);
-            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
-            this.pnlFormBody.Controls.Add(this.groupBox2);
-            this.pnlFormBody.Controls.Add(this.groupBox3);
-            this.pnlFormBody.Location = new System.Drawing.Point(80, 136);
-            this.pnlFormBody.Name = "pnlFormBody";
-            this.pnlFormBody.Size = new System.Drawing.Size(992, 416);
-            this.pnlFormBody.TabIndex = 60;
-            // 
-            // pnlLineBottom
-            // 
-            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineBottom.Location = new System.Drawing.Point(0, 414);
-            this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(992, 12);
-            this.pnlLineBottom.TabIndex = 58;
             // 
             // pnlFormFooter
             // 
@@ -140,6 +120,18 @@
             this.lblListagem.Size = new System.Drawing.Size(152, 26);
             this.lblListagem.TabIndex = 12;
             this.lblListagem.Text = "Novo Registo";
+            // 
+            // pnlFormBody
+            // 
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.pnlFormBody.Controls.Add(this.groupBox1);
+            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
+            this.pnlFormBody.Controls.Add(this.groupBox2);
+            this.pnlFormBody.Controls.Add(this.groupBox3);
+            this.pnlFormBody.Location = new System.Drawing.Point(80, 136);
+            this.pnlFormBody.Name = "pnlFormBody";
+            this.pnlFormBody.Size = new System.Drawing.Size(992, 416);
+            this.pnlFormBody.TabIndex = 60;
             // 
             // groupBox1
             // 
@@ -217,6 +209,14 @@
             this.lblDataEntrada.Size = new System.Drawing.Size(117, 17);
             this.lblDataEntrada.TabIndex = 31;
             this.lblDataEntrada.Text = "Data de Entrada";
+            // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 414);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(992, 12);
+            this.pnlLineBottom.TabIndex = 58;
             // 
             // groupBox2
             // 
@@ -396,6 +396,7 @@
             this.bttClear_Edit.Text = "Limpar";
             this.bttClear_Edit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bttClear_Edit.UseVisualStyleBackColor = false;
+            this.bttClear_Edit.Click += new System.EventHandler(this.bttClear_Click);
             // 
             // cbxEstado
             // 
@@ -553,9 +554,9 @@
             this.Name = "frmAddLivros";
             this.Load += new System.EventHandler(this.frmAddLivros_Load);
             this.pnlAddLivros.ResumeLayout(false);
-            this.pnlFormBody.ResumeLayout(false);
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
+            this.pnlFormBody.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

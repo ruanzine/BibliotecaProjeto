@@ -37,7 +37,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
-            this.bttPrint_DGV = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.bttPrint_Search = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new RoundedPanel();
@@ -73,7 +73,6 @@
             this.dgvBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBook.Size = new System.Drawing.Size(1104, 488);
             this.dgvBook.TabIndex = 45;
-            this.dgvBook.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBook_CellFormatting);
             // 
             // errorProvider
             // 
@@ -86,7 +85,7 @@
             this.pnlFormBody.Controls.Add(this.panel1);
             this.pnlFormBody.Controls.Add(this.lblPagination);
             this.pnlFormBody.Controls.Add(this.lblAmount);
-            this.pnlFormBody.Controls.Add(this.bttPrint_DGV);
+            this.pnlFormBody.Controls.Add(this.bttPrint_Search);
             this.pnlFormBody.Controls.Add(this.bttPreviousPage);
             this.pnlFormBody.Controls.Add(this.bttNextPage);
             this.pnlFormBody.CornerRadius = 10;
@@ -124,24 +123,23 @@
             this.lblAmount.TabIndex = 53;
             this.lblAmount.Text = "0 registos encontrados";
             // 
-            // bttPrint_DGV
+            // bttPrint_Search
             // 
-            this.bttPrint_DGV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.bttPrint_DGV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bttPrint_DGV.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttPrint_DGV.BorderRadius = 5;
-            this.bttPrint_DGV.BorderSize = 0;
-            this.bttPrint_DGV.FlatAppearance.BorderSize = 0;
-            this.bttPrint_DGV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttPrint_DGV.ForeColor = System.Drawing.Color.White;
-            this.bttPrint_DGV.Image = ((System.Drawing.Image)(resources.GetObject("bttPrint_DGV.Image")));
-            this.bttPrint_DGV.Location = new System.Drawing.Point(16, 16);
-            this.bttPrint_DGV.Margin = new System.Windows.Forms.Padding(0);
-            this.bttPrint_DGV.Name = "bttPrint_DGV";
-            this.bttPrint_DGV.Size = new System.Drawing.Size(35, 35);
-            this.bttPrint_DGV.TabIndex = 45;
-            this.bttPrint_DGV.UseVisualStyleBackColor = false;
-            this.bttPrint_DGV.Click += new System.EventHandler(this.bttPrint_Search_Click);
+            this.bttPrint_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.bttPrint_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bttPrint_Search.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.bttPrint_Search.BorderRadius = 5;
+            this.bttPrint_Search.BorderSize = 0;
+            this.bttPrint_Search.FlatAppearance.BorderSize = 0;
+            this.bttPrint_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttPrint_Search.ForeColor = System.Drawing.Color.White;
+            this.bttPrint_Search.Image = ((System.Drawing.Image)(resources.GetObject("bttPrint_Search.Image")));
+            this.bttPrint_Search.Location = new System.Drawing.Point(16, 16);
+            this.bttPrint_Search.Margin = new System.Windows.Forms.Padding(0);
+            this.bttPrint_Search.Name = "bttPrint_Search";
+            this.bttPrint_Search.Size = new System.Drawing.Size(35, 35);
+            this.bttPrint_Search.TabIndex = 45;
+            this.bttPrint_Search.UseVisualStyleBackColor = false;
             // 
             // bttPreviousPage
             // 
@@ -160,7 +158,6 @@
             this.bttPreviousPage.Size = new System.Drawing.Size(35, 35);
             this.bttPreviousPage.TabIndex = 44;
             this.bttPreviousPage.UseVisualStyleBackColor = false;
-            this.bttPreviousPage.Click += new System.EventHandler(this.bttPreviousPage_Click);
             // 
             // bttNextPage
             // 
@@ -179,7 +176,6 @@
             this.bttNextPage.Size = new System.Drawing.Size(35, 35);
             this.bttNextPage.TabIndex = 10;
             this.bttNextPage.UseVisualStyleBackColor = false;
-            this.bttNextPage.Click += new System.EventHandler(this.bttNextPage_Click);
             // 
             // pnlFormHeader
             // 
@@ -223,7 +219,6 @@
             this.txtSearch_DGV.Texts = "";
             this.txtSearch_DGV.UnderlinedStyle = true;
             this.txtSearch_DGV._TextChanged += new System.EventHandler(this.txtSearch_DGV__TextChanged);
-            this.txtSearch_DGV.TextChanged += new System.EventHandler(this.txtSearch_DGV_TextChanged);
             this.txtSearch_DGV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_DGV_KeyPress);
             // 
             // label2
@@ -303,7 +298,7 @@
         private System.Windows.Forms.Label lblPagination;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private controls.RoundedButton bttPreviousPage;
-        private controls.RoundedButton bttPrint_DGV;
+        private controls.RoundedButton bttPrint_Search;
         private controls.RoundedButton bttNextPage;
         private RoundedPanel pnlFormHeader;
         private RoundedPanelBottom pnlFormBody;
