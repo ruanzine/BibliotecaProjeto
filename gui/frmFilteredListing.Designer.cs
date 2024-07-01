@@ -229,7 +229,6 @@
             this.bttAdvanced.TabIndex = 54;
             this.bttAdvanced.Text = "Avançado";
             this.bttAdvanced.UseVisualStyleBackColor = false;
-            this.bttAdvanced.Click += new System.EventHandler(this.bttAdvanced_Click_2);
             // 
             // pnlLineTop
             // 

@@ -21,7 +21,13 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             InitializeComponent();
             mainForm.AddControlBounds(this.pnlAddLivros);
+            InitializeSuggestionListBoxes();
+        }
 
+        #region Initialization
+
+        private void InitializeSuggestionListBoxes()
+        {
             int maxHeight = 100; // Define the maximum height for the ListBox
             int itemHeight = 30; // Define the item height
             Font itemFont = new Font("Arial", 12); // Define the item font
@@ -55,6 +61,10 @@ namespace BIBLIOTECA_PROJETO.gui
             this.Controls.Add(listBoxSuggestionsAutor);
         }
 
+        #endregion
+
+        #region Event Handlers
+
         private void frmAddLivros_Load(object sender, EventArgs e)
         {
             GetNRegisto();
@@ -64,88 +74,22 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void txtTitulo_TextChanged(object sender, EventArgs e)
         {
-            string searchText = txtTitulo.Texts.Trim();
-            if (string.IsNullOrEmpty(searchText))
-            {
-                listBoxSuggestionsTitulo.Visible = false;
-                return;
-            }
-
-            List<string> suggestions = livroService.GetTitlesBySearch(searchText);
-            if (suggestions.Count > 0)
-            {
-                listBoxSuggestionsTitulo.Items.Clear();
-                listBoxSuggestionsTitulo.Items.AddRange(suggestions.ToArray());
-                listBoxSuggestionsTitulo.Visible = true;
-
-                // Calculate and set the height
-                int requiredHeight = Math.Min(listBoxSuggestionsTitulo.ItemHeight * suggestions.Count, listBoxSuggestionsTitulo.MaximumSize.Height);
-                listBoxSuggestionsTitulo.Height = requiredHeight;
-
-                // Adjust position
-                Point textBoxLocation = txtTitulo.PointToScreen(Point.Empty);
-                Point parentLocation = this.PointToScreen(Point.Empty);
-                listBoxSuggestionsTitulo.Location = new Point(textBoxLocation.X - parentLocation.X, textBoxLocation.Y - parentLocation.Y + txtTitulo.Height);
-
-                listBoxSuggestionsTitulo.Width = txtTitulo.Width;
-                listBoxSuggestionsTitulo.BringToFront();
-            }
-            else
-            {
-                listBoxSuggestionsTitulo.Visible = false;
-            }
+            ShowSuggestions(txtTitulo, listBoxSuggestionsTitulo, livroService.GetTitlesBySearch);
         }
 
         private void txtAutor_TextChanged(object sender, EventArgs e)
         {
-            string searchText = txtAutor.Texts.Trim();
-            if (string.IsNullOrEmpty(searchText))
-            {
-                listBoxSuggestionsAutor.Visible = false;
-                return;
-            }
-
-            List<string> suggestions = livroService.GetAuthorsBySearch(searchText);
-            if (suggestions.Count > 0)
-            {
-                listBoxSuggestionsAutor.Items.Clear();
-                listBoxSuggestionsAutor.Items.AddRange(suggestions.ToArray());
-                listBoxSuggestionsAutor.Visible = true;
-
-                // Calculate and set the height
-                int requiredHeight = Math.Min(listBoxSuggestionsAutor.ItemHeight * suggestions.Count, listBoxSuggestionsAutor.MaximumSize.Height);
-                listBoxSuggestionsAutor.Height = requiredHeight;
-
-                // Adjust position
-                Point textBoxLocation = txtAutor.PointToScreen(Point.Empty);
-                Point parentLocation = this.PointToScreen(Point.Empty);
-                listBoxSuggestionsAutor.Location = new Point(textBoxLocation.X - parentLocation.X, textBoxLocation.Y - parentLocation.Y + txtAutor.Height);
-
-                listBoxSuggestionsAutor.Width = txtAutor.Width;
-                listBoxSuggestionsAutor.BringToFront();
-            }
-            else
-            {
-                listBoxSuggestionsAutor.Visible = false;
-            }
+            ShowSuggestions(txtAutor, listBoxSuggestionsAutor, livroService.GetAuthorsBySearch);
         }
 
         private void listBoxSuggestionsTitulo_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listBoxSuggestionsTitulo.SelectedItem != null)
-            {
-                txtTitulo.Texts = listBoxSuggestionsTitulo.SelectedItem.ToString();
-                listBoxSuggestionsTitulo.Visible = false;
-            }
+            SelectSuggestion(listBoxSuggestionsTitulo, txtTitulo);
         }
 
         private void listBoxSuggestionsAutor_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listBoxSuggestionsAutor.SelectedItem != null)
-            {
-                txtAutor.Texts = listBoxSuggestionsAutor.SelectedItem.ToString();
-                listBoxSuggestionsAutor.Visible = false;
-            }
+            SelectSuggestion(listBoxSuggestionsAutor, txtAutor);
         }
 
         private void listBoxSuggestions_DrawItem(object sender, DrawItemEventArgs e)
@@ -155,15 +99,9 @@ namespace BIBLIOTECA_PROJETO.gui
             ListBox listBox = sender as ListBox;
 
             // Determine the color
-            Color backgroundColor;
-            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            {
-                backgroundColor = Color.LightGray; // Color when item is selected/hovered
-            }
-            else
-            {
-                backgroundColor = listBox.BackColor; // Default color
-            }
+            Color backgroundColor = ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                ? Color.LightGray
+                : listBox.BackColor;
 
             // Draw the background
             e.Graphics.FillRectangle(new SolidBrush(backgroundColor), e.Bounds);
@@ -185,6 +123,82 @@ namespace BIBLIOTECA_PROJETO.gui
             ClearText();
         }
 
+        private void txtDataEntrega_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateKeyPressForDate(e);
+        }
+
+        private void txtNRegisto_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            ValidateKeyPressForNumber(e);
+        }
+
+        private void pnlAddLivros_Resize(object sender, EventArgs e)
+        {
+            mainForm.ResizeControls(pnlAddLivros);
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private void ShowSuggestions(UC_textbox textBox, ListBox listBox, Func<string, List<string>> getSuggestions)
+        {
+            string searchText = textBox.Texts.Trim();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                listBox.Visible = false;
+                return;
+            }
+
+            List<string> suggestions = getSuggestions(searchText);
+            if (suggestions.Count > 0)
+            {
+                listBox.Items.Clear();
+                listBox.Items.AddRange(suggestions.ToArray());
+                listBox.Visible = true;
+
+                // Calculate and set the height
+                int requiredHeight = Math.Min(listBox.ItemHeight * suggestions.Count, listBox.MaximumSize.Height);
+                listBox.Height = requiredHeight;
+
+                // Adjust position
+                Point textBoxLocation = textBox.PointToScreen(Point.Empty);
+                Point parentLocation = this.PointToScreen(Point.Empty);
+                listBox.Location = new Point(textBoxLocation.X - parentLocation.X, textBoxLocation.Y - parentLocation.Y + textBox.Height);
+
+                listBox.Width = textBox.Width;
+                listBox.BringToFront();
+            }
+            else
+            {
+                listBox.Visible = false;
+            }
+        }
+
+        private void SelectSuggestion(ListBox listBox, UC_textbox textBox)
+        {
+            if (listBox.SelectedItem != null)
+            {
+                textBox.Texts = listBox.SelectedItem.ToString();
+                listBox.Visible = false;
+            }
+        }
+
+        private void ValidateKeyPressForDate(KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void ValidateKeyPressForNumber(KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+            MainForm form = new MainForm();
+            this.KeyPress += form.MainForm_KeyPress;
+        }
+
         private void GetNRegisto()
         {
             try
@@ -197,25 +211,11 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
-        void SaveData()
+        private void SaveData()
         {
-            if (!ValidateTextBox(txtNRegisto, "o número de registo do exemplar") ||
-                !ValidateTextBox(txtDataEntrega, "a data de entrada do exemplar") ||
-                !ValidateTextBox(txtTitulo, "o título do exemplar") ||
-                !ValidateTextBox(txtAutor, "o autor do exemplar") ||
-                !ValidateTextBox(txtCota, "a cota do exemplar") ||
-                !ValidateTextBox(txtNVolume, "o número de volume do exemplar") ||
-                !ValidateTextBox(txtEditora, "a editora do exemplar") ||
-                !ValidateComboBox(this.cbxAquisicao, "o método de aquisição do exemplar") ||
-                !ValidateComboBox(this.cbxEstado, "o estado do exemplar")) return;
+            if (!ValidateFormFields()) return;
 
             DateTime dataEntrega = DateTime.ParseExact(txtDataEntrega.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-            if (cbxAquisicao.Text == "" || cbxEstado.Text == "")
-            {
-                MessageBox.Show("Campo(s) de escolha vazio(s).", "Falha ao registar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
             int nRegisto = int.Parse(txtNRegisto.Texts.Trim());
             string titulo = txtTitulo.Texts.Trim();
@@ -246,6 +246,19 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        private bool ValidateFormFields()
+        {
+            return ValidateTextBox(txtNRegisto, "o número de registo do exemplar") &&
+                   ValidateTextBox(txtDataEntrega, "a data de entrada do exemplar") &&
+                   ValidateTextBox(txtTitulo, "o título do exemplar") &&
+                   ValidateTextBox(txtAutor, "o autor do exemplar") &&
+                   ValidateTextBox(txtCota, "a cota do exemplar") &&
+                   ValidateTextBox(txtNVolume, "o número de volume do exemplar") &&
+                   ValidateTextBox(txtEditora, "a editora do exemplar") &&
+                   ValidateComboBox(this.cbxAquisicao, "o método de aquisição do exemplar") &&
+                   ValidateComboBox(this.cbxEstado, "o estado do exemplar");
+        }
+
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
             string text = textBox.Texts?.Trim();
@@ -254,13 +267,10 @@ namespace BIBLIOTECA_PROJETO.gui
                 MessageBox.Show($"Por favor, introduza {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (textBox == txtDataEntrega)
+            if (textBox == txtDataEntrega && !DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
             {
-                if (!DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
-                {
-                    MessageBox.Show($"Por favor, introduza {fieldName} no formato dd/mm/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                MessageBox.Show($"Por favor, introduza {fieldName} no formato dd/MM/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             return true;
         }
@@ -275,22 +285,6 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
-        private void txtDataEntrega_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-        }
-
-        private void txtNRegisto_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-            MainForm form = new MainForm();
-            this.KeyPress += form.MainForm_KeyPress;
-        }
-
-        private void pnlAddLivros_Resize(object sender, EventArgs e) => mainForm.ResizeControls(pnlAddLivros);
-
         private void ClearText()
         {
             txtDataEntrega.Texts = "";
@@ -303,5 +297,7 @@ namespace BIBLIOTECA_PROJETO.gui
             cbxAquisicao.Text = "<Aquisição>";
             cbxEstado.Text = "<Estado>";
         }
+
+        #endregion
     }
 }

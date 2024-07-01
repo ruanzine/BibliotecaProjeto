@@ -21,53 +21,49 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             this.InitializeComponent();
             this.bookDateService = new BookDateListingService();
-
-            // Subscribe to the CellFormatting event
-            this.dgvDateListing.CellFormatting += dgvDateListing_CellFormatting;
+            InitializeEventHandlers();
         }
+
+        #region Initialization
+
+        private void InitializeEventHandlers()
+        {
+            this.dgvDateListing.CellFormatting += dgvDateListing_CellFormatting;
+            this.dgvDateListing.DataBindingComplete += dgvDateListing_DataBindingComplete;
+
+        }
+
+        #endregion
+
+        #region Event Handlers
 
         private void dgvDateListing_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvDateListing.Columns[e.ColumnIndex].Name == "Estado")
+            if (dgvDateListing.Columns[e.ColumnIndex].Name == "Estado" && e.Value != null)
             {
-                if (e.Value != null)
+                e.CellStyle.BackColor = e.Value.ToString() switch
                 {
-                    switch (e.Value.ToString())
-                    {
-                        case "Disponível":
-                            e.CellStyle.BackColor = Color.FromArgb(207, 228, 183);
-                            break;
-                        case "Indisponível":
-                            e.CellStyle.BackColor = Color.FromArgb(248, 193, 193);
-                            break;
-                        case "Perdido":
-                            e.CellStyle.BackColor = Color.FromArgb(248, 237, 195);
-                            break;
-                        case "Depósito":
-                            e.CellStyle.BackColor = Color.FromArgb(191, 175, 228);
-                            break;
-                        case "Exposição":
-                            e.CellStyle.BackColor = Color.FromArgb(199, 209, 255);
-                            break;
-                        case "Abatido":
-                            e.CellStyle.BackColor = Color.FromArgb(244, 207, 173);
-                            break;
-                        case "Consulta local":
-                            e.CellStyle.BackColor = Color.FromArgb(191, 232, 255);
-                            break;
-
-                        default:
-                            e.CellStyle.BackColor = dgvDateListing.DefaultCellStyle.BackColor;
-                            break;
-                    }
-                }
+                    "Disponível" => Color.FromArgb(207, 228, 183),
+                    "Indisponível" => Color.FromArgb(248, 193, 193),
+                    "Perdido" => Color.FromArgb(248, 237, 195),
+                    "Depósito" => Color.FromArgb(191, 175, 228),
+                    "Exposição" => Color.FromArgb(199, 209, 255),
+                    "Abatido" => Color.FromArgb(244, 207, 173),
+                    "Consulta local" => Color.FromArgb(191, 232, 255),
+                    _ => dgvDateListing.DefaultCellStyle.BackColor,
+                };
             }
+        }
+
+        private void dgvDateListing_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvDateListing.ClearSelection(); // Clear selection after data binding is complete
         }
 
         private void bttFilterDate_Click(object sender, EventArgs e)
         {
-            if (!this.ValidateTextBox(this.txtUntil, "a data de entrada do exemplar") ||
-                !this.ValidateTextBox(this.txtFrom, "a data de entrada do exemplar"))
+            if (!ValidateTextBox(txtUntil, "a data de entrada do exemplar") ||
+                !ValidateTextBox(txtFrom, "a data de entrada do exemplar"))
                 return;
 
             if (!DateTime.TryParse(txtFrom.Texts, out DateTime dataDe) || !DateTime.TryParse(txtUntil.Texts, out DateTime dataAte))
@@ -85,6 +81,7 @@ namespace BIBLIOTECA_PROJETO.gui
             try
             {
                 LoadAllData(dataDe, dataAte);
+                ResetPagination();
                 FillDGV_Filter();
             }
             catch (Exception ex)
@@ -93,55 +90,12 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
-        private void LoadAllData(DateTime dataDe, DateTime dataAte)
-        {
-            allData = this.bookDateService.GetAllBooksByDate(dataDe, dataAte);
-
-            int totalCount = allData.Rows.Count;
-            totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
-            UpdatePaginationLabel();
-
-            // Update the lblAmount label
-            if (totalCount == 0)
-            {
-                lblAmount.Text = "0 registos encontrados";
-            }
-            else
-            {
-                lblAmount.Text = $"{totalCount} registos encontrados";
-            }
-        }
-
-        private void FillDGV_Filter()
-        {
-            try
-            {
-                DataTable dt = allData.Clone();
-
-                int startIndex = (currentPage - 1) * itemsPerPage;
-                int endIndex = Math.Min(startIndex + itemsPerPage, allData.Rows.Count);
-
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    dt.ImportRow(allData.Rows[i]);
-                }
-
-                this.dgvDateListing.DataSource = dt;
-                ResizeData();
-                UpdatePaginationLabel();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao obter os registros: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void bttPrintDate_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!this.ValidateTextBox(this.txtUntil, "a data de entrada do exemplar") ||
-                    !this.ValidateTextBox(this.txtFrom, "a data de entrada do exemplar"))
+                if (!ValidateTextBox(txtUntil, "a data de entrada do exemplar") ||
+                    !ValidateTextBox(txtFrom, "a data de entrada do exemplar"))
                     return;
 
                 if (!DateTime.TryParse(txtFrom.Texts, out DateTime dataDe) || !DateTime.TryParse(txtUntil.Texts, out DateTime dataAte))
@@ -156,7 +110,7 @@ namespace BIBLIOTECA_PROJETO.gui
                     return;
                 }
 
-                DataTable allBooksByDate = this.bookDateService.GetAllBooksByDate(dataDe, dataAte);
+                DataTable allBooksByDate = bookDateService.GetAllBooksByDate(dataDe, dataAte);
 
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
@@ -195,14 +149,6 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
-        private void UpdatePaginationLabel()
-        {
-            if (totalPages == 0)
-                lblPagination.Text = "Não há registos";
-            else
-                lblPagination.Text = $"Página {currentPage} de {totalPages}";
-        }
-
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             if (currentPage < totalPages)
@@ -221,6 +167,74 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        private void txtFromUntil_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        #endregion
+
+        #region Data Loading
+
+        private void LoadAllData(DateTime dataDe, DateTime dataAte)
+        {
+            allData = bookDateService.GetAllBooksByDate(dataDe, dataAte);
+
+            int totalCount = allData.Rows.Count;
+            totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
+            UpdatePaginationLabel();
+
+            lblAmount.Text = totalCount == 0 ? "0 registos encontrados" : $"{totalCount} registos encontrados";
+        }
+
+        private void FillDGV_Filter()
+        {
+            try
+            {
+                DataTable dt = allData.Clone();
+
+                int startIndex = (currentPage - 1) * itemsPerPage;
+                int endIndex = Math.Min(startIndex + itemsPerPage, allData.Rows.Count);
+
+                for (int i = startIndex; i < endIndex; i++)
+                {
+                    dt.ImportRow(allData.Rows[i]);
+                }
+
+                dgvDateListing.DataSource = dt;
+                ResizeData();
+                UpdatePaginationLabel();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao obter os registros: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region Pagination
+
+        private void ResetPagination()
+        {
+            currentPage = 1;
+            int totalCount = allData?.Rows.Count ?? 0;
+            totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
+            UpdatePaginationLabel();
+
+            lblAmount.Text = totalCount == 0 ? "0 registos encontrados" : $"{totalCount} registos encontrados";
+        }
+
+        private void UpdatePaginationLabel()
+        {
+            lblPagination.Text = totalPages == 0 ? "Não há registos" : $"Página {currentPage} de {totalPages}";
+        }
+
+        #endregion
+
+        #region Validation
+
         private bool ValidateTextBox(UC_textbox textBox, string fieldName)
         {
             if (string.IsNullOrEmpty(textBox.Texts))
@@ -229,7 +243,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 return false;
             }
 
-            if (textBox == this.txtFrom)
+            if (textBox == txtFrom)
             {
                 if (!DateTime.TryParseExact(textBox.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
                 {
@@ -241,11 +255,9 @@ namespace BIBLIOTECA_PROJETO.gui
             return true;
         }
 
-        private void txtFromUntil_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-        }
+        #endregion
+
+        #region DataGridView Methods
 
         public void ResizeData()
         {
@@ -269,6 +281,7 @@ namespace BIBLIOTECA_PROJETO.gui
             dgvDateListing.Columns["Cota"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvDateListing.Columns["Aquisição"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvDateListing.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             SetRowHeight(dgvDateListing, 40);
         }
 
@@ -279,5 +292,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 row.Height = rowHeight;
             }
         }
+
+        #endregion
     }
 }
