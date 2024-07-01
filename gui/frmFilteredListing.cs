@@ -21,7 +21,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <summary>
         /// Initializes a new instance of the <see cref="frmFilteredListing"/> class.
         /// </summary>
-        public frmFilteredListing()
+        public frmFilteredListing(int selectedLibraryId)
         {
             InitializeComponent();
             this.bookService = new BookGeneralListingService();

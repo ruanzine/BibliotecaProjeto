@@ -16,14 +16,14 @@ namespace BIBLIOTECA_PROJETO.gui
     public partial class frmEditLivros : Form
     {
         MainForm mainForm = new MainForm();
-        private LivroService livroService = new LivroService();
+        private BookUpdateService bookUpdateService = new BookUpdateService();
         public string _titulo, _autor, _cota, _editora, _obsrvacoes, _estado;
         public int _nregisto, _nvolume;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmEditLivros"/> class.
         /// </summary>
-        public frmEditLivros()
+        public frmEditLivros(int selectedLibraryId)
         {
             InitializeComponent();
             mainForm.AddControlBounds(this.pnlEditLivros);
@@ -51,15 +51,15 @@ namespace BIBLIOTECA_PROJETO.gui
                 string observacoes = this.txtObservacoes_Edit.Texts.Trim();
                 string estado = this.cbxEstado_Edit.Text;
 
-                int autorID = livroService.GetAuthorID(autor);
+                int autorID = bookUpdateService.GetAuthorID(autor);
                 if (autorID == -1)
-                    autorID = livroService.CreateAuthor(autor);
+                    autorID = bookUpdateService.CreateAuthor(autor);
 
-                int cotaID = livroService.GetCotaID(cota);
+                int cotaID = bookUpdateService.GetCotaID(cota);
                 if (cotaID == -1)
-                    cotaID = livroService.CreateCota(cota);
+                    cotaID = bookUpdateService.CreateCota(cota);
 
-                livroService.UpdateBook(numeroRegistro, dataEntrega, titulo, autor, cota, aquisicao, editora, numeroVolume, observacoes, estado);
+                bookUpdateService.UpdateBook(numeroRegistro, dataEntrega, titulo, autor, cota, aquisicao, editora, numeroVolume, observacoes, estado);
 
                 MessageBox.Show("Registo atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearText();
@@ -121,12 +121,12 @@ namespace BIBLIOTECA_PROJETO.gui
             int numeroRegistro = int.Parse(txtNRegisto_Edit.Texts.Trim());
             try
             {
-                if (livroService.IsRegistrationNumberExists(numeroRegistro))
+                if (bookUpdateService.IsRegistrationNumberExists(numeroRegistro))
                 {
                     DialogResult result = MessageBox.Show("Tem certeza de que deseja eliminar este registo?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        livroService.DeleteBook(numeroRegistro);
+                        bookUpdateService.DeleteBook(numeroRegistro);
                         MessageBox.Show("Registo excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearText();
                         UnableText();
@@ -165,7 +165,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <param name="numeroRegistro">The registration number of the book to load.</param>
         private void FillTextBoxes(int numeroRegistro)
         {
-            List<Livro> livros = livroService.GetBooks_Edit();
+            List<Livro> livros = bookUpdateService.GetBooks_Edit();
             Livro livroSelecionado = livros.FirstOrDefault(livro => livro.NumeroRegistro == numeroRegistro);
             if (livroSelecionado != null)
             {

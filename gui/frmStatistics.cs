@@ -22,7 +22,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <summary>
         /// Initializes a new instance of the <see cref="frmStatistics"/> class.
         /// </summary>
-        public frmStatistics()
+        public frmStatistics(int selectedLibraryId)
         {
             InitializeComponent();
             _statisticsService = new BookStatisticsService();

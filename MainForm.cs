@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIBLIOTECA_PROJETO.gui;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -11,11 +12,35 @@ namespace BIBLIOTECA_PROJETO
         private Size formOriginalSize;
         private Form _loadForms;
         private Button _selectedButton;
+        private int selectedLibraryID;
 
         public MainForm()
         {
             InitializeComponent();
             formOriginalSize = this.Size;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            SelectLibrary(); // Show the library selection popup here
+            SetSelectedButton(bttSearch);
+            LoadViewLivros();
+        }
+
+        private void SelectLibrary()
+        {
+            using (var selectLibraryForm = new frmSelectLibrary())
+            {
+                if (selectLibraryForm.ShowDialog() == DialogResult.OK)
+                {
+                    selectedLibraryID = selectLibraryForm.SelectedLibraryID;
+                }
+                else
+                {
+                    // Close the application if no library is selected
+                    Application.Exit();
+                }
+            }
         }
 
         public void AddControlBounds(Control control)
@@ -105,29 +130,24 @@ namespace BIBLIOTECA_PROJETO
             SetSelectedButton(bttDateListing);
             LoadDateLivros();
         }
+
         private void bttStatistics_Click(object sender, EventArgs e)
         {
             SetSelectedButton(bttStatistics);
             LoadStatistics();
-            
-        }
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            SetSelectedButton(bttSearch);
-            LoadViewLivros();
         }
 
-        public void LoadAddLivros() => LoadForms(new gui.frmAddLivros());
+        public void LoadAddLivros() => LoadForms(new gui.frmAddLivros(selectedLibraryID)); // Pass the library ID
 
-        public void LoadEditLivros() => LoadForms(new gui.frmEditLivros());
+        public void LoadEditLivros() => LoadForms(new gui.frmEditLivros(selectedLibraryID)); // Pass the library ID
 
-        public void LoadViewLivros() => LoadForms(new gui.frmBookViewer());
+        public void LoadViewLivros() => LoadForms(new gui.frmBookViewer(selectedLibraryID)); // Pass the library ID
 
-        public void LoadDateLivros() => LoadForms(new gui.frmDateFromUntil());
+        public void LoadDateLivros() => LoadForms(new gui.frmDateFromUntil(selectedLibraryID)); // Pass the library ID
 
-        public void LoadListing() => LoadForms(new gui.frmFilteredListing());
+        public void LoadListing() => LoadForms(new gui.frmFilteredListing(selectedLibraryID)); // Pass the library ID
 
-        public void LoadStatistics() => LoadForms(new gui.frmStatistics());
+        public void LoadStatistics() => LoadForms(new gui.frmStatistics(selectedLibraryID)); // Pass the library ID
 
         public void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -135,7 +155,5 @@ namespace BIBLIOTECA_PROJETO
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
-
-        
     }
 }

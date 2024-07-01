@@ -22,7 +22,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <summary>
         /// Initializes a new instance of the <see cref="frmBookViewer"/> class.
         /// </summary>
-        public frmBookViewer()
+        public frmBookViewer(int selectedLibraryId)
         {
             InitializeComponent();
             this.bookService = new BookSearchService();

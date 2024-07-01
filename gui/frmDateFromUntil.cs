@@ -23,7 +23,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <summary>
         /// Initializes a new instance of the <see cref="frmDateFromUntil"/> class.
         /// </summary>
-        public frmDateFromUntil()
+        public frmDateFromUntil(int selectedLibraryId)
         {
             this.InitializeComponent();
             this.bookDateService = new BookDateListingService();

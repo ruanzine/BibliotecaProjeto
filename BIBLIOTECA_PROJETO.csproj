@@ -153,7 +153,9 @@
     <Compile Include="classes\services\BookGeneralListingService.cs" />
     <Compile Include="classes\services\BookSearchService.cs" />
     <Compile Include="classes\services\BookStatisticsService.cs" />
-    <Compile Include="classes\services\LivroService.cs" />
+    <Compile Include="classes\services\BookUpadteService.cs" />
+    <Compile Include="classes\services\LibraryService.cs" />
+    <Compile Include="classes\services\BookCreateService.cs" />
     <Compile Include="controls\UC_combobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -189,6 +191,12 @@
     </Compile>
     <Compile Include="gui\frmFilteredListing.Designer.cs">
       <DependentUpon>frmFilteredListing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui\frmSelectLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui\frmSelectLibrary.Designer.cs">
+      <DependentUpon>frmSelectLibrary.cs</DependentUpon>
     </Compile>
     <Compile Include="gui\frmStatistics.cs">
       <SubType>Form</SubType>
@@ -233,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gui\frmFilteredListing.resx">
       <DependentUpon>frmFilteredListing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui\frmSelectLibrary.resx">
+      <DependentUpon>frmSelectLibrary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gui\frmStatistics.resx">
       <DependentUpon>frmStatistics.cs</DependentUpon>

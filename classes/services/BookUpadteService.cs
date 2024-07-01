@@ -2,57 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.classes.services
 {
-
-
-    public class LivroService
+    public class BookUpdateService
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
-
-        public void SaveData(int nRegisto, DateTime dataEntrega, string titulo, string autor, string cota, string nVolume, string aquisicao, string editora, string observacoes, string estado)
-        {
-            try
-            {
-                int autorID = GetAuthorID(autor);
-                if (autorID == -1)
-                    autorID = CreateAuthor(autor);
-
-                int cotaID = GetCotaID(cota);
-                if (cotaID == -1)
-                    cotaID = CreateCota(cota);
-
-                int tituloID = GetTitleID(titulo);
-                if (tituloID == -1)
-                    tituloID = CreateTitle(titulo);
-
-                using (SqlConnection conn = new SqlConnection(this.connectionString))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Livros (ID, DataDeEntrega, TituloID, AutorID, CotaID, NumVolume, Aquisicao, Editora, Observacoes, Estado) VALUES (@id, @dataEntrega, @tituloID, @autorID, @cotaID, @NumVolume, @aquisicao, @editora, @observacoes, @estado)", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", nRegisto);
-                        cmd.Parameters.AddWithValue("@dataEntrega", dataEntrega);
-                        cmd.Parameters.AddWithValue("@tituloID", tituloID);
-                        cmd.Parameters.AddWithValue("@autorID", autorID);
-                        cmd.Parameters.AddWithValue("@cotaID", cotaID);
-                        cmd.Parameters.AddWithValue("@NumVolume", nVolume);
-                        cmd.Parameters.AddWithValue("@aquisicao", aquisicao);
-                        cmd.Parameters.AddWithValue("@editora", editora);
-                        cmd.Parameters.AddWithValue("@observacoes", observacoes);
-                        cmd.Parameters.AddWithValue("@estado", estado);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao salvar os dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         /// <summary>
         /// Updates the information of a book in the database.
@@ -123,30 +78,6 @@ namespace BIBLIOTECA_PROJETO.classes.services
             }
         }
 
-        public int GetNextRegistrationNumber()
-        {
-            int nextRegistrationNumber = 1;
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            {
-                conn.Open();
-                string query = "SELECT ID FROM Livros ORDER BY ID ASC";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int currentRegistrationNumber = reader.GetInt32(reader.GetOrdinal("ID"));
-                            if (currentRegistrationNumber == nextRegistrationNumber)
-                                nextRegistrationNumber++;
-                            else
-                                break;
-                        }
-                    }
-                }
-            }
-            return nextRegistrationNumber;
-        }
 
         public bool IsRegistrationNumberExists(int registrationNumber)
         {
@@ -235,63 +166,6 @@ namespace BIBLIOTECA_PROJETO.classes.services
             }
         }
 
-        public int GetTitleID(string titleName)
-        {
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            {
-                conn.Open();
-                string query = "SELECT ID FROM Titulos WHERE TituloNome = @Titulo";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Titulo", titleName);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return (int)result;
-                    else
-                        return -1;
-                }
-            }
-        }
-
-        public int CreateTitle(string titleName)
-        {
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            {
-                conn.Open();
-                string query = "INSERT INTO Titulos (TituloNome) VALUES (@Titulo); SELECT SCOPE_IDENTITY()";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Titulo", titleName);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return Convert.ToInt32(result);
-                    else
-                        throw new Exception("Erro ao criar título.");
-                }
-            }
-        }
-
-        public string GetId(string idRegisto)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(this.connectionString))
-                {
-                    conn.Open();
-                    string query = @"SELECT MAX(ID) + 1 FROM Livros";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        idRegisto = cmd.ExecuteScalar().ToString();
-                        return idRegisto;
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception("Ocorreu um erro ao obter os livros: " + ex.Message);
-            }
-        }
-
         /// <summary>
         /// Retrieves a list of books from the database for editing purposes.
         /// </summary>
@@ -341,53 +215,6 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 throw new Exception("Ocorreu um erro ao obter os livros: " + ex.Message);
             }
         }
-        public List<string> GetTitlesBySearch(string searchText)
-        {
-            List<string> titles = new List<string>();
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            {
-                conn.Open();
-                string query = "SELECT TituloNome FROM Titulos WHERE TituloNome LIKE @searchText + '%'";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@searchText", searchText);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            titles.Add(reader.GetString(0));
-                        }
-                    }
-                }
-            }
-            return titles;
-        }
-
-        public List<string> GetAuthorsBySearch(string searchText)
-        {
-            List<string> authors = new List<string>();
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            {
-                conn.Open();
-                string query = "SELECT Nome FROM Autores WHERE Nome LIKE @searchText + '%'";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@searchText", searchText);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            authors.Add(reader.GetString(0));
-                        }
-                    }
-                }
-            }
-            return authors;
-        }
-
-
-        
-
 
     }
 }
