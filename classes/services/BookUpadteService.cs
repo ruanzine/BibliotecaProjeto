@@ -12,18 +12,19 @@ namespace BIBLIOTECA_PROJETO.classes.services
         /// <summary>
         /// Updates the information of a book in the database.
         /// </summary>
-        /// <param name="numeroRegistro">The registration number of the book.</param>
-        /// <param name="dataEntrega">The delivery date of the book.</param>
-        /// <param name="titulo">The title of the book.</param>
-        /// <param name="autor">The author of the book.</param>
-        /// <param name="cota">The call number of the book.</param>
-        /// <param name="aquisicao">The acquisition type of the book.</param>
-        /// <param name="editora">The publisher of the book.</param>
-        /// <param name="numeroVolume">The volume number of the book.</param>
-        /// <param name="observacoes">The observations of the book.</param>
-        /// <param name="estado">The status of the book.</param>
+        /// <param name="registrationNumber">The registration number of the book.</param>
+        /// <param name="deliveryDate">The delivery date of the book.</param>
+        /// <param name="title">The title of the book.</param>
+        /// <param name="author">The author of the book.</param>
+        /// <param name="classification">The classification of the book.</param>
+        /// <param name="acquisitionMethod">The acquisition method of the book.</param>
+        /// <param name="publisher">The publisher of the book.</param>
+        /// <param name="volumeNumber">The volume number of the book.</param>
+        /// <param name="observations">The observations about the book.</param>
+        /// <param name="condition">The condition of the book.</param>
+        /// <param name="libraryID">The ID of the library.</param>
         /// <exception cref="SqlException">Thrown when an error occurs while updating the book in the database.</exception>
-        public void UpdateBook(int numeroRegistro, DateTime dataEntrega, string titulo, string autor, string cota, string aquisicao, string editora, string numeroVolume, string observacoes, string estado)
+        public void UpdateBook(int registrationNumber, DateTime deliveryDate, string title, string author, string classification, string acquisitionMethod, string publisher, string volumeNumber, string observations, string condition, int libraryID)
         {
             try
             {
@@ -31,30 +32,31 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 {
                     conn.Open();
 
-                    string query = @"UPDATE Livros SET
-                                DataDeEntrega = @dataEntrega,
-                                TituloID = (SELECT ID FROM Titulos WHERE TituloNome = @titulo),
-                                AutorID = (SELECT ID FROM Autores WHERE Nome = @autor),
-                                CotaID = (SELECT ID FROM Cotas WHERE Cota = @cota),
-                                Aquisicao = @aquisicao,
-                                Editora = @editora,
-                                NumVolume = @numeroVolume,
-                                Observacoes = @observacoes,
-                                Estado = @estado
-                                WHERE ID = @numeroRegistro";
+                    string query = @"UPDATE Books SET
+                                    DeliveryDate = @deliveryDate,
+                                    TitleID = (SELECT ID FROM Titles WHERE TitleName = @title AND LibraryID = @libraryID),
+                                    AuthorID = (SELECT ID FROM Authors WHERE Name = @author AND LibraryID = @libraryID),
+                                    ClassificationID = (SELECT ID FROM Classifications WHERE Classification = @classification AND LibraryID = @libraryID),
+                                    AcquisitionMethod = @acquisitionMethod,
+                                    Publisher = @publisher,
+                                    VolumeNumber = @volumeNumber,
+                                    Observations = @observations,
+                                    Condition = @condition
+                                    WHERE ID = @registrationNumber AND LibraryID = @libraryID";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@dataEntrega", dataEntrega);
-                        cmd.Parameters.AddWithValue("@titulo", titulo);
-                        cmd.Parameters.AddWithValue("@autor", autor);
-                        cmd.Parameters.AddWithValue("@cota", cota);
-                        cmd.Parameters.AddWithValue("@aquisicao", aquisicao);
-                        cmd.Parameters.AddWithValue("@editora", editora);
-                        cmd.Parameters.AddWithValue("@numeroVolume", numeroVolume);
-                        cmd.Parameters.AddWithValue("@observacoes", observacoes);
-                        cmd.Parameters.AddWithValue("@estado", estado);
-                        cmd.Parameters.AddWithValue("@numeroRegistro", numeroRegistro);
+                        cmd.Parameters.AddWithValue("@deliveryDate", deliveryDate);
+                        cmd.Parameters.AddWithValue("@title", title);
+                        cmd.Parameters.AddWithValue("@author", author);
+                        cmd.Parameters.AddWithValue("@classification", classification);
+                        cmd.Parameters.AddWithValue("@acquisitionMethod", acquisitionMethod);
+                        cmd.Parameters.AddWithValue("@publisher", publisher);
+                        cmd.Parameters.AddWithValue("@volumeNumber", volumeNumber);
+                        cmd.Parameters.AddWithValue("@observations", observations);
+                        cmd.Parameters.AddWithValue("@condition", condition);
+                        cmd.Parameters.AddWithValue("@registrationNumber", registrationNumber);
+                        cmd.Parameters.AddWithValue("@libraryID", libraryID);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -62,106 +64,131 @@ namespace BIBLIOTECA_PROJETO.classes.services
             }
             catch (SqlException ex)
             {
-                throw new Exception("Ocorreu um erro ao atualizar o registro: " + ex.Message);
+                throw new Exception("An error occurred while updating the book: " + ex.Message);
             }
         }
 
-        public void DeleteBook(int numeroRegistro)
+        public void DeleteBook(int registrationNumber, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM Livros WHERE ID = @NumeroRegistro", conn);
-                command.Parameters.AddWithValue("@NumeroRegistro", numeroRegistro);
+                SqlCommand command = new SqlCommand("DELETE FROM Books WHERE ID = @registrationNumber AND LibraryID = @libraryID", conn);
+                command.Parameters.AddWithValue("@registrationNumber", registrationNumber);
+                command.Parameters.AddWithValue("@libraryID", libraryID);
                 command.ExecuteNonQuery();
                 conn.Close();
             }
         }
 
-
-        public bool IsRegistrationNumberExists(int registrationNumber)
+        public bool IsRegistrationNumberExists(int registrationNumber, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Livros WHERE ID = @id";
+                string query = "SELECT COUNT(*) FROM Books WHERE ID = @registrationNumber AND LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@id", registrationNumber);
+                    cmd.Parameters.AddWithValue("@registrationNumber", registrationNumber);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     return count > 0;
                 }
             }
         }
 
-        public int GetAuthorID(string authorName)
+        public int GetAuthorID(string authorName, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT ID FROM Autores WHERE Nome = @Nome";
+                string query = "SELECT ID FROM Authors WHERE Name = @Name AND LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Nome", authorName);
+                    cmd.Parameters.AddWithValue("@Name", authorName);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return (int)result;
-                    else
-                        return -1;
+                    return result != null ? (int)result : -1;
                 }
             }
         }
 
-        public int CreateAuthor(string authorName)
+        public int CreateAuthor(string authorName, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "INSERT INTO Autores (Nome) VALUES (@Nome); SELECT SCOPE_IDENTITY()";
+                string query = "INSERT INTO Authors (Name, LibraryID) VALUES (@Name, @libraryID); SELECT SCOPE_IDENTITY()";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Nome", authorName);
+                    cmd.Parameters.AddWithValue("@Name", authorName);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return Convert.ToInt32(result);
-                    else
-                        throw new Exception("Erro ao criar autor.");
+                    return result != null ? Convert.ToInt32(result) : throw new Exception("Error creating author.");
                 }
             }
         }
 
-        public int GetCotaID(string cotaName)
+        public int GetClassificationID(string classificationName, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT ID FROM Cotas WHERE Cota = @Cota";
+                string query = "SELECT ID FROM Classifications WHERE Classification = @Classification AND LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Cota", cotaName);
+                    cmd.Parameters.AddWithValue("@Classification", classificationName);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return (int)result;
-                    else
-                        return -1;
+                    return result != null ? (int)result : -1;
                 }
             }
         }
 
-        public int CreateCota(string cotaName)
+        public int CreateClassification(string classificationName, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "INSERT INTO Cotas (Cota) VALUES (@Cota); SELECT SCOPE_IDENTITY()";
+                string query = "INSERT INTO Classifications (Classification, LibraryID) VALUES (@Classification, @libraryID); SELECT SCOPE_IDENTITY()";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Cota", cotaName);
+                    cmd.Parameters.AddWithValue("@Classification", classificationName);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return Convert.ToInt32(result);
-                    else
-                        throw new Exception("Erro ao criar cota.");
+                    return result != null ? Convert.ToInt32(result) : throw new Exception("Error creating classification.");
+                }
+            }
+        }
+
+        public int GetTitleID(string titleName, int libraryID)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "SELECT ID FROM Titles WHERE TitleName = @Title AND LibraryID = @libraryID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Title", titleName);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? (int)result : -1;
+                }
+            }
+        }
+
+        public int CreateTitle(string titleName, int libraryID)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "INSERT INTO Titles (TitleName, LibraryID) VALUES (@Title, @libraryID); SELECT SCOPE_IDENTITY()";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Title", titleName);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : throw new Exception("Error creating title.");
                 }
             }
         }
@@ -171,7 +198,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
         /// </summary>
         /// <returns>A list of books.</returns>
         /// <exception cref="SqlException">Thrown when an error occurs while retrieving the books from the database.</exception>
-        public List<Livro> GetBooks_Edit()
+        public List<Livro> GetBooks_Edit(int libraryID)
         {
             try
             {
@@ -179,29 +206,31 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
-                    string query = @"SELECT L.ID AS NumeroRegistro, L.DataDeEntrega, T.TituloNome AS Titulo, A.Nome AS Autor, C.Cota, L.Aquisicao, L.Editora, L.NumVolume AS NumeroVolume, L.Observacoes, L.Estado
-                            FROM Livros L
-                            INNER JOIN Autores A ON L.AutorID = A.ID
-                            INNER JOIN Cotas C ON L.CotaID = C.ID
-                            INNER JOIN Titulos T ON L.TituloID = T.ID";
+                    string query = @"SELECT B.ID AS RegistrationNumber, B.DeliveryDate, T.TitleName AS Title, A.Name AS Author, C.Classification, B.AcquisitionMethod, B.Publisher, B.VolumeNumber, B.Observations, B.Condition
+                                     FROM Books B
+                                     INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
+                                     INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
+                                     INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                     WHERE B.LibraryID = @libraryID";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@libraryID", libraryID);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 Livro livro = new Livro
                                 {
-                                    NumeroRegistro = reader.GetInt32(reader.GetOrdinal("NumeroRegistro")),
-                                    DataEntrada = reader.GetDateTime(reader.GetOrdinal("DataDeEntrega")),
-                                    Titulo = reader.GetString(reader.GetOrdinal("Titulo")),
-                                    Autor = reader.GetString(reader.GetOrdinal("Autor")),
-                                    Cota = reader.GetString(reader.GetOrdinal("Cota")),
-                                    Aquisicao = reader.GetString(reader.GetOrdinal("Aquisicao")),
-                                    Editora = reader.GetString(reader.GetOrdinal("Editora")),
-                                    NumeroVolume = reader.GetString(reader.GetOrdinal("NumeroVolume")),
-                                    Observacoes = reader.GetString(reader.GetOrdinal("Observacoes")),
-                                    Estado = reader.GetString(reader.GetOrdinal("Estado"))
+                                    RegistrationNumber = reader.GetInt32(reader.GetOrdinal("RegistrationNumber")),
+                                    DeliveryDate = reader.GetDateTime(reader.GetOrdinal("DeliveryDate")),
+                                    Title = reader.GetString(reader.GetOrdinal("Title")),
+                                    Author = reader.GetString(reader.GetOrdinal("Author")),
+                                    Classification = reader.GetString(reader.GetOrdinal("Classification")),
+                                    AcquisitionMethod = reader.GetString(reader.GetOrdinal("AcquisitionMethod")),
+                                    Publisher = reader.GetString(reader.GetOrdinal("Publisher")),
+                                    VolumeNumber = reader.GetString(reader.GetOrdinal("VolumeNumber")),
+                                    Observations = reader.GetString(reader.GetOrdinal("Observations")),
+                                    Condition = reader.GetString(reader.GetOrdinal("Condition"))
                                 };
                                 livros.Add(livro);
                             }
@@ -212,9 +241,8 @@ namespace BIBLIOTECA_PROJETO.classes.services
             }
             catch (SqlException ex)
             {
-                throw new Exception("Ocorreu um erro ao obter os livros: " + ex.Message);
+                throw new Exception("An error occurred while retrieving the books: " + ex.Message);
             }
         }
-
     }
 }

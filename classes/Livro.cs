@@ -4,15 +4,15 @@ namespace BIBLIOTECA_PROJETO.classes
 {
     public class Livro
     {
-        public int NumeroRegistro { get; set; }
-        public DateTime DataEntrada { get; set; }
-        public string Titulo { get; set; }
-        public string Autor { get; set; }
-        public string Cota { get; set; }
-        public string Aquisicao { get; set; }
-        public string Editora { get; set; }
-        public string NumeroVolume { get; set; }
-        public string Observacoes { get; set; }
-        public string Estado { get; set; }
+        public int RegistrationNumber { get; set; }
+        public DateTime DeliveryDate { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Classification { get; set; }
+        public string AcquisitionMethod { get; set; }
+        public string Publisher { get; set; }
+        public string VolumeNumber { get; set; }
+        public string Observations { get; set; }
+        public string Condition { get; set; }
     }
 }
