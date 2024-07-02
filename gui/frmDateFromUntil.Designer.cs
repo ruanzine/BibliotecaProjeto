@@ -31,24 +31,24 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDateFromUntil));
             this.dgvDateListing = new System.Windows.Forms.DataGridView();
-            this.pnlFormHeader = new RoundedPanel();
-            this.dtpFrom = new MetroFramework.Controls.MetroDateTime();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.bttFilterDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.lblListagem = new System.Windows.Forms.Label();
-            this.pnlFormBody = new RoundedPanelBottom();
+            this.pnlFormFooter = new RoundedPanelBottom();
             this.lblAmount = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrintDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.pnlFormHeader = new RoundedPanel();
             this.dtpUntil = new MetroFramework.Controls.MetroDateTime();
+            this.dtpFrom = new MetroFramework.Controls.MetroDateTime();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
+            this.lblUntil = new System.Windows.Forms.Label();
+            this.lblFrom = new System.Windows.Forms.Label();
+            this.bttFilterDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDateListing)).BeginInit();
+            this.pnlFormFooter.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
-            this.pnlFormBody.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvDateListing
@@ -72,108 +72,20 @@
             this.dgvDateListing.Size = new System.Drawing.Size(1104, 488);
             this.dgvDateListing.TabIndex = 46;
             // 
-            // pnlFormHeader
+            // pnlFormFooter
             // 
-            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
-            this.pnlFormHeader.Controls.Add(this.dtpUntil);
-            this.pnlFormHeader.Controls.Add(this.dtpFrom);
-            this.pnlFormHeader.Controls.Add(this.panel1);
-            this.pnlFormHeader.Controls.Add(this.label2);
-            this.pnlFormHeader.Controls.Add(this.label1);
-            this.pnlFormHeader.Controls.Add(this.bttFilterDate);
-            this.pnlFormHeader.Controls.Add(this.lblListagem);
-            this.pnlFormHeader.CornerRadius = 10;
-            this.pnlFormHeader.Location = new System.Drawing.Point(40, 32);
-            this.pnlFormHeader.Name = "pnlFormHeader";
-            this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
-            this.pnlFormHeader.TabIndex = 47;
-            // 
-            // dtpFrom
-            // 
-            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(544, 19);
-            this.dtpFrom.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
-            this.dtpFrom.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtpFrom.MinimumSize = new System.Drawing.Size(0, 29);
-            this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(192, 29);
-            this.dtpFrom.Style = MetroFramework.MetroColorStyle.Blue;
-            this.dtpFrom.TabIndex = 61;
-            this.dtpFrom.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.panel1.Location = new System.Drawing.Point(0, 62);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1104, 12);
-            this.panel1.TabIndex = 60;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label2.Location = new System.Drawing.Point(760, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 22);
-            this.label2.TabIndex = 46;
-            this.label2.Text = "Até";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label1.Location = new System.Drawing.Point(504, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 22);
-            this.label1.TabIndex = 45;
-            this.label1.Text = "De";
-            // 
-            // bttFilterDate
-            // 
-            this.bttFilterDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.bttFilterDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bttFilterDate.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttFilterDate.BorderRadius = 5;
-            this.bttFilterDate.BorderSize = 0;
-            this.bttFilterDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttFilterDate.ForeColor = System.Drawing.Color.White;
-            this.bttFilterDate.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttsearchdate;
-            this.bttFilterDate.Location = new System.Drawing.Point(1048, 16);
-            this.bttFilterDate.Margin = new System.Windows.Forms.Padding(0);
-            this.bttFilterDate.Name = "bttFilterDate";
-            this.bttFilterDate.Size = new System.Drawing.Size(35, 35);
-            this.bttFilterDate.TabIndex = 10;
-            this.bttFilterDate.UseVisualStyleBackColor = false;
-            this.bttFilterDate.Click += new System.EventHandler(this.bttFilterDate_Click);
-            // 
-            // lblListagem
-            // 
-            this.lblListagem.AutoSize = true;
-            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.lblListagem.Location = new System.Drawing.Point(24, 24);
-            this.lblListagem.Name = "lblListagem";
-            this.lblListagem.Size = new System.Drawing.Size(374, 26);
-            this.lblListagem.TabIndex = 11;
-            this.lblListagem.Text = "Listagem de Exemplares por Data";
-            // 
-            // pnlFormBody
-            // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
-            this.pnlFormBody.Controls.Add(this.lblAmount);
-            this.pnlFormBody.Controls.Add(this.panel2);
-            this.pnlFormBody.Controls.Add(this.lblPagination);
-            this.pnlFormBody.Controls.Add(this.bttPrintDate);
-            this.pnlFormBody.Controls.Add(this.bttPreviousPage);
-            this.pnlFormBody.Controls.Add(this.bttNextPage);
-            this.pnlFormBody.CornerRadius = 10;
-            this.pnlFormBody.Location = new System.Drawing.Point(40, 584);
-            this.pnlFormBody.Name = "pnlFormBody";
-            this.pnlFormBody.Size = new System.Drawing.Size(1104, 64);
-            this.pnlFormBody.TabIndex = 48;
+            this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormFooter.Controls.Add(this.lblAmount);
+            this.pnlFormFooter.Controls.Add(this.pnlLineBottom);
+            this.pnlFormFooter.Controls.Add(this.lblPagination);
+            this.pnlFormFooter.Controls.Add(this.bttPrintDate);
+            this.pnlFormFooter.Controls.Add(this.bttPreviousPage);
+            this.pnlFormFooter.Controls.Add(this.bttNextPage);
+            this.pnlFormFooter.CornerRadius = 10;
+            this.pnlFormFooter.Location = new System.Drawing.Point(40, 584);
+            this.pnlFormFooter.Name = "pnlFormFooter";
+            this.pnlFormFooter.Size = new System.Drawing.Size(1104, 64);
+            this.pnlFormFooter.TabIndex = 48;
             // 
             // lblAmount
             // 
@@ -186,13 +98,13 @@
             this.lblAmount.TabIndex = 61;
             this.lblAmount.Text = "0 registos encontrados";
             // 
-            // panel2
+            // pnlLineBottom
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.panel2.Location = new System.Drawing.Point(0, -10);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1104, 12);
-            this.panel2.TabIndex = 60;
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, -10);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineBottom.TabIndex = 60;
             // 
             // lblPagination
             // 
@@ -263,6 +175,22 @@
             this.bttNextPage.UseVisualStyleBackColor = false;
             this.bttNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
+            // pnlFormHeader
+            // 
+            this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormHeader.Controls.Add(this.dtpUntil);
+            this.pnlFormHeader.Controls.Add(this.dtpFrom);
+            this.pnlFormHeader.Controls.Add(this.pnlLineTop);
+            this.pnlFormHeader.Controls.Add(this.lblUntil);
+            this.pnlFormHeader.Controls.Add(this.lblFrom);
+            this.pnlFormHeader.Controls.Add(this.bttFilterDate);
+            this.pnlFormHeader.Controls.Add(this.lblTitle);
+            this.pnlFormHeader.CornerRadius = 10;
+            this.pnlFormHeader.Location = new System.Drawing.Point(40, 32);
+            this.pnlFormHeader.Name = "pnlFormHeader";
+            this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
+            this.pnlFormHeader.TabIndex = 47;
+            // 
             // dtpUntil
             // 
             this.dtpUntil.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -276,20 +204,92 @@
             this.dtpUntil.TabIndex = 62;
             this.dtpUntil.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // dtpFrom
+            // 
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFrom.Location = new System.Drawing.Point(544, 19);
+            this.dtpFrom.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
+            this.dtpFrom.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpFrom.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(192, 29);
+            this.dtpFrom.Style = MetroFramework.MetroColorStyle.Blue;
+            this.dtpFrom.TabIndex = 61;
+            this.dtpFrom.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // pnlLineTop
+            // 
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(0, 62);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineTop.TabIndex = 60;
+            // 
+            // lblUntil
+            // 
+            this.lblUntil.AutoSize = true;
+            this.lblUntil.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUntil.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblUntil.Location = new System.Drawing.Point(760, 24);
+            this.lblUntil.Name = "lblUntil";
+            this.lblUntil.Size = new System.Drawing.Size(44, 22);
+            this.lblUntil.TabIndex = 46;
+            this.lblUntil.Text = "Até";
+            // 
+            // lblFrom
+            // 
+            this.lblFrom.AutoSize = true;
+            this.lblFrom.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblFrom.Location = new System.Drawing.Point(504, 24);
+            this.lblFrom.Name = "lblFrom";
+            this.lblFrom.Size = new System.Drawing.Size(36, 22);
+            this.lblFrom.TabIndex = 45;
+            this.lblFrom.Text = "De";
+            // 
+            // bttFilterDate
+            // 
+            this.bttFilterDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.bttFilterDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bttFilterDate.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.bttFilterDate.BorderRadius = 5;
+            this.bttFilterDate.BorderSize = 0;
+            this.bttFilterDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttFilterDate.ForeColor = System.Drawing.Color.White;
+            this.bttFilterDate.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttsearchdate;
+            this.bttFilterDate.Location = new System.Drawing.Point(1048, 16);
+            this.bttFilterDate.Margin = new System.Windows.Forms.Padding(0);
+            this.bttFilterDate.Name = "bttFilterDate";
+            this.bttFilterDate.Size = new System.Drawing.Size(35, 35);
+            this.bttFilterDate.TabIndex = 10;
+            this.bttFilterDate.UseVisualStyleBackColor = false;
+            this.bttFilterDate.Click += new System.EventHandler(this.bttFilterDate_Click);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblTitle.Location = new System.Drawing.Point(24, 24);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(374, 26);
+            this.lblTitle.TabIndex = 11;
+            this.lblTitle.Text = "Listagem de Exemplares por Data";
+            // 
             // frmDateFromUntil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1155, 685);
-            this.Controls.Add(this.pnlFormBody);
+            this.Controls.Add(this.pnlFormFooter);
             this.Controls.Add(this.pnlFormHeader);
             this.Controls.Add(this.dgvDateListing);
             this.Name = "frmDateFromUntil";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDateListing)).EndInit();
+            this.pnlFormFooter.ResumeLayout(false);
+            this.pnlFormFooter.PerformLayout();
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
-            this.pnlFormBody.ResumeLayout(false);
-            this.pnlFormBody.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -297,18 +297,18 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvDateListing;
-        private System.Windows.Forms.Label lblListagem;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblUntil;
+        private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Label lblPagination;
         private controls.RoundedButton bttFilterDate;
         private controls.RoundedButton bttPrintDate;
         private controls.RoundedButton bttPreviousPage;
         private controls.RoundedButton bttNextPage;
         private RoundedPanel pnlFormHeader;
-        private RoundedPanelBottom pnlFormBody;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private RoundedPanelBottom pnlFormFooter;
+        private System.Windows.Forms.Panel pnlLineTop;
+        private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Label lblAmount;
         private MetroFramework.Controls.MetroDateTime dtpFrom;
         private MetroFramework.Controls.MetroDateTime dtpUntil;

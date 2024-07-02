@@ -1,6 +1,7 @@
 ﻿using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -18,6 +19,14 @@ namespace BIBLIOTECA_PROJETO.gui
         private int itemsPerPage = 11;
         private DataTable allData;
         private int libraryID;
+        private ThemeColors currentThemeColors;
+
+        private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
+        {
+            { 1, new ThemeColors(Color.FromArgb(252, 168, 183), Color.FromArgb(255, 102, 106), Color.FromArgb(121, 57, 59), Color.FromArgb(121, 57, 59)) },
+            { 2, new ThemeColors(Color.FromArgb(146, 211, 157), Color.FromArgb(71, 174, 88), Color.FromArgb(10, 97, 69), Color.FromArgb(10, 97, 69)) },
+            { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(56, 83, 117), Color.FromArgb(56, 83, 117)) }
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmFilteredListing"/> class.
@@ -28,6 +37,7 @@ namespace BIBLIOTECA_PROJETO.gui
             this.bookService = new BookGeneralListingService();
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
+            SetThemeColors();
         }
 
         #region Initialization
@@ -45,6 +55,31 @@ namespace BIBLIOTECA_PROJETO.gui
             this.cbxFilter.SelectedIndexChanged += cbxFilter_OnSelectedIndexChanged;
             this.bttAdvanced.Click += bttAdvanced_Click;
             this.bttAdvanced.Enabled = false; // Initially disable the button
+        }
+
+        #endregion
+
+        #region Theme Setting
+
+        private void SetThemeColors()
+        {
+            if (themeColors.TryGetValue(libraryID, out currentThemeColors))
+            {
+                bttAdvanced.BackColor = currentThemeColors.ButtonColor;
+                bttPrint.BackColor = currentThemeColors.ButtonColor;
+                bttPreviousPage.BackColor = currentThemeColors.ButtonColor;
+                bttNextPage.BackColor = currentThemeColors.ButtonColor;
+                lblPagination.ForeColor = currentThemeColors.LabelColor;
+                lblTitle.ForeColor = currentThemeColors.LabelColor;
+                lblSubtitle.ForeColor = currentThemeColors.LabelColor;
+                lblAmount.ForeColor = currentThemeColors.LabelColor;
+                cbxFilter.BackColor = currentThemeColors.PanelHeaderColor;
+                pnlFormHeader.BackColor = currentThemeColors.PanelHeaderColor;
+                pnlFormFooter.BackColor = currentThemeColors.PanelHeaderColor;
+                pnlLineTop.BackColor = currentThemeColors.LabelColor;
+                pnlLineBottom.BackColor = currentThemeColors.LabelColor;
+                dgvFilteredListing.BackgroundColor = currentThemeColors.PanelBodyColor;
+            }
         }
 
         #endregion
@@ -456,5 +491,20 @@ namespace BIBLIOTECA_PROJETO.gui
         }
 
         #endregion
+
+        private class ThemeColors
+        {
+            public Color ButtonColor { get; }
+            public Color PanelHeaderColor { get; }
+            public Color PanelBodyColor { get; }
+            public Color LabelColor { get; }
+            public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor)
+            {
+                PanelHeaderColor = panelHeaderColor;
+                PanelBodyColor = panelBodyColor;
+                LabelColor = labelColor;
+                ButtonColor = buttonColor;
+            }
+        }
     }
 }

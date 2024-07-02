@@ -14,7 +14,7 @@ namespace BIBLIOTECA_PROJETO.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                  T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                  B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                  B.VolumeNumber AS [Nº de Volume], B.Condition AS [Estado], B.Observations AS [Observações]

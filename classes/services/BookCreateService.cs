@@ -10,7 +10,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
 
-        public void SaveData(int registrationNumber, DateTime deliveryDate, string title, string author, string classification, string volumeNumber, string acquisitionMethod, string publisher, string observations, string condition, int libraryID)
+        public void SaveData(DateTime deliveryDate, string title, string author, string classification, string volumeNumber, string acquisitionMethod, string publisher, string observations, string condition, int libraryID)
         {
             try
             {
@@ -26,12 +26,15 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 if (titleID == -1)
                     titleID = CreateTitle(title, libraryID);
 
+                int registrationNumber = GetNextRegistrationNumber(libraryID);
+
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Books (ID, DeliveryDate, TitleID, AuthorID, ClassificationID, VolumeNumber, AcquisitionMethod, Publisher, Observations, Condition, LibraryID) VALUES (@id, @deliveryDate, @titleID, @authorID, @classificationID, @volumeNumber, @acquisitionMethod, @publisher, @observations, @condition, @libraryID)", conn))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Books (LibraryID, RegistrationNumber, DeliveryDate, TitleID, AuthorID, ClassificationID, VolumeNumber, AcquisitionMethod, Publisher, Observations, Condition) VALUES (@libraryID, @registrationNumber, @deliveryDate, @titleID, @authorID, @classificationID, @volumeNumber, @acquisitionMethod, @publisher, @observations, @condition)", conn))
                     {
-                        cmd.Parameters.AddWithValue("@id", registrationNumber);
+                        cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                        cmd.Parameters.AddWithValue("@registrationNumber", registrationNumber);
                         cmd.Parameters.AddWithValue("@deliveryDate", deliveryDate);
                         cmd.Parameters.AddWithValue("@titleID", titleID);
                         cmd.Parameters.AddWithValue("@authorID", authorID);
@@ -41,7 +44,6 @@ namespace BIBLIOTECA_PROJETO.classes.services
                         cmd.Parameters.AddWithValue("@publisher", publisher);
                         cmd.Parameters.AddWithValue("@observations", observations);
                         cmd.Parameters.AddWithValue("@condition", condition);
-                        cmd.Parameters.AddWithValue("@libraryID", libraryID);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -58,40 +60,29 @@ namespace BIBLIOTECA_PROJETO.classes.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Books WHERE ID = @id AND LibraryID = @LibraryID";
+                string query = "SELECT COUNT(*) FROM Books WHERE RegistrationNumber = @registrationNumber AND LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@id", registrationNumber);
-                    cmd.Parameters.AddWithValue("@LibraryID", libraryID);
+                    cmd.Parameters.AddWithValue("@registrationNumber", registrationNumber);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     return count > 0;
                 }
             }
         }
 
-        public int GetNextRegistrationNumber()
+        public int GetNextRegistrationNumber(int libraryID)
         {
-            int nextRegistrationNumber = 1;
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT ID FROM Books ORDER BY ID ASC ";
+                string query = "SELECT ISNULL(MAX(RegistrationNumber), 0) + 1 FROM Books WHERE LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int currentRegistrationNumber = reader.GetInt32(reader.GetOrdinal("ID"));
-                            if (currentRegistrationNumber == nextRegistrationNumber)
-                                nextRegistrationNumber++;
-                            else
-                                break;
-                        }
-                    }
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
-            return nextRegistrationNumber;
         }
 
         public int GetAuthorID(string authorName, int libraryID)
@@ -105,10 +96,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
                     cmd.Parameters.AddWithValue("@Name", authorName);
                     cmd.Parameters.AddWithValue("@LibraryID", libraryID);
                     object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return (int)result;
-                    else
-                        return -1;
+                    return result != null ? (int)result : -1;
                 }
             }
         }
@@ -123,11 +111,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 {
                     cmd.Parameters.AddWithValue("@Name", authorName);
                     cmd.Parameters.AddWithValue("@LibraryID", libraryID);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return Convert.ToInt32(result);
-                    else
-                        throw new Exception("Error creating author.");
+                    return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
         }
@@ -143,10 +127,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
                     cmd.Parameters.AddWithValue("@Classification", classificationName);
                     cmd.Parameters.AddWithValue("@LibraryID", libraryID);
                     object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return (int)result;
-                    else
-                        return -1;
+                    return result != null ? (int)result : -1;
                 }
             }
         }
@@ -161,11 +142,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 {
                     cmd.Parameters.AddWithValue("@Classification", classificationName);
                     cmd.Parameters.AddWithValue("@LibraryID", libraryID);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return Convert.ToInt32(result);
-                    else
-                        throw new Exception("Error creating classification.");
+                    return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
         }
@@ -181,10 +158,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
                     cmd.Parameters.AddWithValue("@Title", titleName);
                     cmd.Parameters.AddWithValue("@LibraryID", libraryID);
                     object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return (int)result;
-                    else
-                        return -1;
+                    return result != null ? (int)result : -1;
                 }
             }
         }
@@ -199,34 +173,8 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 {
                     cmd.Parameters.AddWithValue("@Title", titleName);
                     cmd.Parameters.AddWithValue("@LibraryID", libraryID);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        return Convert.ToInt32(result);
-                    else
-                        throw new Exception("Error creating title.");
+                    return Convert.ToInt32(cmd.ExecuteScalar());
                 }
-            }
-        }
-
-        public string GetNextId(int libraryID)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(this.connectionString))
-                {
-                    conn.Open();
-                    string query = "SELECT MAX(ID) + 1 FROM Books WHERE LibraryID = @LibraryID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@LibraryID", libraryID);
-                        object result = cmd.ExecuteScalar();
-                        return result != null ? result.ToString() : "1";
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception("An error occurred while fetching the next book ID: " + ex.Message);
             }
         }
 
