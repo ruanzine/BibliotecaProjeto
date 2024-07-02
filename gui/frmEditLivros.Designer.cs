@@ -295,6 +295,7 @@
             this.bttSave_Edit.BorderRadius = 5;
             this.bttSave_Edit.BorderSize = 0;
             this.bttSave_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttSave_Edit.Enabled = false;
             this.bttSave_Edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttSave_Edit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttSave_Edit.ForeColor = System.Drawing.Color.Transparent;
@@ -415,6 +416,7 @@
             this.bttDel.BorderRadius = 5;
             this.bttDel.BorderSize = 0;
             this.bttDel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttDel.Enabled = false;
             this.bttDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttDel.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttDel.ForeColor = System.Drawing.Color.Transparent;
@@ -438,6 +440,7 @@
             this.bttClear_Edit.BorderRadius = 5;
             this.bttClear_Edit.BorderSize = 0;
             this.bttClear_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttClear_Edit.Enabled = false;
             this.bttClear_Edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttClear_Edit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttClear_Edit.ForeColor = System.Drawing.Color.Transparent;

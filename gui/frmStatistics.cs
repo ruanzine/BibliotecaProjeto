@@ -18,14 +18,16 @@ namespace BIBLIOTECA_PROJETO.gui
         private const string ConsultaLocal = "Consulta local";
         private const string Exposicao = "Exposição";
         private const string Deposito = "Depósito";
+        private int libraryID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmStatistics"/> class.
         /// </summary>
-        public frmStatistics()
+        public frmStatistics(int selectedLibraryId)
         {
             InitializeComponent();
             _statisticsService = new BookStatisticsService();
+            this.libraryID = selectedLibraryId;
             LoadStatistics();
         }
 
@@ -36,18 +38,18 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             try
             {
-                SetLabelText(lblTotalBooks, "Total de Livros", _statisticsService.GetTotalBooksCount());
-                SetLabelText(lblTotalTitles, "Total de Títulos", _statisticsService.GetTotalTitlesCount());
-                SetLabelText(lblTotalAuthors, "Total de Autores", _statisticsService.GetTotalAuthorsCount());
-                SetLabelText(lblTotalCotas, "Total de Cotas", _statisticsService.GetTotalCotasCount());
+                SetLabelText(lblTotalBooks, "Total de Livros", _statisticsService.GetTotalBooksCount(libraryID));
+                SetLabelText(lblTotalTitles, "Total de Títulos", _statisticsService.GetTotalTitlesCount(libraryID));
+                SetLabelText(lblTotalAuthors, "Total de Autores", _statisticsService.GetTotalAuthorsCount(libraryID));
+                SetLabelText(lblTotalCotas, "Total de Cotas", _statisticsService.GetTotalClassificationsCount(libraryID));
 
-                SetLabelText(lblDisponivel, Disponivel, _statisticsService.GetBooksCountByEstado(Disponivel));
-                SetLabelText(lblIndisponivel, Indisponivel, _statisticsService.GetBooksCountByEstado(Indisponivel));
-                SetLabelText(lblAbatido, Abatido, _statisticsService.GetBooksCountByEstado(Abatido));
-                SetLabelText(lblPerdido, Perdido, _statisticsService.GetBooksCountByEstado(Perdido));
-                SetLabelText(lblConsultaLocal, ConsultaLocal, _statisticsService.GetBooksCountByEstado(ConsultaLocal));
-                SetLabelText(lblExposicao, Exposicao, _statisticsService.GetBooksCountByEstado(Exposicao));
-                SetLabelText(lblDeposito, Deposito, _statisticsService.GetBooksCountByEstado(Deposito));
+                SetLabelText(lblDisponivel, Disponivel, _statisticsService.GetBooksCountByCondition(Disponivel, libraryID));
+                SetLabelText(lblIndisponivel, Indisponivel, _statisticsService.GetBooksCountByCondition(Indisponivel, libraryID));
+                SetLabelText(lblAbatido, Abatido, _statisticsService.GetBooksCountByCondition(Abatido, libraryID));
+                SetLabelText(lblPerdido, Perdido, _statisticsService.GetBooksCountByCondition(Perdido, libraryID));
+                SetLabelText(lblConsultaLocal, ConsultaLocal, _statisticsService.GetBooksCountByCondition(ConsultaLocal, libraryID));
+                SetLabelText(lblExposicao, Exposicao, _statisticsService.GetBooksCountByCondition(Exposicao, libraryID));
+                SetLabelText(lblDeposito, Deposito, _statisticsService.GetBooksCountByCondition(Deposito, libraryID));
             }
             catch (Exception ex)
             {

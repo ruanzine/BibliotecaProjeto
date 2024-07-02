@@ -1,10 +1,9 @@
 ﻿using BIBLIOTECA_PROJETO.services;
-using BIBLIOTECA_PROJETO.controls;
 using ClosedXML.Excel;
+using MetroFramework.Controls;
 using System;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
@@ -19,15 +18,17 @@ namespace BIBLIOTECA_PROJETO.gui
         private int currentPage = 1;
         private int totalPages = 0;
         private DataTable allData;
+        private int libraryID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmDateFromUntil"/> class.
         /// </summary>
-        public frmDateFromUntil()
+        public frmDateFromUntil(int selectedLibraryId)
         {
             this.InitializeComponent();
             this.bookDateService = new BookDateListingService();
             InitializeEventHandlers();
+            this.libraryID = selectedLibraryId;
         }
 
         #region Initialization
@@ -79,15 +80,8 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void bttFilterDate_Click(object sender, EventArgs e)
         {
-            if (!ValidateTextBox(txtUntil, "a data de entrada do exemplar") ||
-                !ValidateTextBox(txtFrom, "a data de entrada do exemplar"))
-                return;
-
-            if (!DateTime.TryParse(txtFrom.Texts, out DateTime dataDe) || !DateTime.TryParse(txtUntil.Texts, out DateTime dataAte))
-            {
-                MessageBox.Show("Insira datas válidas nos campos De e Até.", "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            DateTime dataDe = dtpFrom.Value;
+            DateTime dataAte = dtpUntil.Value;
 
             if (dataDe > dataAte)
             {
@@ -114,15 +108,8 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             try
             {
-                if (!ValidateTextBox(txtUntil, "a data de entrada do exemplar") ||
-                    !ValidateTextBox(txtFrom, "a data de entrada do exemplar"))
-                    return;
-
-                if (!DateTime.TryParse(txtFrom.Texts, out DateTime dataDe) || !DateTime.TryParse(txtUntil.Texts, out DateTime dataAte))
-                {
-                    MessageBox.Show("Insira datas válidas nos campos De e Até.", "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                DateTime dataDe = dtpFrom.Value;
+                DateTime dataAte = dtpUntil.Value;
 
                 if (dataDe > dataAte)
                 {
@@ -130,7 +117,7 @@ namespace BIBLIOTECA_PROJETO.gui
                     return;
                 }
 
-                DataTable allBooksByDate = bookDateService.GetAllBooksByDate(dataDe, dataAte);
+                DataTable allBooksByDate = bookDateService.GetAllBooksByDate(dataDe, dataAte, libraryID);
 
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
@@ -193,15 +180,6 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
-        /// <summary>
-        /// Handles the KeyPress event to validate date input.
-        /// </summary>
-        private void txtFromUntil_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-        }
-
         #endregion
 
         #region Data Loading
@@ -213,7 +191,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <param name="dataAte">The end date.</param>
         private void LoadAllData(DateTime dataDe, DateTime dataAte)
         {
-            allData = bookDateService.GetAllBooksByDate(dataDe, dataAte);
+            allData = bookDateService.GetAllBooksByDate(dataDe, dataAte, libraryID);
 
             int totalCount = allData.Rows.Count;
             totalPages = (int)Math.Ceiling((double)totalCount / itemsPerPage);
@@ -272,36 +250,6 @@ namespace BIBLIOTECA_PROJETO.gui
         private void UpdatePaginationLabel()
         {
             lblPagination.Text = totalPages == 0 ? "Não há registos" : $"Página {currentPage} de {totalPages}";
-        }
-
-        #endregion
-
-        #region Validation
-
-        /// <summary>
-        /// Validates the TextBox input for date fields.
-        /// </summary>
-        /// <param name="textBox">The TextBox to validate.</param>
-        /// <param name="fieldName">The name of the field for error messages.</param>
-        /// <returns>true if the TextBox contains a valid date; otherwise, false.</returns>
-        private bool ValidateTextBox(UC_textbox textBox, string fieldName)
-        {
-            if (string.IsNullOrEmpty(textBox.Texts))
-            {
-                MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (textBox == txtFrom)
-            {
-                if (!DateTime.TryParseExact(textBox.Texts, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
-                {
-                    MessageBox.Show($"Por favor, insira {fieldName} no formato dd/MM/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         #endregion

@@ -15,25 +15,27 @@ namespace BIBLIOTECA_PROJETO.gui
     public partial class frmAddLivros : Form
     {
         MainForm mainForm = new MainForm();
-        private LivroService livroService = new LivroService();
+        private BookCreateService createService = new BookCreateService();
         private string id;
-        private ListBox listBoxSuggestionsTitulo;
-        private ListBox listBoxSuggestionsAutor;
+        private ListBox listBoxSuggestionsTitle;
+        private ListBox listBoxSuggestionsAuthor;
+        private int libraryID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmAddLivros"/> class.
         /// </summary>
-        public frmAddLivros()
+        public frmAddLivros(int selectedLibraryID) // Pass the library ID in the constructor
         {
             InitializeComponent();
             mainForm.AddControlBounds(this.pnlAddLivros);
             InitializeSuggestionListBoxes();
+            this.libraryID = selectedLibraryID; // Store the library ID
         }
 
         #region Initialization
 
         /// <summary>
-        /// Initializes the suggestion ListBox controls for Título and Autor.
+        /// Initializes the suggestion ListBox controls for Title and Author.
         /// </summary>
         private void InitializeSuggestionListBoxes()
         {
@@ -41,8 +43,8 @@ namespace BIBLIOTECA_PROJETO.gui
             int itemHeight = 30; // Define the item height
             Font itemFont = new Font("Arial", 12); // Define the item font
 
-            // Initialize ListBox for Título suggestions
-            listBoxSuggestionsTitulo = new ListBox
+            // Initialize ListBox for Title suggestions
+            listBoxSuggestionsTitle = new ListBox
             {
                 Visible = false,
                 DrawMode = DrawMode.OwnerDrawFixed,
@@ -51,12 +53,12 @@ namespace BIBLIOTECA_PROJETO.gui
                 Font = itemFont,
                 MaximumSize = new Size(txtTitulo.Width, maxHeight) // Set the maximum height
             };
-            listBoxSuggestionsTitulo.MouseClick += listBoxSuggestionsTitulo_MouseClick;
-            listBoxSuggestionsTitulo.DrawItem += listBoxSuggestions_DrawItem;
-            this.Controls.Add(listBoxSuggestionsTitulo);
+            listBoxSuggestionsTitle.MouseClick += listBoxSuggestionsTitle_MouseClick;
+            listBoxSuggestionsTitle.DrawItem += listBoxSuggestions_DrawItem;
+            this.Controls.Add(listBoxSuggestionsTitle);
 
-            // Initialize ListBox for Autor suggestions
-            listBoxSuggestionsAutor = new ListBox
+            // Initialize ListBox for Author suggestions
+            listBoxSuggestionsAuthor = new ListBox
             {
                 Visible = false,
                 DrawMode = DrawMode.OwnerDrawFixed,
@@ -65,9 +67,9 @@ namespace BIBLIOTECA_PROJETO.gui
                 Font = itemFont,
                 MaximumSize = new Size(txtAutor.Width, maxHeight) // Set the maximum height
             };
-            listBoxSuggestionsAutor.MouseClick += listBoxSuggestionsAutor_MouseClick;
-            listBoxSuggestionsAutor.DrawItem += listBoxSuggestions_DrawItem;
-            this.Controls.Add(listBoxSuggestionsAutor);
+            listBoxSuggestionsAuthor.MouseClick += listBoxSuggestionsAuthor_MouseClick;
+            listBoxSuggestionsAuthor.DrawItem += listBoxSuggestions_DrawItem;
+            this.Controls.Add(listBoxSuggestionsAuthor);
         }
 
         #endregion
@@ -85,35 +87,37 @@ namespace BIBLIOTECA_PROJETO.gui
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the Título TextBox to show suggestions.
+        /// Handles the TextChanged event of the Title TextBox to show suggestions.
         /// </summary>
         private void txtTitulo_TextChanged(object sender, EventArgs e)
         {
-            ShowSuggestions(txtTitulo, listBoxSuggestionsTitulo, livroService.GetTitlesBySearch);
+            // Use lambda expression to pass the correct delegate
+            ShowSuggestions(txtTitulo, listBoxSuggestionsTitle, searchText => createService.GetTitlesBySearch(searchText, this.libraryID));
         }
 
         /// <summary>
-        /// Handles the TextChanged event of the Autor TextBox to show suggestions.
+        /// Handles the TextChanged event of the Author TextBox to show suggestions.
         /// </summary>
         private void txtAutor_TextChanged(object sender, EventArgs e)
         {
-            ShowSuggestions(txtAutor, listBoxSuggestionsAutor, livroService.GetAuthorsBySearch);
+            // Use lambda expression to pass the correct delegate
+            ShowSuggestions(txtAutor, listBoxSuggestionsAuthor, searchText => createService.GetAuthorsBySearch(searchText, this.libraryID));
         }
 
         /// <summary>
-        /// Handles the MouseClick event of the Título suggestion ListBox to select a suggestion.
+        /// Handles the MouseClick event of the Title suggestion ListBox to select a suggestion.
         /// </summary>
-        private void listBoxSuggestionsTitulo_MouseClick(object sender, MouseEventArgs e)
+        private void listBoxSuggestionsTitle_MouseClick(object sender, MouseEventArgs e)
         {
-            SelectSuggestion(listBoxSuggestionsTitulo, txtTitulo);
+            SelectSuggestion(listBoxSuggestionsTitle, txtTitulo);
         }
 
         /// <summary>
-        /// Handles the MouseClick event of the Autor suggestion ListBox to select a suggestion.
+        /// Handles the MouseClick event of the Author suggestion ListBox to select a suggestion.
         /// </summary>
-        private void listBoxSuggestionsAutor_MouseClick(object sender, MouseEventArgs e)
+        private void listBoxSuggestionsAuthor_MouseClick(object sender, MouseEventArgs e)
         {
-            SelectSuggestion(listBoxSuggestionsAutor, txtAutor);
+            SelectSuggestion(listBoxSuggestionsAuthor, txtAutor);
         }
 
         /// <summary>
@@ -157,7 +161,7 @@ namespace BIBLIOTECA_PROJETO.gui
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the DataEntrega TextBox to validate date input.
+        /// Handles the KeyPress event of the DeliveryDate TextBox to validate date input.
         /// </summary>
         private void txtDataEntrega_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -165,7 +169,7 @@ namespace BIBLIOTECA_PROJETO.gui
         }
 
         /// <summary>
-        /// Handles the KeyPress event of the NRegisto TextBox to validate numeric input.
+        /// Handles the KeyPress event of the RegistrationNumber TextBox to validate numeric input.
         /// </summary>
         private void txtNRegisto_KeyPress_1(object sender, KeyPressEventArgs e)
         {
@@ -267,11 +271,11 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             try
             {
-                txtNRegisto.Texts = livroService.GetId(id);
+                txtNRegisto.Texts = createService.GetNextId(this.libraryID).ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao obter o ID do banco de dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while getting the next registration number from the database: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -282,34 +286,33 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             if (!ValidateFormFields()) return;
 
-            DateTime dataEntrega = DateTime.ParseExact(txtDataEntrega.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime deliveryDate = DateTime.ParseExact(txtDataEntrega.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            int nRegisto = int.Parse(txtNRegisto.Texts.Trim());
-            string titulo = txtTitulo.Texts.Trim();
-            string autor = txtAutor.Texts.Trim();
-            string cota = txtCota.Texts.Trim();
-            string nVolume = txtNVolume.Texts.Trim();
-            string aquisicao = cbxAquisicao.Text;
-            string editora = txtEditora.Texts.Trim();
-            string observacoes = txtObservacoes.Texts.Trim();
-            string estado = cbxEstado.Text;
+            int registrationNumber = int.Parse(txtNRegisto.Texts.Trim());
+            string title = txtTitulo.Texts.Trim();
+            string author = txtAutor.Texts.Trim();
+            string classification = txtCota.Texts.Trim();
+            string volumeNumber = txtNVolume.Texts.Trim();
+            string acquisitionMethod = cbxAquisicao.Text;
+            string publisher = txtEditora.Texts.Trim();
+            string observations = txtObservacoes.Texts.Trim();
+            string condition = cbxEstado.Text;
 
-            if (livroService.IsRegistrationNumberExists(nRegisto))
+            if (createService.IsRegistrationNumberExists(registrationNumber, this.libraryID))
             {
-                MessageBox.Show("O número de registo já está em uso. Por favor, escolha outro número.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The registration number is already in use. Please choose another number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            livroService.GetNextRegistrationNumber();
             try
             {
-                livroService.SaveData(nRegisto, dataEntrega, titulo, autor, cota, nVolume, aquisicao, editora, observacoes, estado);
-                MessageBox.Show("Exemplar adicionado com êxito", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.None);
-                txtNRegisto.Texts = (nRegisto + 1).ToString();
+                createService.SaveData(registrationNumber, deliveryDate, title, author, classification, volumeNumber, acquisitionMethod, publisher, observations, condition, libraryID);
+                MessageBox.Show("Book successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+                txtNRegisto.Texts = (registrationNumber + 1).ToString();
             }
             catch
             {
-                MessageBox.Show("Não foi possível registar o manual", "Falha", MessageBoxButtons.OK, MessageBoxIcon.None);
+                MessageBox.Show("Failed to register the book.", "Failure", MessageBoxButtons.OK, MessageBoxIcon.None);
             }
         }
 
@@ -319,15 +322,15 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <returns>true if all fields are valid; otherwise, false.</returns>
         private bool ValidateFormFields()
         {
-            return ValidateTextBox(txtNRegisto, "o número de registo do exemplar") &&
-                   ValidateTextBox(txtDataEntrega, "a data de entrada do exemplar") &&
-                   ValidateTextBox(txtTitulo, "o título do exemplar") &&
-                   ValidateTextBox(txtAutor, "o autor do exemplar") &&
-                   ValidateTextBox(txtCota, "a cota do exemplar") &&
-                   ValidateTextBox(txtNVolume, "o número de volume do exemplar") &&
-                   ValidateTextBox(txtEditora, "a editora do exemplar") &&
-                   ValidateComboBox(this.cbxAquisicao, "o método de aquisição do exemplar") &&
-                   ValidateComboBox(this.cbxEstado, "o estado do exemplar");
+            return ValidateTextBox(txtNRegisto, "the book registration number") &&
+                   ValidateTextBox(txtDataEntrega, "the book delivery date") &&
+                   ValidateTextBox(txtTitulo, "the book title") &&
+                   ValidateTextBox(txtAutor, "the book author") &&
+                   ValidateTextBox(txtCota, "the book classification") &&
+                   ValidateTextBox(txtNVolume, "the book volume number") &&
+                   ValidateTextBox(txtEditora, "the book publisher") &&
+                   ValidateComboBox(this.cbxAquisicao, "the book acquisition method") &&
+                   ValidateComboBox(this.cbxEstado, "the book condition");
         }
 
         /// <summary>
@@ -341,12 +344,12 @@ namespace BIBLIOTECA_PROJETO.gui
             string text = textBox.Texts?.Trim();
             if (string.IsNullOrEmpty(text))
             {
-                MessageBox.Show($"Por favor, introduza {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Please enter {fieldName}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (textBox == txtDataEntrega && !DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
             {
-                MessageBox.Show($"Por favor, introduza {fieldName} no formato dd/MM/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Please enter {fieldName} in the format dd/MM/yyyy.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -362,7 +365,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             if (comboBox.Text == "<Aquisição>" || comboBox.Text == "<Estado>")
             {
-                MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Please select {fieldName}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
