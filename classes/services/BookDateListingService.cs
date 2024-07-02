@@ -9,31 +9,36 @@ namespace BIBLIOTECA_PROJETO.services
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
 
-        public DataTable GetAllBooksByDate(DateTime dataDe, DateTime dataAte)
+        public DataTable GetAllBooksByDate(DateTime dateFrom, DateTime dateTo, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT L.ID AS [Nº], L.DataDeEntrega AS [Data de Entrada], " +
-                                                     "       T.TituloNome AS [Título], A.Nome AS Autor, C.Cota, " +
-                                                     "       L.Aquisicao AS [Aquisição], L.Editora AS [Editora], " +
-                                                     "       L.NumVolume AS [Nº de Volume], L.Estado, L.Observacoes AS [Observações]" +
-                                                     "FROM Livros L " +
-                                                     "INNER JOIN Titulos T ON T.ID = L.TituloID " +
-                                                     "INNER JOIN Cotas C ON C.ID = L.CotaID " +
-                                                     "INNER JOIN Autores A ON A.ID = L.AutorID " +
-                                                     "WHERE L.DataDeEntrega BETWEEN @DataDe AND @DataAte " +
-                                                     "ORDER BY L.DataDeEntrega", conn);
-                command.Parameters.AddWithValue("@DataDe", dataDe);
-                command.Parameters.AddWithValue("@DataAte", dataAte);
-                SqlDataReader reader = command.ExecuteReader();
+                string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                                 T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
+                                 B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
+                                 B.VolumeNumber AS [Nº de Volume], B.Condition AS [Estado], B.Observations AS [Observações]
+                                 FROM Books B
+                                 INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
+                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
+                                 INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                 WHERE B.DeliveryDate BETWEEN @DateFrom AND @DateTo
+                                 AND B.LibraryID = @LibraryID
+                                 ORDER BY B.DeliveryDate";
 
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader);
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@DateFrom", dateFrom);
+                    command.Parameters.AddWithValue("@DateTo", dateTo);
+                    command.Parameters.AddWithValue("@LibraryID", libraryID);
 
-                conn.Close();
-
-                return dataTable;
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(reader);
+                        return dataTable;
+                    }
+                }
             }
         }
     }

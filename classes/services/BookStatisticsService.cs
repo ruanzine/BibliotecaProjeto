@@ -9,70 +9,76 @@ namespace BIBLIOTECA_PROJETO.services
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
 
-        public int GetTotalBooksCount()
+        public int GetTotalBooksCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Livros";
+                string query = "SELECT COUNT(*) FROM Books WHERE LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     return (int)cmd.ExecuteScalar();
                 }
             }
         }
 
-        public int GetTotalTitlesCount()
+        public int GetTotalTitlesCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Titulos";
+                string query = "SELECT COUNT(*) FROM Titles WHERE LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     return (int)cmd.ExecuteScalar();
                 }
             }
         }
 
-        public int GetTotalAuthorsCount()
+        public int GetTotalAuthorsCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Autores";
+                string query = "SELECT COUNT(*) FROM Authors WHERE LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     return (int)cmd.ExecuteScalar();
                 }
             }
         }
 
-        public int GetTotalCotasCount()
+        public int GetTotalClassificationsCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Cotas";
+                string query = "SELECT COUNT(*) FROM Classifications WHERE LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    return (int)cmd.ExecuteScalar();
-                }
-            }
-        }
-        public int GetBooksCountByEstado(string estado)
-        {
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Livros WHERE Estado = @estado";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@estado", estado);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
                     return (int)cmd.ExecuteScalar();
                 }
             }
         }
 
+        public int GetBooksCountByCondition(string condition, int libraryID)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Books WHERE Condition = @condition AND LibraryID = @libraryID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@condition", condition);
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }

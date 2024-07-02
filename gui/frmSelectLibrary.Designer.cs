@@ -39,12 +39,13 @@
             this.bttOk.BorderRadius = 5;
             this.bttOk.BorderSize = 0;
             this.bttOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttOk.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttOk.ForeColor = System.Drawing.Color.White;
-            this.bttOk.Location = new System.Drawing.Point(344, 88);
+            this.bttOk.Location = new System.Drawing.Point(320, 104);
             this.bttOk.Name = "bttOk";
-            this.bttOk.Size = new System.Drawing.Size(75, 23);
+            this.bttOk.Size = new System.Drawing.Size(107, 32);
             this.bttOk.TabIndex = 1;
-            this.bttOk.Text = "OK";
+            this.bttOk.Text = "Confirmar";
             this.bttOk.UseVisualStyleBackColor = true;
             this.bttOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
@@ -52,7 +53,7 @@
             // 
             this.comboBoxLibraries.FormattingEnabled = true;
             this.comboBoxLibraries.ItemHeight = 23;
-            this.comboBoxLibraries.Location = new System.Drawing.Point(16, 24);
+            this.comboBoxLibraries.Location = new System.Drawing.Point(16, 56);
             this.comboBoxLibraries.Name = "comboBoxLibraries";
             this.comboBoxLibraries.Size = new System.Drawing.Size(408, 29);
             this.comboBoxLibraries.TabIndex = 2;
@@ -70,7 +71,6 @@
             this.MinimizeBox = false;
             this.Name = "frmSelectLibrary";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Select Library";
             this.ResumeLayout(false);
 
         }

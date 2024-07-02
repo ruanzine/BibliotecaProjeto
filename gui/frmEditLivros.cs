@@ -276,6 +276,9 @@ namespace BIBLIOTECA_PROJETO.gui
             this.cbxAquisicao_Edit.Enabled = true;
             this.txtNVolume_Edit.Enabled = true;
             this.txtObservacoes_Edit.Enabled = true;
+            this.bttClear_Edit.Enabled = true;
+            this.bttDel.Enabled = true;
+            this.bttSave_Edit.Enabled = true;
         }
 
         /// <summary>
@@ -293,6 +296,9 @@ namespace BIBLIOTECA_PROJETO.gui
             this.cbxAquisicao_Edit.Enabled = false;
             this.txtNVolume_Edit.Enabled = false;
             this.txtObservacoes_Edit.Enabled = false;
+            this.bttClear_Edit.Enabled = false;
+            this.bttDel.Enabled = false;
+            this.bttSave_Edit.Enabled = false;
             ClearText();
         }
 

@@ -18,6 +18,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private const int itemsPerPage = 11;
         private int totalPages = 0;
         private DataTable allData;
+        private int libraryID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmBookViewer"/> class.
@@ -27,6 +28,7 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeComponent();
             this.bookService = new BookSearchService();
             InitializeEventHandlers();
+            this.libraryID = selectedLibraryId;
         }
 
         #region Initialization
@@ -163,12 +165,12 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 allData = selectedOption switch
                 {
-                    "Número de Registo" => this.bookService.GetBooksByNumeroRegistro(int.Parse(searchText)),
-                    "Autor" => this.bookService.GetBooksByAutor(searchText),
-                    "Cota" => this.bookService.GetBooksByCota(searchText),
-                    "Título" => this.bookService.GetBooksByTitulo(searchText),
-                    "Estado" => this.bookService.GetBooksByEstado(searchText),
-                    _ => this.bookService.GetBooksByTitulo(searchText),
+                    "Número de Registo" => this.bookService.GetBooksByRegsiterNumber(int.Parse(searchText), libraryID),
+                    "Autor" => this.bookService.GetBooksByAuthor(searchText, libraryID),
+                    "Cota" => this.bookService.GetBooksByClassification(searchText, libraryID),
+                    "Título" => this.bookService.GetBooksByTitle(searchText, libraryID),
+                    "Estado" => this.bookService.GetBooksByCondition(searchText, libraryID),
+                    _ => this.bookService.GetBooksByTitle(searchText, libraryID),
                 };
 
                 int totalCount = allData.Rows.Count;
@@ -231,7 +233,7 @@ namespace BIBLIOTECA_PROJETO.gui
             dgvBook.Columns["Título"].Width = 270;
             dgvBook.Columns["Autor"].Width = 150;
             dgvBook.Columns["Cota"].Width = 130;
-            dgvBook.Columns["Nº de Volume"].Width = 45;
+            dgvBook.Columns["Nº. Vol"].Width = 45;
             dgvBook.Columns["Aquisição"].Width = 75;
             dgvBook.Columns["Observações"].Width = 200;
             dgvBook.Columns["Editora"].Width = 175;
@@ -242,7 +244,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
             dgvBook.Columns["Nº"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Data de Entrada"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvBook.Columns["Nº de Volume"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvBook.Columns["Nº. Vol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Cota"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Aquisição"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvBook.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -330,10 +332,10 @@ namespace BIBLIOTECA_PROJETO.gui
             return filter switch
             {
                 "Número de Registo" => throw new InvalidOperationException("Opção de filtro não suportada para impressão."),
-                "Autor" => this.bookService.GetBooksByAutor_Printing(searchText),
-                "Título" => this.bookService.GetBooksByTitulo_Printing(searchText),
-                "Cota" => this.bookService.GetBooksByCota_Printing(searchText),
-                "Estado" => this.bookService.GetBooksByEstado(searchText),
+                "Autor" => this.bookService.GetBooksByAuthor_Printing(searchText, libraryID),
+                "Título" => this.bookService.GetBooksByTitle_Printing(searchText, libraryID),
+                "Cota" => this.bookService.GetBooksByClassification_Printing(searchText, libraryID),
+                "Estado" => this.bookService.GetBooksByCondition(searchText, libraryID),
                 _ => null,
             };
         }

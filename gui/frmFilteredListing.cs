@@ -17,6 +17,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private int totalPages = 0;
         private int itemsPerPage = 11;
         private DataTable allData;
+        private int libraryID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmFilteredListing"/> class.
@@ -26,6 +27,7 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeComponent();
             this.bookService = new BookGeneralListingService();
             InitializeEventHandlers();
+            this.libraryID = selectedLibraryId;
         }
 
         #region Initialization
@@ -170,11 +172,11 @@ namespace BIBLIOTECA_PROJETO.gui
 
             allData = filter switch
             {
-                "Número de Registo" => bookService.GetAllBooks(),
-                "Autor" => bookService.GetAllAuthors(),
-                "Título" => bookService.GetAllTitles(),
-                "Cota" => bookService.GetAllCotas(),
-                "Estado" => bookService.GetAllEstados(),
+                "Número de Registo" => bookService.GetAllBooks(libraryID),
+                "Autor" => bookService.GetAllAuthors(libraryID),
+                "Título" => bookService.GetAllTitles(libraryID),
+                "Cota" => bookService.GetAllClassifications(libraryID),
+                "Estado" => bookService.GetAllConditions(libraryID),
                 _ => throw new ArgumentException("Filtro inválido no LoadAllData"),
             };
 
@@ -191,10 +193,10 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             allData = filter switch
             {
-                "Título" => bookService.GetBooksByTitle(value),
-                "Autor" => bookService.GetBooksByAuthor(value),
-                "Cota" => bookService.GetBooksByCota(value),
-                "Estado" => bookService.GetBooksByEstado(value),
+                "Título" => bookService.GetBooksByTitle(value, libraryID),
+                "Autor" => bookService.GetBooksByAuthor(value, libraryID),
+                "Cota" => bookService.GetBooksByClassification(value, libraryID),
+                "Estado" => bookService.GetBooksByCondition(value, libraryID),
                 _ => throw new ArgumentException("Não é possível filtrar por meio do número de registo"),
             };
         }
@@ -408,7 +410,7 @@ namespace BIBLIOTECA_PROJETO.gui
             dgvFilteredListing.Columns["Título"].Width = 225;
             dgvFilteredListing.Columns["Autor"].Width = 150;
             dgvFilteredListing.Columns["Cota"].Width = 130;
-            dgvFilteredListing.Columns["Nº de Volume"].Width = 52;
+            dgvFilteredListing.Columns["Nº. Vol"].Width = 52;
             dgvFilteredListing.Columns["Aquisição"].Width = 75;
             dgvFilteredListing.Columns["Observações"].Width = 200;
             dgvFilteredListing.Columns["Editora"].Width = 175;
@@ -447,7 +449,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             dgvFilteredListing.Columns["Nº"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvFilteredListing.Columns["Data de Entrada"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvFilteredListing.Columns["Nº de Volume"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvFilteredListing.Columns["Nº. Vol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvFilteredListing.Columns["Cota"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvFilteredListing.Columns["Aquisição"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvFilteredListing.Columns["Estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

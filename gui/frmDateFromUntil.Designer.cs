@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDateFromUntil));
             this.dgvDateListing = new System.Windows.Forms.DataGridView();
             this.pnlFormHeader = new RoundedPanel();
+            this.dtpFrom = new MetroFramework.Controls.MetroDateTime();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtUntil = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.bttFilterDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.txtFrom = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblListagem = new System.Windows.Forms.Label();
             this.pnlFormBody = new RoundedPanelBottom();
             this.lblAmount = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.bttPrintDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.dtpUntil = new MetroFramework.Controls.MetroDateTime();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDateListing)).BeginInit();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -56,8 +56,8 @@
             this.dgvDateListing.AllowUserToAddRows = false;
             this.dgvDateListing.AllowUserToDeleteRows = false;
             this.dgvDateListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDateListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvDateListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDateListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -75,18 +75,31 @@
             // pnlFormHeader
             // 
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormHeader.Controls.Add(this.dtpUntil);
+            this.pnlFormHeader.Controls.Add(this.dtpFrom);
             this.pnlFormHeader.Controls.Add(this.panel1);
             this.pnlFormHeader.Controls.Add(this.label2);
             this.pnlFormHeader.Controls.Add(this.label1);
-            this.pnlFormHeader.Controls.Add(this.txtUntil);
             this.pnlFormHeader.Controls.Add(this.bttFilterDate);
-            this.pnlFormHeader.Controls.Add(this.txtFrom);
             this.pnlFormHeader.Controls.Add(this.lblListagem);
             this.pnlFormHeader.CornerRadius = 10;
             this.pnlFormHeader.Location = new System.Drawing.Point(40, 32);
             this.pnlFormHeader.Name = "pnlFormHeader";
             this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
             this.pnlFormHeader.TabIndex = 47;
+            // 
+            // dtpFrom
+            // 
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFrom.Location = new System.Drawing.Point(544, 19);
+            this.dtpFrom.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
+            this.dtpFrom.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpFrom.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(192, 29);
+            this.dtpFrom.Style = MetroFramework.MetroColorStyle.Blue;
+            this.dtpFrom.TabIndex = 61;
+            this.dtpFrom.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // panel1
             // 
@@ -101,7 +114,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label2.Location = new System.Drawing.Point(864, 24);
+            this.label2.Location = new System.Drawing.Point(760, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 22);
             this.label2.TabIndex = 46;
@@ -112,31 +125,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label1.Location = new System.Drawing.Point(688, 24);
+            this.label1.Location = new System.Drawing.Point(504, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 22);
             this.label1.TabIndex = 45;
             this.label1.Text = "De";
-            // 
-            // txtUntil
-            // 
-            this.txtUntil.BackColor = System.Drawing.SystemColors.Window;
-            this.txtUntil.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.txtUntil.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
-            this.txtUntil.BorderSize = 2;
-            this.txtUntil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUntil.ForeColor = System.Drawing.Color.DimGray;
-            this.txtUntil.Location = new System.Drawing.Point(912, 19);
-            this.txtUntil.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUntil.Multiline = false;
-            this.txtUntil.Name = "txtUntil";
-            this.txtUntil.Padding = new System.Windows.Forms.Padding(7);
-            this.txtUntil.PasswordChar = false;
-            this.txtUntil.Size = new System.Drawing.Size(112, 31);
-            this.txtUntil.TabIndex = 44;
-            this.txtUntil.Texts = "";
-            this.txtUntil.UnderlinedStyle = true;
-            this.txtUntil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFromUntil_KeyPress);
             // 
             // bttFilterDate
             // 
@@ -155,26 +148,6 @@
             this.bttFilterDate.TabIndex = 10;
             this.bttFilterDate.UseVisualStyleBackColor = false;
             this.bttFilterDate.Click += new System.EventHandler(this.bttFilterDate_Click);
-            // 
-            // txtFrom
-            // 
-            this.txtFrom.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFrom.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.txtFrom.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
-            this.txtFrom.BorderSize = 2;
-            this.txtFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFrom.ForeColor = System.Drawing.Color.DimGray;
-            this.txtFrom.Location = new System.Drawing.Point(728, 19);
-            this.txtFrom.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFrom.Multiline = false;
-            this.txtFrom.Name = "txtFrom";
-            this.txtFrom.Padding = new System.Windows.Forms.Padding(7);
-            this.txtFrom.PasswordChar = false;
-            this.txtFrom.Size = new System.Drawing.Size(112, 31);
-            this.txtFrom.TabIndex = 43;
-            this.txtFrom.Texts = "";
-            this.txtFrom.UnderlinedStyle = true;
-            this.txtFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFromUntil_KeyPress);
             // 
             // lblListagem
             // 
@@ -290,6 +263,19 @@
             this.bttNextPage.UseVisualStyleBackColor = false;
             this.bttNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
+            // dtpUntil
+            // 
+            this.dtpUntil.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpUntil.Location = new System.Drawing.Point(816, 19);
+            this.dtpUntil.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
+            this.dtpUntil.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpUntil.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtpUntil.Name = "dtpUntil";
+            this.dtpUntil.Size = new System.Drawing.Size(192, 29);
+            this.dtpUntil.Style = MetroFramework.MetroColorStyle.Blue;
+            this.dtpUntil.TabIndex = 62;
+            this.dtpUntil.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // frmDateFromUntil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,9 +297,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvDateListing;
-        private controls.UC_textbox txtFrom;
         private System.Windows.Forms.Label lblListagem;
-        private controls.UC_textbox txtUntil;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPagination;
@@ -326,5 +310,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblAmount;
+        private MetroFramework.Controls.MetroDateTime dtpFrom;
+        private MetroFramework.Controls.MetroDateTime dtpUntil;
     }
 }
