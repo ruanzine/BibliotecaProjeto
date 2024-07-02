@@ -13,16 +13,16 @@ namespace BIBLIOTECA_PROJETO.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                  T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                  B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                  B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
                                  FROM Books B
-                                 INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
-                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
-                                 INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                 INNER JOIN Authors A ON B.AuthorID = A.ID
+                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID
+                                 INNER JOIN Titles T ON B.TitleID = T.ID
                                  WHERE B.LibraryID = @libraryID
-                                 ORDER BY B.ID";
+                                 ORDER BY B.RegistrationNumber";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@libraryID", libraryID);
@@ -43,7 +43,7 @@ namespace BIBLIOTECA_PROJETO.services
                 conn.Open();
                 string query = @"SELECT DISTINCT A.Name AS [Autor]
                                  FROM Authors A
-                                 INNER JOIN Books B ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
+                                 INNER JOIN Books B ON B.AuthorID = A.ID
                                  WHERE A.LibraryID = @libraryID
                                  ORDER BY A.Name";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -66,7 +66,7 @@ namespace BIBLIOTECA_PROJETO.services
                 conn.Open();
                 string query = @"SELECT DISTINCT T.TitleName AS [Título]
                                  FROM Titles T
-                                 INNER JOIN Books B ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                 INNER JOIN Books B ON B.TitleID = T.ID
                                  WHERE T.LibraryID = @libraryID
                                  ORDER BY T.TitleName";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -89,7 +89,7 @@ namespace BIBLIOTECA_PROJETO.services
                 conn.Open();
                 string query = @"SELECT DISTINCT C.Classification AS [Cota]
                                  FROM Classifications C
-                                 INNER JOIN Books B ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
+                                 INNER JOIN Books B ON B.ClassificationID = C.ID
                                  WHERE C.LibraryID = @libraryID
                                  ORDER BY C.Classification";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -110,9 +110,9 @@ namespace BIBLIOTECA_PROJETO.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = @"SELECT DISTINCT Condition AS [Estado]
-                                 FROM Books 
-                                 WHERE LibraryID = @libraryID";
+                string query = @"SELECT DISTINCT B.Condition AS [Estado]
+                                 FROM Books B
+                                 WHERE B.LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@libraryID", libraryID);
@@ -131,16 +131,16 @@ namespace BIBLIOTECA_PROJETO.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                  T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                  B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                  B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
                                  FROM Books B
-                                 INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
-                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
-                                 INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                 INNER JOIN Authors A ON B.AuthorID = A.ID
+                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID
+                                 INNER JOIN Titles T ON B.TitleID = T.ID
                                  WHERE T.TitleName = @title AND B.LibraryID = @libraryID
-                                 ORDER BY B.ID";
+                                 ORDER BY B.RegistrationNumber";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@title", title);
@@ -160,16 +160,16 @@ namespace BIBLIOTECA_PROJETO.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                  T.TitleName AS [Título], A.Name AS [Autor], C.Classification AS [Cota], 
                                  B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                  B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
                                  FROM Books B
-                                 INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
-                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
-                                 INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                 INNER JOIN Authors A ON B.AuthorID = A.ID
+                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID
+                                 INNER JOIN Titles T ON B.TitleID = T.ID
                                  WHERE A.Name = @author AND B.LibraryID = @libraryID
-                                 ORDER BY B.ID";
+                                 ORDER BY B.RegistrationNumber";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@author", author);
@@ -189,16 +189,16 @@ namespace BIBLIOTECA_PROJETO.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                  T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                  B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                  B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
                                  FROM Books B
-                                 INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
-                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
-                                 INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                 INNER JOIN Authors A ON B.AuthorID = A.ID
+                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID
+                                 INNER JOIN Titles T ON B.TitleID = T.ID
                                  WHERE C.Classification = @classification AND B.LibraryID = @libraryID
-                                 ORDER BY B.ID";
+                                 ORDER BY B.RegistrationNumber";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@classification", classification);
@@ -218,16 +218,16 @@ namespace BIBLIOTECA_PROJETO.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                  T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                  B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                  B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
                                  FROM Books B
-                                 INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
-                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
-                                 INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                                 INNER JOIN Authors A ON B.AuthorID = A.ID
+                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID
+                                 INNER JOIN Titles T ON B.TitleID = T.ID
                                  WHERE B.Condition = @condition AND B.LibraryID = @libraryID
-                                 ORDER BY B.ID";
+                                 ORDER BY B.RegistrationNumber";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@condition", condition);

@@ -91,7 +91,6 @@ namespace BIBLIOTECA_PROJETO.gui
             if (themeColors.TryGetValue(libraryID, out currentThemeColors))
             {
                 bttSave.BackColor = currentThemeColors.ButtonColor;
-                bttClear.BackColor = currentThemeColors.ButtonColor;
                 lblTitle.ForeColor = currentThemeColors.ButtonColor;
                 pnlFormFooter.BackColor = currentThemeColors.PanelHeaderColor;
                 pnlFormBody.BackColor = currentThemeColors.PanelBodyColor;
@@ -345,8 +344,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             if (!ValidateFormFields()) return;
 
-            DateTime deliveryDate = DateTime.ParseExact(txtDataEntrega.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
+            DateTime arrivalDate = dtpArrivalDate.Value;
             string title = txtTitulo.Texts.Trim();
             string author = txtAutor.Texts.Trim();
             string classification = txtCota.Texts.Trim();
@@ -358,7 +356,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
             try
             {
-                createService.SaveData(deliveryDate, title, author, classification, volumeNumber, acquisitionMethod, publisher, observations, condition, libraryID);
+                createService.SaveData(arrivalDate, title, author, classification, volumeNumber, acquisitionMethod, publisher, observations, condition, libraryID);
                 MessageBox.Show("Book successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
                 GetNRegisto();
             }
@@ -375,7 +373,6 @@ namespace BIBLIOTECA_PROJETO.gui
         private bool ValidateFormFields()
         {
             return ValidateTextBox(txtNRegisto, "the book registration number") &&
-                   ValidateTextBox(txtDataEntrega, "the book delivery date") &&
                    ValidateTextBox(txtTitulo, "the book title") &&
                    ValidateTextBox(txtAutor, "the book author") &&
                    ValidateTextBox(txtCota, "the book classification") &&
@@ -399,11 +396,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 MessageBox.Show($"Please enter {fieldName}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (textBox == txtDataEntrega && !DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
-            {
-                MessageBox.Show($"Please enter {fieldName} in the format dd/MM/yyyy.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            
             return true;
         }
 
@@ -428,7 +421,6 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ClearText()
         {
-            txtDataEntrega.Texts = "";
             txtAutor.Texts = "";
             txtTitulo.Texts = "";
             txtCota.Texts = "";

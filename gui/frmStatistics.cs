@@ -1,6 +1,10 @@
 ﻿using BIBLIOTECA_PROJETO.services;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Drawing;
+using BIBLIOTECA_PROJETO.controls;
+using System.Linq;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
@@ -19,6 +23,14 @@ namespace BIBLIOTECA_PROJETO.gui
         private const string Exposicao = "Exposição";
         private const string Deposito = "Depósito";
         private int libraryID;
+        private ThemeColors currentThemeColors;
+
+        private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
+        {
+            { 1, new ThemeColors(Color.FromArgb(252, 168, 183), Color.FromArgb(255, 102, 106), Color.FromArgb(64, 12, 3), Color.FromArgb(121, 57, 59), Color.FromArgb(64, 12, 3)) },
+            { 2, new ThemeColors(Color.FromArgb(146, 211, 157), Color.FromArgb(71, 174, 88), Color.FromArgb(6, 54, 49), Color.FromArgb(10, 97, 69), Color.FromArgb(6, 54, 49)) },
+            { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(23, 23, 55), Color.FromArgb(56, 83, 117), Color.FromArgb(33, 50, 88)) }
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmStatistics"/> class.
@@ -29,8 +41,50 @@ namespace BIBLIOTECA_PROJETO.gui
             _statisticsService = new BookStatisticsService();
             this.libraryID = selectedLibraryId;
             LoadStatistics();
+            SetThemeColors();
         }
 
+        #region Theme Setting
+
+        private void SetThemeColors()
+        {
+            if (themeColors.TryGetValue(libraryID, out currentThemeColors))
+            {
+                ApplyThemeToTextboxes(gpbLeft);
+                ApplyThemeToTextboxes(gpbRight);
+
+                lblTitle.ForeColor = currentThemeColors.ButtonColor;
+                pnlFormFooter.BackColor = currentThemeColors.PanelHeaderColor;
+                pnlFormBody.BackColor = currentThemeColors.PanelBodyColor;
+                pnlFormHeader.BackColor = currentThemeColors.PanelHeaderColor;
+                pnlLineBottom.BackColor = currentThemeColors.ButtonColor;
+                pnlLineTop.BackColor = currentThemeColors.ButtonColor;
+                lblCondition.ForeColor = currentThemeColors.LabelColor;
+                gpbLeft.BackColor = currentThemeColors.PanelBodyColor;
+                gpbRight.BackColor = currentThemeColors.PanelBodyColor;
+                gpbLeft.ForeColor = currentThemeColors.GroupBoxColor;
+                gpbRight.ForeColor = currentThemeColors.GroupBoxColor;
+
+                
+            }
+        }
+
+        #endregion
+
+        private void ApplyThemeToTextboxes(Control parent)
+        {
+            foreach (UC_textbox textBox in parent.Controls.OfType<UC_textbox>())
+            {
+                textBox.BorderColor = currentThemeColors.LabelColor;
+                textBox.BorderFocusColor = currentThemeColors.LabelColor;
+            }
+
+            foreach (Label label in parent.Controls.OfType<Label>())
+            {
+                label.ForeColor = currentThemeColors.LabelColor;
+                label.BackColor = currentThemeColors.PanelBodyColor;
+            }
+        }
         /// <summary>
         /// Loads the statistics data and updates the labels.
         /// </summary>
@@ -68,6 +122,23 @@ namespace BIBLIOTECA_PROJETO.gui
         private void SetLabelText(Label label, string labelText, int count)
         {
             label.Text = $"{labelText}: {count}";
+        }
+        private class ThemeColors
+        {
+            public Color ButtonColor { get; }
+            public Color PanelHeaderColor { get; }
+            public Color PanelBodyColor { get; }
+            public Color LabelColor { get; }
+            public Color GroupBoxColor { get; }
+
+            public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor, Color groupBoxColor)
+            {
+                PanelHeaderColor = panelHeaderColor;
+                PanelBodyColor = panelBodyColor;
+                LabelColor = labelColor;
+                ButtonColor = buttonColor;
+                GroupBoxColor = groupBoxColor;
+            }
         }
     }
 }

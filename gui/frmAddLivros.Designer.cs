@@ -38,7 +38,6 @@
             this.gpbTop = new RoundedGroupBox();
             this.lblRegNum = new System.Windows.Forms.Label();
             this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblArrivalDate = new System.Windows.Forms.Label();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.gpbBottom = new RoundedGroupBox();
@@ -61,6 +60,7 @@
             this.txtNVolume = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblObservations = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
+            this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.pnlAddLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -137,9 +137,9 @@
             // 
             this.gpbTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.gpbTop.BorderRadius = 5;
+            this.gpbTop.Controls.Add(this.dtpArrivalDate);
             this.gpbTop.Controls.Add(this.lblRegNum);
             this.gpbTop.Controls.Add(this.txtNRegisto);
-            this.gpbTop.Controls.Add(this.txtDataEntrega);
             this.gpbTop.Controls.Add(this.lblArrivalDate);
             this.gpbTop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.gpbTop.Location = new System.Drawing.Point(24, 40);
@@ -155,9 +155,9 @@
             this.lblRegNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblRegNum.Location = new System.Drawing.Point(16, 32);
             this.lblRegNum.Name = "lblRegNum";
-            this.lblRegNum.Size = new System.Drawing.Size(99, 17);
+            this.lblRegNum.Size = new System.Drawing.Size(82, 17);
             this.lblRegNum.TabIndex = 30;
-            this.lblRegNum.Text = "Nº. de Registo";
+            this.lblRegNum.Text = "Nº.  Registo";
             // 
             // txtNRegisto
             // 
@@ -167,7 +167,7 @@
             this.txtNRegisto.BorderSize = 2;
             this.txtNRegisto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNRegisto.ForeColor = System.Drawing.Color.DimGray;
-            this.txtNRegisto.Location = new System.Drawing.Point(120, 24);
+            this.txtNRegisto.Location = new System.Drawing.Point(112, 24);
             this.txtNRegisto.Margin = new System.Windows.Forms.Padding(4);
             this.txtNRegisto.Multiline = false;
             this.txtNRegisto.Name = "txtNRegisto";
@@ -179,32 +179,12 @@
             this.txtNRegisto.UnderlinedStyle = true;
             this.txtNRegisto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNRegisto_KeyPress_1);
             // 
-            // txtDataEntrega
-            // 
-            this.txtDataEntrega.BackColor = System.Drawing.SystemColors.Window;
-            this.txtDataEntrega.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.txtDataEntrega.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
-            this.txtDataEntrega.BorderSize = 2;
-            this.txtDataEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataEntrega.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDataEntrega.Location = new System.Drawing.Point(360, 24);
-            this.txtDataEntrega.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDataEntrega.Multiline = false;
-            this.txtDataEntrega.Name = "txtDataEntrega";
-            this.txtDataEntrega.Padding = new System.Windows.Forms.Padding(7);
-            this.txtDataEntrega.PasswordChar = false;
-            this.txtDataEntrega.Size = new System.Drawing.Size(80, 31);
-            this.txtDataEntrega.TabIndex = 28;
-            this.txtDataEntrega.Texts = "";
-            this.txtDataEntrega.UnderlinedStyle = true;
-            this.txtDataEntrega.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDataEntrega_KeyPress);
-            // 
             // lblArrivalDate
             // 
             this.lblArrivalDate.AutoSize = true;
             this.lblArrivalDate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrivalDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblArrivalDate.Location = new System.Drawing.Point(232, 32);
+            this.lblArrivalDate.Location = new System.Drawing.Point(192, 32);
             this.lblArrivalDate.Name = "lblArrivalDate";
             this.lblArrivalDate.Size = new System.Drawing.Size(117, 17);
             this.lblArrivalDate.TabIndex = 31;
@@ -246,7 +226,7 @@
             this.cbxAquisicao.Items.AddRange(new object[] {
             "Compra",
             "Oferta"});
-            this.cbxAquisicao.Location = new System.Drawing.Point(120, 136);
+            this.cbxAquisicao.Location = new System.Drawing.Point(112, 136);
             this.cbxAquisicao.Name = "cbxAquisicao";
             this.cbxAquisicao.Size = new System.Drawing.Size(192, 29);
             this.cbxAquisicao.TabIndex = 61;
@@ -258,7 +238,7 @@
             this.lblAcquisition.AutoSize = true;
             this.lblAcquisition.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAcquisition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblAcquisition.Location = new System.Drawing.Point(37, 144);
+            this.lblAcquisition.Location = new System.Drawing.Point(32, 144);
             this.lblAcquisition.Name = "lblAcquisition";
             this.lblAcquisition.Size = new System.Drawing.Size(71, 17);
             this.lblAcquisition.TabIndex = 47;
@@ -269,7 +249,7 @@
             this.lblPublisher.AutoSize = true;
             this.lblPublisher.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPublisher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblPublisher.Location = new System.Drawing.Point(54, 200);
+            this.lblPublisher.Location = new System.Drawing.Point(48, 200);
             this.lblPublisher.Name = "lblPublisher";
             this.lblPublisher.Size = new System.Drawing.Size(54, 17);
             this.lblPublisher.TabIndex = 48;
@@ -283,7 +263,7 @@
             this.txtEditora.BorderSize = 2;
             this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEditora.ForeColor = System.Drawing.Color.DimGray;
-            this.txtEditora.Location = new System.Drawing.Point(120, 192);
+            this.txtEditora.Location = new System.Drawing.Point(112, 192);
             this.txtEditora.Margin = new System.Windows.Forms.Padding(4);
             this.txtEditora.Multiline = false;
             this.txtEditora.Name = "txtEditora";
@@ -302,7 +282,7 @@
             this.txtAutor.BorderSize = 2;
             this.txtAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAutor.ForeColor = System.Drawing.Color.DimGray;
-            this.txtAutor.Location = new System.Drawing.Point(120, 80);
+            this.txtAutor.Location = new System.Drawing.Point(112, 80);
             this.txtAutor.Margin = new System.Windows.Forms.Padding(4);
             this.txtAutor.Multiline = false;
             this.txtAutor.Name = "txtAutor";
@@ -321,7 +301,7 @@
             this.txtTitulo.BorderSize = 2;
             this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo.ForeColor = System.Drawing.Color.DimGray;
-            this.txtTitulo.Location = new System.Drawing.Point(120, 24);
+            this.txtTitulo.Location = new System.Drawing.Point(112, 24);
             this.txtTitulo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTitulo.Multiline = false;
             this.txtTitulo.Name = "txtTitulo";
@@ -337,7 +317,7 @@
             this.lblAuthor.AutoSize = true;
             this.lblAuthor.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblAuthor.Location = new System.Drawing.Point(65, 88);
+            this.lblAuthor.Location = new System.Drawing.Point(56, 88);
             this.lblAuthor.Name = "lblAuthor";
             this.lblAuthor.Size = new System.Drawing.Size(43, 17);
             this.lblAuthor.TabIndex = 32;
@@ -348,7 +328,7 @@
             this.lblTitleBody.AutoSize = true;
             this.lblTitleBody.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitleBody.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblTitleBody.Location = new System.Drawing.Point(64, 32);
+            this.lblTitleBody.Location = new System.Drawing.Point(56, 32);
             this.lblTitleBody.Name = "lblTitleBody";
             this.lblTitleBody.Size = new System.Drawing.Size(41, 17);
             this.lblTitleBody.TabIndex = 33;
@@ -545,6 +525,19 @@
             this.txtObservacoes.Texts = "";
             this.txtObservacoes.UnderlinedStyle = true;
             // 
+            // dtpArrivalDate
+            // 
+            this.dtpArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpArrivalDate.Location = new System.Drawing.Point(312, 24);
+            this.dtpArrivalDate.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtpArrivalDate.Name = "dtpArrivalDate";
+            this.dtpArrivalDate.Size = new System.Drawing.Size(120, 29);
+            this.dtpArrivalDate.Style = MetroFramework.MetroColorStyle.Blue;
+            this.dtpArrivalDate.TabIndex = 62;
+            this.dtpArrivalDate.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // frmAddLivros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -582,7 +575,6 @@
         private System.Windows.Forms.Label lblTitleBody;
         private System.Windows.Forms.Label lblRegNum;
         private controls.UC_textbox txtNRegisto;
-        private controls.UC_textbox txtDataEntrega;
         private System.Windows.Forms.Label lblArrivalDate;
         private RoundedGroupBox gpbRight;
         private RoundedGroupBox gpbBottom;
@@ -601,5 +593,6 @@
         private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Panel pnlLineTop;
         private controls.RoundedButton bttClear;
+        private MetroFramework.Controls.MetroDateTime dtpArrivalDate;
     }
 }

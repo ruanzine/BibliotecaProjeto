@@ -17,7 +17,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
@@ -25,8 +25,8 @@ namespace BIBLIOTECA_PROJETO.services
                                      INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
                                      INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
                                      INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
-                                     WHERE B.ID = @ID AND B.LibraryID = @LibraryID
-                                     ORDER BY B.ID";
+                                     WHERE B.RegistrationNumber = @ID AND B.LibraryID = @LibraryID
+                                     ORDER BY B.RegistrationNumber";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -56,7 +56,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
@@ -65,7 +65,7 @@ namespace BIBLIOTECA_PROJETO.services
                                      INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
                                      INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
                                      WHERE A.Name LIKE @autor AND B.LibraryID = @LibraryID
-                                     ORDER BY B.ID";
+                                     ORDER BY B.RegistrationNumber";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -95,7 +95,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
@@ -104,7 +104,7 @@ namespace BIBLIOTECA_PROJETO.services
                                      INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
                                      INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
                                      WHERE T.TitleName LIKE @titulo AND B.LibraryID = @LibraryID
-                                     ORDER BY B.ID";
+                                     ORDER BY B.RegistrationNumber";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -134,7 +134,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
@@ -143,7 +143,7 @@ namespace BIBLIOTECA_PROJETO.services
                                      INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
                                      INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
                                      WHERE C.Classification LIKE @classification AND B.LibraryID = @LibraryID
-                                     ORDER BY B.ID";
+                                     ORDER BY B.RegistrationNumber";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -173,7 +173,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
@@ -182,7 +182,7 @@ namespace BIBLIOTECA_PROJETO.services
                                      INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
                                      INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
                                      WHERE B.Condition LIKE @condition AND B.LibraryID = @LibraryID
-                                     ORDER BY B.ID";
+                                     ORDER BY B.RegistrationNumber";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -214,7 +214,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
@@ -252,7 +252,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
@@ -290,7 +290,7 @@ namespace BIBLIOTECA_PROJETO.services
                 {
                     conn.Open();
 
-                    string query = @"SELECT B.ID AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
                                      T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
                                      B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
                                      B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
