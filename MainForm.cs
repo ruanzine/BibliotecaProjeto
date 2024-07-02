@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO
@@ -13,6 +14,14 @@ namespace BIBLIOTECA_PROJETO
         private Form _loadForms;
         private Button _selectedButton;
         private int selectedLibraryID;
+        private ThemeColors currentThemeColors;
+
+        private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
+        {
+            { 1, new ThemeColors(Color.FromArgb(121, 57, 59), Color.FromArgb(255, 102, 106), Color.FromArgb(121, 57, 59), Color.FromArgb(100, 12, 3), Color.FromArgb(243, 239, 240), Color.FromArgb(100, 12, 3)) },
+            { 2, new ThemeColors(Color.FromArgb(18, 96, 68), Color.FromArgb(40, 190, 124), Color.FromArgb(18, 96, 68), Color.FromArgb(6, 64, 49), Color.FromArgb(243, 239, 240), Color.FromArgb(6, 54, 49)) },
+            { 3, new ThemeColors(Color.FromArgb(58, 84, 115), Color.FromArgb(108, 166, 224), Color.FromArgb(58, 84, 115), Color.FromArgb(33, 50, 88), Color.FromArgb(243, 239, 240), Color.FromArgb(33, 50, 88)) }
+        };
 
         public MainForm()
         {
@@ -23,6 +32,7 @@ namespace BIBLIOTECA_PROJETO
         private void MainForm_Load(object sender, EventArgs e)
         {
             SelectLibrary(); // Show the library selection popup here
+            SetThemeColors();
             SetSelectedButton(bttSearch);
             LoadViewLivros();
         }
@@ -39,6 +49,30 @@ namespace BIBLIOTECA_PROJETO
                 {
                     // Close the application if no library is selected
                     Application.Exit();
+                }
+            }
+        }
+
+        private void SetThemeColors()
+        {
+            if (themeColors.TryGetValue(selectedLibraryID, out currentThemeColors))
+            {
+                foreach (Button button in pnlMenu.Controls.OfType<Button>())
+                {
+                    button.BackColor = currentThemeColors.ButtonColor;
+                    button.FlatAppearance.MouseOverBackColor = ControlPaint.Light(currentThemeColors.ButtonColor);
+                    button.FlatAppearance.MouseDownBackColor = ControlPaint.Dark(currentThemeColors.ButtonColor);
+                }
+
+                pnlMenu.BackColor = currentThemeColors.PanelColor;
+                picLogo.BackColor = currentThemeColors.PanelColor;
+                pnlHeader.BackColor = currentThemeColors.PanelHeaderColor;
+                lblLibraryName.ForeColor = currentThemeColors.LabelLibraryColor;
+                lblTitle.ForeColor = currentThemeColors.LabelTitleColor;
+
+                if (_selectedButton != null)
+                {
+                    _selectedButton.BackColor = currentThemeColors.SelectedButtonColor;
                 }
             }
         }
@@ -95,10 +129,10 @@ namespace BIBLIOTECA_PROJETO
         {
             if (_selectedButton != null)
             {
-                _selectedButton.BackColor = Color.FromArgb(56, 83, 117); // Original color
+                _selectedButton.BackColor = currentThemeColors.ButtonColor;
             }
             _selectedButton = button;
-            _selectedButton.BackColor = Color.FromArgb(33, 50, 88); // Color to show it's been selected
+            _selectedButton.BackColor = currentThemeColors.SelectedButtonColor; // Color to show it's been selected
         }
 
         private void bttNew_Click(object sender, EventArgs e)
@@ -154,6 +188,26 @@ namespace BIBLIOTECA_PROJETO
             // Aceitar apenas números e teclas de controle (Backspace, Delete, etc.)
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
+        }
+
+        private class ThemeColors
+        {
+            public Color ButtonColor { get; }
+            public Color PanelHeaderColor { get; }
+            public Color PanelColor { get; }
+            public Color LabelLibraryColor { get; }
+            public Color LabelTitleColor { get; }
+            public Color SelectedButtonColor { get; }
+
+            public ThemeColors(Color buttonColor, Color panelHeaderColor, Color panelColor, Color labelLibraryColor, Color labelTitleColor, Color selectedButtonColor)
+            {
+                ButtonColor = buttonColor;
+                PanelHeaderColor = panelHeaderColor;
+                PanelColor = panelColor;
+                LabelLibraryColor = labelLibraryColor;
+                LabelTitleColor = labelTitleColor;
+                SelectedButtonColor = selectedButtonColor;
+            }
         }
     }
 }

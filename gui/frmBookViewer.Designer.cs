@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookViewer));
             this.dgvBook = new System.Windows.Forms.DataGridView();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pnlFormBody = new RoundedPanelBottom();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlFormFooter = new RoundedPanelBottom();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
-            this.bttPrint_Search = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.btnPrint_Search = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.btnPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.btnNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.txtSearch_DGV = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSubTitle_2 = new System.Windows.Forms.Label();
+            this.lblSubTitle_1 = new System.Windows.Forms.Label();
             this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
-            this.lblListagem = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            this.pnlFormBody.SuspendLayout();
+            this.pnlFormFooter.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,8 +58,8 @@
             this.dgvBook.AllowUserToAddRows = false;
             this.dgvBook.AllowUserToDeleteRows = false;
             this.dgvBook.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBook.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvBook.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -79,28 +79,28 @@
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
-            // pnlFormBody
+            // pnlFormFooter
             // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
-            this.pnlFormBody.Controls.Add(this.panel1);
-            this.pnlFormBody.Controls.Add(this.lblPagination);
-            this.pnlFormBody.Controls.Add(this.lblAmount);
-            this.pnlFormBody.Controls.Add(this.bttPrint_Search);
-            this.pnlFormBody.Controls.Add(this.bttPreviousPage);
-            this.pnlFormBody.Controls.Add(this.bttNextPage);
-            this.pnlFormBody.CornerRadius = 10;
-            this.pnlFormBody.Location = new System.Drawing.Point(40, 584);
-            this.pnlFormBody.Name = "pnlFormBody";
-            this.pnlFormBody.Size = new System.Drawing.Size(1104, 64);
-            this.pnlFormBody.TabIndex = 44;
+            this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
+            this.pnlFormFooter.Controls.Add(this.pnlLineBottom);
+            this.pnlFormFooter.Controls.Add(this.lblPagination);
+            this.pnlFormFooter.Controls.Add(this.lblAmount);
+            this.pnlFormFooter.Controls.Add(this.btnPrint_Search);
+            this.pnlFormFooter.Controls.Add(this.btnPreviousPage);
+            this.pnlFormFooter.Controls.Add(this.btnNextPage);
+            this.pnlFormFooter.CornerRadius = 10;
+            this.pnlFormFooter.Location = new System.Drawing.Point(40, 584);
+            this.pnlFormFooter.Name = "pnlFormFooter";
+            this.pnlFormFooter.Size = new System.Drawing.Size(1104, 64);
+            this.pnlFormFooter.TabIndex = 44;
             // 
-            // panel1
+            // pnlLineBottom
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.panel1.Location = new System.Drawing.Point(0, -10);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1104, 12);
-            this.panel1.TabIndex = 52;
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, -10);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineBottom.TabIndex = 52;
             // 
             // lblPagination
             // 
@@ -123,69 +123,69 @@
             this.lblAmount.TabIndex = 53;
             this.lblAmount.Text = "0 registos encontrados";
             // 
-            // bttPrint_Search
+            // btnPrint_Search
             // 
-            this.bttPrint_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.bttPrint_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bttPrint_Search.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttPrint_Search.BorderRadius = 5;
-            this.bttPrint_Search.BorderSize = 0;
-            this.bttPrint_Search.FlatAppearance.BorderSize = 0;
-            this.bttPrint_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttPrint_Search.ForeColor = System.Drawing.Color.White;
-            this.bttPrint_Search.Image = ((System.Drawing.Image)(resources.GetObject("bttPrint_Search.Image")));
-            this.bttPrint_Search.Location = new System.Drawing.Point(16, 16);
-            this.bttPrint_Search.Margin = new System.Windows.Forms.Padding(0);
-            this.bttPrint_Search.Name = "bttPrint_Search";
-            this.bttPrint_Search.Size = new System.Drawing.Size(35, 35);
-            this.bttPrint_Search.TabIndex = 45;
-            this.bttPrint_Search.UseVisualStyleBackColor = false;
+            this.btnPrint_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.btnPrint_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint_Search.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnPrint_Search.BorderRadius = 5;
+            this.btnPrint_Search.BorderSize = 0;
+            this.btnPrint_Search.FlatAppearance.BorderSize = 0;
+            this.btnPrint_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint_Search.ForeColor = System.Drawing.Color.White;
+            this.btnPrint_Search.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint_Search.Image")));
+            this.btnPrint_Search.Location = new System.Drawing.Point(16, 16);
+            this.btnPrint_Search.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrint_Search.Name = "btnPrint_Search";
+            this.btnPrint_Search.Size = new System.Drawing.Size(35, 35);
+            this.btnPrint_Search.TabIndex = 45;
+            this.btnPrint_Search.UseVisualStyleBackColor = false;
             // 
-            // bttPreviousPage
+            // btnPreviousPage
             // 
-            this.bttPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.bttPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bttPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttPreviousPage.BorderRadius = 5;
-            this.bttPreviousPage.BorderSize = 0;
-            this.bttPreviousPage.FlatAppearance.BorderSize = 0;
-            this.bttPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttPreviousPage.ForeColor = System.Drawing.Color.White;
-            this.bttPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("bttPreviousPage.Image")));
-            this.bttPreviousPage.Location = new System.Drawing.Point(984, 16);
-            this.bttPreviousPage.Margin = new System.Windows.Forms.Padding(0);
-            this.bttPreviousPage.Name = "bttPreviousPage";
-            this.bttPreviousPage.Size = new System.Drawing.Size(35, 35);
-            this.bttPreviousPage.TabIndex = 44;
-            this.bttPreviousPage.UseVisualStyleBackColor = false;
+            this.btnPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.btnPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnPreviousPage.BorderRadius = 5;
+            this.btnPreviousPage.BorderSize = 0;
+            this.btnPreviousPage.FlatAppearance.BorderSize = 0;
+            this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreviousPage.ForeColor = System.Drawing.Color.White;
+            this.btnPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPage.Image")));
+            this.btnPreviousPage.Location = new System.Drawing.Point(984, 16);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(35, 35);
+            this.btnPreviousPage.TabIndex = 44;
+            this.btnPreviousPage.UseVisualStyleBackColor = false;
             // 
-            // bttNextPage
+            // btnNextPage
             // 
-            this.bttNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.bttNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bttNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttNextPage.BorderRadius = 5;
-            this.bttNextPage.BorderSize = 0;
-            this.bttNextPage.FlatAppearance.BorderSize = 0;
-            this.bttNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttNextPage.ForeColor = System.Drawing.Color.White;
-            this.bttNextPage.Image = ((System.Drawing.Image)(resources.GetObject("bttNextPage.Image")));
-            this.bttNextPage.Location = new System.Drawing.Point(1040, 16);
-            this.bttNextPage.Margin = new System.Windows.Forms.Padding(0);
-            this.bttNextPage.Name = "bttNextPage";
-            this.bttNextPage.Size = new System.Drawing.Size(35, 35);
-            this.bttNextPage.TabIndex = 10;
-            this.bttNextPage.UseVisualStyleBackColor = false;
+            this.btnNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.btnNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnNextPage.BorderRadius = 5;
+            this.btnNextPage.BorderSize = 0;
+            this.btnNextPage.FlatAppearance.BorderSize = 0;
+            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextPage.ForeColor = System.Drawing.Color.White;
+            this.btnNextPage.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPage.Image")));
+            this.btnNextPage.Location = new System.Drawing.Point(1040, 16);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(35, 35);
+            this.btnNextPage.TabIndex = 10;
+            this.btnNextPage.UseVisualStyleBackColor = false;
             // 
             // pnlFormHeader
             // 
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormHeader.Controls.Add(this.pnlLineTop);
             this.pnlFormHeader.Controls.Add(this.txtSearch_DGV);
-            this.pnlFormHeader.Controls.Add(this.label2);
-            this.pnlFormHeader.Controls.Add(this.label1);
+            this.pnlFormHeader.Controls.Add(this.lblSubTitle_2);
+            this.pnlFormHeader.Controls.Add(this.lblSubTitle_1);
             this.pnlFormHeader.Controls.Add(this.cbxFilter_DGV);
-            this.pnlFormHeader.Controls.Add(this.lblListagem);
+            this.pnlFormHeader.Controls.Add(this.lblTitle);
             this.pnlFormHeader.CornerRadius = 10;
             this.pnlFormHeader.Location = new System.Drawing.Point(40, 32);
             this.pnlFormHeader.Name = "pnlFormHeader";
@@ -221,27 +221,27 @@
             this.txtSearch_DGV._TextChanged += new System.EventHandler(this.txtSearch_DGV__TextChanged);
             this.txtSearch_DGV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_DGV_KeyPress);
             // 
-            // label2
+            // lblSubTitle_2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label2.Location = new System.Drawing.Point(748, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 23);
-            this.label2.TabIndex = 47;
-            this.label2.Text = "Procurar ";
+            this.lblSubTitle_2.AutoSize = true;
+            this.lblSubTitle_2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTitle_2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblSubTitle_2.Location = new System.Drawing.Point(748, 21);
+            this.lblSubTitle_2.Name = "lblSubTitle_2";
+            this.lblSubTitle_2.Size = new System.Drawing.Size(92, 23);
+            this.lblSubTitle_2.TabIndex = 47;
+            this.lblSubTitle_2.Text = "Procurar ";
             // 
-            // label1
+            // lblSubTitle_1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.label1.Location = new System.Drawing.Point(480, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 23);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Filtro";
+            this.lblSubTitle_1.AutoSize = true;
+            this.lblSubTitle_1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTitle_1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblSubTitle_1.Location = new System.Drawing.Point(480, 22);
+            this.lblSubTitle_1.Name = "lblSubTitle_1";
+            this.lblSubTitle_1.Size = new System.Drawing.Size(53, 23);
+            this.lblSubTitle_1.TabIndex = 46;
+            this.lblSubTitle_1.Text = "Filtro";
             // 
             // cbxFilter_DGV
             // 
@@ -260,16 +260,16 @@
             this.cbxFilter_DGV.UseSelectable = true;
             this.cbxFilter_DGV.SelectedIndexChanged += new System.EventHandler(this.cbxFilter_DGV_OnSelectedIndexChanged);
             // 
-            // lblListagem
+            // lblTitle
             // 
-            this.lblListagem.AutoSize = true;
-            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.lblListagem.Location = new System.Drawing.Point(24, 22);
-            this.lblListagem.Name = "lblListagem";
-            this.lblListagem.Size = new System.Drawing.Size(271, 26);
-            this.lblListagem.TabIndex = 11;
-            this.lblListagem.Text = "Pesquisa de Exemplares";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblTitle.Location = new System.Drawing.Point(24, 22);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(271, 26);
+            this.lblTitle.TabIndex = 11;
+            this.lblTitle.Text = "Pesquisa de Exemplares";
             // 
             // frmBookViewer
             // 
@@ -277,14 +277,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1155, 685);
             this.Controls.Add(this.dgvBook);
-            this.Controls.Add(this.pnlFormBody);
+            this.Controls.Add(this.pnlFormFooter);
             this.Controls.Add(this.pnlFormHeader);
             this.Name = "frmBookViewer";
             this.Load += new System.EventHandler(this.frmBookViewer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.pnlFormBody.ResumeLayout(false);
-            this.pnlFormBody.PerformLayout();
+            this.pnlFormFooter.ResumeLayout(false);
+            this.pnlFormFooter.PerformLayout();
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
             this.ResumeLayout(false);
@@ -292,20 +292,20 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label lblListagem;
+        private System.Windows.Forms.Label lblTitle;
         private controls.UC_textbox txtSearch_DGV;
         private System.Windows.Forms.DataGridView dgvBook;
         private System.Windows.Forms.Label lblPagination;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private controls.RoundedButton bttPreviousPage;
-        private controls.RoundedButton bttPrint_Search;
-        private controls.RoundedButton bttNextPage;
+        private controls.RoundedButton btnPreviousPage;
+        private controls.RoundedButton btnPrint_Search;
+        private controls.RoundedButton btnNextPage;
         private RoundedPanel pnlFormHeader;
-        private RoundedPanelBottom pnlFormBody;
+        private RoundedPanelBottom pnlFormFooter;
         private MetroFramework.Controls.MetroComboBox cbxFilter_DGV;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblSubTitle_1;
+        private System.Windows.Forms.Label lblSubTitle_2;
+        private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Label lblAmount;
     }

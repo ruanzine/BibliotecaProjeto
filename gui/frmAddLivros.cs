@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
@@ -20,6 +21,14 @@ namespace BIBLIOTECA_PROJETO.gui
         private ListBox listBoxSuggestionsTitle;
         private ListBox listBoxSuggestionsAuthor;
         private int libraryID;
+        private ThemeColors currentThemeColors;
+
+        private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
+        {
+            { 1, new ThemeColors(Color.FromArgb(252, 168, 183), Color.FromArgb(255, 102, 106), Color.FromArgb(64, 12, 3), Color.FromArgb(121, 57, 59), Color.FromArgb(64, 12, 3)) },
+            { 2, new ThemeColors(Color.FromArgb(146, 211, 157), Color.FromArgb(71, 174, 88), Color.FromArgb(6, 54, 49), Color.FromArgb(10, 97, 69), Color.FromArgb(6, 54, 49)) },
+            { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(23, 23, 55), Color.FromArgb(56, 83, 117), Color.FromArgb(33, 50, 88)) }
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmAddLivros"/> class.
@@ -30,6 +39,7 @@ namespace BIBLIOTECA_PROJETO.gui
             mainForm.AddControlBounds(this.pnlAddLivros);
             InitializeSuggestionListBoxes();
             this.libraryID = selectedLibraryID; // Store the library ID
+            SetThemeColors();
         }
 
         #region Initialization
@@ -71,6 +81,55 @@ namespace BIBLIOTECA_PROJETO.gui
             listBoxSuggestionsAuthor.DrawItem += listBoxSuggestions_DrawItem;
             this.Controls.Add(listBoxSuggestionsAuthor);
         }
+
+        #endregion
+
+        #region Theme Setting
+
+        private void SetThemeColors()
+        {
+            if (themeColors.TryGetValue(libraryID, out currentThemeColors))
+            {
+                bttSave.BackColor = currentThemeColors.ButtonColor;
+                bttClear.BackColor = currentThemeColors.ButtonColor;
+                lblTitle.ForeColor = currentThemeColors.ButtonColor;
+                pnlFormFooter.BackColor = currentThemeColors.PanelHeaderColor;
+                pnlFormBody.BackColor = currentThemeColors.PanelBodyColor;
+                pnlFormHeader.BackColor = currentThemeColors.PanelHeaderColor;
+                pnlLineBottom.BackColor = currentThemeColors.ButtonColor;
+                pnlLineTop.BackColor = currentThemeColors.ButtonColor;
+                lblRegNum.ForeColor = currentThemeColors.LabelColor;
+                lblArrivalDate.ForeColor = currentThemeColors.LabelColor;
+                lblTitleBody.ForeColor = currentThemeColors.LabelColor;
+                lblAuthor.ForeColor = currentThemeColors.LabelColor;
+                lblPublisher.ForeColor = currentThemeColors.LabelColor;
+                lblAcquisition.ForeColor = currentThemeColors.LabelColor;
+                lblClassification.ForeColor = currentThemeColors.LabelColor;
+                lblObservations.ForeColor = currentThemeColors.LabelColor;
+                lblVolNum.ForeColor = currentThemeColors.LabelColor;
+                lblCondition.ForeColor = currentThemeColors.LabelColor;
+                gpbTop.BackColor = currentThemeColors.PanelBodyColor;
+                gpbBottom.BackColor = currentThemeColors.PanelBodyColor;
+                gpbRight.BackColor = currentThemeColors.PanelBodyColor;
+                gpbTop.ForeColor = currentThemeColors.GroupBoxColor;
+                gpbBottom.ForeColor = currentThemeColors.GroupBoxColor;
+                gpbRight.ForeColor = currentThemeColors.GroupBoxColor;
+
+                ApplyThemeToTextboxes(gpbTop);
+                ApplyThemeToTextboxes(gpbBottom);
+                ApplyThemeToTextboxes(gpbRight);
+            }
+        }
+
+        private void ApplyThemeToTextboxes(Control parent)
+        {
+            foreach (UC_textbox textBox in parent.Controls.OfType<UC_textbox>())
+            {
+                textBox.BorderColor = currentThemeColors.LabelColor;
+                textBox.BorderFocusColor = currentThemeColors.PanelHeaderColor;
+            }
+        }
+
 
         #endregion
 
@@ -271,7 +330,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             try
             {
-                txtNRegisto.Texts = createService.GetNextId(this.libraryID).ToString();
+                txtNRegisto.Texts = createService.GetNextRegistrationNumber(this.libraryID).ToString();
             }
             catch (Exception ex)
             {
@@ -288,7 +347,6 @@ namespace BIBLIOTECA_PROJETO.gui
 
             DateTime deliveryDate = DateTime.ParseExact(txtDataEntrega.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            int registrationNumber = int.Parse(txtNRegisto.Texts.Trim());
             string title = txtTitulo.Texts.Trim();
             string author = txtAutor.Texts.Trim();
             string classification = txtCota.Texts.Trim();
@@ -298,17 +356,11 @@ namespace BIBLIOTECA_PROJETO.gui
             string observations = txtObservacoes.Texts.Trim();
             string condition = cbxEstado.Text;
 
-            if (createService.IsRegistrationNumberExists(registrationNumber, this.libraryID))
-            {
-                MessageBox.Show("The registration number is already in use. Please choose another number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             try
             {
-                createService.SaveData(registrationNumber, deliveryDate, title, author, classification, volumeNumber, acquisitionMethod, publisher, observations, condition, libraryID);
+                createService.SaveData(deliveryDate, title, author, classification, volumeNumber, acquisitionMethod, publisher, observations, condition, libraryID);
                 MessageBox.Show("Book successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
-                txtNRegisto.Texts = (registrationNumber + 1).ToString();
+                GetNRegisto();
             }
             catch
             {
@@ -388,5 +440,23 @@ namespace BIBLIOTECA_PROJETO.gui
         }
 
         #endregion
+
+        private class ThemeColors
+        {
+            public Color ButtonColor { get; }
+            public Color PanelHeaderColor { get; }
+            public Color PanelBodyColor { get; }
+            public Color LabelColor { get; }
+            public Color GroupBoxColor { get; }
+
+            public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor, Color groupBoxColor)
+            {
+                PanelHeaderColor = panelHeaderColor;
+                PanelBodyColor = panelBodyColor;
+                LabelColor = labelColor;
+                ButtonColor = buttonColor;
+                GroupBoxColor = groupBoxColor;
+            }
+        }
     }
 }

@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pnlMainFrame = new System.Windows.Forms.Panel();
             this.pnlLoadForms = new System.Windows.Forms.Panel();
-            this.jorge = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblLibraryName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.bttStatistics = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlMainFrame.SuspendLayout();
-            this.jorge.SuspendLayout();
+            this.pnlHeader.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -53,7 +53,7 @@
             // pnlMainFrame
             // 
             this.pnlMainFrame.Controls.Add(this.pnlLoadForms);
-            this.pnlMainFrame.Controls.Add(this.jorge);
+            this.pnlMainFrame.Controls.Add(this.pnlHeader);
             this.pnlMainFrame.Controls.Add(this.pnlMenu);
             this.pnlMainFrame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMainFrame.Location = new System.Drawing.Point(0, 0);
@@ -70,28 +70,28 @@
             this.pnlLoadForms.Size = new System.Drawing.Size(1023, 599);
             this.pnlLoadForms.TabIndex = 4;
             // 
-            // jorge
+            // pnlHeader
             // 
-            this.jorge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(166)))), ((int)(((byte)(224)))));
-            this.jorge.Controls.Add(this.label1);
-            this.jorge.Controls.Add(this.lblTitle);
-            this.jorge.Dock = System.Windows.Forms.DockStyle.Top;
-            this.jorge.Location = new System.Drawing.Point(203, 0);
-            this.jorge.Name = "jorge";
-            this.jorge.Size = new System.Drawing.Size(1023, 48);
-            this.jorge.TabIndex = 3;
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(156)))), ((int)(((byte)(156)))));
+            this.pnlHeader.Controls.Add(this.lblLibraryName);
+            this.pnlHeader.Controls.Add(this.lblTitle);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(203, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(1023, 48);
+            this.pnlHeader.TabIndex = 3;
             // 
-            // label1
+            // lblLibraryName
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
-            this.label1.Location = new System.Drawing.Point(592, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(418, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "BIBLIOTECA ESCOLAR EB23 PADRE JOSÉ ROTA";
+            this.lblLibraryName.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblLibraryName.AutoSize = true;
+            this.lblLibraryName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLibraryName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
+            this.lblLibraryName.Location = new System.Drawing.Point(592, 13);
+            this.lblLibraryName.Name = "lblLibraryName";
+            this.lblLibraryName.Size = new System.Drawing.Size(418, 23);
+            this.lblLibraryName.TabIndex = 1;
+            this.lblLibraryName.Text = "BIBLIOTECA ESCOLAR EB23 PADRE JOSÉ ROTA";
             // 
             // lblTitle
             // 
@@ -107,7 +107,7 @@
             // 
             // pnlMenu
             // 
-            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.pnlMenu.Controls.Add(this.bttStatistics);
             this.pnlMenu.Controls.Add(this.bttDateListing);
             this.pnlMenu.Controls.Add(this.bttListing);
@@ -123,7 +123,7 @@
             // 
             // bttStatistics
             // 
-            this.bttStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.bttStatistics.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttStatistics.Dock = System.Windows.Forms.DockStyle.Top;
             this.bttStatistics.FlatAppearance.BorderSize = 0;
@@ -143,7 +143,7 @@
             // 
             // bttDateListing
             // 
-            this.bttDateListing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttDateListing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.bttDateListing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttDateListing.Dock = System.Windows.Forms.DockStyle.Top;
             this.bttDateListing.FlatAppearance.BorderSize = 0;
@@ -165,7 +165,7 @@
             // 
             // bttListing
             // 
-            this.bttListing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttListing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.bttListing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttListing.Dock = System.Windows.Forms.DockStyle.Top;
             this.bttListing.FlatAppearance.BorderSize = 0;
@@ -185,7 +185,7 @@
             // 
             // bttEdit
             // 
-            this.bttEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.bttEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttEdit.Dock = System.Windows.Forms.DockStyle.Top;
             this.bttEdit.FlatAppearance.BorderSize = 0;
@@ -205,7 +205,7 @@
             // 
             // bttNew
             // 
-            this.bttNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.bttNew.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttNew.Dock = System.Windows.Forms.DockStyle.Top;
             this.bttNew.FlatAppearance.BorderSize = 0;
@@ -225,7 +225,7 @@
             // 
             // bttSearch
             // 
-            this.bttSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.bttSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.bttSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.bttSearch.FlatAppearance.BorderSize = 0;
@@ -254,7 +254,7 @@
             // 
             // picLogo
             // 
-            this.picLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(84)))), ((int)(((byte)(115)))));
+            this.picLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
@@ -278,8 +278,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlMainFrame.ResumeLayout(false);
-            this.jorge.ResumeLayout(false);
-            this.jorge.PerformLayout();
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
@@ -296,10 +296,10 @@
         private System.Windows.Forms.Button bttNew;
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.PictureBox picLogo;
-        private System.Windows.Forms.Panel jorge;
+        private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Panel pnlLoadForms;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLibraryName;
         private System.Windows.Forms.Button bttListing;
         private System.Windows.Forms.Button bttStatistics;
     }

@@ -32,41 +32,41 @@
             this.pnlAddLivros = new System.Windows.Forms.Panel();
             this.pnlFormFooter = new RoundedPanelBottom();
             this.pnlFormHeader = new RoundedPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblListagem = new System.Windows.Forms.Label();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlFormBody = new System.Windows.Forms.Panel();
-            this.groupBox1 = new RoundedGroupBox();
-            this.nRegistoAdd = new System.Windows.Forms.Label();
+            this.gpbTop = new RoundedGroupBox();
+            this.lblRegNum = new System.Windows.Forms.Label();
             this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtDataEntrega = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.lblDataEntrada = new System.Windows.Forms.Label();
+            this.lblArrivalDate = new System.Windows.Forms.Label();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.groupBox2 = new RoundedGroupBox();
+            this.gpbBottom = new RoundedGroupBox();
             this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
-            this.lblAquisicao = new System.Windows.Forms.Label();
-            this.lblEditoraAdd = new System.Windows.Forms.Label();
+            this.lblAcquisition = new System.Windows.Forms.Label();
+            this.lblPublisher = new System.Windows.Forms.Label();
             this.txtEditora = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtAutor = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtTitulo = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.lblAutor = new System.Windows.Forms.Label();
-            this.lblTituloAdd = new System.Windows.Forms.Label();
-            this.groupBox3 = new RoundedGroupBox();
-            this.bttClear_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.lblAuthor = new System.Windows.Forms.Label();
+            this.lblTitleBody = new System.Windows.Forms.Label();
+            this.gpbRight = new RoundedGroupBox();
+            this.bttClear = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.cbxEstado = new MetroFramework.Controls.MetroComboBox();
             this.bttSave = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.lblEstadoAdd = new System.Windows.Forms.Label();
+            this.lblCondition = new System.Windows.Forms.Label();
             this.txtCota = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.lblCotaAdd = new System.Windows.Forms.Label();
-            this.lblNVolAdd = new System.Windows.Forms.Label();
+            this.lblClassification = new System.Windows.Forms.Label();
+            this.lblVolNum = new System.Windows.Forms.Label();
             this.txtNVolume = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.lblObservAdd = new System.Windows.Forms.Label();
+            this.lblObservations = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.pnlAddLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gpbTop.SuspendLayout();
+            this.gpbBottom.SuspendLayout();
+            this.gpbRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAddLivros
@@ -94,70 +94,70 @@
             // pnlFormHeader
             // 
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
-            this.pnlFormHeader.Controls.Add(this.panel1);
-            this.pnlFormHeader.Controls.Add(this.lblListagem);
+            this.pnlFormHeader.Controls.Add(this.pnlLineTop);
+            this.pnlFormHeader.Controls.Add(this.lblTitle);
             this.pnlFormHeader.CornerRadius = 10;
             this.pnlFormHeader.Location = new System.Drawing.Point(80, 80);
             this.pnlFormHeader.Name = "pnlFormHeader";
             this.pnlFormHeader.Size = new System.Drawing.Size(992, 56);
             this.pnlFormHeader.TabIndex = 59;
             // 
-            // panel1
+            // pnlLineTop
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.panel1.Location = new System.Drawing.Point(0, 54);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(992, 12);
-            this.panel1.TabIndex = 59;
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(0, 54);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(992, 12);
+            this.pnlLineTop.TabIndex = 59;
             // 
-            // lblListagem
+            // lblTitle
             // 
-            this.lblListagem.AutoSize = true;
-            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.lblListagem.Location = new System.Drawing.Point(20, 16);
-            this.lblListagem.Name = "lblListagem";
-            this.lblListagem.Size = new System.Drawing.Size(152, 26);
-            this.lblListagem.TabIndex = 12;
-            this.lblListagem.Text = "Novo Registo";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.lblTitle.Location = new System.Drawing.Point(20, 16);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(152, 26);
+            this.lblTitle.TabIndex = 12;
+            this.lblTitle.Text = "Novo Registo";
             // 
             // pnlFormBody
             // 
             this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.pnlFormBody.Controls.Add(this.groupBox1);
+            this.pnlFormBody.Controls.Add(this.gpbTop);
             this.pnlFormBody.Controls.Add(this.pnlLineBottom);
-            this.pnlFormBody.Controls.Add(this.groupBox2);
-            this.pnlFormBody.Controls.Add(this.groupBox3);
+            this.pnlFormBody.Controls.Add(this.gpbBottom);
+            this.pnlFormBody.Controls.Add(this.gpbRight);
             this.pnlFormBody.Location = new System.Drawing.Point(80, 136);
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(992, 416);
             this.pnlFormBody.TabIndex = 60;
             // 
-            // groupBox1
+            // gpbTop
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.groupBox1.BorderRadius = 5;
-            this.groupBox1.Controls.Add(this.nRegistoAdd);
-            this.groupBox1.Controls.Add(this.txtNRegisto);
-            this.groupBox1.Controls.Add(this.txtDataEntrega);
-            this.groupBox1.Controls.Add(this.lblDataEntrada);
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.groupBox1.Location = new System.Drawing.Point(24, 40);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(464, 80);
-            this.groupBox1.TabIndex = 54;
-            this.groupBox1.TabStop = false;
+            this.gpbTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.gpbTop.BorderRadius = 5;
+            this.gpbTop.Controls.Add(this.lblRegNum);
+            this.gpbTop.Controls.Add(this.txtNRegisto);
+            this.gpbTop.Controls.Add(this.txtDataEntrega);
+            this.gpbTop.Controls.Add(this.lblArrivalDate);
+            this.gpbTop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.gpbTop.Location = new System.Drawing.Point(24, 40);
+            this.gpbTop.Name = "gpbTop";
+            this.gpbTop.Size = new System.Drawing.Size(464, 80);
+            this.gpbTop.TabIndex = 54;
+            this.gpbTop.TabStop = false;
             // 
-            // nRegistoAdd
+            // lblRegNum
             // 
-            this.nRegistoAdd.AutoSize = true;
-            this.nRegistoAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nRegistoAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.nRegistoAdd.Location = new System.Drawing.Point(16, 32);
-            this.nRegistoAdd.Name = "nRegistoAdd";
-            this.nRegistoAdd.Size = new System.Drawing.Size(99, 17);
-            this.nRegistoAdd.TabIndex = 30;
-            this.nRegistoAdd.Text = "Nº. de Registo";
+            this.lblRegNum.AutoSize = true;
+            this.lblRegNum.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblRegNum.Location = new System.Drawing.Point(16, 32);
+            this.lblRegNum.Name = "lblRegNum";
+            this.lblRegNum.Size = new System.Drawing.Size(99, 17);
+            this.lblRegNum.TabIndex = 30;
+            this.lblRegNum.Text = "Nº. de Registo";
             // 
             // txtNRegisto
             // 
@@ -199,16 +199,16 @@
             this.txtDataEntrega.UnderlinedStyle = true;
             this.txtDataEntrega.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDataEntrega_KeyPress);
             // 
-            // lblDataEntrada
+            // lblArrivalDate
             // 
-            this.lblDataEntrada.AutoSize = true;
-            this.lblDataEntrada.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataEntrada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblDataEntrada.Location = new System.Drawing.Point(232, 32);
-            this.lblDataEntrada.Name = "lblDataEntrada";
-            this.lblDataEntrada.Size = new System.Drawing.Size(117, 17);
-            this.lblDataEntrada.TabIndex = 31;
-            this.lblDataEntrada.Text = "Data de Entrada";
+            this.lblArrivalDate.AutoSize = true;
+            this.lblArrivalDate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrivalDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblArrivalDate.Location = new System.Drawing.Point(232, 32);
+            this.lblArrivalDate.Name = "lblArrivalDate";
+            this.lblArrivalDate.Size = new System.Drawing.Size(117, 17);
+            this.lblArrivalDate.TabIndex = 31;
+            this.lblArrivalDate.Text = "Data de Entrada";
             // 
             // pnlLineBottom
             // 
@@ -218,24 +218,24 @@
             this.pnlLineBottom.Size = new System.Drawing.Size(992, 12);
             this.pnlLineBottom.TabIndex = 58;
             // 
-            // groupBox2
+            // gpbBottom
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.groupBox2.BorderRadius = 5;
-            this.groupBox2.Controls.Add(this.cbxAquisicao);
-            this.groupBox2.Controls.Add(this.lblAquisicao);
-            this.groupBox2.Controls.Add(this.lblEditoraAdd);
-            this.groupBox2.Controls.Add(this.txtEditora);
-            this.groupBox2.Controls.Add(this.txtAutor);
-            this.groupBox2.Controls.Add(this.txtTitulo);
-            this.groupBox2.Controls.Add(this.lblAutor);
-            this.groupBox2.Controls.Add(this.lblTituloAdd);
-            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.groupBox2.Location = new System.Drawing.Point(24, 128);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(464, 248);
-            this.groupBox2.TabIndex = 55;
-            this.groupBox2.TabStop = false;
+            this.gpbBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.gpbBottom.BorderRadius = 5;
+            this.gpbBottom.Controls.Add(this.cbxAquisicao);
+            this.gpbBottom.Controls.Add(this.lblAcquisition);
+            this.gpbBottom.Controls.Add(this.lblPublisher);
+            this.gpbBottom.Controls.Add(this.txtEditora);
+            this.gpbBottom.Controls.Add(this.txtAutor);
+            this.gpbBottom.Controls.Add(this.txtTitulo);
+            this.gpbBottom.Controls.Add(this.lblAuthor);
+            this.gpbBottom.Controls.Add(this.lblTitleBody);
+            this.gpbBottom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.gpbBottom.Location = new System.Drawing.Point(24, 128);
+            this.gpbBottom.Name = "gpbBottom";
+            this.gpbBottom.Size = new System.Drawing.Size(464, 248);
+            this.gpbBottom.TabIndex = 55;
+            this.gpbBottom.TabStop = false;
             // 
             // cbxAquisicao
             // 
@@ -253,27 +253,27 @@
             this.cbxAquisicao.Theme = MetroFramework.MetroThemeStyle.Light;
             this.cbxAquisicao.UseSelectable = true;
             // 
-            // lblAquisicao
+            // lblAcquisition
             // 
-            this.lblAquisicao.AutoSize = true;
-            this.lblAquisicao.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAquisicao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblAquisicao.Location = new System.Drawing.Point(37, 144);
-            this.lblAquisicao.Name = "lblAquisicao";
-            this.lblAquisicao.Size = new System.Drawing.Size(71, 17);
-            this.lblAquisicao.TabIndex = 47;
-            this.lblAquisicao.Text = "Aquisição";
+            this.lblAcquisition.AutoSize = true;
+            this.lblAcquisition.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAcquisition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblAcquisition.Location = new System.Drawing.Point(37, 144);
+            this.lblAcquisition.Name = "lblAcquisition";
+            this.lblAcquisition.Size = new System.Drawing.Size(71, 17);
+            this.lblAcquisition.TabIndex = 47;
+            this.lblAcquisition.Text = "Aquisição";
             // 
-            // lblEditoraAdd
+            // lblPublisher
             // 
-            this.lblEditoraAdd.AutoSize = true;
-            this.lblEditoraAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEditoraAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblEditoraAdd.Location = new System.Drawing.Point(54, 200);
-            this.lblEditoraAdd.Name = "lblEditoraAdd";
-            this.lblEditoraAdd.Size = new System.Drawing.Size(54, 17);
-            this.lblEditoraAdd.TabIndex = 48;
-            this.lblEditoraAdd.Text = "Editora";
+            this.lblPublisher.AutoSize = true;
+            this.lblPublisher.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPublisher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblPublisher.Location = new System.Drawing.Point(54, 200);
+            this.lblPublisher.Name = "lblPublisher";
+            this.lblPublisher.Size = new System.Drawing.Size(54, 17);
+            this.lblPublisher.TabIndex = 48;
+            this.lblPublisher.Text = "Editora";
             // 
             // txtEditora
             // 
@@ -332,71 +332,71 @@
             this.txtTitulo.Texts = "";
             this.txtTitulo.UnderlinedStyle = true;
             // 
-            // lblAutor
+            // lblAuthor
             // 
-            this.lblAutor.AutoSize = true;
-            this.lblAutor.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAutor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblAutor.Location = new System.Drawing.Point(65, 88);
-            this.lblAutor.Name = "lblAutor";
-            this.lblAutor.Size = new System.Drawing.Size(43, 17);
-            this.lblAutor.TabIndex = 32;
-            this.lblAutor.Text = "Autor";
+            this.lblAuthor.AutoSize = true;
+            this.lblAuthor.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblAuthor.Location = new System.Drawing.Point(65, 88);
+            this.lblAuthor.Name = "lblAuthor";
+            this.lblAuthor.Size = new System.Drawing.Size(43, 17);
+            this.lblAuthor.TabIndex = 32;
+            this.lblAuthor.Text = "Autor";
             // 
-            // lblTituloAdd
+            // lblTitleBody
             // 
-            this.lblTituloAdd.AutoSize = true;
-            this.lblTituloAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTituloAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblTituloAdd.Location = new System.Drawing.Point(64, 32);
-            this.lblTituloAdd.Name = "lblTituloAdd";
-            this.lblTituloAdd.Size = new System.Drawing.Size(41, 17);
-            this.lblTituloAdd.TabIndex = 33;
-            this.lblTituloAdd.Text = "Título";
+            this.lblTitleBody.AutoSize = true;
+            this.lblTitleBody.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleBody.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblTitleBody.Location = new System.Drawing.Point(64, 32);
+            this.lblTitleBody.Name = "lblTitleBody";
+            this.lblTitleBody.Size = new System.Drawing.Size(41, 17);
+            this.lblTitleBody.TabIndex = 33;
+            this.lblTitleBody.Text = "Título";
             // 
-            // groupBox3
+            // gpbRight
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.groupBox3.BorderRadius = 5;
-            this.groupBox3.Controls.Add(this.bttClear_Edit);
-            this.groupBox3.Controls.Add(this.cbxEstado);
-            this.groupBox3.Controls.Add(this.bttSave);
-            this.groupBox3.Controls.Add(this.lblEstadoAdd);
-            this.groupBox3.Controls.Add(this.txtCota);
-            this.groupBox3.Controls.Add(this.lblCotaAdd);
-            this.groupBox3.Controls.Add(this.lblNVolAdd);
-            this.groupBox3.Controls.Add(this.txtNVolume);
-            this.groupBox3.Controls.Add(this.lblObservAdd);
-            this.groupBox3.Controls.Add(this.txtObservacoes);
-            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.groupBox3.Location = new System.Drawing.Point(504, 40);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(464, 264);
-            this.groupBox3.TabIndex = 57;
-            this.groupBox3.TabStop = false;
+            this.gpbRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.gpbRight.BorderRadius = 5;
+            this.gpbRight.Controls.Add(this.bttClear);
+            this.gpbRight.Controls.Add(this.cbxEstado);
+            this.gpbRight.Controls.Add(this.bttSave);
+            this.gpbRight.Controls.Add(this.lblCondition);
+            this.gpbRight.Controls.Add(this.txtCota);
+            this.gpbRight.Controls.Add(this.lblClassification);
+            this.gpbRight.Controls.Add(this.lblVolNum);
+            this.gpbRight.Controls.Add(this.txtNVolume);
+            this.gpbRight.Controls.Add(this.lblObservations);
+            this.gpbRight.Controls.Add(this.txtObservacoes);
+            this.gpbRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.gpbRight.Location = new System.Drawing.Point(504, 40);
+            this.gpbRight.Name = "gpbRight";
+            this.gpbRight.Size = new System.Drawing.Size(464, 264);
+            this.gpbRight.TabIndex = 57;
+            this.gpbRight.TabStop = false;
             // 
-            // bttClear_Edit
+            // bttClear
             // 
-            this.bttClear_Edit.BackColor = System.Drawing.Color.DimGray;
-            this.bttClear_Edit.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.bttClear_Edit.BorderRadius = 5;
-            this.bttClear_Edit.BorderSize = 0;
-            this.bttClear_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttClear_Edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bttClear_Edit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttClear_Edit.ForeColor = System.Drawing.Color.Transparent;
-            this.bttClear_Edit.Image = ((System.Drawing.Image)(resources.GetObject("bttClear_Edit.Image")));
-            this.bttClear_Edit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bttClear_Edit.Location = new System.Drawing.Point(120, 208);
-            this.bttClear_Edit.Margin = new System.Windows.Forms.Padding(0);
-            this.bttClear_Edit.Name = "bttClear_Edit";
-            this.bttClear_Edit.Padding = new System.Windows.Forms.Padding(4, 0, 7, 0);
-            this.bttClear_Edit.Size = new System.Drawing.Size(104, 40);
-            this.bttClear_Edit.TabIndex = 59;
-            this.bttClear_Edit.Text = "Limpar";
-            this.bttClear_Edit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bttClear_Edit.UseVisualStyleBackColor = false;
-            this.bttClear_Edit.Click += new System.EventHandler(this.bttClear_Click);
+            this.bttClear.BackColor = System.Drawing.Color.DimGray;
+            this.bttClear.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.bttClear.BorderRadius = 5;
+            this.bttClear.BorderSize = 0;
+            this.bttClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttClear.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttClear.ForeColor = System.Drawing.Color.Transparent;
+            this.bttClear.Image = ((System.Drawing.Image)(resources.GetObject("bttClear.Image")));
+            this.bttClear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bttClear.Location = new System.Drawing.Point(120, 208);
+            this.bttClear.Margin = new System.Windows.Forms.Padding(0);
+            this.bttClear.Name = "bttClear";
+            this.bttClear.Padding = new System.Windows.Forms.Padding(4, 0, 7, 0);
+            this.bttClear.Size = new System.Drawing.Size(104, 40);
+            this.bttClear.TabIndex = 59;
+            this.bttClear.Text = "Limpar";
+            this.bttClear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bttClear.UseVisualStyleBackColor = false;
+            this.bttClear.Click += new System.EventHandler(this.bttClear_Click);
             // 
             // cbxEstado
             // 
@@ -444,16 +444,16 @@
             this.bttSave.UseVisualStyleBackColor = false;
             this.bttSave.Click += new System.EventHandler(this.bttSave_Click);
             // 
-            // lblEstadoAdd
+            // lblCondition
             // 
-            this.lblEstadoAdd.AutoSize = true;
-            this.lblEstadoAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstadoAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblEstadoAdd.Location = new System.Drawing.Point(61, 88);
-            this.lblEstadoAdd.Name = "lblEstadoAdd";
-            this.lblEstadoAdd.Size = new System.Drawing.Size(52, 17);
-            this.lblEstadoAdd.TabIndex = 48;
-            this.lblEstadoAdd.Text = "Estado";
+            this.lblCondition.AutoSize = true;
+            this.lblCondition.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCondition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblCondition.Location = new System.Drawing.Point(61, 88);
+            this.lblCondition.Name = "lblCondition";
+            this.lblCondition.Size = new System.Drawing.Size(52, 17);
+            this.lblCondition.TabIndex = 48;
+            this.lblCondition.Text = "Estado";
             // 
             // txtCota
             // 
@@ -474,27 +474,27 @@
             this.txtCota.Texts = "";
             this.txtCota.UnderlinedStyle = true;
             // 
-            // lblCotaAdd
+            // lblClassification
             // 
-            this.lblCotaAdd.AutoSize = true;
-            this.lblCotaAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCotaAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblCotaAdd.Location = new System.Drawing.Point(16, 32);
-            this.lblCotaAdd.Name = "lblCotaAdd";
-            this.lblCotaAdd.Size = new System.Drawing.Size(97, 17);
-            this.lblCotaAdd.TabIndex = 38;
-            this.lblCotaAdd.Text = "Cota da CDU";
+            this.lblClassification.AutoSize = true;
+            this.lblClassification.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClassification.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblClassification.Location = new System.Drawing.Point(16, 32);
+            this.lblClassification.Name = "lblClassification";
+            this.lblClassification.Size = new System.Drawing.Size(97, 17);
+            this.lblClassification.TabIndex = 38;
+            this.lblClassification.Text = "Cota da CDU";
             // 
-            // lblNVolAdd
+            // lblVolNum
             // 
-            this.lblNVolAdd.AutoSize = true;
-            this.lblNVolAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNVolAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblNVolAdd.Location = new System.Drawing.Point(272, 32);
-            this.lblNVolAdd.Name = "lblNVolAdd";
-            this.lblNVolAdd.Size = new System.Drawing.Size(77, 17);
-            this.lblNVolAdd.TabIndex = 39;
-            this.lblNVolAdd.Text = "Nº Volume";
+            this.lblVolNum.AutoSize = true;
+            this.lblVolNum.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVolNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblVolNum.Location = new System.Drawing.Point(272, 32);
+            this.lblVolNum.Name = "lblVolNum";
+            this.lblVolNum.Size = new System.Drawing.Size(77, 17);
+            this.lblVolNum.TabIndex = 39;
+            this.lblVolNum.Text = "Nº Volume";
             // 
             // txtNVolume
             // 
@@ -515,16 +515,16 @@
             this.txtNVolume.Texts = "";
             this.txtNVolume.UnderlinedStyle = true;
             // 
-            // lblObservAdd
+            // lblObservations
             // 
-            this.lblObservAdd.AutoSize = true;
-            this.lblObservAdd.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObservAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblObservAdd.Location = new System.Drawing.Point(21, 136);
-            this.lblObservAdd.Name = "lblObservAdd";
-            this.lblObservAdd.Size = new System.Drawing.Size(92, 17);
-            this.lblObservAdd.TabIndex = 42;
-            this.lblObservAdd.Text = "Observações";
+            this.lblObservations.AutoSize = true;
+            this.lblObservations.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObservations.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblObservations.Location = new System.Drawing.Point(21, 136);
+            this.lblObservations.Name = "lblObservations";
+            this.lblObservations.Size = new System.Drawing.Size(92, 17);
+            this.lblObservations.TabIndex = 42;
+            this.lblObservations.Text = "Observações";
             // 
             // txtObservacoes
             // 
@@ -557,12 +557,12 @@
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
             this.pnlFormBody.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gpbTop.ResumeLayout(false);
+            this.gpbTop.PerformLayout();
+            this.gpbBottom.ResumeLayout(false);
+            this.gpbBottom.PerformLayout();
+            this.gpbRight.ResumeLayout(false);
+            this.gpbRight.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -571,35 +571,35 @@
 
         private System.Windows.Forms.Panel pnlAddLivros;
         private controls.UC_textbox txtCota;
-        private System.Windows.Forms.Label lblCotaAdd;
-        private System.Windows.Forms.Label lblNVolAdd;
+        private System.Windows.Forms.Label lblClassification;
+        private System.Windows.Forms.Label lblVolNum;
         private controls.UC_textbox txtNVolume;
-        private System.Windows.Forms.Label lblObservAdd;
+        private System.Windows.Forms.Label lblObservations;
         private controls.UC_textbox txtObservacoes;
         private controls.UC_textbox txtAutor;
         private controls.UC_textbox txtTitulo;
-        private System.Windows.Forms.Label lblAutor;
-        private System.Windows.Forms.Label lblTituloAdd;
-        private System.Windows.Forms.Label nRegistoAdd;
+        private System.Windows.Forms.Label lblAuthor;
+        private System.Windows.Forms.Label lblTitleBody;
+        private System.Windows.Forms.Label lblRegNum;
         private controls.UC_textbox txtNRegisto;
         private controls.UC_textbox txtDataEntrega;
-        private System.Windows.Forms.Label lblDataEntrada;
-        private RoundedGroupBox groupBox3;
-        private RoundedGroupBox groupBox2;
-        private RoundedGroupBox groupBox1;
+        private System.Windows.Forms.Label lblArrivalDate;
+        private RoundedGroupBox gpbRight;
+        private RoundedGroupBox gpbBottom;
+        private RoundedGroupBox gpbTop;
         private controls.RoundedButton bttSave;
-        private System.Windows.Forms.Label lblListagem;
-        private System.Windows.Forms.Label lblAquisicao;
-        private System.Windows.Forms.Label lblEditoraAdd;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblAcquisition;
+        private System.Windows.Forms.Label lblPublisher;
         private controls.UC_textbox txtEditora;
-        private System.Windows.Forms.Label lblEstadoAdd;
+        private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.Panel pnlFormBody;
         private RoundedPanel pnlFormHeader;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao;
         private MetroFramework.Controls.MetroComboBox cbxEstado;
         private RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineBottom;
-        private System.Windows.Forms.Panel panel1;
-        private controls.RoundedButton bttClear_Edit;
+        private System.Windows.Forms.Panel pnlLineTop;
+        private controls.RoundedButton bttClear;
     }
 }
