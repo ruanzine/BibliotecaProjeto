@@ -28,34 +28,33 @@ namespace BIBLIOTECA_PROJETO.classes.services
         {
             try
             {
+                int authorID = GetAuthorID(author, libraryID);
+                if (authorID == -1)
+                    authorID = CreateAuthor(author, libraryID);
+
+                int classificationID = GetClassificationID(classification, libraryID);
+                if (classificationID == -1)
+                    classificationID = CreateClassification(classification, libraryID);
+
+                int titleID = GetTitleID(title, libraryID);
+                if (titleID == -1)
+                    titleID = CreateTitle(title, libraryID);
+
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
-
-                    string query = @"UPDATE Books SET
-                                    DeliveryDate = @deliveryDate,
-                                    TitleID = (SELECT ID FROM Titles WHERE TitleName = @title AND LibraryID = @libraryID),
-                                    AuthorID = (SELECT ID FROM Authors WHERE Name = @author AND LibraryID = @libraryID),
-                                    ClassificationID = (SELECT ID FROM Classifications WHERE Classification = @classification AND LibraryID = @libraryID),
-                                    AcquisitionMethod = @acquisitionMethod,
-                                    Publisher = @publisher,
-                                    VolumeNumber = @volumeNumber,
-                                    Observations = @observations,
-                                    Condition = @condition
-                                    WHERE ID = @registrationNumber AND LibraryID = @libraryID";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Books SET DeliveryDate = @deliveryDate, TitleID = @titleID, AuthorID = @authorID, ClassificationID = @classificationID, VolumeNumber = @volumeNumber, AcquisitionMethod = @acquisitionMethod, Publisher = @publisher, Observations = @observations, Condition = @condition WHERE RegistrationNumber = @id AND LibraryID = @libraryID", conn))
                     {
+                        cmd.Parameters.AddWithValue("@id", registrationNumber);
                         cmd.Parameters.AddWithValue("@deliveryDate", deliveryDate);
-                        cmd.Parameters.AddWithValue("@title", title);
-                        cmd.Parameters.AddWithValue("@author", author);
-                        cmd.Parameters.AddWithValue("@classification", classification);
+                        cmd.Parameters.AddWithValue("@titleID", titleID);
+                        cmd.Parameters.AddWithValue("@AuthorID", authorID);
+                        cmd.Parameters.AddWithValue("@classificationID", classificationID);
+                        cmd.Parameters.AddWithValue("@volumeNumber", volumeNumber);
                         cmd.Parameters.AddWithValue("@acquisitionMethod", acquisitionMethod);
                         cmd.Parameters.AddWithValue("@publisher", publisher);
-                        cmd.Parameters.AddWithValue("@volumeNumber", volumeNumber);
                         cmd.Parameters.AddWithValue("@observations", observations);
                         cmd.Parameters.AddWithValue("@condition", condition);
-                        cmd.Parameters.AddWithValue("@registrationNumber", registrationNumber);
                         cmd.Parameters.AddWithValue("@libraryID", libraryID);
 
                         cmd.ExecuteNonQuery();
@@ -64,7 +63,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
             }
             catch (SqlException ex)
             {
-                throw new Exception("An error occurred while updating the book: " + ex.Message);
+                throw new Exception("An error occurred while updating the book data: " + ex.Message);
             }
         }
 
@@ -73,7 +72,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM Books WHERE ID = @registrationNumber AND LibraryID = @libraryID", conn);
+                SqlCommand command = new SqlCommand("DELETE FROM Books WHERE RegistrationNumber = @registrationNumber AND LibraryID = @libraryID", conn);
                 command.Parameters.AddWithValue("@registrationNumber", registrationNumber);
                 command.Parameters.AddWithValue("@libraryID", libraryID);
                 command.ExecuteNonQuery();
@@ -86,7 +85,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
             using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Books WHERE ID = @registrationNumber AND LibraryID = @libraryID";
+                string query = "SELECT COUNT(*) FROM Books WHERE RegistrationNumber = @registrationNumber AND LibraryID = @libraryID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@registrationNumber", registrationNumber);
@@ -206,7 +205,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
-                    string query = @"SELECT B.ID AS RegistrationNumber, B.DeliveryDate, T.TitleName AS Title, A.Name AS Author, C.Classification, B.AcquisitionMethod, B.Publisher, B.VolumeNumber, B.Observations, B.Condition
+                    string query = @"SELECT B.RegistrationNumber AS RegistrationNumber, B.DeliveryDate, T.TitleName AS Title, A.Name AS Author, C.Classification, B.AcquisitionMethod, B.Publisher, B.VolumeNumber, B.Observations, B.Condition
                                      FROM Books B
                                      INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
                                      INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID

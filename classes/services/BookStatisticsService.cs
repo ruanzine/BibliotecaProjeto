@@ -9,6 +9,11 @@ namespace BIBLIOTECA_PROJETO.services
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
 
+        /// <summary>
+        /// Gets the total count of books for a specified library.
+        /// </summary>
+        /// <param name="libraryID">The ID of the library.</param>
+        /// <returns>The total count of books.</returns>
         public int GetTotalBooksCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
@@ -23,6 +28,11 @@ namespace BIBLIOTECA_PROJETO.services
             }
         }
 
+        /// <summary>
+        /// Gets the total count of titles for a specified library.
+        /// </summary>
+        /// <param name="libraryID">The ID of the library.</param>
+        /// <returns>The total count of titles.</returns>
         public int GetTotalTitlesCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
@@ -37,6 +47,11 @@ namespace BIBLIOTECA_PROJETO.services
             }
         }
 
+        /// <summary>
+        /// Gets the total count of authors for a specified library.
+        /// </summary>
+        /// <param name="libraryID">The ID of the library.</param>
+        /// <returns>The total count of authors.</returns>
         public int GetTotalAuthorsCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
@@ -51,6 +66,11 @@ namespace BIBLIOTECA_PROJETO.services
             }
         }
 
+        /// <summary>
+        /// Gets the total count of classifications for a specified library.
+        /// </summary>
+        /// <param name="libraryID">The ID of the library.</param>
+        /// <returns>The total count of classifications.</returns>
         public int GetTotalClassificationsCount(int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))
@@ -65,6 +85,12 @@ namespace BIBLIOTECA_PROJETO.services
             }
         }
 
+        /// <summary>
+        /// Gets the count of books by condition for a specified library.
+        /// </summary>
+        /// <param name="condition">The condition of the books.</param>
+        /// <param name="libraryID">The ID of the library.</param>
+        /// <returns>The count of books by condition.</returns>
         public int GetBooksCountByCondition(string condition, int libraryID)
         {
             using (SqlConnection conn = new SqlConnection(this.connectionString))

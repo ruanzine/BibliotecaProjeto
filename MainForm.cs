@@ -32,9 +32,12 @@ namespace BIBLIOTECA_PROJETO
         private void MainForm_Load(object sender, EventArgs e)
         {
             SelectLibrary(); // Show the library selection popup here
-            SetThemeColors();
-            SetSelectedButton(bttSearch);
-            LoadViewLivros();
+            if (selectedLibraryID > 0) // Ensure a library is selected before proceeding
+            {
+                SetThemeColors();
+                SetSelectedButton(bttSearch);
+                LoadViewLivros();
+            }
         }
 
         private void SelectLibrary()
@@ -48,6 +51,7 @@ namespace BIBLIOTECA_PROJETO
                 else
                 {
                     // Close the application if no library is selected
+                    this.Close();
                     Application.Exit();
                 }
             }
@@ -129,10 +133,10 @@ namespace BIBLIOTECA_PROJETO
         {
             if (_selectedButton != null)
             {
-                _selectedButton.BackColor = currentThemeColors.ButtonColor;
+                _selectedButton.BackColor = currentThemeColors?.ButtonColor ?? Color.Gray;
             }
             _selectedButton = button;
-            _selectedButton.BackColor = currentThemeColors.SelectedButtonColor; // Color to show it's been selected
+            _selectedButton.BackColor = currentThemeColors?.SelectedButtonColor ?? Color.Gray; // Color to show it's been selected
         }
 
         private void bttNew_Click(object sender, EventArgs e)

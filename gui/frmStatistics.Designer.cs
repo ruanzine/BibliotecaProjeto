@@ -30,8 +30,7 @@
         {
             this.pnlFormBody = new System.Windows.Forms.Panel();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.pnlLineTop = new System.Windows.Forms.Panel();
-            this.roundedGroupBox1 = new RoundedGroupBox();
+            this.gpbRight = new RoundedGroupBox();
             this.lblPerdido = new System.Windows.Forms.Label();
             this.lblDeposito = new System.Windows.Forms.Label();
             this.lblExposicao = new System.Windows.Forms.Label();
@@ -39,18 +38,19 @@
             this.lblAbatido = new System.Windows.Forms.Label();
             this.lblIndisponivel = new System.Windows.Forms.Label();
             this.lblDisponivel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new RoundedGroupBox();
+            this.lblCondition = new System.Windows.Forms.Label();
+            this.gpbLeft = new RoundedGroupBox();
             this.lblTotalCotas = new System.Windows.Forms.Label();
             this.lblTotalAuthors = new System.Windows.Forms.Label();
             this.lblTotalBooks = new System.Windows.Forms.Label();
             this.lblTotalTitles = new System.Windows.Forms.Label();
+            this.pnlLineTop = new System.Windows.Forms.Panel();
             this.pnlFormFooter = new RoundedPanelBottom();
             this.pnlFormHeader = new RoundedPanel();
-            this.lblListagem = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlFormBody.SuspendLayout();
-            this.roundedGroupBox1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gpbRight.SuspendLayout();
+            this.gpbLeft.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,8 +58,8 @@
             // 
             this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.pnlFormBody.Controls.Add(this.pnlLineBottom);
-            this.pnlFormBody.Controls.Add(this.roundedGroupBox1);
-            this.pnlFormBody.Controls.Add(this.groupBox1);
+            this.pnlFormBody.Controls.Add(this.gpbRight);
+            this.pnlFormBody.Controls.Add(this.gpbLeft);
             this.pnlFormBody.Location = new System.Drawing.Point(128, 184);
             this.pnlFormBody.Name = "pnlFormBody";
             this.pnlFormBody.Size = new System.Drawing.Size(904, 296);
@@ -73,32 +73,24 @@
             this.pnlLineBottom.Size = new System.Drawing.Size(904, 12);
             this.pnlLineBottom.TabIndex = 65;
             // 
-            // pnlLineTop
+            // gpbRight
             // 
-            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineTop.Location = new System.Drawing.Point(128, 182);
-            this.pnlLineTop.Name = "pnlLineTop";
-            this.pnlLineTop.Size = new System.Drawing.Size(904, 12);
-            this.pnlLineTop.TabIndex = 64;
-            // 
-            // roundedGroupBox1
-            // 
-            this.roundedGroupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.roundedGroupBox1.BorderRadius = 5;
-            this.roundedGroupBox1.Controls.Add(this.lblPerdido);
-            this.roundedGroupBox1.Controls.Add(this.lblDeposito);
-            this.roundedGroupBox1.Controls.Add(this.lblExposicao);
-            this.roundedGroupBox1.Controls.Add(this.lblConsultaLocal);
-            this.roundedGroupBox1.Controls.Add(this.lblAbatido);
-            this.roundedGroupBox1.Controls.Add(this.lblIndisponivel);
-            this.roundedGroupBox1.Controls.Add(this.lblDisponivel);
-            this.roundedGroupBox1.Controls.Add(this.label1);
-            this.roundedGroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.roundedGroupBox1.Location = new System.Drawing.Point(384, 16);
-            this.roundedGroupBox1.Name = "roundedGroupBox1";
-            this.roundedGroupBox1.Size = new System.Drawing.Size(504, 256);
-            this.roundedGroupBox1.TabIndex = 56;
-            this.roundedGroupBox1.TabStop = false;
+            this.gpbRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.gpbRight.BorderRadius = 5;
+            this.gpbRight.Controls.Add(this.lblPerdido);
+            this.gpbRight.Controls.Add(this.lblDeposito);
+            this.gpbRight.Controls.Add(this.lblExposicao);
+            this.gpbRight.Controls.Add(this.lblConsultaLocal);
+            this.gpbRight.Controls.Add(this.lblAbatido);
+            this.gpbRight.Controls.Add(this.lblIndisponivel);
+            this.gpbRight.Controls.Add(this.lblDisponivel);
+            this.gpbRight.Controls.Add(this.lblCondition);
+            this.gpbRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.gpbRight.Location = new System.Drawing.Point(384, 16);
+            this.gpbRight.Name = "gpbRight";
+            this.gpbRight.Size = new System.Drawing.Size(504, 256);
+            this.gpbRight.TabIndex = 56;
+            this.gpbRight.TabStop = false;
             // 
             // lblPerdido
             // 
@@ -186,32 +178,32 @@
             this.lblDisponivel.TabIndex = 6;
             this.lblDisponivel.Text = "Total Disponível:";
             // 
-            // label1
+            // lblCondition
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.label1.Location = new System.Drawing.Point(16, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 19);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Estado";
+            this.lblCondition.AutoSize = true;
+            this.lblCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.lblCondition.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lblCondition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+            this.lblCondition.Location = new System.Drawing.Point(16, 16);
+            this.lblCondition.Name = "lblCondition";
+            this.lblCondition.Size = new System.Drawing.Size(59, 19);
+            this.lblCondition.TabIndex = 5;
+            this.lblCondition.Text = "Estado";
             // 
-            // groupBox1
+            // gpbLeft
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.groupBox1.BorderRadius = 5;
-            this.groupBox1.Controls.Add(this.lblTotalCotas);
-            this.groupBox1.Controls.Add(this.lblTotalAuthors);
-            this.groupBox1.Controls.Add(this.lblTotalBooks);
-            this.groupBox1.Controls.Add(this.lblTotalTitles);
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.groupBox1.Location = new System.Drawing.Point(16, 16);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 256);
-            this.groupBox1.TabIndex = 55;
-            this.groupBox1.TabStop = false;
+            this.gpbLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.gpbLeft.BorderRadius = 5;
+            this.gpbLeft.Controls.Add(this.lblTotalCotas);
+            this.gpbLeft.Controls.Add(this.lblTotalAuthors);
+            this.gpbLeft.Controls.Add(this.lblTotalBooks);
+            this.gpbLeft.Controls.Add(this.lblTotalTitles);
+            this.gpbLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.gpbLeft.Location = new System.Drawing.Point(16, 16);
+            this.gpbLeft.Name = "gpbLeft";
+            this.gpbLeft.Size = new System.Drawing.Size(344, 256);
+            this.gpbLeft.TabIndex = 55;
+            this.gpbLeft.TabStop = false;
             // 
             // lblTotalCotas
             // 
@@ -261,6 +253,14 @@
             this.lblTotalTitles.TabIndex = 2;
             this.lblTotalTitles.Text = "Total de Títulos: ";
             // 
+            // pnlLineTop
+            // 
+            this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineTop.Location = new System.Drawing.Point(128, 182);
+            this.pnlLineTop.Name = "pnlLineTop";
+            this.pnlLineTop.Size = new System.Drawing.Size(904, 12);
+            this.pnlLineTop.TabIndex = 64;
+            // 
             // pnlFormFooter
             // 
             this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
@@ -273,23 +273,23 @@
             // pnlFormHeader
             // 
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
-            this.pnlFormHeader.Controls.Add(this.lblListagem);
+            this.pnlFormHeader.Controls.Add(this.lblTitle);
             this.pnlFormHeader.CornerRadius = 10;
             this.pnlFormHeader.Location = new System.Drawing.Point(128, 136);
             this.pnlFormHeader.Name = "pnlFormHeader";
             this.pnlFormHeader.Size = new System.Drawing.Size(904, 48);
             this.pnlFormHeader.TabIndex = 60;
             // 
-            // lblListagem
+            // lblTitle
             // 
-            this.lblListagem.AutoSize = true;
-            this.lblListagem.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblListagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.lblListagem.Location = new System.Drawing.Point(20, 16);
-            this.lblListagem.Name = "lblListagem";
-            this.lblListagem.Size = new System.Drawing.Size(128, 26);
-            this.lblListagem.TabIndex = 12;
-            this.lblListagem.Text = "Estatísticas";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.lblTitle.Location = new System.Drawing.Point(20, 16);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(128, 26);
+            this.lblTitle.TabIndex = 12;
+            this.lblTitle.Text = "Estatísticas";
             // 
             // frmStatistics
             // 
@@ -303,10 +303,10 @@
             this.Name = "frmStatistics";
             this.Text = "Estatísticas";
             this.pnlFormBody.ResumeLayout(false);
-            this.roundedGroupBox1.ResumeLayout(false);
-            this.roundedGroupBox1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gpbRight.ResumeLayout(false);
+            this.gpbRight.PerformLayout();
+            this.gpbLeft.ResumeLayout(false);
+            this.gpbLeft.PerformLayout();
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
             this.ResumeLayout(false);
@@ -317,12 +317,12 @@
         private System.Windows.Forms.Label lblTotalAuthors;
         private System.Windows.Forms.Label lblTotalCotas;
         #endregion
-        private RoundedGroupBox groupBox1;
+        private RoundedGroupBox gpbLeft;
         private RoundedPanel pnlFormHeader;
-        private System.Windows.Forms.Label lblListagem;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlFormBody;
-        private RoundedGroupBox roundedGroupBox1;
-        private System.Windows.Forms.Label label1;
+        private RoundedGroupBox gpbRight;
+        private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.Label lblConsultaLocal;
         private System.Windows.Forms.Label lblAbatido;
         private System.Windows.Forms.Label lblIndisponivel;

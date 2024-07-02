@@ -48,7 +48,6 @@
             this.bttSave_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.gpbTop = new RoundedGroupBox();
             this.bttSearchEdit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.txtDataEntrega_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.txtNRegisto_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblArrivalDate = new System.Windows.Forms.Label();
             this.lblRegNum = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.txtTitulo_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblTitleBody = new System.Windows.Forms.Label();
             this.lblAuthor = new System.Windows.Forms.Label();
+            this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.pnlEditLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -316,8 +316,8 @@
             // 
             this.gpbTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.gpbTop.BorderRadius = 8;
+            this.gpbTop.Controls.Add(this.dtpArrivalDate);
             this.gpbTop.Controls.Add(this.bttSearchEdit);
-            this.gpbTop.Controls.Add(this.txtDataEntrega_Edit);
             this.gpbTop.Controls.Add(this.txtNRegisto_Edit);
             this.gpbTop.Controls.Add(this.lblArrivalDate);
             this.gpbTop.Controls.Add(this.lblRegNum);
@@ -346,27 +346,6 @@
             this.bttSearchEdit.UseVisualStyleBackColor = false;
             this.bttSearchEdit.Click += new System.EventHandler(this.bttSearchEdit_Click);
             // 
-            // txtDataEntrega_Edit
-            // 
-            this.txtDataEntrega_Edit.BackColor = System.Drawing.SystemColors.Window;
-            this.txtDataEntrega_Edit.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.txtDataEntrega_Edit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
-            this.txtDataEntrega_Edit.BorderSize = 2;
-            this.txtDataEntrega_Edit.Enabled = false;
-            this.txtDataEntrega_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataEntrega_Edit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtDataEntrega_Edit.Location = new System.Drawing.Point(416, 20);
-            this.txtDataEntrega_Edit.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDataEntrega_Edit.Multiline = false;
-            this.txtDataEntrega_Edit.Name = "txtDataEntrega_Edit";
-            this.txtDataEntrega_Edit.Padding = new System.Windows.Forms.Padding(7);
-            this.txtDataEntrega_Edit.PasswordChar = false;
-            this.txtDataEntrega_Edit.Size = new System.Drawing.Size(80, 31);
-            this.txtDataEntrega_Edit.TabIndex = 29;
-            this.txtDataEntrega_Edit.Texts = "";
-            this.txtDataEntrega_Edit.UnderlinedStyle = true;
-            this.txtDataEntrega_Edit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDataEntrega_Edit_KeyPress);
-            // 
             // txtNRegisto_Edit
             // 
             this.txtNRegisto_Edit.BackColor = System.Drawing.SystemColors.Window;
@@ -392,7 +371,7 @@
             this.lblArrivalDate.AutoSize = true;
             this.lblArrivalDate.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.lblArrivalDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblArrivalDate.Location = new System.Drawing.Point(288, 28);
+            this.lblArrivalDate.Location = new System.Drawing.Point(264, 28);
             this.lblArrivalDate.Name = "lblArrivalDate";
             this.lblArrivalDate.Size = new System.Drawing.Size(116, 17);
             this.lblArrivalDate.TabIndex = 1;
@@ -403,11 +382,11 @@
             this.lblRegNum.AutoSize = true;
             this.lblRegNum.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.lblRegNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-            this.lblRegNum.Location = new System.Drawing.Point(16, 28);
+            this.lblRegNum.Location = new System.Drawing.Point(33, 28);
             this.lblRegNum.Name = "lblRegNum";
-            this.lblRegNum.Size = new System.Drawing.Size(99, 17);
+            this.lblRegNum.Size = new System.Drawing.Size(78, 17);
             this.lblRegNum.TabIndex = 1;
-            this.lblRegNum.Text = "Nº. de Registo";
+            this.lblRegNum.Text = "Nº. Registo";
             // 
             // bttDel
             // 
@@ -595,6 +574,20 @@
             this.lblAuthor.TabIndex = 5;
             this.lblAuthor.Text = "Autor";
             // 
+            // dtpArrivalDate
+            // 
+            this.dtpArrivalDate.Enabled = false;
+            this.dtpArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpArrivalDate.Location = new System.Drawing.Point(384, 20);
+            this.dtpArrivalDate.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtpArrivalDate.Name = "dtpArrivalDate";
+            this.dtpArrivalDate.Size = new System.Drawing.Size(112, 29);
+            this.dtpArrivalDate.Style = MetroFramework.MetroColorStyle.Blue;
+            this.dtpArrivalDate.TabIndex = 63;
+            this.dtpArrivalDate.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // frmEditLivros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -621,7 +614,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlEditLivros;
-        private controls.UC_textbox txtDataEntrega_Edit;
         private System.Windows.Forms.Label lblArrivalDate;
         private controls.UC_textbox txtNRegisto_Edit;
         private System.Windows.Forms.Label lblRegNum;
@@ -654,5 +646,6 @@
         private RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Panel pnlLineBottom;
+        private MetroFramework.Controls.MetroDateTime dtpArrivalDate;
     }
 }

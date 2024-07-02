@@ -101,7 +101,7 @@ namespace BIBLIOTECA_PROJETO.gui
             try
             {
                 int numeroRegistro = int.Parse(this.txtNRegisto_Edit.Texts.Trim());
-                DateTime dataEntrega = DateTime.ParseExact(this.txtDataEntrega_Edit.Texts.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataEntrega = dtpArrivalDate.Value;
                 string titulo = this.txtTitulo_Edit.Texts.Trim();
                 string autor = this.txtAutor_Edit.Texts.Trim();
                 string cota = this.txtCota_Edit.Texts.Trim();
@@ -229,7 +229,7 @@ namespace BIBLIOTECA_PROJETO.gui
             Livro livroSelecionado = livros.FirstOrDefault(livro => livro.RegistrationNumber == numeroRegistro);
             if (livroSelecionado != null)
             {
-                this.txtDataEntrega_Edit.Texts = livroSelecionado.DeliveryDate.ToString("dd/MM/yyyy");
+                this.dtpArrivalDate.Value = livroSelecionado.DeliveryDate;
                 this.txtTitulo_Edit.Texts = livroSelecionado.Title;
                 this.txtAutor_Edit.Texts = livroSelecionado.Author;
                 this.txtCota_Edit.Texts = livroSelecionado.Classification;
@@ -255,7 +255,6 @@ namespace BIBLIOTECA_PROJETO.gui
         private bool ValidateFormFields()
         {
             return ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar") &&
-                   ValidateTextBox(this.txtDataEntrega_Edit, "a data de entrada do exemplar") &&
                    ValidateTextBox(this.txtTitulo_Edit, "o título do exemplar") &&
                    ValidateTextBox(this.txtAutor_Edit, "o autor do exemplar") &&
                    ValidateTextBox(this.txtCota_Edit, "a cota do exemplar") &&
@@ -277,11 +276,6 @@ namespace BIBLIOTECA_PROJETO.gui
             if (string.IsNullOrEmpty(text))
             {
                 MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (textBox == this.txtDataEntrega_Edit && !DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
-            {
-                MessageBox.Show($"Por favor, insira {fieldName} no formato dd/MM/aaaa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -308,15 +302,15 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ClearText()
         {
-            this.txtDataEntrega_Edit.Texts = "";
             this.txtAutor_Edit.Texts = "";
             this.txtTitulo_Edit.Texts = "";
             this.txtCota_Edit.Texts = "";
             this.txtEditora_Edit.Texts = "";
-            this.cbxEstado_Edit.SelectedIndex = -1;
-            this.cbxAquisicao_Edit.SelectedIndex = -1;
             this.txtNVolume_Edit.Texts = "";
             this.txtObservacoes_Edit.Texts = "";
+            this.cbxEstado_Edit.SelectedIndex = -1;
+            this.cbxAquisicao_Edit.SelectedIndex = -1;
+            
         }
 
         /// <summary>
@@ -324,7 +318,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void EnableText()
         {
-            this.txtDataEntrega_Edit.Enabled = true;
+            this.dtpArrivalDate.Enabled = true;
             this.txtAutor_Edit.Enabled = true;
             this.txtTitulo_Edit.Enabled = true;
             this.txtCota_Edit.Enabled = true;
@@ -344,7 +338,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private void UnableText()
         {
             this.txtNRegisto_Edit.Focus();
-            this.txtDataEntrega_Edit.Enabled = false;
+            this.dtpArrivalDate.Enabled = false;
             this.txtAutor_Edit.Enabled = false;
             this.txtTitulo_Edit.Enabled = false;
             this.txtCota_Edit.Enabled = false;
