@@ -28,11 +28,22 @@ namespace BIBLIOTECA_PROJETO
         {
             InitializeComponent();
             formOriginalSize = this.Size;
+
+            // Subscribe to the Click event of picLogo
+            picLogo.Click += PicLogo_Click;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            SelectLibrary(); // Show the library selection popup here
+            // Load the saved library ID
+            selectedLibraryID = Properties.Settings.Default.SelectedLibraryID;
+
+            // If no library ID is saved, prompt the user to select one
+            if (selectedLibraryID == 0)
+            {
+                SelectLibrary();
+            }
+
             if (selectedLibraryID > 0) // Ensure a library is selected before proceeding
             {
                 SetThemeColors();
@@ -44,14 +55,14 @@ namespace BIBLIOTECA_PROJETO
 
         private void SetLibraryInfo(int libraryID)
         {
-            if(libraryID == 1)
+            if (libraryID == 1)
             {
                 lblLibraryName.Text = "BIBLIOTECA ESCOLAR EB1 PROFESSOR ROMEU GIL";
-                lblLibraryName.Location = new Point(690,13);
+                lblLibraryName.Location = new Point(690, 13);
                 picLogo.Image = Resources.logoBasicSchool_transparent;
 
             }
-            else if(libraryID == 2)
+            else if (libraryID == 2)
             {
                 lblLibraryName.Text = "BIBLIOTECA ESCOLAR EB23 PADRE JOSÉ ROTA";
                 lblLibraryName.Location = new Point(728, 13);
@@ -62,9 +73,10 @@ namespace BIBLIOTECA_PROJETO
             {
                 lblLibraryName.Text = "BIBLIOTECA DA ESCOLA SECUNDÁRIA";
                 lblLibraryName.Location = new Point(800, 13);
-                picLogo.Image= Resources.logoSecondarySchool_transparent2;
+                picLogo.Image = Resources.logoSecondarySchool_transparent2;
             }
         }
+
         private void SelectLibrary()
         {
             using (var selectLibraryForm = new frmSelectLibrary())
@@ -72,12 +84,9 @@ namespace BIBLIOTECA_PROJETO
                 if (selectLibraryForm.ShowDialog() == DialogResult.OK)
                 {
                     selectedLibraryID = selectLibraryForm.SelectedLibraryID;
-                }
-                else
-                {
-                    // Close the application if no library is selected
-                    this.Close();
-                    Application.Exit();
+                    SetThemeColors();
+                    SetLibraryInfo(selectedLibraryID);
+                    LoadViewLivros();
                 }
             }
         }
@@ -102,6 +111,20 @@ namespace BIBLIOTECA_PROJETO
                 if (_selectedButton != null)
                 {
                     _selectedButton.BackColor = currentThemeColors.SelectedButtonColor;
+                }
+            }
+        }
+
+        private void PicLogo_Click(object sender, EventArgs e)
+        {
+            using (var selectLibraryForm = new frmSelectLibrary())
+            {
+                if (selectLibraryForm.ShowDialog() == DialogResult.OK)
+                {
+                    selectedLibraryID = selectLibraryForm.SelectedLibraryID;
+                    SetThemeColors();
+                    SetLibraryInfo(selectedLibraryID);
+                    LoadViewLivros();
                 }
             }
         }
