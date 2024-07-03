@@ -35,13 +35,13 @@
             this.lblLibraryName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.pnlLogo = new System.Windows.Forms.Panel();
             this.bttStatistics = new System.Windows.Forms.Button();
             this.bttDateListing = new System.Windows.Forms.Button();
             this.bttListing = new System.Windows.Forms.Button();
             this.bttEdit = new System.Windows.Forms.Button();
             this.bttNew = new System.Windows.Forms.Button();
             this.bttSearch = new System.Windows.Forms.Button();
-            this.pnlLogo = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlMainFrame.SuspendLayout();
             this.pnlHeader.SuspendLayout();
@@ -80,18 +80,17 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1023, 48);
             this.pnlHeader.TabIndex = 3;
+            this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             // 
             // lblLibraryName
             // 
-            this.lblLibraryName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblLibraryName.AutoSize = true;
             this.lblLibraryName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLibraryName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
             this.lblLibraryName.Location = new System.Drawing.Point(592, 13);
             this.lblLibraryName.Name = "lblLibraryName";
-            this.lblLibraryName.Size = new System.Drawing.Size(418, 23);
+            this.lblLibraryName.Size = new System.Drawing.Size(0, 23);
             this.lblLibraryName.TabIndex = 1;
-            this.lblLibraryName.Text = "BIBLIOTECA ESCOLAR EB23 PADRE JOSÉ ROTA";
             // 
             // lblTitle
             // 
@@ -120,6 +119,15 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(203, 647);
             this.pnlMenu.TabIndex = 2;
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.Controls.Add(this.picLogo);
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(203, 152);
+            this.pnlLogo.TabIndex = 1;
             // 
             // bttStatistics
             // 
@@ -243,21 +251,11 @@
             this.bttSearch.UseVisualStyleBackColor = false;
             this.bttSearch.Click += new System.EventHandler(this.bttSearch_Click);
             // 
-            // pnlLogo
-            // 
-            this.pnlLogo.Controls.Add(this.picLogo);
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(203, 152);
-            this.pnlLogo.TabIndex = 1;
-            // 
             // picLogo
             // 
             this.picLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
             this.picLogo.Location = new System.Drawing.Point(0, 0);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(203, 152);
@@ -295,13 +293,13 @@
         private System.Windows.Forms.Button bttEdit;
         private System.Windows.Forms.Button bttNew;
         private System.Windows.Forms.Panel pnlLogo;
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Panel pnlLoadForms;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblLibraryName;
         private System.Windows.Forms.Button bttListing;
         private System.Windows.Forms.Button bttStatistics;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }
 

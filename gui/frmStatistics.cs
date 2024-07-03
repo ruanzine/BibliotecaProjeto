@@ -1,20 +1,18 @@
-﻿using BIBLIOTECA_PROJETO.services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Data;
 using System.Drawing;
-using BIBLIOTECA_PROJETO.controls;
 using System.Linq;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using BIBLIOTECA_PROJETO.services;
+using BIBLIOTECA_PROJETO.controls;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
-    /// <summary>
-    /// Represents a form for displaying book statistics.
-    /// </summary>
     public partial class frmStatistics : Form
     {
         private readonly BookStatisticsService _statisticsService;
-
         private const string Disponivel = "Disponível";
         private const string Indisponivel = "Indisponível";
         private const string Abatido = "Abatido";
@@ -32,26 +30,123 @@ namespace BIBLIOTECA_PROJETO.gui
             { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(23, 23, 55), Color.FromArgb(56, 83, 117), Color.FromArgb(33, 50, 88)) }
         };
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="frmStatistics"/> class.
-        /// </summary>
+        private readonly Dictionary<string, Color> conditionColors = new Dictionary<string, Color>
+        {
+            { Disponivel, Color.FromArgb(207, 228, 183) },
+            { Indisponivel, Color.FromArgb(248, 193, 193) },
+            { Perdido, Color.FromArgb(248, 237, 195) },
+            { Deposito, Color.FromArgb(191, 175, 228) },
+            { Exposicao, Color.FromArgb(199, 209, 255) },
+            { Abatido, Color.FromArgb(244, 207, 173) },
+            { ConsultaLocal, Color.FromArgb(191, 232, 255) }
+        };
+
         public frmStatistics(int selectedLibraryId)
         {
             InitializeComponent();
             _statisticsService = new BookStatisticsService();
             this.libraryID = selectedLibraryId;
-            LoadStatistics();
             SetThemeColors();
+            InitializeCustomComponents();
         }
 
-        #region Theme Setting
+        private void InitializeCustomComponents()
+        {
+            cbxChartMode.SelectedIndexChanged += CbxChartMode_SelectedIndexChanged;
+            cbxChartMode.SelectedIndex = 0; // Set default mode
+
+            // Customize DataGridView
+            dgvStatistics.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvStatistics.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStatistics.MultiSelect = false;
+            dgvStatistics.ReadOnly = true;
+
+            // Customize Chart
+            chartStatistics.ChartAreas[0].AxisX.Title = "Category";
+            chartStatistics.ChartAreas[0].AxisY.Title = "Count";
+            chartStatistics.Legends.Add(new Legend("Legend"));
+
+            LoadDataAndDisplayChart();
+        }
+
+        private void CbxChartMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDataAndDisplayChart();
+        }
+
+        private void LoadDataAndDisplayChart()
+        {
+            string selectedMode = cbxChartMode.SelectedItem.ToString();
+            if (selectedMode == "Book Conditions")
+            {
+                LoadBookConditionsData();
+            }
+            else if (selectedMode == "Books Added By Date")
+            {
+                LoadBooksAddedByDateData();
+            }
+        }
+
+        private void LoadBookConditionsData()
+        {
+            var conditions = new[] { Disponivel, Indisponivel, Abatido, Perdido, ConsultaLocal, Exposicao, Deposito };
+            var dataTable = new DataTable();
+            dataTable.Columns.Add("Condition", typeof(string));
+            dataTable.Columns.Add("Count", typeof(int));
+
+            foreach (var condition in conditions)
+            {
+                int count = _statisticsService.GetBooksCountByCondition(condition, libraryID);
+                dataTable.Rows.Add(condition, count);
+            }
+
+            dgvStatistics.DataSource = dataTable;
+
+            // Display data in Chart
+            chartStatistics.Series.Clear();
+            var series = new Series("Book Conditions")
+            {
+                ChartType = SeriesChartType.Column
+            };
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                series.Points.AddXY(row["Condition"], row["Count"]);
+                series.Points.Last().ToolTip = $"{row["Condition"]}: {row["Count"]}";
+
+            }
+
+            chartStatistics.Series.Add(series);
+        }
+
+        private void LoadBooksAddedByDateData()
+        {
+            var dataTable = _statisticsService.GetBooksAddedByDate(libraryID);
+            dgvStatistics.DataSource = dataTable;
+
+            // Display data in Chart
+            chartStatistics.Series.Clear();
+            var series = new Series("Books Added By Date")
+            {
+                ChartType = SeriesChartType.Column,
+                BorderWidth = 3,
+                Color = Color.Blue
+            };
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                series.Points.AddXY(row["Date"], row["Count"]);
+                series.Points.Last().ToolTip = $"{row["Date"]}: {row["Count"]}"; ;
+            }
+
+            chartStatistics.Series.Add(series);
+        }
 
         private void SetThemeColors()
         {
             if (themeColors.TryGetValue(libraryID, out currentThemeColors))
             {
-                ApplyThemeToTextboxes(gpbLeft);
-                ApplyThemeToTextboxes(gpbRight);
+                
 
                 lblTitle.ForeColor = currentThemeColors.ButtonColor;
                 pnlFormFooter.BackColor = currentThemeColors.PanelHeaderColor;
@@ -59,17 +154,9 @@ namespace BIBLIOTECA_PROJETO.gui
                 pnlFormHeader.BackColor = currentThemeColors.PanelHeaderColor;
                 pnlLineBottom.BackColor = currentThemeColors.ButtonColor;
                 pnlLineTop.BackColor = currentThemeColors.ButtonColor;
-                lblCondition.ForeColor = currentThemeColors.LabelColor;
-                gpbLeft.BackColor = currentThemeColors.PanelBodyColor;
-                gpbRight.BackColor = currentThemeColors.PanelBodyColor;
-                gpbLeft.ForeColor = currentThemeColors.GroupBoxColor;
-                gpbRight.ForeColor = currentThemeColors.GroupBoxColor;
-
                 
             }
         }
-
-        #endregion
 
         private void ApplyThemeToTextboxes(Control parent)
         {
@@ -85,44 +172,12 @@ namespace BIBLIOTECA_PROJETO.gui
                 label.BackColor = currentThemeColors.PanelBodyColor;
             }
         }
-        /// <summary>
-        /// Loads the statistics data and updates the labels.
-        /// </summary>
-        private void LoadStatistics()
-        {
-            try
-            {
-                SetLabelText(lblTotalBooks, "Total de Livros", _statisticsService.GetTotalBooksCount(libraryID));
-                SetLabelText(lblTotalTitles, "Total de Títulos", _statisticsService.GetTotalTitlesCount(libraryID));
-                SetLabelText(lblTotalAuthors, "Total de Autores", _statisticsService.GetTotalAuthorsCount(libraryID));
-                SetLabelText(lblTotalCotas, "Total de Cotas", _statisticsService.GetTotalClassificationsCount(libraryID));
 
-                SetLabelText(lblDisponivel, Disponivel, _statisticsService.GetBooksCountByCondition(Disponivel, libraryID));
-                SetLabelText(lblIndisponivel, Indisponivel, _statisticsService.GetBooksCountByCondition(Indisponivel, libraryID));
-                SetLabelText(lblAbatido, Abatido, _statisticsService.GetBooksCountByCondition(Abatido, libraryID));
-                SetLabelText(lblPerdido, Perdido, _statisticsService.GetBooksCountByCondition(Perdido, libraryID));
-                SetLabelText(lblConsultaLocal, ConsultaLocal, _statisticsService.GetBooksCountByCondition(ConsultaLocal, libraryID));
-                SetLabelText(lblExposicao, Exposicao, _statisticsService.GetBooksCountByCondition(Exposicao, libraryID));
-                SetLabelText(lblDeposito, Deposito, _statisticsService.GetBooksCountByCondition(Deposito, libraryID));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar as estatísticas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Optionally log the error if a logging system is in place
-                // Logger.LogError(ex, "Erro ao carregar as estatísticas");
-            }
-        }
-
-        /// <summary>
-        /// Sets the text of the specified label with the given count.
-        /// </summary>
-        /// <param name="label">The label to set the text for.</param>
-        /// <param name="labelText">The text to display before the count.</param>
-        /// <param name="count">The count to display.</param>
         private void SetLabelText(Label label, string labelText, int count)
         {
             label.Text = $"{labelText}: {count}";
         }
+
         private class ThemeColors
         {
             public Color ButtonColor { get; }

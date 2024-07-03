@@ -1,4 +1,5 @@
 ﻿using BIBLIOTECA_PROJETO.gui;
+using BIBLIOTECA_PROJETO.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -36,10 +37,34 @@ namespace BIBLIOTECA_PROJETO
             {
                 SetThemeColors();
                 SetSelectedButton(bttSearch);
+                SetLibraryInfo(selectedLibraryID);
                 LoadViewLivros();
             }
         }
 
+        private void SetLibraryInfo(int libraryID)
+        {
+            if(libraryID == 1)
+            {
+                lblLibraryName.Text = "BIBLIOTECA ESCOLAR EB1 PROFESSOR ROMEU GIL";
+                lblLibraryName.Location = new Point(690,13);
+                picLogo.Image = Resources.logoBasicSchool_transparent;
+
+            }
+            else if(libraryID == 2)
+            {
+                lblLibraryName.Text = "BIBLIOTECA ESCOLAR EB23 PADRE JOSÉ ROTA";
+                lblLibraryName.Location = new Point(728, 13);
+                picLogo.Image = Resources.logo_eb23_transparent;
+
+            }
+            else
+            {
+                lblLibraryName.Text = "BIBLIOTECA DA ESCOLA SECUNDÁRIA";
+                lblLibraryName.Location = new Point(800, 13);
+                picLogo.Image= Resources.logoSecondarySchool_transparent2;
+            }
+        }
         private void SelectLibrary()
         {
             using (var selectLibraryForm = new frmSelectLibrary())
@@ -212,6 +237,11 @@ namespace BIBLIOTECA_PROJETO
                 LabelTitleColor = labelTitleColor;
                 SelectedButtonColor = selectedButtonColor;
             }
+        }
+
+        private void pnlHeader_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
