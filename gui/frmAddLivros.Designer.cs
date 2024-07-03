@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddLivros));
             this.pnlAddLivros = new System.Windows.Forms.Panel();
-            this.pnlFormFooter = new RoundedPanelBottom();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormFooter = new controls.RoundedPanelBottom();
+            this.pnlFormHeader = new controls.RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlFormBody = new System.Windows.Forms.Panel();
-            this.gpbTop = new RoundedGroupBox();
+            this.gpbTop = new controls.RoundedGroupBox();
             this.lblRegNum = new System.Windows.Forms.Label();
             this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblArrivalDate = new System.Windows.Forms.Label();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.gpbBottom = new RoundedGroupBox();
+            this.gpbBottom = new controls.RoundedGroupBox();
             this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
             this.lblAcquisition = new System.Windows.Forms.Label();
             this.lblPublisher = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.txtTitulo = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.lblTitleBody = new System.Windows.Forms.Label();
-            this.gpbRight = new RoundedGroupBox();
+            this.gpbRight = new controls.RoundedGroupBox();
             this.bttClear = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.cbxEstado = new MetroFramework.Controls.MetroComboBox();
             this.bttSave = new BIBLIOTECA_PROJETO.controls.RoundedButton();
@@ -576,9 +576,9 @@
         private System.Windows.Forms.Label lblRegNum;
         private controls.UC_textbox txtNRegisto;
         private System.Windows.Forms.Label lblArrivalDate;
-        private RoundedGroupBox gpbRight;
-        private RoundedGroupBox gpbBottom;
-        private RoundedGroupBox gpbTop;
+        private controls.RoundedGroupBox gpbRight;
+        private controls.RoundedGroupBox gpbBottom;
+        private controls.RoundedGroupBox gpbTop;
         private controls.RoundedButton bttSave;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblAcquisition;
@@ -586,10 +586,10 @@
         private controls.UC_textbox txtEditora;
         private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.Panel pnlFormBody;
-        private RoundedPanel pnlFormHeader;
+        private controls.RoundedPanel pnlFormHeader;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao;
         private MetroFramework.Controls.MetroComboBox cbxEstado;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Panel pnlLineTop;
         private controls.RoundedButton bttClear;

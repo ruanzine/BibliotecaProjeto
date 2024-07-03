@@ -5,7 +5,6 @@ using MetroFramework.Controls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -39,6 +38,9 @@ namespace BIBLIOTECA_PROJETO.gui
             mainForm.AddControlBounds(this.pnlEditLivros);
             this.libraryID = selectedLibraryId;
             SetThemeColors();
+
+            // Set the MaxDate of the DateTimePicker to today's date
+            dtpArrivalDate.MaxDate = DateTime.Today;
         }
 
         #region Theme Setting
@@ -310,7 +312,6 @@ namespace BIBLIOTECA_PROJETO.gui
             this.txtObservacoes_Edit.Texts = "";
             this.cbxEstado_Edit.SelectedIndex = -1;
             this.cbxAquisicao_Edit.SelectedIndex = -1;
-            
         }
 
         /// <summary>

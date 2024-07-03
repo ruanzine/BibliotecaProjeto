@@ -38,6 +38,7 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
+            cbxFilter.SelectedIndex = 0;
         }
 
         #region Initialization

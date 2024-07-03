@@ -155,13 +155,13 @@
     <Compile Include="classes\ResizerClass.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="classes\RoundedButton.cs">
+    <Compile Include="controls\RoundedButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="classes\RoundedGroupBox.cs">
+    <Compile Include="controls\RoundedGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="classes\RoundedPanel.cs">
+    <Compile Include="controls\RoundedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="classes\services\BookDateListingService.cs" />

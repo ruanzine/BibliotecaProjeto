@@ -25,9 +25,9 @@
             this.dgvStatistics = new System.Windows.Forms.DataGridView();
             this.cbxChartMode = new MetroFramework.Controls.MetroComboBox();
             this.pnlLineTop = new System.Windows.Forms.Panel();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormHeader = new controls.RoundedPanel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pnlFormFooter = new RoundedPanelBottom();
+            this.pnlFormFooter = new controls.RoundedPanelBottom();
             this.chartStatistics = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -160,10 +160,10 @@
 
         }
         #endregion
-        private RoundedPanel pnlFormHeader;
+        private controls.RoundedPanel pnlFormHeader;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlFormBody;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Panel pnlLineTop;
         private MetroFramework.Controls.MetroComboBox cbxChartMode;

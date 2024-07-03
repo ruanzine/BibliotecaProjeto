@@ -39,6 +39,7 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
+            cbxFilter_DGV.SelectedIndex = 1;
         }
 
         #region Initialization
@@ -79,7 +80,6 @@ namespace BIBLIOTECA_PROJETO.gui
                 pnlLineBottom.BackColor = currentThemeColors.LabelColor;
                 pnlLineTop.BackColor = currentThemeColors.LabelColor;
                 dgvBook.BackgroundColor = currentThemeColors.PanelBodyColor;
-                
             }
         }
 
@@ -114,6 +114,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private void dgvBook_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvBook.ClearSelection(); // Clear selection after data binding is complete
+            ResizeData(); // Resize columns after data binding is complete
         }
 
         /// <summary>
@@ -178,11 +179,12 @@ namespace BIBLIOTECA_PROJETO.gui
         }
 
         /// <summary>
-        /// Handles the Load event of the form to focus the Search TextBox.
+        /// Handles the Load event of the form to load data and populate the DataGridView.
         /// </summary>
         private void frmBookViewer_Load(object sender, EventArgs e)
         {
             txtSearch_DGV.Focus();
+            LoadAllData();
         }
 
         #endregion
@@ -264,6 +266,8 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         public void ResizeData()
         {
+            if (dgvBook.Columns.Count == 0) return; // Ensure there are columns to resize
+
             dgvBook.Columns["Nº"].Width = 50;
             dgvBook.Columns["Data de Entrada"].Width = 90;
             dgvBook.Columns["Título"].Width = 270;
@@ -402,7 +406,6 @@ namespace BIBLIOTECA_PROJETO.gui
                 PanelBodyColor = panelBodyColor;
                 LabelColor = labelColor;
                 ButtonColor = buttonColor;
-
             }
         }
     }

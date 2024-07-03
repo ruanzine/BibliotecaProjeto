@@ -33,13 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilteredListing));
             this.dgvFilteredListing = new System.Windows.Forms.DataGridView();
-            this.pnlFormFooter = new RoundedPanelBottom();
+            this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
             this.lblAmount = new System.Windows.Forms.Label();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrint = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.bttAdvanced = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblSubtitle = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             this.dgvFilteredListing.AllowUserToAddRows = false;
             this.dgvFilteredListing.AllowUserToDeleteRows = false;
             this.dgvFilteredListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.dgvFilteredListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFilteredListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvFilteredListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -79,7 +79,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFilteredListing.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFilteredListing.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvFilteredListing.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dgvFilteredListing.GridColor = System.Drawing.Color.Silver;
             this.dgvFilteredListing.Location = new System.Drawing.Point(40, 96);
             this.dgvFilteredListing.MultiSelect = false;
             this.dgvFilteredListing.Name = "dgvFilteredListing";
@@ -299,8 +299,8 @@
         private controls.RoundedButton bttPrint;
         private controls.RoundedButton bttPreviousPage;
         private controls.RoundedButton bttNextPage;
-        private RoundedPanel pnlFormHeader;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanel pnlFormHeader;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private MetroFramework.Controls.MetroComboBox cbxFilter;
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Panel pnlLineTop;

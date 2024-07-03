@@ -32,11 +32,11 @@
             this.pnlEditLivros = new System.Windows.Forms.Panel();
             this.pnlFormBody = new System.Windows.Forms.Panel();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.pnlFormFooter = new RoundedPanelBottom();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormFooter = new controls.RoundedPanelBottom();
+            this.pnlFormHeader = new controls.RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.gpbBottom = new RoundedGroupBox();
+            this.gpbBottom = new controls.RoundedGroupBox();
             this.cbxEstado_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtObservacoes_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblCondition = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.lblClassification = new System.Windows.Forms.Label();
             this.lblVolNum = new System.Windows.Forms.Label();
             this.bttSave_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.gpbTop = new RoundedGroupBox();
+            this.gpbTop = new controls.RoundedGroupBox();
             this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.bttSearchEdit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.txtNRegisto_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -54,7 +54,7 @@
             this.lblRegNum = new System.Windows.Forms.Label();
             this.bttDel = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttClear_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.gpbMid = new RoundedGroupBox();
+            this.gpbMid = new controls.RoundedGroupBox();
             this.cbxAquisicao_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtEditora_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblPublisher = new System.Windows.Forms.Label();
@@ -628,12 +628,12 @@
         private controls.RoundedButton bttSave_Edit;
         private controls.RoundedButton bttClear_Edit;
         private controls.RoundedButton bttDel;
-        private RoundedGroupBox gpbTop;
-        private RoundedGroupBox gpbMid;
-        private RoundedPanel pnlFormHeader;
+        private controls.RoundedGroupBox gpbTop;
+        private controls.RoundedGroupBox gpbMid;
+        private controls.RoundedPanel pnlFormHeader;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlFormBody;
-        private RoundedGroupBox gpbBottom;
+        private controls.RoundedGroupBox gpbBottom;
         private controls.UC_textbox txtObservacoes_Edit;
         private controls.UC_textbox txtNVolume_Edit;
         private controls.UC_textbox txtCota_Edit;
@@ -647,7 +647,7 @@
         private System.Windows.Forms.Label lblCondition;
         private MetroFramework.Controls.MetroComboBox cbxEstado_Edit;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao_Edit;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Panel pnlLineBottom;
         private MetroFramework.Controls.MetroDateTime dtpArrivalDate;
