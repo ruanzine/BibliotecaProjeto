@@ -118,17 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="bttPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAT1JREFUSEvdlDFKA1EURQcXEMgaUqZQUHtTZQvGBVi4AgULsXIHugYLXYApLXUJ
-        ogimEWwFRcdzZl5Qcb7zx0py4ZB579/7MjPJ/8XiqCzLLTiHiwSuTcKeJwIjUA44TTAFNYpYuzDvw0OU
-        SeGZ6Y2yWRh6cAL38Axv8NSCHr1mjqEX4z5F03f2CN7tdkfMmD2LcbVo9OEdNqPVWWQnMaMfrao5BLUe
-        rc4yW48oh9FalMFcr8EhHCVwbTXseYP5XIFXuIOrBK69wHJksgbvgX+fpcrQINfCsxt14+BB3SvHUR/A
-        bbX4i/TojesxqEG1qCj89mtwF92Auyp3sF4zZn1F35+Shlt6B/xhLiF3sF4zZn9u6a/C4BadRZmUHr1R
-        tgvz/Nj0aGw6MmV+bG5ELE8E3PttB/2fz5b/pqL4ADyxqMr8c765AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="bttPreviousPage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

@@ -1,5 +1,6 @@
 ﻿using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -443,13 +444,13 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             dgvFilteredListing.Columns["Nº"].Width = 50;
             dgvFilteredListing.Columns["Data de Entrada"].Width = 90;
-            dgvFilteredListing.Columns["Título"].Width = 225;
+            dgvFilteredListing.Columns["Título"].Width = 150 ;
             dgvFilteredListing.Columns["Autor"].Width = 150;
             dgvFilteredListing.Columns["Cota"].Width = 130;
             dgvFilteredListing.Columns["Nº. Vol"].Width = 52;
             dgvFilteredListing.Columns["Aquisição"].Width = 75;
-            dgvFilteredListing.Columns["Observações"].Width = 200;
-            dgvFilteredListing.Columns["Editora"].Width = 175;
+            dgvFilteredListing.Columns["Observações"].Width = 180;
+            dgvFilteredListing.Columns["Editora"].Width = 130;
             dgvFilteredListing.Columns["Estado"].Width = 123;
 
             SetDefaultCellStyle();

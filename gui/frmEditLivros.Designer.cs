@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditLivros));
             this.pnlEditLivros = new System.Windows.Forms.Panel();
-            this.pnlFormBody = new System.Windows.Forms.Panel();
-            this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.pnlFormFooter = new controls.RoundedPanelBottom();
-            this.pnlFormHeader = new controls.RoundedPanel();
+            this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
+            this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.gpbBottom = new controls.RoundedGroupBox();
+            this.pnlFormBody = new System.Windows.Forms.Panel();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
+            this.gpbBottom = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
             this.cbxEstado_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtObservacoes_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblCondition = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.lblClassification = new System.Windows.Forms.Label();
             this.lblVolNum = new System.Windows.Forms.Label();
             this.bttSave_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.gpbTop = new controls.RoundedGroupBox();
+            this.gpbTop = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
             this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.bttSearchEdit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.txtNRegisto_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -54,7 +54,7 @@
             this.lblRegNum = new System.Windows.Forms.Label();
             this.bttDel = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttClear_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.gpbMid = new controls.RoundedGroupBox();
+            this.gpbMid = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
             this.cbxAquisicao_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtEditora_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblPublisher = new System.Windows.Forms.Label();
@@ -64,8 +64,8 @@
             this.lblTitleBody = new System.Windows.Forms.Label();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.pnlEditLivros.SuspendLayout();
-            this.pnlFormBody.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
+            this.pnlFormBody.SuspendLayout();
             this.gpbBottom.SuspendLayout();
             this.gpbTop.SuspendLayout();
             this.gpbMid.SuspendLayout();
@@ -82,30 +82,6 @@
             this.pnlEditLivros.Name = "pnlEditLivros";
             this.pnlEditLivros.Size = new System.Drawing.Size(1155, 685);
             this.pnlEditLivros.TabIndex = 0;
-            // 
-            // pnlFormBody
-            // 
-            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
-            this.pnlFormBody.Controls.Add(this.gpbBottom);
-            this.pnlFormBody.Controls.Add(this.bttSave_Edit);
-            this.pnlFormBody.Controls.Add(this.gpbTop);
-            this.pnlFormBody.Controls.Add(this.bttDel);
-            this.pnlFormBody.Controls.Add(this.bttClear_Edit);
-            this.pnlFormBody.Controls.Add(this.gpbMid);
-            this.pnlFormBody.Location = new System.Drawing.Point(224, 64);
-            this.pnlFormBody.Name = "pnlFormBody";
-            this.pnlFormBody.Size = new System.Drawing.Size(688, 560);
-            this.pnlFormBody.TabIndex = 61;
-            this.pnlFormBody.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFormBody_Paint);
-            // 
-            // pnlLineBottom
-            // 
-            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.pnlLineBottom.Location = new System.Drawing.Point(0, 558);
-            this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(688, 12);
-            this.pnlLineBottom.TabIndex = 64;
             // 
             // pnlFormFooter
             // 
@@ -145,6 +121,30 @@
             this.lblTitle.Size = new System.Drawing.Size(156, 26);
             this.lblTitle.TabIndex = 12;
             this.lblTitle.Text = "Editar Registo";
+            // 
+            // pnlFormBody
+            // 
+            this.pnlFormBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.pnlFormBody.Controls.Add(this.pnlLineBottom);
+            this.pnlFormBody.Controls.Add(this.gpbBottom);
+            this.pnlFormBody.Controls.Add(this.bttSave_Edit);
+            this.pnlFormBody.Controls.Add(this.gpbTop);
+            this.pnlFormBody.Controls.Add(this.bttDel);
+            this.pnlFormBody.Controls.Add(this.bttClear_Edit);
+            this.pnlFormBody.Controls.Add(this.gpbMid);
+            this.pnlFormBody.Location = new System.Drawing.Point(224, 64);
+            this.pnlFormBody.Name = "pnlFormBody";
+            this.pnlFormBody.Size = new System.Drawing.Size(688, 560);
+            this.pnlFormBody.TabIndex = 61;
+            this.pnlFormBody.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFormBody_Paint);
+            // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(0, 558);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(688, 12);
+            this.pnlLineBottom.TabIndex = 64;
             // 
             // gpbBottom
             // 
@@ -391,9 +391,9 @@
             this.lblArrivalDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblArrivalDate.Location = new System.Drawing.Point(264, 28);
             this.lblArrivalDate.Name = "lblArrivalDate";
-            this.lblArrivalDate.Size = new System.Drawing.Size(116, 17);
+            this.lblArrivalDate.Size = new System.Drawing.Size(117, 17);
             this.lblArrivalDate.TabIndex = 1;
-            this.lblArrivalDate.Text = "Data de Entrega";
+            this.lblArrivalDate.Text = "Data de Entrada";
             // 
             // lblRegNum
             // 
@@ -602,9 +602,9 @@
             this.Name = "frmEditLivros";
             this.Text = "frmEditLivros";
             this.pnlEditLivros.ResumeLayout(false);
-            this.pnlFormBody.ResumeLayout(false);
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
+            this.pnlFormBody.ResumeLayout(false);
             this.gpbBottom.ResumeLayout(false);
             this.gpbBottom.PerformLayout();
             this.gpbTop.ResumeLayout(false);

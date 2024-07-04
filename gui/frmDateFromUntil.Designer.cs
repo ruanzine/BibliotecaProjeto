@@ -144,7 +144,7 @@
             this.bttPrintDate.FlatAppearance.BorderSize = 0;
             this.bttPrintDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPrintDate.ForeColor = System.Drawing.Color.White;
-            this.bttPrintDate.Image = ((System.Drawing.Image)(resources.GetObject("bttPrintDate.Image")));
+            this.bttPrintDate.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_download;
             this.bttPrintDate.Location = new System.Drawing.Point(16, 16);
             this.bttPrintDate.Margin = new System.Windows.Forms.Padding(0);
             this.bttPrintDate.Name = "bttPrintDate";

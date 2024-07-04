@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilteredListing));
             this.dgvFilteredListing = new System.Windows.Forms.DataGridView();
             this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
@@ -84,6 +85,8 @@
             this.dgvFilteredListing.MultiSelect = false;
             this.dgvFilteredListing.Name = "dgvFilteredListing";
             this.dgvFilteredListing.RowHeadersVisible = false;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Lime;
+            this.dgvFilteredListing.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFilteredListing.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvFilteredListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFilteredListing.Size = new System.Drawing.Size(1104, 488);
@@ -135,7 +138,7 @@
             this.bttPrint.FlatAppearance.BorderSize = 0;
             this.bttPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPrint.ForeColor = System.Drawing.Color.White;
-            this.bttPrint.Image = ((System.Drawing.Image)(resources.GetObject("bttPrint.Image")));
+            this.bttPrint.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_download;
             this.bttPrint.Location = new System.Drawing.Point(16, 16);
             this.bttPrint.Margin = new System.Windows.Forms.Padding(0);
             this.bttPrint.Name = "bttPrint";
@@ -215,7 +218,7 @@
             this.bttAdvanced.Name = "bttAdvanced";
             this.bttAdvanced.Size = new System.Drawing.Size(88, 32);
             this.bttAdvanced.TabIndex = 54;
-            this.bttAdvanced.Text = "Avançado";
+            this.bttAdvanced.Text = "Detalhes";
             this.bttAdvanced.UseVisualStyleBackColor = false;
             // 
             // pnlLineTop
@@ -296,7 +299,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dgvFilteredListing;
         private System.Windows.Forms.Label lblPagination;
-        private controls.RoundedButton bttPrint;
         private controls.RoundedButton bttPreviousPage;
         private controls.RoundedButton bttNextPage;
         private controls.RoundedPanel pnlFormHeader;
@@ -307,5 +309,6 @@
         private System.Windows.Forms.Panel pnlLineBottom;
         private controls.RoundedButton bttAdvanced;
         private System.Windows.Forms.Label lblAmount;
+        private controls.RoundedButton bttPrint;
     }
 }
