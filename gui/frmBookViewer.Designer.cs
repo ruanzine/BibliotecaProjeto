@@ -18,15 +18,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookViewer));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookViewer));
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
+            this.btnPrint_Search = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.btnPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
+            this.btnNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.txtSearch_DGV = new BIBLIOTECA_PROJETO.controls.UC_textbox();
@@ -35,9 +38,6 @@
             this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.dgvBook = new System.Windows.Forms.DataGridView();
-            this.btnPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.btnNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.btnPrint_Search = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pnlFormFooter.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
@@ -61,7 +61,7 @@
             this.pnlFormFooter.Controls.Add(this.btnPreviousPage);
             this.pnlFormFooter.Controls.Add(this.btnNextPage);
             this.pnlFormFooter.CornerRadius = 10;
-            this.pnlFormFooter.Location = new System.Drawing.Point(12, 584);
+            this.pnlFormFooter.Location = new System.Drawing.Point(12, 580);
             this.pnlFormFooter.Name = "pnlFormFooter";
             this.pnlFormFooter.Size = new System.Drawing.Size(1131, 64);
             this.pnlFormFooter.TabIndex = 44;
@@ -95,6 +95,60 @@
             this.lblAmount.Size = new System.Drawing.Size(185, 21);
             this.lblAmount.TabIndex = 53;
             this.lblAmount.Text = "0 registos encontrados";
+            // 
+            // btnPrint_Search
+            // 
+            this.btnPrint_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.btnPrint_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint_Search.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnPrint_Search.BorderRadius = 5;
+            this.btnPrint_Search.BorderSize = 0;
+            this.btnPrint_Search.FlatAppearance.BorderSize = 0;
+            this.btnPrint_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint_Search.ForeColor = System.Drawing.Color.White;
+            this.btnPrint_Search.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint_Search.Image")));
+            this.btnPrint_Search.Location = new System.Drawing.Point(16, 16);
+            this.btnPrint_Search.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrint_Search.Name = "btnPrint_Search";
+            this.btnPrint_Search.Size = new System.Drawing.Size(35, 35);
+            this.btnPrint_Search.TabIndex = 45;
+            this.btnPrint_Search.UseVisualStyleBackColor = false;
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.btnPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnPreviousPage.BorderRadius = 5;
+            this.btnPreviousPage.BorderSize = 0;
+            this.btnPreviousPage.FlatAppearance.BorderSize = 0;
+            this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreviousPage.ForeColor = System.Drawing.Color.White;
+            this.btnPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPage.Image")));
+            this.btnPreviousPage.Location = new System.Drawing.Point(1024, 16);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(35, 35);
+            this.btnPreviousPage.TabIndex = 44;
+            this.btnPreviousPage.UseVisualStyleBackColor = false;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
+            this.btnNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnNextPage.BorderRadius = 5;
+            this.btnNextPage.BorderSize = 0;
+            this.btnNextPage.FlatAppearance.BorderSize = 0;
+            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextPage.ForeColor = System.Drawing.Color.White;
+            this.btnNextPage.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPage.Image")));
+            this.btnNextPage.Location = new System.Drawing.Point(1072, 16);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(35, 35);
+            this.btnNextPage.TabIndex = 10;
+            this.btnNextPage.UseVisualStyleBackColor = false;
             // 
             // pnlFormHeader
             // 
@@ -232,62 +286,8 @@
             this.dgvBook.RowHeadersVisible = false;
             this.dgvBook.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBook.Size = new System.Drawing.Size(1131, 504);
+            this.dgvBook.Size = new System.Drawing.Size(1131, 500);
             this.dgvBook.TabIndex = 50;
-            // 
-            // btnPreviousPage
-            // 
-            this.btnPreviousPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.btnPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnPreviousPage.BorderRadius = 5;
-            this.btnPreviousPage.BorderSize = 0;
-            this.btnPreviousPage.FlatAppearance.BorderSize = 0;
-            this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPreviousPage.ForeColor = System.Drawing.Color.White;
-            this.btnPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPage.Image")));
-            this.btnPreviousPage.Location = new System.Drawing.Point(1024, 16);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(35, 35);
-            this.btnPreviousPage.TabIndex = 44;
-            this.btnPreviousPage.UseVisualStyleBackColor = false;
-            // 
-            // btnNextPage
-            // 
-            this.btnNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.btnNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnNextPage.BorderRadius = 5;
-            this.btnNextPage.BorderSize = 0;
-            this.btnNextPage.FlatAppearance.BorderSize = 0;
-            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNextPage.ForeColor = System.Drawing.Color.White;
-            this.btnNextPage.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPage.Image")));
-            this.btnNextPage.Location = new System.Drawing.Point(1072, 16);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(35, 35);
-            this.btnNextPage.TabIndex = 10;
-            this.btnNextPage.UseVisualStyleBackColor = false;
-            // 
-            // btnPrint_Search
-            // 
-            this.btnPrint_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.btnPrint_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPrint_Search.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnPrint_Search.BorderRadius = 5;
-            this.btnPrint_Search.BorderSize = 0;
-            this.btnPrint_Search.FlatAppearance.BorderSize = 0;
-            this.btnPrint_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint_Search.ForeColor = System.Drawing.Color.White;
-            this.btnPrint_Search.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint_Search.Image")));
-            this.btnPrint_Search.Location = new System.Drawing.Point(16, 16);
-            this.btnPrint_Search.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPrint_Search.Name = "btnPrint_Search";
-            this.btnPrint_Search.Size = new System.Drawing.Size(35, 35);
-            this.btnPrint_Search.TabIndex = 45;
-            this.btnPrint_Search.UseVisualStyleBackColor = false;
             // 
             // frmBookViewer
             // 
