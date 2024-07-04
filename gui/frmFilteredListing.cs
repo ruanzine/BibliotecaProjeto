@@ -122,6 +122,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void cbxFilter_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbxFilter.SelectedIndex == 0) bttAdvanced.Enabled = false;
             LoadAllData(cbxFilter.Text);
         }
 
@@ -130,7 +131,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void dgvFilteredListing_SelectionChanged(object sender, EventArgs e)
         {
-            bttAdvanced.Enabled = dgvFilteredListing.SelectedRows.Count > 0;
+            if(cbxFilter.SelectedIndex != 0) bttAdvanced.Enabled = dgvFilteredListing.SelectedRows.Count > 0;
         }
 
         /// <summary>
@@ -418,7 +419,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ResizeTitle()
         {
-            SetColumnProperties("Título", 250);
+            SetColumnProperties("Título", 300);
         }
 
         /// <summary>
@@ -426,7 +427,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ResizeCota()
         {
-            SetColumnProperties("Cota", 130);
+            SetColumnProperties("Cota", 120);
         }
 
         /// <summary>
@@ -434,7 +435,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ResizeEstado()
         {
-            SetColumnProperties("Estado", 130);
+            SetColumnProperties("Estado", 1);
         }
 
         /// <summary>
@@ -465,7 +466,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <param name="width">The width of the column.</param>
         private void SetColumnProperties(string columnName, int width)
         {
-            dgvFilteredListing.Columns[columnName].Width = width;
+            dgvFilteredListing.Columns[columnName].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             SetDefaultCellStyle();
             SetRowHeight(dgvFilteredListing, 40);
         }
