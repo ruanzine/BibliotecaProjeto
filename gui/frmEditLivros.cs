@@ -21,6 +21,8 @@ namespace BIBLIOTECA_PROJETO.gui
         public int _nregisto, _nvolume;
         public int libraryID;
         private ThemeColors currentThemeColors;
+        private ToolTip toolTip = new ToolTip();
+        private ErrorProvider errorProvider = new ErrorProvider();
 
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
@@ -123,7 +125,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 bookUpdateService.UpdateBook(numeroRegistro, dataEntrega, titulo, autor, cota, aquisicao, editora, numeroVolume, observacoes, estado, libraryID);
 
-                MessageBox.Show("Registo atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Toast.ShowToast("Registo atualizado com sucesso.");
                 ClearText();
                 UnableText();
                 bttSave_Edit.Enabled = false;
@@ -131,7 +133,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao atualizar o registro: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao atualizar o registro: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -189,7 +191,7 @@ namespace BIBLIOTECA_PROJETO.gui
                     if (result == DialogResult.Yes)
                     {
                         bookUpdateService.DeleteBook(numeroRegistro, libraryID);
-                        MessageBox.Show("Registo excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Toast.ShowToast("Registo excluído com sucesso.");
                         ClearText();
                         UnableText();
                         bttSave_Edit.Enabled = false;
@@ -198,12 +200,12 @@ namespace BIBLIOTECA_PROJETO.gui
                 }
                 else
                 {
-                    MessageBox.Show("O livro com este número de registo não existe.", "Falha ao remover", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Toast.ShowToast("O livro com este número de registo não existe.", 5000); // Show for 5 seconds
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao excluir o registro: " + ex.Message, "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao excluir o registro: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -245,7 +247,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             else
             {
-                MessageBox.Show("Livro não encontrado.", "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Livro não encontrado.", 5000); // Show for 5 seconds
                 this.txtNRegisto_Edit.Enabled = true;
             }
         }
@@ -277,9 +279,10 @@ namespace BIBLIOTECA_PROJETO.gui
             string text = textBox.Texts?.Trim();
             if (string.IsNullOrEmpty(text))
             {
-                MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError($"Por favor, insira {fieldName}.", textBox);
                 return false;
             }
+            ClearError(textBox);
             return true;
         }
 
@@ -291,11 +294,12 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <returns>True if the combobox is valid, otherwise false.</returns>
         private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
-            if (comboBox.Text == "<Aquisição>" || comboBox.Text == "<Estado>")
+            if (comboBox.Text == "" || comboBox.Text == "")
             {
-                MessageBox.Show($"Por favor, insira {fieldName}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError($"Por favor, selecione {fieldName}.", comboBox);
                 return false;
             }
+            ClearError(comboBox);
             return true;
         }
 
@@ -352,6 +356,25 @@ namespace BIBLIOTECA_PROJETO.gui
             this.bttDel.Enabled = false;
             this.bttSave_Edit.Enabled = false;
             ClearText();
+        }
+
+        /// <summary>
+        /// Displays an error message using an ErrorProvider.
+        /// </summary>
+        /// <param name="message">The error message to display.</param>
+        /// <param name="control">The control to which the error message relates.</param>
+        private void ShowError(string message, Control control)
+        {
+            errorProvider.SetError(control, message);
+        }
+
+        /// <summary>
+        /// Clears the error message from an ErrorProvider.
+        /// </summary>
+        /// <param name="control">The control from which to clear the error message.</param>
+        private void ClearError(Control control)
+        {
+            errorProvider.SetError(control, "");
         }
 
         #endregion

@@ -9,6 +9,34 @@ namespace BIBLIOTECA_PROJETO.services
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
 
+        public DataTable GetAllBooks(int libraryID)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                                 T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
+                                 B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
+                                 B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
+                                 FROM Books B
+                                 INNER JOIN Authors A ON B.AuthorID = A.ID
+                                 INNER JOIN Classifications C ON B.ClassificationID = C.ID
+                                 INNER JOIN Titles T ON B.TitleID = T.ID
+                                 WHERE B.LibraryID = @libraryID
+                                 ORDER BY B.RegistrationNumber";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        return dt;
+                    }
+                }
+            }
+        }
+
         public DataTable GetBooksByRegsiterNumber(int numeroRegistro, int libraryID)
         {
             try

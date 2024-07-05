@@ -171,6 +171,9 @@
     <Compile Include="classes\services\BookUpadteService.cs" />
     <Compile Include="classes\services\LibraryService.cs" />
     <Compile Include="classes\services\BookCreateService.cs" />
+    <Compile Include="controls\Toast.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="controls\UC_combobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
