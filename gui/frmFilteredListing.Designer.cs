@@ -31,15 +31,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilteredListing));
             this.dgvFilteredListing = new System.Windows.Forms.DataGridView();
-            this.pnlFormFooter = new RoundedPanelBottom();
+            this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
             this.lblAmount = new System.Windows.Forms.Label();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrint = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.bttAdvanced = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblSubtitle = new System.Windows.Forms.Label();
@@ -56,7 +57,7 @@
             this.dgvFilteredListing.AllowUserToAddRows = false;
             this.dgvFilteredListing.AllowUserToDeleteRows = false;
             this.dgvFilteredListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.dgvFilteredListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFilteredListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvFilteredListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -79,11 +80,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFilteredListing.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFilteredListing.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvFilteredListing.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dgvFilteredListing.GridColor = System.Drawing.Color.Silver;
             this.dgvFilteredListing.Location = new System.Drawing.Point(40, 96);
             this.dgvFilteredListing.MultiSelect = false;
             this.dgvFilteredListing.Name = "dgvFilteredListing";
             this.dgvFilteredListing.RowHeadersVisible = false;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Lime;
+            this.dgvFilteredListing.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFilteredListing.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvFilteredListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFilteredListing.Size = new System.Drawing.Size(1104, 488);
@@ -135,7 +138,7 @@
             this.bttPrint.FlatAppearance.BorderSize = 0;
             this.bttPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPrint.ForeColor = System.Drawing.Color.White;
-            this.bttPrint.Image = ((System.Drawing.Image)(resources.GetObject("bttPrint.Image")));
+            this.bttPrint.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_download;
             this.bttPrint.Location = new System.Drawing.Point(16, 16);
             this.bttPrint.Margin = new System.Windows.Forms.Padding(0);
             this.bttPrint.Name = "bttPrint";
@@ -215,7 +218,7 @@
             this.bttAdvanced.Name = "bttAdvanced";
             this.bttAdvanced.Size = new System.Drawing.Size(88, 32);
             this.bttAdvanced.TabIndex = 54;
-            this.bttAdvanced.Text = "Avançado";
+            this.bttAdvanced.Text = "Detalhes";
             this.bttAdvanced.UseVisualStyleBackColor = false;
             // 
             // pnlLineTop
@@ -296,16 +299,16 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dgvFilteredListing;
         private System.Windows.Forms.Label lblPagination;
-        private controls.RoundedButton bttPrint;
         private controls.RoundedButton bttPreviousPage;
         private controls.RoundedButton bttNextPage;
-        private RoundedPanel pnlFormHeader;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanel pnlFormHeader;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private MetroFramework.Controls.MetroComboBox cbxFilter;
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Panel pnlLineBottom;
         private controls.RoundedButton bttAdvanced;
         private System.Windows.Forms.Label lblAmount;
+        private controls.RoundedButton bttPrint;
     }
 }

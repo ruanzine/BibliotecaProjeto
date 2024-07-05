@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditLivros));
             this.pnlEditLivros = new System.Windows.Forms.Panel();
-            this.pnlFormFooter = new RoundedPanelBottom();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
+            this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlFormBody = new System.Windows.Forms.Panel();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.gpbBottom = new RoundedGroupBox();
+            this.gpbBottom = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
             this.cbxEstado_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtObservacoes_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblCondition = new System.Windows.Forms.Label();
@@ -46,14 +46,15 @@
             this.lblClassification = new System.Windows.Forms.Label();
             this.lblVolNum = new System.Windows.Forms.Label();
             this.bttSave_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.gpbTop = new RoundedGroupBox();
+            this.gpbTop = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
+            this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.bttSearchEdit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.txtNRegisto_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblArrivalDate = new System.Windows.Forms.Label();
             this.lblRegNum = new System.Windows.Forms.Label();
             this.bttDel = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttClear_Edit = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.gpbMid = new RoundedGroupBox();
+            this.gpbMid = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
             this.cbxAquisicao_Edit = new MetroFramework.Controls.MetroComboBox();
             this.txtEditora_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblPublisher = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.txtTitulo_Edit = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblTitleBody = new System.Windows.Forms.Label();
             this.lblAuthor = new System.Windows.Forms.Label();
-            this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.pnlEditLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -328,6 +328,24 @@
             this.gpbTop.TabIndex = 34;
             this.gpbTop.TabStop = false;
             // 
+            // dtpArrivalDate
+            // 
+            this.dtpArrivalDate.Enabled = false;
+            this.dtpArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpArrivalDate.Location = new System.Drawing.Point(384, 20);
+            this.dtpArrivalDate.MaxDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtpArrivalDate.Name = "dtpArrivalDate";
+            this.dtpArrivalDate.Size = new System.Drawing.Size(112, 29);
+            this.dtpArrivalDate.Style = MetroFramework.MetroColorStyle.Green;
+            this.dtpArrivalDate.TabIndex = 63;
+            this.dtpArrivalDate.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.dtpArrivalDate.UseCustomBackColor = true;
+            this.dtpArrivalDate.UseCustomForeColor = true;
+            this.dtpArrivalDate.UseStyleColors = true;
+            this.dtpArrivalDate.Value = new System.DateTime(2024, 7, 3, 0, 0, 0, 0);
+            // 
             // bttSearchEdit
             // 
             this.bttSearchEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
@@ -373,9 +391,9 @@
             this.lblArrivalDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
             this.lblArrivalDate.Location = new System.Drawing.Point(264, 28);
             this.lblArrivalDate.Name = "lblArrivalDate";
-            this.lblArrivalDate.Size = new System.Drawing.Size(116, 17);
+            this.lblArrivalDate.Size = new System.Drawing.Size(117, 17);
             this.lblArrivalDate.TabIndex = 1;
-            this.lblArrivalDate.Text = "Data de Entrega";
+            this.lblArrivalDate.Text = "Data de Entrada";
             // 
             // lblRegNum
             // 
@@ -574,20 +592,6 @@
             this.lblAuthor.TabIndex = 5;
             this.lblAuthor.Text = "Autor";
             // 
-            // dtpArrivalDate
-            // 
-            this.dtpArrivalDate.Enabled = false;
-            this.dtpArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpArrivalDate.Location = new System.Drawing.Point(384, 20);
-            this.dtpArrivalDate.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
-            this.dtpArrivalDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtpArrivalDate.MinimumSize = new System.Drawing.Size(0, 29);
-            this.dtpArrivalDate.Name = "dtpArrivalDate";
-            this.dtpArrivalDate.Size = new System.Drawing.Size(112, 29);
-            this.dtpArrivalDate.Style = MetroFramework.MetroColorStyle.Blue;
-            this.dtpArrivalDate.TabIndex = 63;
-            this.dtpArrivalDate.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
             // frmEditLivros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -624,12 +628,12 @@
         private controls.RoundedButton bttSave_Edit;
         private controls.RoundedButton bttClear_Edit;
         private controls.RoundedButton bttDel;
-        private RoundedGroupBox gpbTop;
-        private RoundedGroupBox gpbMid;
-        private RoundedPanel pnlFormHeader;
+        private controls.RoundedGroupBox gpbTop;
+        private controls.RoundedGroupBox gpbMid;
+        private controls.RoundedPanel pnlFormHeader;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlFormBody;
-        private RoundedGroupBox gpbBottom;
+        private controls.RoundedGroupBox gpbBottom;
         private controls.UC_textbox txtObservacoes_Edit;
         private controls.UC_textbox txtNVolume_Edit;
         private controls.UC_textbox txtCota_Edit;
@@ -643,7 +647,7 @@
         private System.Windows.Forms.Label lblCondition;
         private MetroFramework.Controls.MetroComboBox cbxEstado_Edit;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao_Edit;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Panel pnlLineBottom;
         private MetroFramework.Controls.MetroDateTime dtpArrivalDate;

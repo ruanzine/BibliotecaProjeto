@@ -17,7 +17,7 @@ namespace BIBLIOTECA_PROJETO.Properties {
     /// </summary>
     // Essa classe foi gerada automaticamente pela classe StronglyTypedResourceBuilder
     // através de uma ferramenta como ResGen ou Visual Studio.
-    // Para adicionar ou remover um associado, edite o Ficheiro .ResX e execute ResGen novamente
+    // Para adicionar ou remover um associado, edite o arquivo .ResX e execute ResGen novamente
     // com a opção /str, ou recrie o projeto do VS.
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -153,6 +153,36 @@ namespace BIBLIOTECA_PROJETO.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_download {
+            get {
+                object obj = ResourceManager.GetObject("icon-download", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_download1 {
+            get {
+                object obj = ResourceManager.GetObject("icon-download1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_download2 {
+            get {
+                object obj = ResourceManager.GetObject("icon-download2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_editbook {
             get {
                 object obj = ResourceManager.GetObject("icon_editbook", resourceCulture);
@@ -196,6 +226,36 @@ namespace BIBLIOTECA_PROJETO.Properties {
         internal static System.Drawing.Bitmap icon_statistics {
             get {
                 object obj = ResourceManager.GetObject("icon_statistics", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo_eb23_transparent {
+            get {
+                object obj = ResourceManager.GetObject("logo_eb23_transparent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoBasicSchool_transparent {
+            get {
+                object obj = ResourceManager.GetObject("logoBasicSchool_transparent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoSecondarySchool_transparent2 {
+            get {
+                object obj = ResourceManager.GetObject("logoSecondarySchool_transparent2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

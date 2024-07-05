@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -106,5 +105,31 @@ namespace BIBLIOTECA_PROJETO.services
                 }
             }
         }
+
+        public DataTable GetBooksAddedByDate(int libraryID)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"
+                                    SELECT DeliveryDate AS Date, COUNT(*) AS Count
+                                    FROM Books
+                                    WHERE LibraryID = @libraryID
+                                    GROUP BY DeliveryDate
+                                    ORDER BY DeliveryDate";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        return dataTable;
+                    }
+                }
+            }
+        }
+
     }
 }

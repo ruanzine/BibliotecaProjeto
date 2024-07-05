@@ -30,17 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddLivros));
             this.pnlAddLivros = new System.Windows.Forms.Panel();
-            this.pnlFormFooter = new RoundedPanelBottom();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
+            this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlFormBody = new System.Windows.Forms.Panel();
-            this.gpbTop = new RoundedGroupBox();
+            this.gpbTop = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
+            this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.lblRegNum = new System.Windows.Forms.Label();
             this.txtNRegisto = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblArrivalDate = new System.Windows.Forms.Label();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
-            this.gpbBottom = new RoundedGroupBox();
+            this.gpbBottom = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
             this.cbxAquisicao = new MetroFramework.Controls.MetroComboBox();
             this.lblAcquisition = new System.Windows.Forms.Label();
             this.lblPublisher = new System.Windows.Forms.Label();
@@ -49,7 +50,7 @@
             this.txtTitulo = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.lblTitleBody = new System.Windows.Forms.Label();
-            this.gpbRight = new RoundedGroupBox();
+            this.gpbRight = new BIBLIOTECA_PROJETO.controls.RoundedGroupBox();
             this.bttClear = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.cbxEstado = new MetroFramework.Controls.MetroComboBox();
             this.bttSave = new BIBLIOTECA_PROJETO.controls.RoundedButton();
@@ -60,7 +61,6 @@
             this.txtNVolume = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblObservations = new System.Windows.Forms.Label();
             this.txtObservacoes = new BIBLIOTECA_PROJETO.controls.UC_textbox();
-            this.dtpArrivalDate = new MetroFramework.Controls.MetroDateTime();
             this.pnlAddLivros.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             this.pnlFormBody.SuspendLayout();
@@ -147,6 +147,19 @@
             this.gpbTop.Size = new System.Drawing.Size(464, 80);
             this.gpbTop.TabIndex = 54;
             this.gpbTop.TabStop = false;
+            // 
+            // dtpArrivalDate
+            // 
+            this.dtpArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpArrivalDate.Location = new System.Drawing.Point(312, 24);
+            this.dtpArrivalDate.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpArrivalDate.MinimumSize = new System.Drawing.Size(0, 29);
+            this.dtpArrivalDate.Name = "dtpArrivalDate";
+            this.dtpArrivalDate.Size = new System.Drawing.Size(120, 29);
+            this.dtpArrivalDate.Style = MetroFramework.MetroColorStyle.Blue;
+            this.dtpArrivalDate.TabIndex = 62;
+            this.dtpArrivalDate.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // lblRegNum
             // 
@@ -271,7 +284,7 @@
             this.txtEditora.PasswordChar = false;
             this.txtEditora.Size = new System.Drawing.Size(320, 31);
             this.txtEditora.TabIndex = 49;
-            this.txtEditora.Texts = "";
+            this.txtEditora.Texts = "Cultura Editora";
             this.txtEditora.UnderlinedStyle = true;
             // 
             // txtAutor
@@ -451,7 +464,7 @@
             this.txtCota.PasswordChar = false;
             this.txtCota.Size = new System.Drawing.Size(128, 31);
             this.txtCota.TabIndex = 41;
-            this.txtCota.Texts = "";
+            this.txtCota.Texts = "OSE 82-61";
             this.txtCota.UnderlinedStyle = true;
             // 
             // lblClassification
@@ -492,7 +505,7 @@
             this.txtNVolume.PasswordChar = false;
             this.txtNVolume.Size = new System.Drawing.Size(80, 31);
             this.txtNVolume.TabIndex = 40;
-            this.txtNVolume.Texts = "";
+            this.txtNVolume.Texts = "1";
             this.txtNVolume.UnderlinedStyle = true;
             // 
             // lblObservations
@@ -524,19 +537,6 @@
             this.txtObservacoes.TabIndex = 44;
             this.txtObservacoes.Texts = "";
             this.txtObservacoes.UnderlinedStyle = true;
-            // 
-            // dtpArrivalDate
-            // 
-            this.dtpArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpArrivalDate.Location = new System.Drawing.Point(312, 24);
-            this.dtpArrivalDate.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
-            this.dtpArrivalDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtpArrivalDate.MinimumSize = new System.Drawing.Size(0, 29);
-            this.dtpArrivalDate.Name = "dtpArrivalDate";
-            this.dtpArrivalDate.Size = new System.Drawing.Size(120, 29);
-            this.dtpArrivalDate.Style = MetroFramework.MetroColorStyle.Blue;
-            this.dtpArrivalDate.TabIndex = 62;
-            this.dtpArrivalDate.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // frmAddLivros
             // 
@@ -576,9 +576,9 @@
         private System.Windows.Forms.Label lblRegNum;
         private controls.UC_textbox txtNRegisto;
         private System.Windows.Forms.Label lblArrivalDate;
-        private RoundedGroupBox gpbRight;
-        private RoundedGroupBox gpbBottom;
-        private RoundedGroupBox gpbTop;
+        private controls.RoundedGroupBox gpbRight;
+        private controls.RoundedGroupBox gpbBottom;
+        private controls.RoundedGroupBox gpbTop;
         private controls.RoundedButton bttSave;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblAcquisition;
@@ -586,10 +586,10 @@
         private controls.UC_textbox txtEditora;
         private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.Panel pnlFormBody;
-        private RoundedPanel pnlFormHeader;
+        private controls.RoundedPanel pnlFormHeader;
         private MetroFramework.Controls.MetroComboBox cbxAquisicao;
         private MetroFramework.Controls.MetroComboBox cbxEstado;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Panel pnlLineTop;
         private controls.RoundedButton bttClear;

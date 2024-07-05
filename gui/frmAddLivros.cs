@@ -4,7 +4,6 @@ using MetroFramework.Controls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,6 +21,8 @@ namespace BIBLIOTECA_PROJETO.gui
         private ListBox listBoxSuggestionsAuthor;
         private int libraryID;
         private ThemeColors currentThemeColors;
+        private ToolTip toolTip = new ToolTip();
+        private ErrorProvider errorProvider = new ErrorProvider();
 
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
@@ -128,7 +129,6 @@ namespace BIBLIOTECA_PROJETO.gui
                 textBox.BorderFocusColor = currentThemeColors.PanelHeaderColor;
             }
         }
-
 
         #endregion
 
@@ -333,7 +333,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while getting the next registration number from the database: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowToolTip("Ocorreu um erro ao obter o próximo número de registo da base de dados: " + ex.Message, txtNRegisto);
             }
         }
 
@@ -343,6 +343,13 @@ namespace BIBLIOTECA_PROJETO.gui
         private void SaveData()
         {
             if (!ValidateFormFields()) return;
+
+            int numeroRegistro = int.Parse(txtNRegisto.Texts.Trim());
+            if (createService.IsRegistrationNumberExists(numeroRegistro, libraryID))
+            {
+                ShowError("O número de registo já existe. Por favor, insira um número diferente.", txtNRegisto);
+                return;
+            }
 
             DateTime arrivalDate = dtpArrivalDate.Value;
             string title = txtTitulo.Texts.Trim();
@@ -357,12 +364,12 @@ namespace BIBLIOTECA_PROJETO.gui
             try
             {
                 createService.SaveData(arrivalDate, title, author, classification, volumeNumber, acquisitionMethod, publisher, observations, condition, libraryID);
-                MessageBox.Show("Book successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+                Toast.ShowToast("Exemplar adicionado com sucesso.");
                 GetNRegisto();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed to register the book.", "Failure", MessageBoxButtons.OK, MessageBoxIcon.None);
+                Toast.ShowToast("Falha ao registar o exemplar: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -372,14 +379,14 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <returns>true if all fields are valid; otherwise, false.</returns>
         private bool ValidateFormFields()
         {
-            return ValidateTextBox(txtNRegisto, "the book registration number") &&
-                   ValidateTextBox(txtTitulo, "the book title") &&
-                   ValidateTextBox(txtAutor, "the book author") &&
-                   ValidateTextBox(txtCota, "the book classification") &&
-                   ValidateTextBox(txtNVolume, "the book volume number") &&
-                   ValidateTextBox(txtEditora, "the book publisher") &&
-                   ValidateComboBox(this.cbxAquisicao, "the book acquisition method") &&
-                   ValidateComboBox(this.cbxEstado, "the book condition");
+            return ValidateTextBox(txtNRegisto, "o número de registo do exemplar") &&
+                   ValidateTextBox(txtTitulo, "o título do exemplar") &&
+                   ValidateTextBox(txtAutor, "o autor do exemplar") &&
+                   ValidateTextBox(txtCota, "a classificação do exemplar") &&
+                   ValidateTextBox(txtNVolume, "o número do volume do exemplar") &&
+                   ValidateTextBox(txtEditora, "a editora do exemplar") &&
+                   ValidateComboBox(this.cbxAquisicao, "o método de aquisição do exemplar") &&
+                   ValidateComboBox(this.cbxEstado, "o estado do exemplar");
         }
 
         /// <summary>
@@ -393,10 +400,10 @@ namespace BIBLIOTECA_PROJETO.gui
             string text = textBox.Texts?.Trim();
             if (string.IsNullOrEmpty(text))
             {
-                MessageBox.Show($"Please enter {fieldName}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError($"Por favor, introduza {fieldName}.", textBox);
                 return false;
             }
-            
+            ClearError(textBox);
             return true;
         }
 
@@ -408,11 +415,12 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <returns>true if the ComboBox contains a selected value; otherwise, false.</returns>
         private bool ValidateComboBox(MetroComboBox comboBox, string fieldName)
         {
-            if (comboBox.Text == "<Aquisição>" || comboBox.Text == "<Estado>")
+            if (string.IsNullOrEmpty(comboBox.Text))
             {
-                MessageBox.Show($"Please select {fieldName}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError($"Por favor, selecione {fieldName}.", comboBox);
                 return false;
             }
+            ClearError(comboBox);
             return true;
         }
 
@@ -429,6 +437,26 @@ namespace BIBLIOTECA_PROJETO.gui
             txtObservacoes.Texts = "";
             cbxAquisicao.Text = "<Aquisição>";
             cbxEstado.Text = "<Estado>";
+        }
+
+        #endregion
+
+        #region Notification Methods
+
+        private void ShowToolTip(string message, Control control)
+        {
+            toolTip.ToolTipTitle = "Informação";
+            toolTip.Show(message, control, control.Width / 2, control.Height / 2, 3000); // Show for 3 seconds
+        }
+
+        private void ShowError(string message, Control control)
+        {
+            errorProvider.SetError(control, message);
+        }
+
+        private void ClearError(Control control)
+        {
+            errorProvider.SetError(control, "");
         }
 
         #endregion

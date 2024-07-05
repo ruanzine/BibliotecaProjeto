@@ -39,6 +39,9 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
+
+            dtpUntil.MaxDate = DateTime.Today;
+            dtpFrom.MaxDate = DateTime.Today;
         }
 
         #region Initialization

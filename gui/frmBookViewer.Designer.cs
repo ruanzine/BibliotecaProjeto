@@ -2,15 +2,8 @@
 {
     partial class frmBookViewer
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,57 +15,34 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookViewer));
-            this.dgvBook = new System.Windows.Forms.DataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pnlFormFooter = new RoundedPanelBottom();
+            this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.btnPrint_Search = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.btnPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.btnNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.pnlLineTop = new System.Windows.Forms.Panel();
             this.txtSearch_DGV = new BIBLIOTECA_PROJETO.controls.UC_textbox();
             this.lblSubTitle_2 = new System.Windows.Forms.Label();
             this.lblSubTitle_1 = new System.Windows.Forms.Label();
             this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
+            this.dgvBook = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pnlFormFooter.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvBook
-            // 
-            this.dgvBook.AllowUserToAddRows = false;
-            this.dgvBook.AllowUserToDeleteRows = false;
-            this.dgvBook.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvBook.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
-            this.dgvBook.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBook.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvBook.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.dgvBook.Location = new System.Drawing.Point(40, 96);
-            this.dgvBook.MultiSelect = false;
-            this.dgvBook.Name = "dgvBook";
-            this.dgvBook.RowHeadersVisible = false;
-            this.dgvBook.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dgvBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBook.Size = new System.Drawing.Size(1104, 488);
-            this.dgvBook.TabIndex = 45;
             // 
             // errorProvider
             // 
@@ -81,6 +51,8 @@
             // 
             // pnlFormFooter
             // 
+            this.pnlFormFooter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormFooter.Controls.Add(this.pnlLineBottom);
             this.pnlFormFooter.Controls.Add(this.lblPagination);
@@ -89,17 +61,18 @@
             this.pnlFormFooter.Controls.Add(this.btnPreviousPage);
             this.pnlFormFooter.Controls.Add(this.btnNextPage);
             this.pnlFormFooter.CornerRadius = 10;
-            this.pnlFormFooter.Location = new System.Drawing.Point(40, 584);
+            this.pnlFormFooter.Location = new System.Drawing.Point(12, 580);
             this.pnlFormFooter.Name = "pnlFormFooter";
-            this.pnlFormFooter.Size = new System.Drawing.Size(1104, 64);
+            this.pnlFormFooter.Size = new System.Drawing.Size(1131, 64);
             this.pnlFormFooter.TabIndex = 44;
             // 
             // pnlLineBottom
             // 
+            this.pnlLineBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.pnlLineBottom.Location = new System.Drawing.Point(0, -10);
             this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineBottom.Size = new System.Drawing.Size(1131, 12);
             this.pnlLineBottom.TabIndex = 52;
             // 
             // lblPagination
@@ -107,7 +80,7 @@
             this.lblPagination.AutoSize = true;
             this.lblPagination.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPagination.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.lblPagination.Location = new System.Drawing.Point(808, 24);
+            this.lblPagination.Location = new System.Drawing.Point(860, 24);
             this.lblPagination.Name = "lblPagination";
             this.lblPagination.Size = new System.Drawing.Size(0, 21);
             this.lblPagination.TabIndex = 47;
@@ -152,7 +125,7 @@
             this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPreviousPage.ForeColor = System.Drawing.Color.White;
             this.btnPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPage.Image")));
-            this.btnPreviousPage.Location = new System.Drawing.Point(984, 16);
+            this.btnPreviousPage.Location = new System.Drawing.Point(1024, 16);
             this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(0);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(35, 35);
@@ -170,7 +143,7 @@
             this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNextPage.ForeColor = System.Drawing.Color.White;
             this.btnNextPage.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPage.Image")));
-            this.btnNextPage.Location = new System.Drawing.Point(1040, 16);
+            this.btnNextPage.Location = new System.Drawing.Point(1072, 16);
             this.btnNextPage.Margin = new System.Windows.Forms.Padding(0);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(35, 35);
@@ -179,6 +152,8 @@
             // 
             // pnlFormHeader
             // 
+            this.pnlFormHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormHeader.Controls.Add(this.pnlLineTop);
             this.pnlFormHeader.Controls.Add(this.txtSearch_DGV);
@@ -187,21 +162,23 @@
             this.pnlFormHeader.Controls.Add(this.cbxFilter_DGV);
             this.pnlFormHeader.Controls.Add(this.lblTitle);
             this.pnlFormHeader.CornerRadius = 10;
-            this.pnlFormHeader.Location = new System.Drawing.Point(40, 32);
+            this.pnlFormHeader.Location = new System.Drawing.Point(12, 16);
             this.pnlFormHeader.Name = "pnlFormHeader";
-            this.pnlFormHeader.Size = new System.Drawing.Size(1104, 64);
+            this.pnlFormHeader.Size = new System.Drawing.Size(1131, 64);
             this.pnlFormHeader.TabIndex = 2;
             // 
             // pnlLineTop
             // 
+            this.pnlLineTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLineTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.pnlLineTop.Location = new System.Drawing.Point(0, 62);
             this.pnlLineTop.Name = "pnlLineTop";
-            this.pnlLineTop.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineTop.Size = new System.Drawing.Size(1131, 12);
             this.pnlLineTop.TabIndex = 52;
             // 
             // txtSearch_DGV
             // 
+            this.txtSearch_DGV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch_DGV.BackColor = System.Drawing.SystemColors.Window;
             this.txtSearch_DGV.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
             this.txtSearch_DGV.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(183)))), ((int)(((byte)(81)))));
@@ -271,22 +248,64 @@
             this.lblTitle.TabIndex = 11;
             this.lblTitle.Text = "Pesquisa de Exemplares";
             // 
+            // dgvBook
+            // 
+            this.dgvBook.AllowUserToAddRows = false;
+            this.dgvBook.AllowUserToDeleteRows = false;
+            this.dgvBook.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.dgvBook.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBook.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBook.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
+            this.dgvBook.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBook.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvBook.ColumnHeadersHeight = 40;
+            this.dgvBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 11F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBook.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvBook.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvBook.GridColor = System.Drawing.Color.Silver;
+            this.dgvBook.Location = new System.Drawing.Point(12, 80);
+            this.dgvBook.MultiSelect = false;
+            this.dgvBook.Name = "dgvBook";
+            this.dgvBook.RowHeadersVisible = false;
+            this.dgvBook.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dgvBook.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBook.Size = new System.Drawing.Size(1131, 500);
+            this.dgvBook.TabIndex = 50;
+            // 
             // frmBookViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 685);
+            this.ClientSize = new System.Drawing.Size(1155, 660);
             this.Controls.Add(this.dgvBook);
             this.Controls.Add(this.pnlFormFooter);
             this.Controls.Add(this.pnlFormHeader);
             this.Name = "frmBookViewer";
+            this.Text = "Book Viewer";
             this.Load += new System.EventHandler(this.frmBookViewer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.pnlFormFooter.ResumeLayout(false);
             this.pnlFormFooter.PerformLayout();
             this.pnlFormHeader.ResumeLayout(false);
             this.pnlFormHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -294,19 +313,19 @@
         #endregion
         private System.Windows.Forms.Label lblTitle;
         private controls.UC_textbox txtSearch_DGV;
-        private System.Windows.Forms.DataGridView dgvBook;
         private System.Windows.Forms.Label lblPagination;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private controls.RoundedButton btnPreviousPage;
-        private controls.RoundedButton btnPrint_Search;
         private controls.RoundedButton btnNextPage;
-        private RoundedPanel pnlFormHeader;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanel pnlFormHeader;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private MetroFramework.Controls.MetroComboBox cbxFilter_DGV;
         private System.Windows.Forms.Label lblSubTitle_1;
         private System.Windows.Forms.Label lblSubTitle_2;
         private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Label lblAmount;
+        private System.Windows.Forms.DataGridView dgvBook;
+        private controls.RoundedButton btnPrint_Search;
     }
 }

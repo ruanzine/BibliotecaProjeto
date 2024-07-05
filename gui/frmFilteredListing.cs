@@ -1,5 +1,6 @@
 ﻿using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +39,7 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
+            cbxFilter.SelectedIndex = 0;
         }
 
         #region Initialization
@@ -120,6 +122,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void cbxFilter_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbxFilter.SelectedIndex == 0) bttAdvanced.Enabled = false;
             LoadAllData(cbxFilter.Text);
         }
 
@@ -128,7 +131,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void dgvFilteredListing_SelectionChanged(object sender, EventArgs e)
         {
-            bttAdvanced.Enabled = dgvFilteredListing.SelectedRows.Count > 0;
+            if(cbxFilter.SelectedIndex != 0) bttAdvanced.Enabled = dgvFilteredListing.SelectedRows.Count > 0;
         }
 
         /// <summary>
@@ -416,7 +419,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ResizeTitle()
         {
-            SetColumnProperties("Título", 250);
+            SetColumnProperties("Título", 300);
         }
 
         /// <summary>
@@ -424,7 +427,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ResizeCota()
         {
-            SetColumnProperties("Cota", 130);
+            SetColumnProperties("Cota", 120);
         }
 
         /// <summary>
@@ -432,7 +435,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ResizeEstado()
         {
-            SetColumnProperties("Estado", 130);
+            SetColumnProperties("Estado", 1);
         }
 
         /// <summary>
@@ -442,13 +445,13 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             dgvFilteredListing.Columns["Nº"].Width = 50;
             dgvFilteredListing.Columns["Data de Entrada"].Width = 90;
-            dgvFilteredListing.Columns["Título"].Width = 225;
+            dgvFilteredListing.Columns["Título"].Width = 150 ;
             dgvFilteredListing.Columns["Autor"].Width = 150;
             dgvFilteredListing.Columns["Cota"].Width = 130;
             dgvFilteredListing.Columns["Nº. Vol"].Width = 52;
             dgvFilteredListing.Columns["Aquisição"].Width = 75;
-            dgvFilteredListing.Columns["Observações"].Width = 200;
-            dgvFilteredListing.Columns["Editora"].Width = 175;
+            dgvFilteredListing.Columns["Observações"].Width = 180;
+            dgvFilteredListing.Columns["Editora"].Width = 130;
             dgvFilteredListing.Columns["Estado"].Width = 123;
 
             SetDefaultCellStyle();
@@ -463,7 +466,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <param name="width">The width of the column.</param>
         private void SetColumnProperties(string columnName, int width)
         {
-            dgvFilteredListing.Columns[columnName].Width = width;
+            dgvFilteredListing.Columns[columnName].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             SetDefaultCellStyle();
             SetRowHeight(dgvFilteredListing, 40);
         }

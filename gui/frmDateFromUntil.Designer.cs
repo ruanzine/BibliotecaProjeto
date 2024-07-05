@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDateFromUntil));
             this.dgvDateListing = new System.Windows.Forms.DataGridView();
-            this.pnlFormFooter = new RoundedPanelBottom();
+            this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
             this.lblAmount = new System.Windows.Forms.Label();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
             this.bttPrintDate = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttPreviousPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
             this.bttNextPage = new BIBLIOTECA_PROJETO.controls.RoundedButton();
-            this.pnlFormHeader = new RoundedPanel();
+            this.pnlFormHeader = new BIBLIOTECA_PROJETO.controls.RoundedPanel();
             this.dtpUntil = new MetroFramework.Controls.MetroDateTime();
             this.dtpFrom = new MetroFramework.Controls.MetroDateTime();
             this.pnlLineTop = new System.Windows.Forms.Panel();
@@ -56,13 +58,29 @@
             this.dgvDateListing.AllowUserToAddRows = false;
             this.dgvDateListing.AllowUserToDeleteRows = false;
             this.dgvDateListing.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvDateListing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDateListing.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(166)))), ((int)(((byte)(229)))));
             this.dgvDateListing.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDateListing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDateListing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 11F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDateListing.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDateListing.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvDateListing.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dgvDateListing.GridColor = System.Drawing.Color.Silver;
             this.dgvDateListing.Location = new System.Drawing.Point(40, 96);
             this.dgvDateListing.MultiSelect = false;
             this.dgvDateListing.Name = "dgvDateListing";
@@ -126,7 +144,7 @@
             this.bttPrintDate.FlatAppearance.BorderSize = 0;
             this.bttPrintDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPrintDate.ForeColor = System.Drawing.Color.White;
-            this.bttPrintDate.Image = ((System.Drawing.Image)(resources.GetObject("bttPrintDate.Image")));
+            this.bttPrintDate.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_download;
             this.bttPrintDate.Location = new System.Drawing.Point(16, 16);
             this.bttPrintDate.Margin = new System.Windows.Forms.Padding(0);
             this.bttPrintDate.Name = "bttPrintDate";
@@ -230,7 +248,7 @@
             this.lblUntil.AutoSize = true;
             this.lblUntil.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUntil.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(83)))), ((int)(((byte)(117)))));
-            this.lblUntil.Location = new System.Drawing.Point(760, 24);
+            this.lblUntil.Location = new System.Drawing.Point(768, 24);
             this.lblUntil.Name = "lblUntil";
             this.lblUntil.Size = new System.Drawing.Size(44, 22);
             this.lblUntil.TabIndex = 46;
@@ -305,8 +323,8 @@
         private controls.RoundedButton bttPrintDate;
         private controls.RoundedButton bttPreviousPage;
         private controls.RoundedButton bttNextPage;
-        private RoundedPanel pnlFormHeader;
-        private RoundedPanelBottom pnlFormFooter;
+        private controls.RoundedPanel pnlFormHeader;
+        private controls.RoundedPanelBottom pnlFormFooter;
         private System.Windows.Forms.Panel pnlLineTop;
         private System.Windows.Forms.Panel pnlLineBottom;
         private System.Windows.Forms.Label lblAmount;

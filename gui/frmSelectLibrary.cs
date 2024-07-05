@@ -45,6 +45,8 @@ namespace BIBLIOTECA_PROJETO.gui
             if (comboBoxLibraries.SelectedItem != null)
             {
                 SelectedLibraryID = ((KeyValuePair<string, int>)comboBoxLibraries.SelectedItem).Value;
+                Properties.Settings.Default.SelectedLibraryID = SelectedLibraryID;
+                Properties.Settings.Default.Save();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -54,6 +56,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
-       
+
+
     }
 }

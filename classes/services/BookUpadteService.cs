@@ -76,9 +76,12 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 command.Parameters.AddWithValue("@registrationNumber", registrationNumber);
                 command.Parameters.AddWithValue("@libraryID", libraryID);
                 command.ExecuteNonQuery();
-                conn.Close();
+
+                // Clean up orphan records
+                CleanOrphanRecords(conn, libraryID);
             }
         }
+
 
         public bool IsRegistrationNumberExists(int registrationNumber, int libraryID)
         {
@@ -243,5 +246,38 @@ namespace BIBLIOTECA_PROJETO.classes.services
                 throw new Exception("An error occurred while retrieving the books: " + ex.Message);
             }
         }
+
+        private void CleanOrphanRecords(SqlConnection conn, int libraryID)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = conn;
+
+                // Clean orphan authors
+                cmd.CommandText = @"
+                DELETE FROM Authors
+                WHERE LibraryID = @libraryID
+                AND ID NOT IN (SELECT AuthorID FROM Books WHERE LibraryID = @libraryID)";
+                cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                cmd.ExecuteNonQuery();
+
+                // Clean orphan titles
+                cmd.CommandText = @"
+                DELETE FROM Titles
+                WHERE LibraryID = @libraryID
+                AND ID NOT IN (SELECT TitleID FROM Books WHERE LibraryID = @libraryID)";
+                cmd.ExecuteNonQuery();
+
+                // Clean orphan classifications
+                cmd.CommandText = @"
+                DELETE FROM Classifications
+                WHERE LibraryID = @libraryID
+                AND ID NOT IN (SELECT ClassificationID FROM Books WHERE LibraryID = @libraryID)";
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+
     }
 }
