@@ -130,6 +130,172 @@ namespace BIBLIOTECA_PROJETO.services
                 }
             }
         }
+        /// <summary>
+         /// Gets the count of books added by title in a specific year and month.
+         /// </summary>
+         /// <param name="libraryID">The ID of the library.</param>
+         /// <param name="year">The selected year.</param>
+         /// <param name="month">The selected month (0 for all months).</param>
+         /// <returns>A DataTable with the titles and the count of books added.</returns>
+        public DataTable GetBooksAddedByTitle(int libraryID, int year, int month)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"
+                    SELECT T.TitleName AS Título, COUNT(*) AS [Nº Exemplares]
+                    FROM Books B
+                    INNER JOIN Titles T ON B.TitleID = T.ID
+                    WHERE B.LibraryID = @libraryID
+                    AND YEAR(B.DeliveryDate) = @year
+                    AND (@month = 0 OR MONTH(B.DeliveryDate) = @month)
+                    GROUP BY T.TitleName
+                    ORDER BY T.TitleName";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    cmd.Parameters.AddWithValue("@year", year);
+                    cmd.Parameters.AddWithValue("@month", month);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        return dataTable;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of books added in a specific year and month.
+        /// </summary>
+        public int GetBooksCountByDate(int libraryID, int year, int month)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"
+                    SELECT COUNT(*)
+                    FROM Books
+                    WHERE LibraryID = @libraryID
+                    AND YEAR(DeliveryDate) = @year
+                    AND (@month = 0 OR MONTH(DeliveryDate) = @month)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    cmd.Parameters.AddWithValue("@year", year);
+                    cmd.Parameters.AddWithValue("@month", month);
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of authors in a specific year and month.
+        /// </summary>
+        public int GetAuthorsCountByDate(int libraryID, int year, int month)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"
+                    SELECT COUNT(DISTINCT A.ID)
+                    FROM Books B
+                    INNER JOIN Authors A ON B.AuthorID = A.ID
+                    WHERE B.LibraryID = @libraryID
+                    AND YEAR(B.DeliveryDate) = @year
+                    AND (@month = 0 OR MONTH(B.DeliveryDate) = @month)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    cmd.Parameters.AddWithValue("@year", year);
+                    cmd.Parameters.AddWithValue("@month", month);
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of classifications in a specific year and month.
+        /// </summary>
+        public int GetClassificationsCountByDate(int libraryID, int year, int month)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"
+                    SELECT COUNT(DISTINCT C.ID)
+                    FROM Books B
+                    INNER JOIN Classifications C ON B.ClassificationID = C.ID
+                    WHERE B.LibraryID = @libraryID
+                    AND YEAR(B.DeliveryDate) = @year
+                    AND (@month = 0 OR MONTH(B.DeliveryDate) = @month)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    cmd.Parameters.AddWithValue("@year", year);
+                    cmd.Parameters.AddWithValue("@month", month);
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of books acquired by offers in a specific year and month.
+        /// </summary>
+        public int GetOffersCountByDate(int libraryID, int year, int month)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"
+                    SELECT COUNT(*)
+                    FROM Books
+                    WHERE LibraryID = @libraryID
+                    AND AcquisitionMethod = 'Oferta'
+                    AND YEAR(DeliveryDate) = @year
+                    AND (@month = 0 OR MONTH(DeliveryDate) = @month)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    cmd.Parameters.AddWithValue("@year", year);
+                    cmd.Parameters.AddWithValue("@month", month);
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of books acquired by purchases in a specific year and month.
+        /// </summary>
+        public int GetPurchasesCountByDate(int libraryID, int year, int month)
+        {
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = @"
+                    SELECT COUNT(*)
+                    FROM Books
+                    WHERE LibraryID = @libraryID
+                    AND AcquisitionMethod = 'Compra'
+                    AND YEAR(DeliveryDate) = @year
+                    AND (@month = 0 OR MONTH(DeliveryDate) = @month)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@libraryID", libraryID);
+                    cmd.Parameters.AddWithValue("@year", year);
+                    cmd.Parameters.AddWithValue("@month", month);
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
 
     }
 }
