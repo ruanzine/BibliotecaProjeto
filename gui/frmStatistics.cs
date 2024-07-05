@@ -23,6 +23,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private int libraryID;
         private ThemeColors currentThemeColors;
 
+        // Dicionário de cores para os temas
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
             { 1, new ThemeColors(Color.FromArgb(252, 168, 183), Color.FromArgb(255, 102, 106), Color.FromArgb(64, 12, 3), Color.FromArgb(121, 57, 59), Color.FromArgb(64, 12, 3)) },
@@ -30,15 +31,16 @@ namespace BIBLIOTECA_PROJETO.gui
             { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(23, 23, 55), Color.FromArgb(56, 83, 117), Color.FromArgb(33, 50, 88)) }
         };
 
+        // Dicionário de cores vibrantes para as condições dos livros
         private readonly Dictionary<string, Color> conditionColors = new Dictionary<string, Color>
         {
-            { Disponivel, Color.FromArgb(207, 228, 183) },
-            { Indisponivel, Color.FromArgb(248, 193, 193) },
-            { Perdido, Color.FromArgb(248, 237, 195) },
-            { Deposito, Color.FromArgb(191, 175, 228) },
-            { Exposicao, Color.FromArgb(199, 209, 255) },
-            { Abatido, Color.FromArgb(244, 207, 173) },
-            { ConsultaLocal, Color.FromArgb(191, 232, 255) }
+            { Disponivel, Color.FromArgb(144, 238, 144) },   // Verde vibrante
+            { Indisponivel, Color.FromArgb(255, 99, 71) },   // Vermelho tomate
+            { Perdido, Color.FromArgb(255, 255, 102) },      // Amarelo brilhante
+            { Deposito, Color.FromArgb(147, 112, 219) },     // Roxo médio
+            { Exposicao, Color.FromArgb(100, 149, 237) },    // Azul centáurea
+            { Abatido, Color.FromArgb(255, 165, 0) },        // Laranja
+            { ConsultaLocal, Color.FromArgb(64, 224, 208) }  // Turquesa médio
         };
 
         public frmStatistics(int selectedLibraryId)
@@ -52,47 +54,28 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void InitializeCustomComponents()
         {
-            cbxChartMode.SelectedIndexChanged += CbxChartMode_SelectedIndexChanged;
-            cbxChartMode.SelectedIndex = 0; // Set default mode
-
-            // Customize DataGridView
+            // Personalizar DataGridView
             dgvStatistics.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStatistics.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvStatistics.MultiSelect = false;
             dgvStatistics.ReadOnly = true;
 
-            // Customize Chart
-            chartStatistics.ChartAreas[0].AxisX.Title = "Category";
-            chartStatistics.ChartAreas[0].AxisY.Title = "Count";
-            chartStatistics.Legends.Add(new Legend("Legend"));
+            // Personalizar o Gráfico
+            chartStatistics.ChartAreas[0].AxisX.Title = "Estado";
+            chartStatistics.ChartAreas[0].AxisY.Title = "Quantidade";
+            chartStatistics.ChartAreas[0].AxisX.LabelStyle.Enabled = false; // Remover o texto de rótulo do eixo X
+            chartStatistics.Legends.Clear(); // Limpar todas as legendas
 
-            LoadDataAndDisplayChart();
-        }
-
-        private void CbxChartMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataAndDisplayChart();
-        }
-
-        private void LoadDataAndDisplayChart()
-        {
-            string selectedMode = cbxChartMode.SelectedItem.ToString();
-            if (selectedMode == "Book Conditions")
-            {
-                LoadBookConditionsData();
-            }
-            else if (selectedMode == "Books Added By Date")
-            {
-                LoadBooksAddedByDateData();
-            }
+            // Carregar dados e exibir o gráfico
+            LoadBookConditionsData();
         }
 
         private void LoadBookConditionsData()
         {
             var conditions = new[] { Disponivel, Indisponivel, Abatido, Perdido, ConsultaLocal, Exposicao, Deposito };
             var dataTable = new DataTable();
-            dataTable.Columns.Add("Condition", typeof(string));
-            dataTable.Columns.Add("Count", typeof(int));
+            dataTable.Columns.Add("Estado", typeof(string));
+            dataTable.Columns.Add("Quantidade", typeof(int));
 
             foreach (var condition in conditions)
             {
@@ -102,59 +85,45 @@ namespace BIBLIOTECA_PROJETO.gui
 
             dgvStatistics.DataSource = dataTable;
 
-            // Display data in Chart
+            // Exibir dados no gráfico
             chartStatistics.Series.Clear();
-            var series = new Series("Book Conditions")
-            {
-                ChartType = SeriesChartType.Column
-            };
 
-            foreach (DataRow row in dataTable.Rows)
+            foreach (var condition in conditions)
             {
-                series.Points.AddXY(row["Condition"], row["Count"]);
-                series.Points.Last().ToolTip = $"{row["Condition"]}: {row["Count"]}";
+                var series = new Series(condition)
+                {
+                    ChartType = SeriesChartType.Column,
+                    Color = conditionColors[condition]
+                };
 
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    if (row["Estado"].ToString() == condition)
+                    {
+                        series.Points.AddXY(row["Estado"], row["Quantidade"]);
+                        series.Points.Last().ToolTip = $"{row["Estado"]}: {row["Quantidade"]}";
+                    }
+                }
+
+                chartStatistics.Series.Add(series);
             }
 
-            chartStatistics.Series.Add(series);
-        }
-
-        private void LoadBooksAddedByDateData()
-        {
-            var dataTable = _statisticsService.GetBooksAddedByDate(libraryID);
-            dgvStatistics.DataSource = dataTable;
-
-            // Display data in Chart
-            chartStatistics.Series.Clear();
-            var series = new Series("Books Added By Date")
-            {
-                ChartType = SeriesChartType.Column,
-                BorderWidth = 3,
-                Color = Color.Blue
-            };
-
-            foreach (DataRow row in dataTable.Rows)
-            {
-                series.Points.AddXY(row["Date"], row["Count"]);
-                series.Points.Last().ToolTip = $"{row["Date"]}: {row["Count"]}"; ;
-            }
-
-            chartStatistics.Series.Add(series);
+            // Adicionar a legenda
+            var legend = new Legend("Legenda");
+            legend.Docking = Docking.Top;
+            chartStatistics.Legends.Add(legend);
         }
 
         private void SetThemeColors()
         {
             if (themeColors.TryGetValue(libraryID, out currentThemeColors))
             {
-                
-
                 lblTitle.ForeColor = currentThemeColors.ButtonColor;
                 pnlFormFooter.BackColor = currentThemeColors.PanelHeaderColor;
                 pnlFormBody.BackColor = currentThemeColors.PanelBodyColor;
                 pnlFormHeader.BackColor = currentThemeColors.PanelHeaderColor;
                 pnlLineBottom.BackColor = currentThemeColors.ButtonColor;
                 pnlLineTop.BackColor = currentThemeColors.ButtonColor;
-                
             }
         }
 
@@ -194,6 +163,11 @@ namespace BIBLIOTECA_PROJETO.gui
                 ButtonColor = buttonColor;
                 GroupBoxColor = groupBoxColor;
             }
+        }
+
+        private void pnlFormBody_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
