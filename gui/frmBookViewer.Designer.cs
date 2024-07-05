@@ -17,12 +17,10 @@
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookViewer));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
             this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.lblPagination = new System.Windows.Forms.Label();
@@ -38,16 +36,10 @@
             this.cbxFilter_DGV = new MetroFramework.Controls.MetroComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.dgvBook = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pnlFormFooter.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBook)).BeginInit();
             this.SuspendLayout();
-            // 
-            // errorProvider
-            // 
-            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider.ContainerControl = this;
             // 
             // pnlFormFooter
             // 
@@ -300,7 +292,6 @@
             this.Name = "frmBookViewer";
             this.Text = "Book Viewer";
             this.Load += new System.EventHandler(this.frmBookViewer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.pnlFormFooter.ResumeLayout(false);
             this.pnlFormFooter.PerformLayout();
             this.pnlFormHeader.ResumeLayout(false);
@@ -314,7 +305,6 @@
         private System.Windows.Forms.Label lblTitle;
         private controls.UC_textbox txtSearch_DGV;
         private System.Windows.Forms.Label lblPagination;
-        private System.Windows.Forms.ErrorProvider errorProvider;
         private controls.RoundedButton btnPreviousPage;
         private controls.RoundedButton btnNextPage;
         private controls.RoundedPanel pnlFormHeader;

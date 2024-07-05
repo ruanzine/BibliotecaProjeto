@@ -41,6 +41,7 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeSuggestionListBoxes();
             this.libraryID = selectedLibraryID; // Store the library ID
             SetThemeColors();
+
         }
 
         #region Initialization
@@ -242,6 +243,7 @@ namespace BIBLIOTECA_PROJETO.gui
             mainForm.ResizeControls(pnlAddLivros);
         }
 
+        
         #endregion
 
         #region Helper Methods

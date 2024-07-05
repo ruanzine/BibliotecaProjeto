@@ -347,5 +347,44 @@ namespace BIBLIOTECA_PROJETO.services
                 throw new Exception("Ocorreu um erro ao obter os livros por cota: " + ex.Message);
             }
         }
+
+        public DataTable GetBooksByCondition_Printing(string condition, int libraryID)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                {
+                    conn.Open();
+
+                    string query = @"SELECT B.RegistrationNumber AS [Nº], B.DeliveryDate AS [Data de Entrada], 
+                             T.TitleName AS [Título], A.Name AS Autor, C.Classification AS [Cota], 
+                             B.AcquisitionMethod AS [Aquisição], B.Publisher AS [Editora], 
+                             B.VolumeNumber AS [Nº. Vol], B.Condition AS [Estado], B.Observations AS [Observações]
+                             FROM Books B
+                             INNER JOIN Authors A ON B.AuthorID = A.ID AND B.LibraryID = A.LibraryID
+                             INNER JOIN Classifications C ON B.ClassificationID = C.ID AND B.LibraryID = C.LibraryID
+                             INNER JOIN Titles T ON B.TitleID = T.ID AND B.LibraryID = T.LibraryID
+                             WHERE B.Condition LIKE @Condition AND B.LibraryID = @LibraryID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Condition", condition + "%");
+                        cmd.Parameters.AddWithValue("@LibraryID", libraryID);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Ocorreu um erro ao obter os livros por estado: " + ex.Message);
+            }
+        }
+
     }
 }
