@@ -130,6 +130,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 UnableText();
                 bttSave_Edit.Enabled = false;
                 txtNRegisto_Edit.Enabled = true;
+                txtNRegisto_Edit.Texts = "";
             }
             catch (Exception ex)
             {

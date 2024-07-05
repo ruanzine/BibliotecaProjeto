@@ -35,13 +35,13 @@
             this.lblLibraryName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pnlLogo = new System.Windows.Forms.Panel();
             this.bttStatistics = new System.Windows.Forms.Button();
             this.bttDateListing = new System.Windows.Forms.Button();
             this.bttListing = new System.Windows.Forms.Button();
             this.bttEdit = new System.Windows.Forms.Button();
             this.bttNew = new System.Windows.Forms.Button();
             this.bttSearch = new System.Windows.Forms.Button();
+            this.pnlLogo = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlMainFrame.SuspendLayout();
             this.pnlHeader.SuspendLayout();
@@ -80,7 +80,6 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1023, 48);
             this.pnlHeader.TabIndex = 3;
-            this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             // 
             // lblLibraryName
             // 
@@ -119,15 +118,6 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(203, 647);
             this.pnlMenu.TabIndex = 2;
-            // 
-            // pnlLogo
-            // 
-            this.pnlLogo.Controls.Add(this.picLogo);
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(203, 152);
-            this.pnlLogo.TabIndex = 1;
             // 
             // bttStatistics
             // 
@@ -250,6 +240,15 @@
             this.bttSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bttSearch.UseVisualStyleBackColor = false;
             this.bttSearch.Click += new System.EventHandler(this.bttSearch_Click);
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.Controls.Add(this.picLogo);
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(203, 152);
+            this.pnlLogo.TabIndex = 1;
             // 
             // picLogo
             // 

@@ -85,7 +85,7 @@
             this.dgvFilteredListing.MultiSelect = false;
             this.dgvFilteredListing.Name = "dgvFilteredListing";
             this.dgvFilteredListing.RowHeadersVisible = false;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.dgvFilteredListing.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFilteredListing.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvFilteredListing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

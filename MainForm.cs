@@ -31,6 +31,7 @@ namespace BIBLIOTECA_PROJETO
 
             // Subscribe to the Click event of picLogo
             picLogo.Click += PicLogo_Click;
+            
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -262,9 +263,6 @@ namespace BIBLIOTECA_PROJETO
             }
         }
 
-        private void pnlHeader_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
     }
 }

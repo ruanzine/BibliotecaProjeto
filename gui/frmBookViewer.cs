@@ -1,4 +1,5 @@
-﻿using BIBLIOTECA_PROJETO.services;
+﻿using BIBLIOTECA_PROJETO.controls;
+using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace BIBLIOTECA_PROJETO.gui
         private DataTable allData;
         private int libraryID;
         private ThemeColors currentThemeColors;
+        private ToolTip toolTip = new ToolTip();
+        private ErrorProvider errorProvider = new ErrorProvider();
 
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
@@ -130,7 +133,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             if (cbxFilter_DGV.Text == "Número de Registo" && !string.IsNullOrEmpty(txtSearch_DGV.Texts) && !int.TryParse(txtSearch_DGV.Texts, out _))
             {
-                MessageBox.Show("Por favor, insira um número válido para o filtro 'Número de Registo'.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowError("Por favor, insira um número válido para o filtro 'Número de Registo'.", txtSearch_DGV);
                 return;
             }
 
@@ -195,7 +198,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao carregar todos os dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao carregar todos os dados: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -223,7 +226,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao obter os livros: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao obter os livros: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -301,19 +304,19 @@ namespace BIBLIOTECA_PROJETO.gui
                                 }
 
                                 workbook.SaveAs(saveFileDialog.FileName);
-                                MessageBox.Show("Ficheiro exportado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Toast.ShowToast("Ficheiro exportado com sucesso!");
                             }
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Nenhum registro encontrado para imprimir.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Toast.ShowToast("Nenhum registro encontrado para imprimir.", 3000); // Show for 3 seconds
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao exportar o Ficheiro: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao exportar o Ficheiro: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -328,7 +331,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 "Autor" => this.bookService.GetBooksByAuthor_Printing(searchText, libraryID),
                 "Título" => this.bookService.GetBooksByTitle_Printing(searchText, libraryID),
                 "Cota" => this.bookService.GetBooksByClassification_Printing(searchText, libraryID),
-                "Estado" => this.bookService.GetBooksByCondition(searchText, libraryID),
+                "Estado" => this.bookService.GetBooksByCondition_Printing(searchText, libraryID),
                 _ => null,
             };
         }
@@ -340,6 +343,26 @@ namespace BIBLIOTECA_PROJETO.gui
         private void UpdatePaginationLabel()
         {
             lblPagination.Text = totalPages > 0 ? $"Página {currentPage} de {totalPages}" : "Não há registos";
+        }
+
+        #endregion
+
+        #region Notification Methods
+
+        private void ShowToolTip(string message, Control control)
+        {
+            toolTip.ToolTipTitle = "Informação";
+            toolTip.Show(message, control, control.Width / 2, control.Height / 2, 3000); // Show for 3 seconds
+        }
+
+        private void ShowError(string message, Control control)
+        {
+            errorProvider.SetError(control, message);
+        }
+
+        private void ClearError(Control control)
+        {
+            errorProvider.SetError(control, "");
         }
 
         #endregion

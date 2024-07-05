@@ -87,7 +87,7 @@
             // 
             this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
             this.pnlFormFooter.CornerRadius = 10;
-            this.pnlFormFooter.Location = new System.Drawing.Point(224, 624);
+            this.pnlFormFooter.Location = new System.Drawing.Point(224, 616);
             this.pnlFormFooter.Name = "pnlFormFooter";
             this.pnlFormFooter.Size = new System.Drawing.Size(688, 32);
             this.pnlFormFooter.TabIndex = 62;
@@ -134,7 +134,7 @@
             this.pnlFormBody.Controls.Add(this.gpbMid);
             this.pnlFormBody.Location = new System.Drawing.Point(224, 64);
             this.pnlFormBody.Name = "pnlFormBody";
-            this.pnlFormBody.Size = new System.Drawing.Size(688, 560);
+            this.pnlFormBody.Size = new System.Drawing.Size(688, 552);
             this.pnlFormBody.TabIndex = 61;
             this.pnlFormBody.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFormBody_Paint);
             // 
@@ -161,7 +161,7 @@
             this.gpbBottom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
             this.gpbBottom.Location = new System.Drawing.Point(24, 336);
             this.gpbBottom.Name = "gpbBottom";
-            this.gpbBottom.Size = new System.Drawing.Size(528, 200);
+            this.gpbBottom.Size = new System.Drawing.Size(528, 192);
             this.gpbBottom.TabIndex = 36;
             this.gpbBottom.TabStop = false;
             // 

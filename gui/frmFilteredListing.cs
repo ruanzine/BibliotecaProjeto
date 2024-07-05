@@ -1,4 +1,5 @@
-﻿using BIBLIOTECA_PROJETO.services;
+﻿using BIBLIOTECA_PROJETO.controls;
+using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Drawing;
 using System;
@@ -21,6 +22,7 @@ namespace BIBLIOTECA_PROJETO.gui
         private DataTable allData;
         private int libraryID;
         private ThemeColors currentThemeColors;
+        private ErrorProvider errorProvider = new ErrorProvider();
 
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
@@ -131,7 +133,7 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void dgvFilteredListing_SelectionChanged(object sender, EventArgs e)
         {
-            if(cbxFilter.SelectedIndex != 0) bttAdvanced.Enabled = dgvFilteredListing.SelectedRows.Count > 0;
+            if (cbxFilter.SelectedIndex != 0) bttAdvanced.Enabled = dgvFilteredListing.SelectedRows.Count > 0;
         }
 
         /// <summary>
@@ -270,7 +272,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao obter os registos: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast($"Ocorreu um erro ao obter os registros: {ex.Message}", 5000); // Show for 5 seconds
             }
         }
 
@@ -370,7 +372,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 if (allData == null || allData.Rows.Count == 0)
                 {
-                    MessageBox.Show("Nenhum registro encontrado para imprimir.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Toast.ShowToast("Nenhum registro encontrado para imprimir.", 5000); // Show for 5 seconds
                     return;
                 }
 
@@ -393,12 +395,12 @@ namespace BIBLIOTECA_PROJETO.gui
                     }
 
                     workbook.SaveAs(saveFileDialog.FileName);
-                    MessageBox.Show("Ficheiro exportado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Toast.ShowToast("Ficheiro exportado com sucesso!", 5000); // Show for 5 seconds
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao exportar o ficheiro: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast($"Ocorreu um erro ao exportar o ficheiro: {ex.Message}", 5000); // Show for 5 seconds
             }
         }
 
@@ -445,7 +447,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             dgvFilteredListing.Columns["Nº"].Width = 50;
             dgvFilteredListing.Columns["Data de Entrada"].Width = 90;
-            dgvFilteredListing.Columns["Título"].Width = 150 ;
+            dgvFilteredListing.Columns["Título"].Width = 150;
             dgvFilteredListing.Columns["Autor"].Width = 150;
             dgvFilteredListing.Columns["Cota"].Width = 130;
             dgvFilteredListing.Columns["Nº. Vol"].Width = 52;
@@ -494,6 +496,16 @@ namespace BIBLIOTECA_PROJETO.gui
         }
 
         #endregion
+
+        private void ShowError(string message, Control control)
+        {
+            errorProvider.SetError(control, message);
+        }
+
+        private void ClearError(Control control)
+        {
+            errorProvider.SetError(control, "");
+        }
 
         private class ThemeColors
         {

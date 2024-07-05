@@ -1,4 +1,5 @@
-﻿using BIBLIOTECA_PROJETO.services;
+﻿using BIBLIOTECA_PROJETO.controls;
+using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
 using MetroFramework.Controls;
 using System;
@@ -21,6 +22,8 @@ namespace BIBLIOTECA_PROJETO.gui
         private DataTable allData;
         private int libraryID;
         private ThemeColors currentThemeColors;
+        private ToolTip toolTip = new ToolTip();
+        private ErrorProvider errorProvider = new ErrorProvider();
 
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
@@ -123,7 +126,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
             if (dataDe > dataAte)
             {
-                MessageBox.Show("A data inicial não pode ser maior que a data final.", "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError("A data inicial não pode ser maior que a data final.", dtpFrom);
                 return;
             }
 
@@ -135,7 +138,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao buscar os livros por data: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao buscar os livros por data: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -151,7 +154,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 if (dataDe > dataAte)
                 {
-                    MessageBox.Show("A data inicial não pode ser maior que a data final.", "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ShowError("A data inicial não pode ser maior que a data final.", dtpFrom);
                     return;
                 }
 
@@ -183,14 +186,14 @@ namespace BIBLIOTECA_PROJETO.gui
                             }
 
                             workbook.SaveAs(saveFileDialog.FileName);
-                            MessageBox.Show("Ficheiro exportado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Toast.ShowToast("Ficheiro exportado com sucesso!");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao exportar o Ficheiro: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao exportar o Ficheiro: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -261,7 +264,7 @@ namespace BIBLIOTECA_PROJETO.gui
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao obter os registros: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toast.ShowToast("Ocorreu um erro ao obter os registros: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -334,6 +337,26 @@ namespace BIBLIOTECA_PROJETO.gui
             {
                 row.Height = rowHeight;
             }
+        }
+
+        #endregion
+
+        #region Notification Methods
+
+        private void ShowToolTip(string message, Control control)
+        {
+            toolTip.ToolTipTitle = "Informação";
+            toolTip.Show(message, control, control.Width / 2, control.Height / 2, 3000); // Show for 3 seconds
+        }
+
+        private void ShowError(string message, Control control)
+        {
+            errorProvider.SetError(control, message);
+        }
+
+        private void ClearError(Control control)
+        {
+            errorProvider.SetError(control, "");
         }
 
         #endregion
