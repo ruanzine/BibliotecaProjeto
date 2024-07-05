@@ -22,13 +22,14 @@ namespace BIBLIOTECA_PROJETO.gui
         private const string Deposito = "Depósito";
         private int libraryID;
         private ThemeColors currentThemeColors;
+        private ErrorProvider errorProvider; 
 
         // Dicionário de cores para os temas
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
-            { 1, new ThemeColors(Color.FromArgb(252, 168, 183), Color.FromArgb(255, 102, 106), Color.FromArgb(64, 12, 3), Color.FromArgb(121, 57, 59), Color.FromArgb(64, 12, 3)) },
-            { 2, new ThemeColors(Color.FromArgb(146, 211, 157), Color.FromArgb(71, 174, 88), Color.FromArgb(6, 54, 49), Color.FromArgb(10, 97, 69), Color.FromArgb(6, 54, 49)) },
-            { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(23, 23, 55), Color.FromArgb(56, 83, 117), Color.FromArgb(33, 50, 88)) }
+            { 1, new ThemeColors(Color.FromArgb(252, 168, 183), Color.FromArgb(255, 102, 106), Color.FromArgb(64, 12, 3), Color.FromArgb(121, 57, 59), Color.FromArgb(64, 12, 3), Color.FromArgb(255, 87, 92)) },
+            { 2, new ThemeColors(Color.FromArgb(146, 211, 157), Color.FromArgb(71, 174, 88), Color.FromArgb(6, 54, 49), Color.FromArgb(10, 97, 69), Color.FromArgb(6, 54, 49), Color.FromArgb(56, 138, 70)) },
+            { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(23, 23, 55), Color.FromArgb(56, 83, 117), Color.FromArgb(33, 50, 88), Color.FromArgb(69, 127, 176)) }
         };
 
         // Dicionário de cores vibrantes para as condições dos livros
@@ -48,6 +49,7 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeComponent();
             _statisticsService = new BookStatisticsService();
             this.libraryID = selectedLibraryId;
+            errorProvider = new ErrorProvider();
             SetThemeColors();
             InitializeCustomComponents();
         }
@@ -80,7 +82,7 @@ namespace BIBLIOTECA_PROJETO.gui
             dgvStatistics.ReadOnly = true;
 
             // Personalizar o Gráfico
-            chartStatistics.ChartAreas[0].AxisX.Title = "Condição";
+            chartStatistics.ChartAreas[0].AxisX.Title = "Estado";
             chartStatistics.ChartAreas[0].AxisY.Title = "Quantidade";
             chartStatistics.ChartAreas[0].AxisX.LabelStyle.Enabled = false; // Remover o texto de rótulo do eixo X
             chartStatistics.Legends.Clear(); // Limpar todas as legendas
@@ -101,19 +103,44 @@ namespace BIBLIOTECA_PROJETO.gui
             if (dgvStatistics_Main.Columns.Count > 0)
             {
                 dgvStatistics_Main.Columns["Título"].Width = 300;
-                dgvStatistics_Main.Columns["Nº Exemplares"].Width = 100;
+                dgvStatistics_Main.Columns["Nº Exemplares"].Width = 80;
+            }
+        }
+
+        private void AdjustConditionsDataGridView()
+        {
+            // Ajustar a altura das linhas
+            dgvStatistics.RowTemplate.Height = 35;
+
+            // Ajustar o tamanho da fonte
+            dgvStatistics.DefaultCellStyle.Font = new Font("Century Gothic", 12);
+
+            // Ajustar o tamanho das colunas
+            if (dgvStatistics.Columns.Count > 0)
+            {
+                dgvStatistics.Columns["Estado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
 
         private void bttSearch_Click(object sender, EventArgs e)
         {
             int year = int.Parse(cbxYear.SelectedItem.ToString());
-            int month = cbxMonth.SelectedIndex; // 0 para "Todos", 1-12 para janeiro a dezembro
+            int month = cbxMonth.SelectedIndex; // 0 for "All", 1-12 for January to December
 
             LoadBooksByTitle(year, month);
             LoadStatistics(year, month);
-            AdjustMainDataGridView(); // Chamar após carregar dados para ajustar colunas corretamente
+            AdjustMainDataGridView(); // Call after loading data to adjust columns properly
+
+            if (dgvStatistics_Main.Rows.Count == 0)
+            {
+                errorProvider.SetError(bttSearch, "Nenhum registo encontrado.");
+            }
+            else
+            {
+                errorProvider.SetError(bttSearch, string.Empty); // Clear the error message if rows are found
+            }
         }
+
 
         private void LoadBooksByTitle(int year, int month)
         {
@@ -140,7 +167,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             var conditions = new[] { Disponivel, Indisponivel, Abatido, Perdido, ConsultaLocal, Exposicao, Deposito };
             var dataTable = new DataTable();
-            dataTable.Columns.Add("Condição", typeof(string));
+            dataTable.Columns.Add("Estado", typeof(string));
             dataTable.Columns.Add("Quantidade", typeof(int));
 
             foreach (var condition in conditions)
@@ -150,6 +177,8 @@ namespace BIBLIOTECA_PROJETO.gui
             }
 
             dgvStatistics.DataSource = dataTable;
+
+            AdjustConditionsDataGridView();
 
             // Exibir dados no gráfico
             chartStatistics.Series.Clear();
@@ -164,10 +193,10 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    if (row["Condição"].ToString() == condition)
+                    if (row["Estado"].ToString() == condition)
                     {
-                        series.Points.AddXY(row["Condição"], row["Quantidade"]);
-                        series.Points.Last().ToolTip = $"{row["Condição"]}: {row["Quantidade"]}";
+                        series.Points.AddXY(row["Estado"], row["Quantidade"]);
+                        series.Points.Last().ToolTip = $"{row["Estado"]}: {row["Quantidade"]}";
                     }
                 }
 
@@ -185,11 +214,32 @@ namespace BIBLIOTECA_PROJETO.gui
             if (themeColors.TryGetValue(libraryID, out currentThemeColors))
             {
                 lblTitle.ForeColor = currentThemeColors.ButtonColor;
+                lblSubtitle.ForeColor = currentThemeColors.LabelColor;
+                lblYear.ForeColor = currentThemeColors.LabelColor;
+                lblMonth.ForeColor = currentThemeColors.LabelColor;
+                lblAuthor.ForeColor = currentThemeColors.LabelColor;
+                lblAuthorsAmount_Label.ForeColor = currentThemeColors.LabelColor;
+                lblTitleAmount.ForeColor = currentThemeColors.LabelColor;
+                lblTitleAmount_Label.ForeColor = currentThemeColors.LabelColor;
+                lblClassifications.ForeColor = currentThemeColors.LabelColor;
+                lblClassifications_Label.ForeColor = currentThemeColors.LabelColor;
+                lblPurchases.ForeColor = currentThemeColors.LabelColor;
+                lblPurchases_Label.ForeColor = currentThemeColors.LabelColor;
+                lblOffers.ForeColor = currentThemeColors.LabelColor;
+                lblOffers_Label.ForeColor = currentThemeColors.LabelColor;
+                bttSearch.BackColor = currentThemeColors.ButtonColor;
                 pnlFormFooter.BackColor = currentThemeColors.PanelHeaderColor;
                 pnlFormBody.BackColor = currentThemeColors.PanelBodyColor;
                 pnlFormHeader.BackColor = currentThemeColors.PanelHeaderColor;
                 pnlLineBottom.BackColor = currentThemeColors.ButtonColor;
                 pnlLineTop.BackColor = currentThemeColors.ButtonColor;
+                gpbLeft.BackColor = currentThemeColors.PanelBodyColor;
+                gpbRight.BackColor = currentThemeColors.PanelBodyColor;
+                gpbRight.ForeColor = currentThemeColors.LabelColor;
+                gpbLeft.ForeColor = currentThemeColors.LabelColor;
+                dgvStatistics_Main.BackgroundColor = currentThemeColors.DgvBackColor;
+                dgvStatistics.BackgroundColor = currentThemeColors.DgvBackColor;
+                
             }
         }
 
@@ -220,14 +270,16 @@ namespace BIBLIOTECA_PROJETO.gui
             public Color PanelBodyColor { get; }
             public Color LabelColor { get; }
             public Color GroupBoxColor { get; }
+            public Color DgvBackColor { get; }
 
-            public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor, Color groupBoxColor)
+            public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor, Color groupBoxColor, Color dgvBackColor)
             {
                 PanelHeaderColor = panelHeaderColor;
                 PanelBodyColor = panelBodyColor;
                 LabelColor = labelColor;
                 ButtonColor = buttonColor;
                 GroupBoxColor = groupBoxColor;
+                DgvBackColor = dgvBackColor;
             }
         }
     }
