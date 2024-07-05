@@ -54,14 +54,33 @@ namespace BIBLIOTECA_PROJETO.gui
 
         private void InitializeCustomComponents()
         {
-            // Personalizar DataGridView
+            // Inicializar ComboBox de Anos
+            cbxYear.Items.AddRange(Enumerable.Range(2000, DateTime.Now.Year - 1999).Select(y => y.ToString()).ToArray());
+            cbxYear.SelectedIndex = 0;
+
+            // Inicializar ComboBox de Meses
+            cbxMonth.Items.Add("Todos");
+            cbxMonth.Items.AddRange(System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames.Take(12).ToArray());
+            cbxMonth.SelectedIndex = 0;
+
+            // Adicionar evento Click do botão de pesquisa
+            bttSearch.Click += bttSearch_Click;
+
+            // Personalizar DataGridView principal
+            dgvStatistics_Main.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvStatistics_Main.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStatistics_Main.MultiSelect = false;
+            dgvStatistics_Main.ReadOnly = true;
+            AdjustMainDataGridView();
+
+            // Personalizar DataGridView de estatísticas
             dgvStatistics.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStatistics.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvStatistics.MultiSelect = false;
             dgvStatistics.ReadOnly = true;
 
             // Personalizar o Gráfico
-            chartStatistics.ChartAreas[0].AxisX.Title = "Estado";
+            chartStatistics.ChartAreas[0].AxisX.Title = "Condição";
             chartStatistics.ChartAreas[0].AxisY.Title = "Quantidade";
             chartStatistics.ChartAreas[0].AxisX.LabelStyle.Enabled = false; // Remover o texto de rótulo do eixo X
             chartStatistics.Legends.Clear(); // Limpar todas as legendas
@@ -70,11 +89,58 @@ namespace BIBLIOTECA_PROJETO.gui
             LoadBookConditionsData();
         }
 
+        private void AdjustMainDataGridView()
+        {
+            // Ajustar a altura das linhas
+            dgvStatistics_Main.RowTemplate.Height = 35;
+
+            // Ajustar o tamanho da fonte
+            dgvStatistics_Main.DefaultCellStyle.Font = new Font("Arial", 12);
+
+            // Ajustar o tamanho das colunas
+            if (dgvStatistics_Main.Columns.Count > 0)
+            {
+                dgvStatistics_Main.Columns["Título"].Width = 300;
+                dgvStatistics_Main.Columns["Nº Exemplares"].Width = 100;
+            }
+        }
+
+        private void bttSearch_Click(object sender, EventArgs e)
+        {
+            int year = int.Parse(cbxYear.SelectedItem.ToString());
+            int month = cbxMonth.SelectedIndex; // 0 para "Todos", 1-12 para janeiro a dezembro
+
+            LoadBooksByTitle(year, month);
+            LoadStatistics(year, month);
+            AdjustMainDataGridView(); // Chamar após carregar dados para ajustar colunas corretamente
+        }
+
+        private void LoadBooksByTitle(int year, int month)
+        {
+            DataTable dataTable = _statisticsService.GetBooksAddedByTitle(libraryID, year, month);
+            dgvStatistics_Main.DataSource = dataTable;
+        }
+
+        private void LoadStatistics(int year, int month)
+        {
+            int booksCount = _statisticsService.GetBooksCountByDate(libraryID, year, month);
+            int authorsCount = _statisticsService.GetAuthorsCountByDate(libraryID, year, month);
+            int classificationsCount = _statisticsService.GetClassificationsCountByDate(libraryID, year, month);
+            int offersCount = _statisticsService.GetOffersCountByDate(libraryID, year, month);
+            int purchasesCount = _statisticsService.GetPurchasesCountByDate(libraryID, year, month);
+
+            lblTitleAmount.Text = booksCount.ToString();
+            lblAuthor.Text = authorsCount.ToString();
+            lblClassifications.Text = classificationsCount.ToString();
+            lblOffers.Text = offersCount.ToString();
+            lblPurchases.Text = purchasesCount.ToString();
+        }
+
         private void LoadBookConditionsData()
         {
             var conditions = new[] { Disponivel, Indisponivel, Abatido, Perdido, ConsultaLocal, Exposicao, Deposito };
             var dataTable = new DataTable();
-            dataTable.Columns.Add("Estado", typeof(string));
+            dataTable.Columns.Add("Condição", typeof(string));
             dataTable.Columns.Add("Quantidade", typeof(int));
 
             foreach (var condition in conditions)
@@ -98,10 +164,10 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    if (row["Estado"].ToString() == condition)
+                    if (row["Condição"].ToString() == condition)
                     {
-                        series.Points.AddXY(row["Estado"], row["Quantidade"]);
-                        series.Points.Last().ToolTip = $"{row["Estado"]}: {row["Quantidade"]}";
+                        series.Points.AddXY(row["Condição"], row["Quantidade"]);
+                        series.Points.Last().ToolTip = $"{row["Condição"]}: {row["Quantidade"]}";
                     }
                 }
 
@@ -163,11 +229,6 @@ namespace BIBLIOTECA_PROJETO.gui
                 ButtonColor = buttonColor;
                 GroupBoxColor = groupBoxColor;
             }
-        }
-
-        private void pnlFormBody_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
