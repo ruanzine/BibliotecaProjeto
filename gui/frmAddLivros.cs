@@ -16,7 +16,6 @@ namespace BIBLIOTECA_PROJETO.gui
     {
         MainForm mainForm = new MainForm();
         private BookCreateService createService = new BookCreateService();
-        private string id;
         private ListBox listBoxSuggestionsTitle;
         private ListBox listBoxSuggestionsAuthor;
         private int libraryID;

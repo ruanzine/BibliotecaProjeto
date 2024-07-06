@@ -141,6 +141,7 @@
             this.bttPrintDate.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPrintDate.BorderRadius = 5;
             this.bttPrintDate.BorderSize = 0;
+            this.bttPrintDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttPrintDate.FlatAppearance.BorderSize = 0;
             this.bttPrintDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPrintDate.ForeColor = System.Drawing.Color.White;
@@ -160,6 +161,7 @@
             this.bttPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPreviousPage.BorderRadius = 5;
             this.bttPreviousPage.BorderSize = 0;
+            this.bttPreviousPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttPreviousPage.FlatAppearance.BorderSize = 0;
             this.bttPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPreviousPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -180,6 +182,7 @@
             this.bttNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttNextPage.BorderRadius = 5;
             this.bttNextPage.BorderSize = 0;
+            this.bttNextPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttNextPage.FlatAppearance.BorderSize = 0;
             this.bttNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttNextPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -272,6 +275,7 @@
             this.bttFilterDate.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttFilterDate.BorderRadius = 5;
             this.bttFilterDate.BorderSize = 0;
+            this.bttFilterDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttFilterDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttFilterDate.ForeColor = System.Drawing.Color.White;
             this.bttFilterDate.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttsearchdate;
