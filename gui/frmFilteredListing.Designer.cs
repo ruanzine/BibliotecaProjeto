@@ -32,8 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilteredListing));
             this.dgvFilteredListing = new System.Windows.Forms.DataGridView();
+            this.pnlLineBottom = new System.Windows.Forms.Panel();
             this.pnlFormFooter = new BIBLIOTECA_PROJETO.controls.RoundedPanelBottom();
             this.lblAmount = new System.Windows.Forms.Label();
             this.lblPagination = new System.Windows.Forms.Label();
@@ -46,7 +46,6 @@
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.cbxFilter = new MetroFramework.Controls.MetroComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pnlLineBottom = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilteredListing)).BeginInit();
             this.pnlFormFooter.SuspendLayout();
             this.pnlFormHeader.SuspendLayout();
@@ -93,6 +92,14 @@
             this.dgvFilteredListing.TabIndex = 49;
             this.dgvFilteredListing.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvFilteredListing_DataBindingComplete);
             // 
+            // pnlLineBottom
+            // 
+            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
+            this.pnlLineBottom.Location = new System.Drawing.Point(40, 582);
+            this.pnlLineBottom.Name = "pnlLineBottom";
+            this.pnlLineBottom.Size = new System.Drawing.Size(1104, 12);
+            this.pnlLineBottom.TabIndex = 52;
+            // 
             // pnlFormFooter
             // 
             this.pnlFormFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(199)))), ((int)(((byte)(234)))));
@@ -135,6 +142,7 @@
             this.bttPrint.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPrint.BorderRadius = 5;
             this.bttPrint.BorderSize = 0;
+            this.bttPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttPrint.FlatAppearance.BorderSize = 0;
             this.bttPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPrint.ForeColor = System.Drawing.Color.White;
@@ -154,11 +162,12 @@
             this.bttPreviousPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttPreviousPage.BorderRadius = 5;
             this.bttPreviousPage.BorderSize = 0;
+            this.bttPreviousPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttPreviousPage.FlatAppearance.BorderSize = 0;
             this.bttPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttPreviousPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttPreviousPage.ForeColor = System.Drawing.Color.White;
-            this.bttPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("bttPreviousPage.Image")));
+            this.bttPreviousPage.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttpreviouspage;
             this.bttPreviousPage.Location = new System.Drawing.Point(984, 16);
             this.bttPreviousPage.Margin = new System.Windows.Forms.Padding(0);
             this.bttPreviousPage.Name = "bttPreviousPage";
@@ -174,11 +183,12 @@
             this.bttNextPage.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.bttNextPage.BorderRadius = 5;
             this.bttNextPage.BorderSize = 0;
+            this.bttNextPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttNextPage.FlatAppearance.BorderSize = 0;
             this.bttNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttNextPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttNextPage.ForeColor = System.Drawing.Color.White;
-            this.bttNextPage.Image = ((System.Drawing.Image)(resources.GetObject("bttNextPage.Image")));
+            this.bttNextPage.Image = global::BIBLIOTECA_PROJETO.Properties.Resources.icon_bttnextpage;
             this.bttNextPage.Location = new System.Drawing.Point(1040, 16);
             this.bttNextPage.Margin = new System.Windows.Forms.Padding(0);
             this.bttNextPage.Name = "bttNextPage";
@@ -268,14 +278,6 @@
             this.lblTitle.Size = new System.Drawing.Size(109, 26);
             this.lblTitle.TabIndex = 11;
             this.lblTitle.Text = "Listagem";
-            // 
-            // pnlLineBottom
-            // 
-            this.pnlLineBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(58)))), ((int)(((byte)(94)))));
-            this.pnlLineBottom.Location = new System.Drawing.Point(40, 582);
-            this.pnlLineBottom.Name = "pnlLineBottom";
-            this.pnlLineBottom.Size = new System.Drawing.Size(1104, 12);
-            this.pnlLineBottom.TabIndex = 52;
             // 
             // frmFilteredListing
             // 

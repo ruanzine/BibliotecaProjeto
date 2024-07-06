@@ -58,7 +58,6 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             this.dgvDateListing.CellFormatting += dgvDateListing_CellFormatting;
             this.dgvDateListing.DataBindingComplete += dgvDateListing_DataBindingComplete;
-            
         }
 
         #endregion
@@ -138,10 +137,11 @@ namespace BIBLIOTECA_PROJETO.gui
                 LoadAllData(dataDe, dataAte);
                 ResetPagination();
                 FillDGV_Filter();
+                ClearError(dtpFrom); // Clear the error after successful data load
             }
             catch (Exception ex)
             {
-                Toast.ShowToast("Ocorreu um erro ao buscar os livros por data: " + ex.Message, 5000); // Show for 5 seconds
+                Toast.ShowToast("Ocorreu um erro ao buscar os exemplares por data: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -150,6 +150,8 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void bttPrintDate_Click(object sender, EventArgs e)
         {
+            if (dgvDateListing.Columns.Count == 0) return;
+
             try
             {
                 DateTime dataDe = dtpFrom.Value;
@@ -247,10 +249,11 @@ namespace BIBLIOTECA_PROJETO.gui
                 dgvDateListing.DataSource = dt;
                 ResizeData();
                 UpdatePaginationLabel();
+                ClearError(dtpFrom); // Clear the error after successful data fill
             }
             catch (Exception ex)
             {
-                Toast.ShowToast("Ocorreu um erro ao obter os registros: " + ex.Message, 5000); // Show for 5 seconds
+                Toast.ShowToast("Ocorreu um erro ao obter os registos: " + ex.Message, 5000); // Show for 5 seconds
             }
         }
 
@@ -328,12 +331,6 @@ namespace BIBLIOTECA_PROJETO.gui
         #endregion
 
         #region Notification Methods
-
-        private void ShowToolTip(string message, Control control)
-        {
-            toolTip.ToolTipTitle = "Informação";
-            toolTip.Show(message, control, control.Width / 2, control.Height / 2, 3000); // Show for 3 seconds
-        }
 
         private void ShowError(string message, Control control)
         {
