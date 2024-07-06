@@ -18,6 +18,7 @@ namespace BIBLIOTECA_PROJETO.gui
         #region Fields
 
         private BookGeneralListingService bookService;
+        private ExcelExportService excelExportService;
         private int currentPage = 1;
         private int totalPages = 0;
         private const int itemsPerPage = 11;
@@ -44,6 +45,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             InitializeComponent();
             this.bookService = new BookGeneralListingService();
+            this.excelExportService = new ExcelExportService();
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
@@ -65,7 +67,6 @@ namespace BIBLIOTECA_PROJETO.gui
             this.dgvFilteredListing.SelectionChanged += dgvFilteredListing_SelectionChanged;
 
             this.cbxFilter.SelectedIndexChanged += cbxFilter_OnSelectedIndexChanged;
-            this.bttAdvanced.Click += bttAdvanced_Click;
             this.bttAdvanced.Enabled = false; // Initially disable the button
         }
 
@@ -135,14 +136,12 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void cbxFilter_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedFilter = cbxFilter.Text;
-
-            if (selectedFilter == "Número de Registo")
+            if (cbxFilter.SelectedIndex == 0)
             {
                 bttAdvanced.Enabled = false;
                 bttPrint.Enabled = true;
             }
-            else if (selectedFilter == "Estado" || selectedFilter == "Aquisição")
+            else if (cbxFilter.SelectedIndex == 4 || cbxFilter.SelectedIndex == 5)
             {
                 bttPrint.Enabled = false;
             }
@@ -151,8 +150,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 bttAdvanced.Enabled = true;
                 bttPrint.Enabled = true;
             }
-
-            LoadAllData(selectedFilter);
+            LoadAllData(cbxFilter.Text);
         }
 
         /// <summary>
@@ -230,6 +228,10 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Data Loading
 
+        /// <summary>
+        /// Loads all data based on the specified filter.
+        /// </summary>
+        /// <param name="filter">The filter to apply.</param>
         private void LoadAllData(string filter)
         {
             ClearDataGridView(dgvFilteredListing);
@@ -249,6 +251,11 @@ namespace BIBLIOTECA_PROJETO.gui
             FillDGV_Filter();
         }
 
+        /// <summary>
+        /// Loads books based on the selected filter and value.
+        /// </summary>
+        /// <param name="filter">The filter to apply.</param>
+        /// <param name="value">The value to filter by.</param>
         private void LoadBooksByFilter(string filter, string value)
         {
             allData = filter switch
@@ -273,9 +280,8 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             try
             {
-                if (allData == null || allData.Rows.Count == 0)
+                if (allData == null)
                 {
-                    Toast.ShowToast("Nenhum registro encontrado.", 5000); // Show for 5 seconds
                     return;
                 }
 
@@ -291,9 +297,6 @@ namespace BIBLIOTECA_PROJETO.gui
                 dgvFilteredListing.DataSource = dt;
                 SetRowHeight(dgvFilteredListing, 40);
                 UpdatePaginationLabel();
-
-                // Garantir que o redimensionamento das colunas seja feito após definir a fonte de dados
-                ResizeColumnsBasedOnFilter(cbxFilter.Text);
             }
             catch (Exception ex)
             {
@@ -330,35 +333,28 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <param name="filter">The selected filter.</param>
         private void ResizeColumnsBasedOnFilter(string filter)
         {
-            try
+            switch (filter)
             {
-                switch (filter)
-                {
-                    case "Número de Registo":
-                        ResizeData();
-                        break;
-                    case "Autor":
-                        ResizeAuthor();
-                        break;
-                    case "Título":
-                        ResizeTitle();
-                        break;
-                    case "Cota":
-                        ResizeCota();
-                        break;
-                    case "Estado":
-                        ResizeEstado();
-                        break;
-                    case "Aquisição":
-                        ResizeAcquisition();
-                        break;
-                    default:
-                        throw new ArgumentException("Filtro inválido");
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast.ShowToast($"Erro ao redimensionar as colunas: {ex.Message}", 5000); // Show for 5 seconds
+                case "Número de Registo":
+                    ResizeData();
+                    break;
+                case "Autor":
+                    ResizeAuthor();
+                    break;
+                case "Título":
+                    ResizeTitle();
+                    break;
+                case "Cota":
+                    ResizeCota();
+                    break;
+                case "Estado":
+                    ResizeEstado();
+                    break;
+                case "Aquisição":
+                    ResizeAcquisition();
+                    break;
+                default:
+                    throw new ArgumentException("Filtro inválido");
             }
         }
 
@@ -414,7 +410,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string fileName = saveFileDialog.FileName; // Get the file name
-                    SaveDataToExcel(fileName);
+                    excelExportService.ExportDataToExcel(allData, cbxFilter.Text, fileName);
                     Toast.ShowToast("Ficheiro exportado com sucesso!", 5000); // Show for 5 seconds
                 }
             }
@@ -423,158 +419,6 @@ namespace BIBLIOTECA_PROJETO.gui
                 Toast.ShowToast($"Ocorreu um erro ao exportar o ficheiro: {ex.Message}", 5000); // Show for 5 seconds
             }
         }
-
-        /// <summary>
-        /// Saves the data to an Excel file.
-        /// </summary>
-        /// <param name="fileName">The name of the file to save.</param>
-        private void SaveDataToExcel(string fileName)
-        {
-            using var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add("Planilha1");
-
-            // Set the header row
-            for (int j = 0; j < allData.Columns.Count; j++)
-            {
-                var cell = worksheet.Cell(1, j + 1);
-                cell.Value = allData.Columns[j].ColumnName;
-                cell.Style.Font.Bold = true;
-                cell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-            }
-
-            // Set the data rows
-            for (int i = 0; i < allData.Rows.Count; i++)
-            {
-                for (int j = 0; j < allData.Columns.Count; j++)
-                {
-                    var cell = worksheet.Cell(i + 2, j + 1);
-                    cell.Value = allData.Rows[i][j].ToString();
-                    cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                }
-            }
-
-            // Adjust column widths
-            foreach (IXLColumn column in worksheet.ColumnsUsed())
-            {
-                column.AdjustToContents();
-                // Set a maximum width limit
-                if (column.Width > 30)
-                {
-                    column.Width = 30;
-                }
-            }
-
-            // Add summary statistics below the table
-            int summaryRowStart = allData.Rows.Count + 3;
-            worksheet.Cell(summaryRowStart, 3).Value = "Sumário:";
-            worksheet.Cell(summaryRowStart, 3).Style.Font.Bold = true;
-            worksheet.Cell(summaryRowStart, 3).Style.Font.FontSize = 14;
-
-            bool isAdvancedView = dgvFilteredListing.Columns.Count > 1;
-            string filter = cbxFilter.Text;
-
-            if (!isAdvancedView)
-            {
-                switch (filter)
-                {
-                    case "Título":
-                        AddSummary(worksheet, summaryRowStart, 3, "QUANTIDADE DE TÍTULOS:", allData.Rows.Count);
-                        AddDistinctSummary(worksheet, summaryRowStart + 1, 3, "QUANTIDADE DE TÍTULOS DISTINTOS:", "Título");
-                        break;
-                    case "Autor":
-                        AddSummary(worksheet, summaryRowStart, 3, "QUANTIDADE DE AUTORES:", allData.Rows.Count);
-                        AddDistinctSummary(worksheet, summaryRowStart + 1, 3, "QUANTIDADE DE AUTORES DISTINTOS:", "Autor");
-                        break;
-                    case "Cota":
-                        AddSummary(worksheet, summaryRowStart, 3, "QUANTIDADE DE CLASSIFICAÇÕES:", allData.Rows.Count);
-                        AddDistinctSummary(worksheet, summaryRowStart + 1, 3, "QUANTIDADE DE CLASSIFICAÇÕES DISTINTAS:", "Cota");
-                        break;
-                    default:
-                        AddGeneralSummary(worksheet, summaryRowStart, 3);
-                        break;
-                }
-            }
-            else
-            {
-                AddGeneralSummary(worksheet, summaryRowStart, 3);
-            }
-
-            // Save the workbook
-            workbook.SaveAs(fileName);
-        }
-
-        /// <summary>
-        /// Adds a summary row to the worksheet.
-        /// </summary>
-        /// <param name="worksheet">The worksheet to add the summary to.</param>
-        /// <param name="row">The row number to add the summary at.</param>
-        /// <param name="column">The column number to start the summary.</param>
-        /// <param name="label">The summary label.</param>
-        /// <param name="value">The summary value.</param>
-        private void AddSummary(IXLWorksheet worksheet, int row, int column, string label, int value)
-        {
-            worksheet.Cell(row + 1, column).Value = label;
-            worksheet.Cell(row + 1, column + 1).Value = value;
-        }
-
-        /// <summary>
-        /// Adds a distinct summary row to the worksheet.
-        /// </summary>
-        /// <param name="worksheet">The worksheet to add the summary to.</param>
-        /// <param name="row">The row number to add the summary at.</param>
-        /// <param name="column">The column number to start the summary.</param>
-        /// <param name="label">The summary label.</param>
-        /// <param name="columnName">The column name to calculate distinct values from.</param>
-        private void AddDistinctSummary(IXLWorksheet worksheet, int row, int column, string label, string columnName)
-        {
-            worksheet.Cell(row + 1, column).Value = label;
-            worksheet.Cell(row + 1, column + 1).Value = allData.AsEnumerable().Select(r => r.Field<string>(columnName)).Distinct().Count();
-        }
-
-        /// <summary>
-        /// Adds a general summary to the worksheet.
-        /// </summary>
-        /// <param name="worksheet">The worksheet to add the summary to.</param>
-        /// <param name="summaryRowStart">The starting row number for the summary.</param>
-        /// <param name="column">The column number to start the summary.</param>
-        private void AddGeneralSummary(IXLWorksheet worksheet, int summaryRowStart, int column)
-        {
-            AddSummary(worksheet, summaryRowStart, column, "Total exemplares:", allData.Rows.Count);
-            AddDistinctSummary(worksheet, summaryRowStart + 1, column, "Títulos distintos:", "Título");
-            AddDistinctSummary(worksheet, summaryRowStart + 2, column, "Autores distintos:", "Autor");
-            AddDistinctSummary(worksheet, summaryRowStart + 3, column, "Cotas distintas:", "Cota");
-
-            worksheet.Cell(summaryRowStart + 5, column).Value = "Ofertas:";
-            worksheet.Cell(summaryRowStart + 5, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Aquisição") == "Oferta");
-
-            worksheet.Cell(summaryRowStart + 6, column).Value = "Compras:";
-            worksheet.Cell(summaryRowStart + 6, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Aquisição") == "Compra");
-
-            worksheet.Cell(summaryRowStart + 7, column).Value = "Disponível:";
-            worksheet.Cell(summaryRowStart + 7, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Disponível");
-
-            worksheet.Cell(summaryRowStart + 8, column).Value = "Indisponível:";
-            worksheet.Cell(summaryRowStart + 8, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Indisponível");
-
-            worksheet.Cell(summaryRowStart + 9, column).Value = "Abatido:";
-            worksheet.Cell(summaryRowStart + 9, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Abatido");
-
-            worksheet.Cell(summaryRowStart + 10, column).Value = "Perdido:";
-            worksheet.Cell(summaryRowStart + 10, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Perdido");
-
-            worksheet.Cell(summaryRowStart + 11, column).Value = "Exposição:";
-            worksheet.Cell(summaryRowStart + 11, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Exposição");
-
-            worksheet.Cell(summaryRowStart + 12, column).Value = "Consulta Local:";
-            worksheet.Cell(summaryRowStart + 12, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Consulta Local");
-
-            worksheet.Cell(summaryRowStart + 13, column).Value = "Depósito:";
-            worksheet.Cell(summaryRowStart + 13, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Depósito");
-
-
-        }
-
 
         #endregion
 
@@ -617,8 +461,9 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ResizeAcquisition()
         {
-            SetColumnProperties("Aquisição", 1);
+            SetColumnProperties("Aquisição", 120);
         }
+
         /// <summary>
         /// Resizes the columns for the "Número de Registo" filter.
         /// </summary>

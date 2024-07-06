@@ -155,6 +155,7 @@
     <Compile Include="classes\ResizerClass.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="classes\services\ExcelExportingService.cs" />
     <Compile Include="controls\RoundedButton.cs">
       <SubType>Component</SubType>
     </Compile>
