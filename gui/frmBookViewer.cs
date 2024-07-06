@@ -5,13 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
+    /// <summary>
+    /// Form for viewing books.
+    /// </summary>
     public partial class frmBookViewer : Form
     {
+        #region Fields
+
         private BookSearchService bookService;
+        private ExcelExportService excelExportService;
         private int currentPage = 1;
         private const int itemsPerPage = 11;
         private int totalPages = 0;
@@ -28,27 +35,37 @@ namespace BIBLIOTECA_PROJETO.gui
             { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(56, 83, 117), Color.FromArgb(56, 83, 117)) }
         };
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmBookViewer"/> class.
+        /// </summary>
+        /// <param name="selectedLibraryId">The selected library ID.</param>
         public frmBookViewer(int selectedLibraryId)
         {
             InitializeComponent();
             this.bookService = new BookSearchService();
+            this.excelExportService = new ExcelExportService();
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
             cbxFilter_DGV.SelectedIndex = 1;
         }
 
+        #endregion
+
         #region Initialization
 
+        /// <summary>
+        /// Initializes event handlers.
+        /// </summary>
         private void InitializeEventHandlers()
         {
             this.dgvBook.CellFormatting += dgvBook_CellFormatting;
             this.dgvBook.DataBindingComplete += dgvBook_DataBindingComplete;
-            this.btnPrint_Search.Click += bttPrint_Search_Click;
-            this.btnPreviousPage.Click += bttPreviousPage_Click;
-            this.btnNextPage.Click += bttNextPage_Click;
             this.cbxFilter_DGV.SelectedIndexChanged += cbxFilter_DGV_OnSelectedIndexChanged;
-            this.txtSearch_DGV.TextChanged += txtSearch_DGV__TextChanged;
             this.txtSearch_DGV.KeyPress += txtSearch_DGV_KeyPress;
             this.Load += frmBookViewer_Load;
         }
@@ -57,6 +74,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Theme Setting
 
+        /// <summary>
+        /// Sets the theme colors based on the selected library.
+        /// </summary>
         private void SetThemeColors()
         {
             if (themeColors.TryGetValue(libraryID, out currentThemeColors))
@@ -75,6 +95,8 @@ namespace BIBLIOTECA_PROJETO.gui
                 pnlLineBottom.BackColor = currentThemeColors.LabelColor;
                 pnlLineTop.BackColor = currentThemeColors.LabelColor;
                 dgvBook.BackgroundColor = currentThemeColors.PanelBodyColor;
+                txtSearch_DGV.BorderColor = currentThemeColors.LabelColor;
+                txtSearch_DGV.BorderFocusColor = currentThemeColors.PanelHeaderColor;
             }
         }
 
@@ -82,6 +104,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Event Handlers
 
+        /// <summary>
+        /// Handles the CellFormatting event of the dgvBook control.
+        /// </summary>
         private void dgvBook_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvBook.Columns[e.ColumnIndex].Name == "Estado" && e.Value != null)
@@ -100,17 +125,26 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the DataBindingComplete event of the dgvBook control.
+        /// </summary>
         private void dgvBook_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvBook.ClearSelection();
             ResizeData();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnPrint_Search button.
+        /// </summary>
         private void bttPrint_Search_Click(object sender, EventArgs e)
         {
             ExportDataToExcel();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnPreviousPage button.
+        /// </summary>
         private void bttPreviousPage_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
@@ -120,6 +154,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnNextPage button.
+        /// </summary>
         private void bttNextPage_Click(object sender, EventArgs e)
         {
             if (currentPage < totalPages)
@@ -129,7 +166,10 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
-        private void txtSearch_DGV__TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the TextChanged event of the txtSearch_DGV textbox.
+        /// </summary>
+        private void txtSearch_DGV_TextChanged(object sender, EventArgs e)
         {
             if (cbxFilter_DGV.Text == "Número de Registo" && !string.IsNullOrEmpty(txtSearch_DGV.Texts) && !int.TryParse(txtSearch_DGV.Texts, out _))
             {
@@ -141,6 +181,10 @@ namespace BIBLIOTECA_PROJETO.gui
             LoadAllData();
         }
 
+
+        /// <summary>
+        /// Handles the KeyPress event of the txtSearch_DGV textbox.
+        /// </summary>
         private void txtSearch_DGV_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cbxFilter_DGV.Text == "Número de Registo" && !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -149,12 +193,18 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the cbxFilter_DGV combobox.
+        /// </summary>
         private void cbxFilter_DGV_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            this.txtSearch_DGV.Texts = "";
+            this.txtSearch_DGV.Text = "";
             this.txtSearch_DGV.Focus();
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmBookViewer form.
+        /// </summary>
         private void frmBookViewer_Load(object sender, EventArgs e)
         {
             txtSearch_DGV.Focus();
@@ -165,6 +215,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Data Loading
 
+        /// <summary>
+        /// Loads all data based on the current filter and search text.
+        /// </summary>
         private void LoadAllData()
         {
             try
@@ -174,7 +227,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 if (selectedOption == "Número de Registo" && string.IsNullOrEmpty(searchText))
                 {
-                    allData = this.bookService.GetAllBooks(libraryID); // Carrega todos os livros
+                    allData = this.bookService.GetAllBooks(libraryID); // Load all books
                 }
                 else
                 {
@@ -206,6 +259,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region DataGridView Methods
 
+        /// <summary>
+        /// Fills the DataGridView with the current page data.
+        /// </summary>
         public void FillDGV()
         {
             try
@@ -230,6 +286,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Resizes the columns and rows of the DataGridView.
+        /// </summary>
         public void ResizeData()
         {
             if (dgvBook.Columns.Count == 0) return;
@@ -258,6 +317,11 @@ namespace BIBLIOTECA_PROJETO.gui
             SetRowHeight(dgvBook, 40);
         }
 
+        /// <summary>
+        /// Sets the height of each row in the DataGridView.
+        /// </summary>
+        /// <param name="dataGridView">The DataGridView control.</param>
+        /// <param name="rowHeight">The height to set for each row.</param>
         private void SetRowHeight(DataGridView dataGridView, int rowHeight)
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -270,76 +334,46 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Excel Export
 
+        /// <summary>
+        /// Exports the data to an Excel file.
+        /// </summary>
         private void ExportDataToExcel()
         {
             try
             {
-                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                using SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
-                    saveFileDialog.Filter = "Ficheiro Excel|*.xlsx";
-                    saveFileDialog.Title = "Salvar Ficheiro Excel";
-                    saveFileDialog.FileName = "nome_do_ficheiro";
+                    Filter = "Ficheiro Excel|*.xlsx",
+                    Title = "Salvar Ficheiro Excel",
+                    FileName = "nome_do_ficheiro"
+                };
 
-                    DataTable dt = GetFilteredDataForExport();
+                if (allData == null || allData.Rows.Count == 0)
+                {
+                    Toast.ShowToast("Nenhum registro encontrado para imprimir.", 5000); // Show for 5 seconds
+                    return;
+                }
 
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            using (var workbook = new XLWorkbook())
-                            {
-                                var worksheet = workbook.Worksheets.Add("Planilha1");
-
-                                for (int j = 0; j < dt.Columns.Count; j++)
-                                {
-                                    worksheet.Cell(1, j + 1).Value = dt.Columns[j].ColumnName;
-                                }
-
-                                for (int i = 0; i < dt.Rows.Count; i++)
-                                {
-                                    for (int j = 0; j < dt.Columns.Count; j++)
-                                    {
-                                        worksheet.Cell(i + 2, j + 1).Value = dt.Rows[i][j].ToString();
-                                    }
-                                }
-
-                                workbook.SaveAs(saveFileDialog.FileName);
-                                Toast.ShowToast("Ficheiro exportado com sucesso!");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Toast.ShowToast("Nenhum registro encontrado para imprimir.", 3000); // Show for 3 seconds
-                    }
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = saveFileDialog.FileName; // Get the file name
+                    excelExportService.ExportDataToExcel(allData, "Geral", fileName);
+                    Toast.ShowToast("Ficheiro exportado com sucesso!", 5000); // Show for 5 seconds
                 }
             }
             catch (Exception ex)
             {
-                Toast.ShowToast("Ocorreu um erro ao exportar o Ficheiro: " + ex.Message, 5000); // Show for 5 seconds
+                Toast.ShowToast($"Ocorreu um erro ao exportar o ficheiro: {ex.Message}", 5000); // Show for 5 seconds
             }
-        }
-
-        private DataTable GetFilteredDataForExport()
-        {
-            string filter = cbxFilter_DGV.Text;
-            string searchText = txtSearch_DGV.Texts;
-
-            return filter switch
-            {
-                "Número de Registo" => throw new InvalidOperationException("Opção de filtro não suportada para impressão."),
-                "Autor" => this.bookService.GetBooksByAuthor_Printing(searchText, libraryID),
-                "Título" => this.bookService.GetBooksByTitle_Printing(searchText, libraryID),
-                "Cota" => this.bookService.GetBooksByClassification_Printing(searchText, libraryID),
-                "Estado" => this.bookService.GetBooksByCondition_Printing(searchText, libraryID),
-                _ => null,
-            };
         }
 
         #endregion
 
         #region Pagination
 
+        /// <summary>
+        /// Updates the pagination label.
+        /// </summary>
         private void UpdatePaginationLabel()
         {
             lblPagination.Text = totalPages > 0 ? $"Página {currentPage} de {totalPages}" : "Não há registos";
@@ -349,30 +383,52 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Notification Methods
 
-        private void ShowToolTip(string message, Control control)
-        {
-            toolTip.ToolTipTitle = "Informação";
-            toolTip.Show(message, control, control.Width / 2, control.Height / 2, 3000); // Show for 3 seconds
-        }
-
+        /// <summary>
+        /// Shows an error message for the specified control.
+        /// </summary>
+        /// <param name="message">The error message to display.</param>
+        /// <param name="control">The control to associate the error message with.</param>
         private void ShowError(string message, Control control)
         {
             errorProvider.SetError(control, message);
         }
 
-        private void ClearError(Control control)
-        {
-            errorProvider.SetError(control, "");
-        }
-
         #endregion
 
+        #region Nested Class: ThemeColors
+
+        /// <summary>
+        /// Represents the theme colors for the application.
+        /// </summary>
         private class ThemeColors
         {
+            /// <summary>
+            /// Gets the button color.
+            /// </summary>
             public Color ButtonColor { get; }
+
+            /// <summary>
+            /// Gets the panel header color.
+            /// </summary>
             public Color PanelHeaderColor { get; }
+
+            /// <summary>
+            /// Gets the panel body color.
+            /// </summary>
             public Color PanelBodyColor { get; }
+
+            /// <summary>
+            /// Gets the label color.
+            /// </summary>
             public Color LabelColor { get; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ThemeColors"/> class.
+            /// </summary>
+            /// <param name="panelHeaderColor">The panel header color.</param>
+            /// <param name="panelBodyColor">The panel body color.</param>
+            /// <param name="labelColor">The label color.</param>
+            /// <param name="buttonColor">The button color.</param>
             public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor)
             {
                 PanelHeaderColor = panelHeaderColor;
@@ -380,6 +436,13 @@ namespace BIBLIOTECA_PROJETO.gui
                 LabelColor = labelColor;
                 ButtonColor = buttonColor;
             }
+        }
+
+        #endregion
+
+        private void txtSearch_DGV__TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

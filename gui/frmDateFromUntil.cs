@@ -1,11 +1,11 @@
 ﻿using BIBLIOTECA_PROJETO.controls;
 using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
-using MetroFramework.Controls;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
@@ -16,6 +16,7 @@ namespace BIBLIOTECA_PROJETO.gui
     public partial class frmDateFromUntil : Form
     {
         private BookDateListingService bookDateService;
+        private ExcelExportService excelExportService;
         private const int itemsPerPage = 11;
         private int currentPage = 1;
         private int totalPages = 0;
@@ -39,6 +40,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             this.InitializeComponent();
             this.bookDateService = new BookDateListingService();
+            this.excelExportService = new ExcelExportService();
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
@@ -56,6 +58,7 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             this.dgvDateListing.CellFormatting += dgvDateListing_CellFormatting;
             this.dgvDateListing.DataBindingComplete += dgvDateListing_DataBindingComplete;
+            
         }
 
         #endregion
@@ -168,26 +171,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        using (var workbook = new XLWorkbook())
-                        {
-                            var worksheet = workbook.Worksheets.Add("Planilha1");
-
-                            for (int j = 0; j < allBooksByDate.Columns.Count; j++)
-                            {
-                                worksheet.Cell(1, j + 1).Value = allBooksByDate.Columns[j].ColumnName;
-                            }
-
-                            for (int i = 0; i < allBooksByDate.Rows.Count; i++)
-                            {
-                                for (int j = 0; j < allBooksByDate.Columns.Count; j++)
-                                {
-                                    worksheet.Cell(i + 2, j + 1).Value = allBooksByDate.Rows[i][j].ToString();
-                                }
-                            }
-
-                            workbook.SaveAs(saveFileDialog.FileName);
-                            Toast.ShowToast("Ficheiro exportado com sucesso!");
-                        }
+                        string fileName = saveFileDialog.FileName;
+                        excelExportService.ExportDataToExcel(allBooksByDate, "Número de Registo", fileName);
+                        Toast.ShowToast("Ficheiro exportado com sucesso!", 5000); // Show for 5 seconds
                     }
                 }
             }

@@ -105,6 +105,7 @@
             this.btnPrint_Search.Size = new System.Drawing.Size(35, 35);
             this.btnPrint_Search.TabIndex = 45;
             this.btnPrint_Search.UseVisualStyleBackColor = false;
+            this.btnPrint_Search.Click += new System.EventHandler(this.bttPrint_Search_Click);
             // 
             // btnPreviousPage
             // 
@@ -123,6 +124,7 @@
             this.btnPreviousPage.Size = new System.Drawing.Size(35, 35);
             this.btnPreviousPage.TabIndex = 44;
             this.btnPreviousPage.UseVisualStyleBackColor = false;
+            this.btnPreviousPage.Click += new System.EventHandler(this.bttPreviousPage_Click);
             // 
             // btnNextPage
             // 
@@ -141,6 +143,7 @@
             this.btnNextPage.Size = new System.Drawing.Size(35, 35);
             this.btnNextPage.TabIndex = 10;
             this.btnNextPage.UseVisualStyleBackColor = false;
+            this.btnNextPage.Click += new System.EventHandler(this.bttNextPage_Click);
             // 
             // pnlFormHeader
             // 
@@ -187,8 +190,7 @@
             this.txtSearch_DGV.TabIndex = 43;
             this.txtSearch_DGV.Texts = "";
             this.txtSearch_DGV.UnderlinedStyle = true;
-            this.txtSearch_DGV._TextChanged += new System.EventHandler(this.txtSearch_DGV__TextChanged);
-            this.txtSearch_DGV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_DGV_KeyPress);
+            this.txtSearch_DGV._TextChanged += new System.EventHandler(this.txtSearch_DGV_TextChanged);
             // 
             // lblSubTitle_2
             // 
@@ -227,7 +229,6 @@
             this.cbxFilter_DGV.Size = new System.Drawing.Size(184, 29);
             this.cbxFilter_DGV.TabIndex = 44;
             this.cbxFilter_DGV.UseSelectable = true;
-            this.cbxFilter_DGV.SelectedIndexChanged += new System.EventHandler(this.cbxFilter_DGV_OnSelectedIndexChanged);
             // 
             // lblTitle
             // 
@@ -291,7 +292,6 @@
             this.Controls.Add(this.pnlFormHeader);
             this.Name = "frmBookViewer";
             this.Text = "Book Viewer";
-            this.Load += new System.EventHandler(this.frmBookViewer_Load);
             this.pnlFormFooter.ResumeLayout(false);
             this.pnlFormFooter.PerformLayout();
             this.pnlFormHeader.ResumeLayout(false);

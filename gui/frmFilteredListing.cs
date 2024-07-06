@@ -1,11 +1,11 @@
 ﻿using BIBLIOTECA_PROJETO.controls;
 using BIBLIOTECA_PROJETO.services;
 using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
@@ -15,10 +15,13 @@ namespace BIBLIOTECA_PROJETO.gui
     /// </summary>
     public partial class frmFilteredListing : Form
     {
+        #region Fields
+
         private BookGeneralListingService bookService;
+        private ExcelExportService excelExportService;
         private int currentPage = 1;
         private int totalPages = 0;
-        private int itemsPerPage = 11;
+        private const int itemsPerPage = 11;
         private DataTable allData;
         private int libraryID;
         private ThemeColors currentThemeColors;
@@ -31,6 +34,10 @@ namespace BIBLIOTECA_PROJETO.gui
             { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(56, 83, 117), Color.FromArgb(56, 83, 117)) }
         };
 
+        #endregion
+
+        #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="frmFilteredListing"/> class.
         /// </summary>
@@ -38,11 +45,14 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             InitializeComponent();
             this.bookService = new BookGeneralListingService();
+            this.excelExportService = new ExcelExportService();
             InitializeEventHandlers();
             this.libraryID = selectedLibraryId;
             SetThemeColors();
             cbxFilter.SelectedIndex = 0;
         }
+
+        #endregion
 
         #region Initialization
 
@@ -57,7 +67,6 @@ namespace BIBLIOTECA_PROJETO.gui
             this.dgvFilteredListing.SelectionChanged += dgvFilteredListing_SelectionChanged;
 
             this.cbxFilter.SelectedIndexChanged += cbxFilter_OnSelectedIndexChanged;
-            this.bttAdvanced.Click += bttAdvanced_Click;
             this.bttAdvanced.Enabled = false; // Initially disable the button
         }
 
@@ -65,6 +74,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Theme Setting
 
+        /// <summary>
+        /// Sets the theme colors for the form based on the selected library.
+        /// </summary>
         private void SetThemeColors()
         {
             if (themeColors.TryGetValue(libraryID, out currentThemeColors))
@@ -124,7 +136,20 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void cbxFilter_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxFilter.SelectedIndex == 0) bttAdvanced.Enabled = false;
+            if (cbxFilter.SelectedIndex == 0)
+            {
+                bttAdvanced.Enabled = false;
+                bttPrint.Enabled = true;
+            }
+            else if (cbxFilter.SelectedIndex == 4 || cbxFilter.SelectedIndex == 5)
+            {
+                bttPrint.Enabled = false;
+            }
+            else
+            {
+                bttAdvanced.Enabled = true;
+                bttPrint.Enabled = true;
+            }
             LoadAllData(cbxFilter.Text);
         }
 
@@ -154,6 +179,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 FillDGV_Filter();
             }
+            bttPrint.Enabled = true; // Enable the print button after advanced button click
         }
 
         /// <summary>
@@ -217,6 +243,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 "Título" => bookService.GetAllTitles(libraryID),
                 "Cota" => bookService.GetAllClassifications(libraryID),
                 "Estado" => bookService.GetAllConditions(libraryID),
+                "Aquisição" => bookService.GetAllAcquisitions(libraryID),
                 _ => throw new ArgumentException("Filtro inválido no LoadAllData"),
             };
 
@@ -237,6 +264,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 "Autor" => bookService.GetBooksByAuthor(value, libraryID),
                 "Cota" => bookService.GetBooksByClassification(value, libraryID),
                 "Estado" => bookService.GetBooksByCondition(value, libraryID),
+                "Aquisição" => bookService.GetBooksByAcquisition(value, libraryID),
                 _ => throw new ArgumentException("Não é possível filtrar por meio do número de registo"),
             };
         }
@@ -322,6 +350,9 @@ namespace BIBLIOTECA_PROJETO.gui
                 case "Estado":
                     ResizeEstado();
                     break;
+                case "Aquisição":
+                    ResizeAcquisition();
+                    break;
                 default:
                     throw new ArgumentException("Filtro inválido");
             }
@@ -378,23 +409,8 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    using var workbook = new XLWorkbook();
-                    var worksheet = workbook.Worksheets.Add("Planilha1");
-
-                    for (int j = 0; j < allData.Columns.Count; j++)
-                    {
-                        worksheet.Cell(1, j + 1).Value = allData.Columns[j].ColumnName;
-                    }
-
-                    for (int i = 0; i < allData.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < allData.Columns.Count; j++)
-                        {
-                            worksheet.Cell(i + 2, j + 1).Value = allData.Rows[i][j].ToString();
-                        }
-                    }
-
-                    workbook.SaveAs(saveFileDialog.FileName);
+                    string fileName = saveFileDialog.FileName; // Get the file name
+                    excelExportService.ExportDataToExcel(allData, cbxFilter.Text, fileName);
                     Toast.ShowToast("Ficheiro exportado com sucesso!", 5000); // Show for 5 seconds
                 }
             }
@@ -438,6 +454,14 @@ namespace BIBLIOTECA_PROJETO.gui
         private void ResizeEstado()
         {
             SetColumnProperties("Estado", 1);
+        }
+
+        /// <summary>
+        /// Resizes the columns for the "Aquisição" filter.
+        /// </summary>
+        private void ResizeAcquisition()
+        {
+            SetColumnProperties("Aquisição", 120);
         }
 
         /// <summary>
@@ -497,22 +521,59 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #endregion
 
+        /// <summary>
+        /// Shows an error message for the specified control.
+        /// </summary>
+        /// <param name="message">The error message to display.</param>
+        /// <param name="control">The control to associate the error message with.</param>
         private void ShowError(string message, Control control)
         {
             errorProvider.SetError(control, message);
         }
 
+        /// <summary>
+        /// Clears the error message for the specified control.
+        /// </summary>
+        /// <param name="control">The control to clear the error message for.</param>
         private void ClearError(Control control)
         {
             errorProvider.SetError(control, "");
         }
 
+        #region Nested Class: ThemeColors
+
+        /// <summary>
+        /// Represents the theme colors for the application.
+        /// </summary>
         private class ThemeColors
         {
+            /// <summary>
+            /// Gets the button color.
+            /// </summary>
             public Color ButtonColor { get; }
+
+            /// <summary>
+            /// Gets the panel header color.
+            /// </summary>
             public Color PanelHeaderColor { get; }
+
+            /// <summary>
+            /// Gets the panel body color.
+            /// </summary>
             public Color PanelBodyColor { get; }
+
+            /// <summary>
+            /// Gets the label color.
+            /// </summary>
             public Color LabelColor { get; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ThemeColors"/> class.
+            /// </summary>
+            /// <param name="panelHeaderColor">The panel header color.</param>
+            /// <param name="panelBodyColor">The panel body color.</param>
+            /// <param name="labelColor">The label color.</param>
+            /// <param name="buttonColor">The button color.</param>
             public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor)
             {
                 PanelHeaderColor = panelHeaderColor;
@@ -521,5 +582,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 ButtonColor = buttonColor;
             }
         }
+
+        #endregion
     }
 }
