@@ -249,7 +249,8 @@
             "Título",
             "Autor",
             "Cota",
-            "Estado"});
+            "Estado",
+            "Aquisição"});
             this.cbxFilter.Location = new System.Drawing.Point(760, 18);
             this.cbxFilter.Name = "cbxFilter";
             this.cbxFilter.Size = new System.Drawing.Size(192, 29);

@@ -5,12 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BIBLIOTECA_PROJETO.gui
 {
+    /// <summary>
+    /// Form for viewing books.
+    /// </summary>
     public partial class frmBookViewer : Form
     {
+        #region Fields
+
         private BookSearchService bookService;
         private int currentPage = 1;
         private const int itemsPerPage = 11;
@@ -28,6 +34,14 @@ namespace BIBLIOTECA_PROJETO.gui
             { 3, new ThemeColors(Color.FromArgb(151, 199, 234), Color.FromArgb(103, 166, 229), Color.FromArgb(56, 83, 117), Color.FromArgb(56, 83, 117)) }
         };
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmBookViewer"/> class.
+        /// </summary>
+        /// <param name="selectedLibraryId">The selected library ID.</param>
         public frmBookViewer(int selectedLibraryId)
         {
             InitializeComponent();
@@ -38,8 +52,13 @@ namespace BIBLIOTECA_PROJETO.gui
             cbxFilter_DGV.SelectedIndex = 1;
         }
 
+        #endregion
+
         #region Initialization
 
+        /// <summary>
+        /// Initializes event handlers.
+        /// </summary>
         private void InitializeEventHandlers()
         {
             this.dgvBook.CellFormatting += dgvBook_CellFormatting;
@@ -57,6 +76,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Theme Setting
 
+        /// <summary>
+        /// Sets the theme colors based on the selected library.
+        /// </summary>
         private void SetThemeColors()
         {
             if (themeColors.TryGetValue(libraryID, out currentThemeColors))
@@ -75,6 +97,8 @@ namespace BIBLIOTECA_PROJETO.gui
                 pnlLineBottom.BackColor = currentThemeColors.LabelColor;
                 pnlLineTop.BackColor = currentThemeColors.LabelColor;
                 dgvBook.BackgroundColor = currentThemeColors.PanelBodyColor;
+                txtSearch_DGV.BorderColor = currentThemeColors.LabelColor;
+                txtSearch_DGV.BorderFocusColor = currentThemeColors.PanelHeaderColor;
             }
         }
 
@@ -82,6 +106,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Event Handlers
 
+        /// <summary>
+        /// Handles the CellFormatting event of the dgvBook control.
+        /// </summary>
         private void dgvBook_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvBook.Columns[e.ColumnIndex].Name == "Estado" && e.Value != null)
@@ -100,17 +127,26 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the DataBindingComplete event of the dgvBook control.
+        /// </summary>
         private void dgvBook_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvBook.ClearSelection();
             ResizeData();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnPrint_Search button.
+        /// </summary>
         private void bttPrint_Search_Click(object sender, EventArgs e)
         {
             ExportDataToExcel();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnPreviousPage button.
+        /// </summary>
         private void bttPreviousPage_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
@@ -120,6 +156,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnNextPage button.
+        /// </summary>
         private void bttNextPage_Click(object sender, EventArgs e)
         {
             if (currentPage < totalPages)
@@ -129,6 +168,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the txtSearch_DGV textbox.
+        /// </summary>
         private void txtSearch_DGV__TextChanged(object sender, EventArgs e)
         {
             if (cbxFilter_DGV.Text == "Número de Registo" && !string.IsNullOrEmpty(txtSearch_DGV.Texts) && !int.TryParse(txtSearch_DGV.Texts, out _))
@@ -141,6 +183,9 @@ namespace BIBLIOTECA_PROJETO.gui
             LoadAllData();
         }
 
+        /// <summary>
+        /// Handles the KeyPress event of the txtSearch_DGV textbox.
+        /// </summary>
         private void txtSearch_DGV_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cbxFilter_DGV.Text == "Número de Registo" && !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -149,12 +194,18 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the cbxFilter_DGV combobox.
+        /// </summary>
         private void cbxFilter_DGV_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             this.txtSearch_DGV.Texts = "";
             this.txtSearch_DGV.Focus();
         }
 
+        /// <summary>
+        /// Handles the Load event of the frmBookViewer form.
+        /// </summary>
         private void frmBookViewer_Load(object sender, EventArgs e)
         {
             txtSearch_DGV.Focus();
@@ -165,6 +216,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Data Loading
 
+        /// <summary>
+        /// Loads all data based on the current filter and search text.
+        /// </summary>
         private void LoadAllData()
         {
             try
@@ -174,7 +228,7 @@ namespace BIBLIOTECA_PROJETO.gui
 
                 if (selectedOption == "Número de Registo" && string.IsNullOrEmpty(searchText))
                 {
-                    allData = this.bookService.GetAllBooks(libraryID); // Carrega todos os livros
+                    allData = this.bookService.GetAllBooks(libraryID); // Load all books
                 }
                 else
                 {
@@ -206,6 +260,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region DataGridView Methods
 
+        /// <summary>
+        /// Fills the DataGridView with the current page data.
+        /// </summary>
         public void FillDGV()
         {
             try
@@ -230,6 +287,9 @@ namespace BIBLIOTECA_PROJETO.gui
             }
         }
 
+        /// <summary>
+        /// Resizes the columns and rows of the DataGridView.
+        /// </summary>
         public void ResizeData()
         {
             if (dgvBook.Columns.Count == 0) return;
@@ -258,6 +318,11 @@ namespace BIBLIOTECA_PROJETO.gui
             SetRowHeight(dgvBook, 40);
         }
 
+        /// <summary>
+        /// Sets the height of each row in the DataGridView.
+        /// </summary>
+        /// <param name="dataGridView">The DataGridView control.</param>
+        /// <param name="rowHeight">The height to set for each row.</param>
         private void SetRowHeight(DataGridView dataGridView, int rowHeight)
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -270,56 +335,166 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Excel Export
 
+        /// <summary>
+        /// Exports the data to an Excel file.
+        /// </summary>
         private void ExportDataToExcel()
         {
             try
             {
-                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                using SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
-                    saveFileDialog.Filter = "Ficheiro Excel|*.xlsx";
-                    saveFileDialog.Title = "Salvar Ficheiro Excel";
-                    saveFileDialog.FileName = "nome_do_ficheiro";
+                    Filter = "Ficheiro Excel|*.xlsx",
+                    Title = "Salvar Ficheiro Excel",
+                    FileName = "nome_do_ficheiro"
+                };
 
-                    DataTable dt = GetFilteredDataForExport();
+                if (allData == null || allData.Rows.Count == 0)
+                {
+                    Toast.ShowToast("Nenhum registro encontrado para imprimir.", 5000); // Show for 5 seconds
+                    return;
+                }
 
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            using (var workbook = new XLWorkbook())
-                            {
-                                var worksheet = workbook.Worksheets.Add("Planilha1");
-
-                                for (int j = 0; j < dt.Columns.Count; j++)
-                                {
-                                    worksheet.Cell(1, j + 1).Value = dt.Columns[j].ColumnName;
-                                }
-
-                                for (int i = 0; i < dt.Rows.Count; i++)
-                                {
-                                    for (int j = 0; j < dt.Columns.Count; j++)
-                                    {
-                                        worksheet.Cell(i + 2, j + 1).Value = dt.Rows[i][j].ToString();
-                                    }
-                                }
-
-                                workbook.SaveAs(saveFileDialog.FileName);
-                                Toast.ShowToast("Ficheiro exportado com sucesso!");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Toast.ShowToast("Nenhum registro encontrado para imprimir.", 3000); // Show for 3 seconds
-                    }
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = saveFileDialog.FileName; // Get the file name
+                    SaveDataToExcel(fileName);
+                    Toast.ShowToast("Ficheiro exportado com sucesso!", 5000); // Show for 5 seconds
                 }
             }
             catch (Exception ex)
             {
-                Toast.ShowToast("Ocorreu um erro ao exportar o Ficheiro: " + ex.Message, 5000); // Show for 5 seconds
+                Toast.ShowToast($"Ocorreu um erro ao exportar o ficheiro: {ex.Message}", 5000); // Show for 5 seconds
             }
         }
 
+        /// <summary>
+        /// Saves the data to an Excel file.
+        /// </summary>
+        /// <param name="fileName">The name of the file to save.</param>
+        private void SaveDataToExcel(string fileName)
+        {
+            using var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add("Planilha1");
+
+            // Set the header row
+            for (int j = 0; j < allData.Columns.Count; j++)
+            {
+                var cell = worksheet.Cell(1, j + 1);
+                cell.Value = allData.Columns[j].ColumnName;
+                cell.Style.Font.Bold = true;
+                cell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+            }
+
+            // Set the data rows
+            for (int i = 0; i < allData.Rows.Count; i++)
+            {
+                for (int j = 0; j < allData.Columns.Count; j++)
+                {
+                    var cell = worksheet.Cell(i + 2, j + 1);
+                    cell.Value = allData.Rows[i][j].ToString();
+                    cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                }
+            }
+
+            // Adjust column widths
+            foreach (IXLColumn column in worksheet.ColumnsUsed())
+            {
+                column.AdjustToContents();
+                // Set a maximum width limit
+                if (column.Width > 30)
+                {
+                    column.Width = 30;
+                }
+            }
+
+            // Add summary statistics below the table
+            int summaryRowStart = allData.Rows.Count + 3;
+            worksheet.Cell(summaryRowStart, 3).Value = "Sumário:";
+            worksheet.Cell(summaryRowStart, 3).Style.Font.Bold = true;
+            worksheet.Cell(summaryRowStart, 3).Style.Font.FontSize = 14;
+
+            AddGeneralSummary(worksheet, summaryRowStart, 3);
+
+            // Save the workbook
+            workbook.SaveAs(fileName);
+        }
+
+        /// <summary>
+        /// Adds a general summary to the worksheet.
+        /// </summary>
+        /// <param name="worksheet">The worksheet to add the summary to.</param>
+        /// <param name="summaryRowStart">The starting row number for the summary.</param>
+        /// <param name="column">The column number to start the summary.</param>
+        private void AddGeneralSummary(IXLWorksheet worksheet, int summaryRowStart, int column)
+        {
+            AddSummary(worksheet, summaryRowStart, column, "Total exemplares:", allData.Rows.Count);
+            AddDistinctSummary(worksheet, summaryRowStart + 1, column, "Títulos distintos:", "Título");
+            AddDistinctSummary(worksheet, summaryRowStart + 2, column, "Autores distintos:", "Autor");
+            AddDistinctSummary(worksheet, summaryRowStart + 3, column, "Cotas distintas:", "Cota");
+
+            worksheet.Cell(summaryRowStart + 5, column).Value = "Ofertas:";
+            worksheet.Cell(summaryRowStart + 5, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Aquisição") == "Oferta");
+
+            worksheet.Cell(summaryRowStart + 6, column).Value = "Compras:";
+            worksheet.Cell(summaryRowStart + 6, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Aquisição") == "Compra");
+
+            worksheet.Cell(summaryRowStart + 7, column).Value = "Disponível:";
+            worksheet.Cell(summaryRowStart + 7, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Disponível");
+
+            worksheet.Cell(summaryRowStart + 8, column).Value = "Indisponível:";
+            worksheet.Cell(summaryRowStart + 8, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Indisponível");
+
+            worksheet.Cell(summaryRowStart + 9, column).Value = "Abatido:";
+            worksheet.Cell(summaryRowStart + 9, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Abatido");
+
+            worksheet.Cell(summaryRowStart + 10, column).Value = "Perdido:";
+            worksheet.Cell(summaryRowStart + 10, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Perdido");
+
+            worksheet.Cell(summaryRowStart + 11, column).Value = "Exposição:";
+            worksheet.Cell(summaryRowStart + 11, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Exposição");
+
+            worksheet.Cell(summaryRowStart + 12, column).Value = "Consulta Local:";
+            worksheet.Cell(summaryRowStart + 12, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Consulta Local");
+
+            worksheet.Cell(summaryRowStart + 13, column).Value = "Depósito:";
+            worksheet.Cell(summaryRowStart + 13, column + 1).Value = allData.AsEnumerable().Count(row => row.Field<string>("Estado") == "Depósito");
+        }
+
+        /// <summary>
+        /// Adds a summary row to the worksheet.
+        /// </summary>
+        /// <param name="worksheet">The worksheet to add the summary to.</param>
+        /// <param name="row">The row number to add the summary at.</param>
+        /// <param name="column">The column number to start the summary.</param>
+        /// <param name="label">The summary label.</param>
+        /// <param name="value">The summary value.</param>
+        private void AddSummary(IXLWorksheet worksheet, int row, int column, string label, int value)
+        {
+            worksheet.Cell(row + 1, column).Value = label;
+            worksheet.Cell(row + 1, column + 1).Value = value;
+        }
+
+        /// <summary>
+        /// Adds a distinct summary row to the worksheet.
+        /// </summary>
+        /// <param name="worksheet">The worksheet to add the summary to.</param>
+        /// <param name="row">The row number to add the summary at.</param>
+        /// <param name="column">The column number to start the summary.</param>
+        /// <param name="label">The summary label.</param>
+        /// <param name="columnName">The column name to calculate distinct values from.</param>
+        private void AddDistinctSummary(IXLWorksheet worksheet, int row, int column, string label, string columnName)
+        {
+            worksheet.Cell(row + 1, column).Value = label;
+            worksheet.Cell(row + 1, column + 1).Value = allData.AsEnumerable().Select(r => r.Field<string>(columnName)).Distinct().Count();
+        }
+
+
+        /// <summary>
+        /// Gets the filtered data for export based on the current filter and search text.
+        /// </summary>
+        /// <returns>The filtered data as a DataTable.</returns>
         private DataTable GetFilteredDataForExport()
         {
             string filter = cbxFilter_DGV.Text;
@@ -340,6 +515,9 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Pagination
 
+        /// <summary>
+        /// Updates the pagination label.
+        /// </summary>
         private void UpdatePaginationLabel()
         {
             lblPagination.Text = totalPages > 0 ? $"Página {currentPage} de {totalPages}" : "Não há registos";
@@ -349,17 +527,31 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #region Notification Methods
 
+        /// <summary>
+        /// Shows a tooltip with the specified message for the specified control.
+        /// </summary>
+        /// <param name="message">The message to display in the tooltip.</param>
+        /// <param name="control">The control to associate the tooltip with.</param>
         private void ShowToolTip(string message, Control control)
         {
             toolTip.ToolTipTitle = "Informação";
             toolTip.Show(message, control, control.Width / 2, control.Height / 2, 3000); // Show for 3 seconds
         }
 
+        /// <summary>
+        /// Shows an error message for the specified control.
+        /// </summary>
+        /// <param name="message">The error message to display.</param>
+        /// <param name="control">The control to associate the error message with.</param>
         private void ShowError(string message, Control control)
         {
             errorProvider.SetError(control, message);
         }
 
+        /// <summary>
+        /// Clears the error message for the specified control.
+        /// </summary>
+        /// <param name="control">The control to clear the error message for.</param>
         private void ClearError(Control control)
         {
             errorProvider.SetError(control, "");
@@ -367,12 +559,40 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #endregion
 
+        #region Nested Class: ThemeColors
+
+        /// <summary>
+        /// Represents the theme colors for the application.
+        /// </summary>
         private class ThemeColors
         {
+            /// <summary>
+            /// Gets the button color.
+            /// </summary>
             public Color ButtonColor { get; }
+
+            /// <summary>
+            /// Gets the panel header color.
+            /// </summary>
             public Color PanelHeaderColor { get; }
+
+            /// <summary>
+            /// Gets the panel body color.
+            /// </summary>
             public Color PanelBodyColor { get; }
+
+            /// <summary>
+            /// Gets the label color.
+            /// </summary>
             public Color LabelColor { get; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ThemeColors"/> class.
+            /// </summary>
+            /// <param name="panelHeaderColor">The panel header color.</param>
+            /// <param name="panelBodyColor">The panel body color.</param>
+            /// <param name="labelColor">The label color.</param>
+            /// <param name="buttonColor">The button color.</param>
             public ThemeColors(Color panelHeaderColor, Color panelBodyColor, Color labelColor, Color buttonColor)
             {
                 PanelHeaderColor = panelHeaderColor;
@@ -381,5 +601,7 @@ namespace BIBLIOTECA_PROJETO.gui
                 ButtonColor = buttonColor;
             }
         }
+
+        #endregion
     }
 }
