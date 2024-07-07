@@ -253,6 +253,16 @@ namespace BIBLIOTECA_PROJETO.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logoLibraries {
+            get {
+                object obj = ResourceManager.GetObject("logoLibraries", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logoSecondarySchool_transparent2 {
             get {
                 object obj = ResourceManager.GetObject("logoSecondarySchool_transparent2", resourceCulture);
