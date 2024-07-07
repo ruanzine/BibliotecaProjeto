@@ -440,9 +440,5 @@ namespace BIBLIOTECA_PROJETO.gui
 
         #endregion
 
-        private void txtSearch_DGV__TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

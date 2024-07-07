@@ -2,7 +2,7 @@
 
 namespace BIBLIOTECA_PROJETO.classes
 {
-    public class Livro
+    public class Book
     {
         public int RegistrationNumber { get; set; }
         public DateTime DeliveryDate { get; set; }
