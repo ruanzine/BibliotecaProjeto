@@ -23,6 +23,8 @@ namespace BIBLIOTECA_PROJETO.gui
         private ThemeColors currentThemeColors;
         private ToolTip toolTip = new ToolTip();
         private ErrorProvider errorProvider = new ErrorProvider();
+        private ListBox listBoxSuggestionsTitle;
+        private ListBox listBoxSuggestionsAuthor;
 
         private readonly Dictionary<int, ThemeColors> themeColors = new Dictionary<int, ThemeColors>
         {
@@ -39,11 +41,58 @@ namespace BIBLIOTECA_PROJETO.gui
             InitializeComponent();
             mainForm.AddControlBounds(this.pnlEditLivros);
             this.libraryID = selectedLibraryId;
+            InitializeSuggestionListBoxes();
             SetThemeColors();
 
             // Set the MaxDate of the DateTimePicker to today's date
             dtpArrivalDate.MaxDate = DateTime.Today;
+
+            this.txtTitle._TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
+            this.txtAuthor._TextChanged += new System.EventHandler(this.txtAuthor_TextChanged);
+
         }
+
+        #region Initialization
+
+        /// <summary>
+        /// Initializes the suggestion ListBox controls for Title and Author.
+        /// </summary>
+        private void InitializeSuggestionListBoxes()
+        {
+            int maxHeight = 100; // Define the maximum height for the ListBox
+            int itemHeight = 30; // Define the item height
+            Font itemFont = new Font("Arial", 12); // Define the item font
+
+            // Initialize ListBox for Title suggestions
+            listBoxSuggestionsTitle = new ListBox
+            {
+                Visible = false,
+                DrawMode = DrawMode.OwnerDrawFixed,
+                IntegralHeight = false,
+                ItemHeight = itemHeight,
+                Font = itemFont,
+                MaximumSize = new Size(txtTitle.Width, maxHeight) // Set the maximum height
+            };
+            listBoxSuggestionsTitle.MouseClick += listBoxSuggestionsTitle_MouseClick;
+            listBoxSuggestionsTitle.DrawItem += listBoxSuggestions_DrawItem;
+            this.Controls.Add(listBoxSuggestionsTitle);
+
+            // Initialize ListBox for Author suggestions
+            listBoxSuggestionsAuthor = new ListBox
+            {
+                Visible = false,
+                DrawMode = DrawMode.OwnerDrawFixed,
+                IntegralHeight = false,
+                ItemHeight = itemHeight,
+                Font = itemFont,
+                MaximumSize = new Size(txtAuthor.Width, maxHeight) // Set the maximum height
+            };
+            listBoxSuggestionsAuthor.MouseClick += listBoxSuggestionsAuthor_MouseClick;
+            listBoxSuggestionsAuthor.DrawItem += listBoxSuggestions_DrawItem;
+            this.Controls.Add(listBoxSuggestionsAuthor);
+        }
+
+        #endregion
 
         #region Theme Setting
 
@@ -106,14 +155,14 @@ namespace BIBLIOTECA_PROJETO.gui
             {
                 int numeroRegistro = int.Parse(this.txtNRegisto_Edit.Texts.Trim());
                 DateTime dataEntrega = dtpArrivalDate.Value;
-                string titulo = this.txtTitulo_Edit.Texts.Trim();
-                string autor = this.txtAutor_Edit.Texts.Trim();
-                string cota = this.txtCota_Edit.Texts.Trim();
-                string aquisicao = this.cbxAquisicao_Edit.Text;
-                string editora = this.txtEditora_Edit.Texts.Trim();
-                string numeroVolume = this.txtNVolume_Edit.Texts.Trim();
-                string observacoes = this.txtObservacoes_Edit.Texts.Trim();
-                string estado = this.cbxEstado_Edit.Text;
+                string titulo = this.txtTitle.Texts.Trim();
+                string autor = this.txtAuthor.Texts.Trim();
+                string cota = this.txtClassification.Texts.Trim();
+                string aquisicao = this.cbxAcquisition.Text;
+                string editora = this.txtPublisher.Texts.Trim();
+                string numeroVolume = this.txtVolNum.Texts.Trim();
+                string observacoes = this.txtObservations.Texts.Trim();
+                string estado = this.cbxCondition.Text;
 
                 int autorID = bookUpdateService.GetAuthorID(autor, libraryID);
                 if (autorID == -1)
@@ -152,15 +201,6 @@ namespace BIBLIOTECA_PROJETO.gui
         private void txtNRegisto_Edit_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-        }
-
-        /// <summary>
-        /// Handles the KeyPress event for the Data de Entrega textbox, ensuring valid date input.
-        /// </summary>
-        private void txtDataEntrega_Edit_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
 
@@ -220,9 +260,119 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void gpbAutor_Edit_Enter(object sender, EventArgs e) { }
 
+        /// <summary>
+        /// Handles the TextChanged event of the Title TextBox to show suggestions.
+        /// </summary>
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            ShowSuggestions(txtTitle, listBoxSuggestionsTitle, searchText => bookUpdateService.GetTitlesBySearch(searchText, this.libraryID));
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the Author TextBox to show suggestions.
+        /// </summary>
+        private void txtAuthor_TextChanged(object sender, EventArgs e)
+        {
+            ShowSuggestions(txtAuthor, listBoxSuggestionsAuthor, searchText => bookUpdateService.GetAuthorsBySearch(searchText, this.libraryID));
+        }
+
+        /// <summary>
+        /// Handles the MouseClick event of the Title suggestion ListBox to select a suggestion.
+        /// </summary>
+        private void listBoxSuggestionsTitle_MouseClick(object sender, MouseEventArgs e)
+        {
+            SelectSuggestion(listBoxSuggestionsTitle, txtTitle);
+        }
+
+        /// <summary>
+        /// Handles the MouseClick event of the Author suggestion ListBox to select a suggestion.
+        /// </summary>
+        private void listBoxSuggestionsAuthor_MouseClick(object sender, MouseEventArgs e)
+        {
+            SelectSuggestion(listBoxSuggestionsAuthor, txtAuthor);
+        }
+
+        /// <summary>
+        /// Handles the DrawItem event of the suggestion ListBox to customize item drawing.
+        /// </summary>
+        private void listBoxSuggestions_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            ListBox listBox = sender as ListBox;
+
+            // Determine the color
+            Color backgroundColor = ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                ? Color.LightGray
+                : listBox.BackColor;
+
+            // Draw the background
+            e.Graphics.FillRectangle(new SolidBrush(backgroundColor), e.Bounds);
+
+            // Draw the text
+            e.Graphics.DrawString(listBox.Items[e.Index].ToString(), e.Font, new SolidBrush(listBox.ForeColor), e.Bounds);
+
+            // Draw the focus rectangle if the mouse is over an item
+            e.DrawFocusRectangle();
+        }
+
         #endregion
 
         #region Helper Methods
+
+        /// <summary>
+        /// Shows suggestions in the ListBox based on the input in the TextBox.
+        /// </summary>
+        /// <param name="textBox">The TextBox containing the input text.</param>
+        /// <param name="listBox">The ListBox to display suggestions.</param>
+        /// <param name="getSuggestions">The function to get suggestions based on the input text.</param>
+        private void ShowSuggestions(UC_textbox textBox, ListBox listBox, Func<string, List<string>> getSuggestions)
+        {
+            string searchText = textBox.Texts.Trim();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                listBox.Visible = false;
+                return;
+            }
+
+            List<string> suggestions = getSuggestions(searchText);
+            if (suggestions.Count > 0)
+            {
+                listBox.Items.Clear();
+                listBox.Items.AddRange(suggestions.ToArray());
+                listBox.Visible = true;
+
+                // Calculate and set the height
+                int requiredHeight = Math.Min(listBox.ItemHeight * suggestions.Count, listBox.MaximumSize.Height);
+                listBox.Height = requiredHeight;
+
+                // Adjust position
+                Point textBoxLocation = textBox.PointToScreen(Point.Empty);
+                Point parentLocation = this.PointToScreen(Point.Empty);
+                listBox.Location = new Point(textBoxLocation.X - parentLocation.X, textBoxLocation.Y - parentLocation.Y + textBox.Height);
+
+                listBox.Width = textBox.Width;
+                listBox.BringToFront();
+            }
+            else
+            {
+                listBox.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Selects a suggestion from the ListBox and sets it in the TextBox.
+        /// </summary>
+        /// <param name="listBox">The ListBox containing the suggestions.</param>
+        /// <param name="textBox">The TextBox to set the selected suggestion.</param>
+        private void SelectSuggestion(ListBox listBox, UC_textbox textBox)
+        {
+            if (listBox.SelectedItem != null)
+            {
+                textBox.Texts = listBox.SelectedItem.ToString();
+                listBox.Visible = false;
+            }
+        }
 
         /// <summary>
         /// Fills the form fields with the data of the specified book record.
@@ -230,19 +380,19 @@ namespace BIBLIOTECA_PROJETO.gui
         /// <param name="numeroRegistro">The registration number of the book to load.</param>
         private void FillTextBoxes(int numeroRegistro)
         {
-            List<Livro> livros = bookUpdateService.GetBooks_Edit(libraryID);
-            Livro livroSelecionado = livros.FirstOrDefault(livro => livro.RegistrationNumber == numeroRegistro);
+            List<Book> livros = bookUpdateService.GetBooks_Edit(libraryID);
+            Book livroSelecionado = livros.FirstOrDefault(livro => livro.RegistrationNumber == numeroRegistro);
             if (livroSelecionado != null)
             {
                 this.dtpArrivalDate.Value = livroSelecionado.DeliveryDate;
-                this.txtTitulo_Edit.Texts = livroSelecionado.Title;
-                this.txtAutor_Edit.Texts = livroSelecionado.Author;
-                this.txtCota_Edit.Texts = livroSelecionado.Classification;
-                this.cbxAquisicao_Edit.Text = livroSelecionado.AcquisitionMethod;
-                this.txtEditora_Edit.Texts = livroSelecionado.Publisher;
-                this.txtNVolume_Edit.Texts = livroSelecionado.VolumeNumber;
-                this.txtObservacoes_Edit.Texts = livroSelecionado.Observations;
-                this.cbxEstado_Edit.Text = livroSelecionado.Condition;
+                this.txtTitle.Texts = livroSelecionado.Title;
+                this.txtAuthor.Texts = livroSelecionado.Author;
+                this.txtClassification.Texts = livroSelecionado.Classification;
+                this.cbxAcquisition.Text = livroSelecionado.AcquisitionMethod;
+                this.txtPublisher.Texts = livroSelecionado.Publisher;
+                this.txtVolNum.Texts = livroSelecionado.VolumeNumber;
+                this.txtObservations.Texts = livroSelecionado.Observations;
+                this.cbxCondition.Text = livroSelecionado.Condition;
                 this.txtNRegisto_Edit.Enabled = false;
                 this.EnableText();
             }
@@ -260,13 +410,13 @@ namespace BIBLIOTECA_PROJETO.gui
         private bool ValidateFormFields()
         {
             return ValidateTextBox(this.txtNRegisto_Edit, "o número de registo do exemplar") &&
-                   ValidateTextBox(this.txtTitulo_Edit, "o título do exemplar") &&
-                   ValidateTextBox(this.txtAutor_Edit, "o autor do exemplar") &&
-                   ValidateTextBox(this.txtCota_Edit, "a cota do exemplar") &&
-                   ValidateTextBox(this.txtNVolume_Edit, "o número de volume do exemplar") &&
-                   ValidateTextBox(this.txtEditora_Edit, "a editora do exemplar") &&
-                   ValidateComboBox(this.cbxAquisicao_Edit, "o método de aquisição do exemplar") &&
-                   ValidateComboBox(this.cbxEstado_Edit, "o estado do exemplar");
+                   ValidateTextBox(this.txtTitle, "o título do exemplar") &&
+                   ValidateTextBox(this.txtAuthor, "o autor do exemplar") &&
+                   ValidateTextBox(this.txtClassification, "a cota do exemplar") &&
+                   ValidateTextBox(this.txtVolNum, "o número de volume do exemplar") &&
+                   ValidateTextBox(this.txtPublisher, "a editora do exemplar") &&
+                   ValidateComboBox(this.cbxAcquisition, "o método de aquisição do exemplar") &&
+                   ValidateComboBox(this.cbxCondition, "o estado do exemplar");
         }
 
         /// <summary>
@@ -309,14 +459,14 @@ namespace BIBLIOTECA_PROJETO.gui
         /// </summary>
         private void ClearText()
         {
-            this.txtAutor_Edit.Texts = "";
-            this.txtTitulo_Edit.Texts = "";
-            this.txtCota_Edit.Texts = "";
-            this.txtEditora_Edit.Texts = "";
-            this.txtNVolume_Edit.Texts = "";
-            this.txtObservacoes_Edit.Texts = "";
-            this.cbxEstado_Edit.SelectedIndex = -1;
-            this.cbxAquisicao_Edit.SelectedIndex = -1;
+            this.txtAuthor.Texts = "";
+            this.txtTitle.Texts = "";
+            this.txtClassification.Texts = "";
+            this.txtPublisher.Texts = "";
+            this.txtVolNum.Texts = "";
+            this.txtObservations.Texts = "";
+            this.cbxCondition.SelectedIndex = -1;
+            this.cbxAcquisition.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -325,14 +475,14 @@ namespace BIBLIOTECA_PROJETO.gui
         private void EnableText()
         {
             this.dtpArrivalDate.Enabled = true;
-            this.txtAutor_Edit.Enabled = true;
-            this.txtTitulo_Edit.Enabled = true;
-            this.txtCota_Edit.Enabled = true;
-            this.txtEditora_Edit.Enabled = true;
-            this.cbxEstado_Edit.Enabled = true;
-            this.cbxAquisicao_Edit.Enabled = true;
-            this.txtNVolume_Edit.Enabled = true;
-            this.txtObservacoes_Edit.Enabled = true;
+            this.txtAuthor.Enabled = true;
+            this.txtTitle.Enabled = true;
+            this.txtClassification.Enabled = true;
+            this.txtPublisher.Enabled = true;
+            this.cbxCondition.Enabled = true;
+            this.cbxAcquisition.Enabled = true;
+            this.txtVolNum.Enabled = true;
+            this.txtObservations.Enabled = true;
             this.bttClear_Edit.Enabled = true;
             this.bttDel.Enabled = true;
             this.bttSave_Edit.Enabled = true;
@@ -345,14 +495,15 @@ namespace BIBLIOTECA_PROJETO.gui
         {
             this.txtNRegisto_Edit.Focus();
             this.dtpArrivalDate.Enabled = false;
-            this.txtAutor_Edit.Enabled = false;
-            this.txtTitulo_Edit.Enabled = false;
-            this.txtCota_Edit.Enabled = false;
-            this.txtEditora_Edit.Enabled = false;
-            this.cbxEstado_Edit.Enabled = false;
-            this.cbxAquisicao_Edit.Enabled = false;
-            this.txtNVolume_Edit.Enabled = false;
-            this.txtObservacoes_Edit.Enabled = false;
+            this.txtAuthor.Enabled = false;
+            this.txtTitle.Enabled = false;
+            this.txtClassification.Enabled = false;
+            this.txtClassification.Enabled = false;
+            this.txtPublisher.Enabled = false;
+            this.cbxCondition.Enabled = false;
+            this.cbxAcquisition.Enabled = false;
+            this.txtVolNum.Enabled = false;
+            this.txtObservations.Enabled = false;
             this.bttClear_Edit.Enabled = false;
             this.bttDel.Enabled = false;
             this.bttSave_Edit.Enabled = false;

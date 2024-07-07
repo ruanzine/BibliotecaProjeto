@@ -200,11 +200,11 @@ namespace BIBLIOTECA_PROJETO.classes.services
         /// </summary>
         /// <returns>A list of books.</returns>
         /// <exception cref="SqlException">Thrown when an error occurs while retrieving the books from the database.</exception>
-        public List<Livro> GetBooks_Edit(int libraryID)
+        public List<Book> GetBooks_Edit(int libraryID)
         {
             try
             {
-                List<Livro> livros = new List<Livro>();
+                List<Book> livros = new List<Book>();
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
@@ -221,7 +221,7 @@ namespace BIBLIOTECA_PROJETO.classes.services
                         {
                             while (reader.Read())
                             {
-                                Livro livro = new Livro
+                                Book livro = new Book
                                 {
                                     RegistrationNumber = reader.GetInt32(reader.GetOrdinal("RegistrationNumber")),
                                     DeliveryDate = reader.GetDateTime(reader.GetOrdinal("DeliveryDate")),
@@ -277,6 +277,53 @@ namespace BIBLIOTECA_PROJETO.classes.services
             }
         }
 
+        public List<string> GetTitlesBySearch(string searchText, int libraryID)
+        {
+            List<string> titles = new List<string>();
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "SELECT TitleName FROM Titles WHERE TitleName LIKE @searchText + '%' AND LibraryID = @LibraryID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@searchText", searchText);
+                    cmd.Parameters.AddWithValue("@LibraryID", libraryID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            titles.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return titles;
+        }
+
+        public List<string> GetAuthorsBySearch(string searchText, int libraryID)
+        {
+            List<string> authors = new List<string>();
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
+            {
+                conn.Open();
+                string query = "SELECT Name FROM Authors WHERE Name LIKE @searchText + '%' AND LibraryID = @LibraryID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@searchText", searchText);
+                    cmd.Parameters.AddWithValue("@LibraryID", libraryID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            authors.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return authors;
+        }
 
 
     }
